@@ -1,48 +1,41 @@
 ﻿<?php
 # #####################################################
 # Clase Property para PHP 
-# Versión: 1.0.0.0 (2013-04-19) 
 # ----------------------------------------------
 # Autor: 
 # 	Nelson Martell (nelson6e65) 
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright © 2013 Nelson Martell 
+#  Copyright © 2014 Nelson Martell 
 #
 # #####################################################
 
-#ifndef C_Property
-	#define C_Property
-	#ifndef C_Type
-		#include "Type.php"
-	#endif	
-	//Clase
-#endif
+
 if (!defined("C_Property")) {
 	define("C_Property", true);
 	
-	include('Type.php');
-	include('Exceptions/ALL.inc');
+	include('Type.php');	
 	
 	
 	///	<sumary>
-	///		Define una contenedor que permite manejar atributos fuertemente tipados
+	///		Define una contenedor que permite manejar atributos fuertemente tipados, simulando una propiedad en C#.
 	///	</sumary>
 	///	<remarks>
 	///		Los objetos deben definir los métodos 'get_' y 'set_' basándose 
 	///		en los métodos correspondientes definidos en esta clase.
 	///	</remarks>
 	class Property {
+		
 		/// Indica si la propiedad es de sólo lectura
-		private $ReadOnly = false;
+		private $_isReadOnly = false;
 		
 		//Obtiene un valor que indica si esta propiedad se definió de sólo lectura
 		public function IsReadOnly() {
-			return $this->ReadOnly;
+			return $this->_isReadOnly;
 		}
 		
-		private $Value = null;	
+		private $_value = null;	
 		
 		/// Obtiene o establece el valor
 		public function Value($value = null) {
@@ -67,7 +60,7 @@ if (!defined("C_Property")) {
 			
 					
 
-			$tipoActual = Type::typeof($this->Value); //gettype($this->Value);
+			$tipoActual = Type::typeof($this->_value); //gettype($this->_value);
 			
 			//if ($tipoActual->IsValueType())
 			if ($value == null) {//No puede asignársele null
@@ -80,8 +73,8 @@ if (!defined("C_Property")) {
 			$tipoNuevo = Type::typeof($value); //gettype($value);
 			
 			
-			if ($tipoActual == $tipoNuevo || $this->Value == null)
-				$this->Value = $value;
+			if ($tipoActual == $tipoNuevo || $this->_value == null)
+				$this->_value = $value;
 			else {
 				
 				$msg = "\n<h3>Error:</h3>";
@@ -124,26 +117,26 @@ if (!defined("C_Property")) {
 		}
 		
 		public function Reset() {
-			return $this->Value = null;
+			return $this->_value = null;
 		}
 		
 		public function Get() {
-			return $this->Value;
+			return $this->_value;
 		}
 		
 		
 		
 		
 		
-		function Property($value, $readonly = false) {
+		function __construct($value, $readonly = false) {
 			if ($value == null)
 				throw new ArgumentNullException('$value');
-			$this->ReadOnly = $readonly;
-			$this->Value = $value;
+			$this->_isReadOnly = $readonly;
+			$this->_value = $value;
 		}
 		
-		function __tostring() {
-			return "$this->Value";
+		function __toString() {
+			return $this->_value;
 		}
 	}
 }
