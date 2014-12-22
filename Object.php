@@ -61,7 +61,7 @@ if (!defined("C_Object")) {
 				return $this->$getter();
 			}
 			else {
-				throw new BadMethodCallException("There is not getter for " . $name . " property.");
+				throw new BadMethodCallException(_("There is not getter for %s property.", $name));
 			}
 		}
 		
@@ -77,7 +77,7 @@ if (!defined("C_Object")) {
 				$this->$setter($value);
 			}
 			else {
-				throw new BadMethodCallException("There is not setter for " . $name . " property.");
+				throw new BadMethodCallException(_("There is not setter for %s property.", $name));
 			}
 		}
 		
