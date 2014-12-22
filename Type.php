@@ -108,9 +108,10 @@ if (!defined("C_Type")) {
 			return $tipo;
 		}
 		
+		/*
 		public function __invoke($x) {
 			return Type::typeof($x); //funciona como un alias para typeof, usando: $a = "Soy una cadena"; Type($a); 
-		}
+		}*/
 		
 		public final function __toString() {
 			$aux = "t";
