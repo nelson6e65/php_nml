@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 # #####################################################
 # Clase Type para PHP 
 # Versión: 1.0.0.0 (2013-04-19) 
@@ -19,9 +19,19 @@ if (!defined("C_Type")) {
 	define("C_Type", true);
 
 	
-	class Type {
+	
+	final class Type {
 		private $Name;
 		
+		function __construct($nombre){
+			if (is_string($nombre)) {
+				$this->Name = $nombre;
+			} else {
+				$this->InicializeFromType(self::typeof($nombre));
+			}
+			
+			
+		}
 		///Obtiene el nombre del tipo
 		public function GetName() {
 			return $this->Name;
@@ -37,24 +47,16 @@ if (!defined("C_Type")) {
 			return $this->Methods;
 		}
 
-		function Type($nombre){
-			if (is_string($nombre)) {
-				$this->Name = $nombre;
-			} else {
-				$this->InicializeFromType(self::typeof($nombre));
-			}
-			
-			
-		}
+		
 
 		//Genera un Type a partir de otro.
-		function InicializeFromType($type) {
+		public function InicializeFromType($type) {
 			$this->Name = $type->Name;
 			$this->Methods = $type->Methods;
 		}
 
 		//Indica si el tipo especificado es una clase definida; es decir, diferente a 'integer', 'double', 'array' y 'object'.
-		function IsCustom() {
+		public function IsCustom() {
 			switch($this->Name){
 				case 'string':
 				case 'integer':
@@ -69,7 +71,7 @@ if (!defined("C_Type")) {
 			}
 		}
 		
-		function IsValueType() {
+		public function IsValueType() {
 			switch($this->Name){
 				case 'string':
 				case 'integer':
@@ -81,7 +83,7 @@ if (!defined("C_Type")) {
 			}
 		}
 		
-		function IsReferenceType() {
+		public function IsReferenceType() {
 			switch($this->Name){
 				case 'string':
 				case 'integer':
@@ -106,11 +108,15 @@ if (!defined("C_Type")) {
 			return $tipo;
 		}
 		
-		function __ToString() {
+		public function __invoke($x) {
+			return Type::typeof($x); //funciona como un alias para typeof, usando: $a = "Soy una cadena"; Type($a); 
+		}
+		
+		public final function __toString() {
 			$aux = "t";
 			if ($this->IsCustom())
 				$aux = "T";
-			return "$aux:$this->Name";
+			return $aux . ":" . $this->Name;
 		}
 	}
 }
