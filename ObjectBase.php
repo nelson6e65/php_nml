@@ -24,15 +24,16 @@ if (!defined("C_ObjectBase")) {
 		/*
 		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función ObjectClass::ToString()
 		 * */
-		final function __toString() {
-			$args = null;
-			list($args) = func_get_args();	
-			return $this->ToString($args);
+		final function __toString() {			
+			//$args = null;
+			//list($args) = func_get_args();
+			return $this->ToString();
 		}
 		
 		
-		public function ToString(array $args = null) {
+		public function ToString($format = 'g') {
 			//Implementación por defecto
+			var_dump($format);
 			return "{". $this->GetType() . "}"; 
 			
 		}
