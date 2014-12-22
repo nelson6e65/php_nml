@@ -96,7 +96,7 @@ if (!defined("C_ObjectBase")) {
 		
 		public function ToString($format = 'g') {
 			//Implementación por defecto
-			var_dump($format);
+			//var_dump($format);
 			return "{". $this->GetType() . "}"; 
 			
 		}
