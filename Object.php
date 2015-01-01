@@ -11,9 +11,11 @@
 #
 # #####################################################
 
+$_namespace = "NelsonMartell";
+$_class = "Object";
 
-if (!defined("C_Object")) {
-	define("C_Object", true);
+if (!defined($_namespace . '/' . $_class)):
+	define($_namespace . '/' . $_class, true);
 	
 	include('Type.php');
 	
@@ -110,5 +112,4 @@ if (!defined("C_Object")) {
 		
 	}
 	
-}
-?>
+endif;
