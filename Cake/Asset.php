@@ -3,27 +3,64 @@
 /*
  * Clase para manejar los directorios de los diferentes recursos
  * */
- 
-if (!defined("NelsonMartell.Cake.Asset")) {
-	define("NelsonMartell.Cake.Asset", true);
+
+$_namespace = "NelsonMartell/Cake";
+$_class = "Asset";
+
+if (!defined($_namespace . '/' . $_class)):
+	define($_namespace . '/' . $_class, true);
+		
+	include('/../Object.php');
 	
-	require('../Object.php');
-	
-	public class Asset extends Object {
+	class Asset extends Object {
 		
 		public function __construct($name, $versions) {
+			parent::__construct();
+			unset($this->Name, $this->Versions);
+			
 			if (!is_string($name))
-				throw new BadArgumentException(_('The name of resource must be a string.'));
+				throw new InvalidArgumentException(_('The name of resource must be an string.'));
 			
-			$this->name = $name;
+			$this->Name = $name;
 			
-			if()
-			$this->version = $versions;
+			if(is_array($versions))
+				$this->Versions = $versions;
+				
+			
 		}
 		
-		public $name = '';
+		private $_name;
 		
-		public $version = '';
+		/*
+		 * Obtiene o establece el nombre del recurso.
+		 * */
+		public $Name;
+		
+		public function get_Name() {
+			return $this->_name;
+		}
+		
+		public function set_Name($value) {
+			if(!is_string($value))
+				throw new InvalidArgumentException('$value must be an string');
+			
+			$this->_name = $value;
+		}
+		
+		private $_versions;
+		
+		/*
+		 * Obtiene o establece la lista de versiones
+		 * */
+		public $Versions;
+		
+		public function get_Versions() {
+			return $this->_versions;
+		}
+		
+		public function set_Versions($value) {
+			$this->_versions = $value;
+		}
 		
 		/*
 			public static function getJavascriptPath($api) {
@@ -43,9 +80,9 @@ if (!defined("NelsonMartell.Cake.Asset")) {
 		}*/
 		
 		/*
-		 * Obtiene la ruta relativa usando algÃºn auxiliar, como Html->css(), por ejemplo.
+		 * Obtiene la ruta relativa usando algún auxiliar, como Html->css(), por ejemplo.
 		 * */
-		public function getPath(boolean $endWithName = false, string $append = ''){
+		public function getPath(boolean $endWithName, string $append){
 			
 			$ruta = $this->name . '/' . $this->version . '/';
 			
@@ -57,10 +94,12 @@ if (!defined("NelsonMartell.Cake.Asset")) {
 			if ($append != '')
 			$ruta .= $append; //Le adiciona $append al final de la cadena
 			
-			$ruta = strtolower($ruta); //ConversiÃ³n a minÃºsculas
+			$ruta = strtolower($ruta); //Conversión a minúsculas
 			
 			$ruta = str_replace(' ', '-', $ruta);		
 			
 			return $ruta;
 		}	
 	}
+endif;
+	
