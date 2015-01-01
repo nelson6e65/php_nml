@@ -1,9 +1,9 @@
 <?php
 
 /*
- * Clase para manejar los directorios de las diferentes APIs. CAkePHP
+ * Clase para manejar los directorios de los diferentes recursos
  * */
-public class Api {
+public class Resource {
 	
 	public function __construct($apiName, $apiVersion) {
 		$this->name = $apiName;
