@@ -95,10 +95,8 @@ if (!defined($_namespace . '/' . $_class)):
 			return $this->ToString();
 		}
 		
-		
-		public function ToString($format = 'g') {
-			//Implementación por defecto
-			//var_dump($format);
+		public function ToString() {
+			//Implementación por defecto			
 			return "{". $this->GetType() . "}"; 
 			
 		}
