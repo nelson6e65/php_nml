@@ -20,7 +20,7 @@ if (!defined($_namespace . '/' . $_class)):
 	include('Type.php');
 	
 	/*
-	 * 
+	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
 	 * 
 	 * 
 	 * @example  Para usar los getter y setter de los atributos como propiedades, el atributo debe ser privado
@@ -54,40 +54,64 @@ if (!defined($_namespace . '/' . $_class)):
 		
 		/*
 		 * Obtiene el valor de una propiedad según el modelo: 'get_' + $name + '()'
-		 * 
+		 * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
+		 * método getter.
 		 * */
 		function __get($name) {
+			$error = false;
+			
+			if (!property_exists($this, $name)) {
+				$error = _('Property do not exists') . '.';
+			}
+			
 			$getter = 'get_' . $name;
 			
-			if (method_exists($this, $getter)) {
-				return $this->$getter();
+			if (!$error) {
+				if (!method_exists($this, $getter)) {
+					$error = _('Property is write only') . '.'; //?
+				}
 			}
-			else {
-				throw new BadMethodCallException(_(sprintf("There is not getter for '%s' property in '%s' class.", $name, $this->GetType())));
+			
+			if ($error) {
+				throw new BadMethodCallException(sprintf(_("Unable to access to '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->GetName(), $error));
 			}
+			
+			return $this->$getter();
 		}
 		
 		/*
 		 * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
-		 * 
+		 * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
+		 * método setter.
 		 * */
 		function __set($name, $value) {
-			//var_dump($value);
+			$error = false;
+			
+			if (!property_exists($this, $name)) {
+				$error = _('Property do not exists') . '.';
+			}
+			
 			$setter = 'set_' . $name;
 			
-			if (method_exists($this, $setter)) {
-				$this->$setter($value);
+			if (!$error) {
+				if (!method_exists($this, $setter)) {
+					$error = _('Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el método setter.
+				}
 			}
-			else {
-				throw new BadMethodCallException(_(sprintf("There is not setter for '%s' property in '%s' class.", $name, $this->GetType())));
+			
+			if ($error) {
+				throw new BadMethodCallException(sprintf(_("Unable to assign '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->GetName(), $error));
 			}
+			
+			$this->$setter($value);
 		}
 		
 		
 		
 		
 		/*
-		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función ObjectClass::ToString()
+		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función
+		 * ObjectClass::ToString()
 		 * */
 		final function __toString() {			
 			//$args = null;
