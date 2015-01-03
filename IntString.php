@@ -1,14 +1,14 @@
-ï»¿<?php
+<?php
 # #####################################################
-# Clase Â«IntStringÂ» para PHP 
-# VersiÃ³n: 
+# Clase «IntString» para PHP 
+# Versión: 
 # ----------------------------------------------
 # Autor: 
 # 	Nelson Martell (nelson6e65) 
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright Â© 2015 Nelson Martell 
+#  Copyright © 2015 Nelson Martell 
 # 
 # #####################################################
 
@@ -22,7 +22,7 @@ if (!defined($_namespace . '/' . $_class)):
 	
 	/*
 	 * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
-	 * El mÃ©todo ToString obtiene esa cadena compuesta.
+	 * El método ToString obtiene esa cadena compuesta.
 	 * */
 	class IntString extends Object {
 		

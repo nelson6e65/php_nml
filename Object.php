@@ -7,7 +7,7 @@
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright Â© 2014 Nelson Martell 
+#  Copyright © 2014 Nelson Martell 
 #
 # #####################################################
 
@@ -20,11 +20,11 @@ if (!defined($_namespace . '/' . $_class)):
 	include('Type.php');
 	
 	/*
-	 * Clase base de objetos, para encapsular propiedades y otros mÃ©todos bÃ¡sicos.
+	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
 	 * 
 	 * 
 	 * @example  Para usar los getter y setter de los atributos como propiedades, el atributo debe ser privado
-	 * y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe iniciar en MayÃºscula,
+	 * y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe iniciar en Mayúscula,
 	 * sin '_'. Ejemplo: 
 	 * 
 	 * private $_nombre = ''; //Atributo
@@ -41,7 +41,7 @@ if (!defined($_namespace . '/' . $_class)):
 	 * 		$this->_nombre = $value;
 	 * }
 	 * 
-	 * AdemÃ¡s, en el constructor debe tener una lÃ­nea como Ã©sta:
+	 * Además, en el constructor debe tener una línea como ésta:
 	 * 	parent::__construct();
 	 * ...
 	 * 	unset($this->Nombre);
@@ -53,9 +53,9 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/*
-		 * Obtiene el valor de una propiedad segÃºn el modelo: 'get_' + $name + '()'
-		 * Restringe la obtenciÃ³n de una propiedad no definida dentro de la clase si no posee su
-		 * mÃ©todo getter.
+		 * Obtiene el valor de una propiedad según el modelo: 'get_' + $name + '()'
+		 * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
+		 * método getter.
 		 * */
 		function __get($name) {
 			$error = false;
@@ -80,9 +80,9 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/*
-		 * Establece el valor de una propiedad segÃºn el modelo: 'set_' + $name + '(' + $value + ')'
-		 * Restringe la asignaciÃ³n de una propiedad no definida dentro de la clase si no posee su
-		 * mÃ©todo setter.
+		 * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
+		 * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
+		 * método setter.
 		 * */
 		function __set($name, $value) {
 			$error = false;
@@ -95,7 +95,7 @@ if (!defined($_namespace . '/' . $_class)):
 			
 			if (!$error) {
 				if (!method_exists($this, $setter)) {
-					$error = _('Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el mÃ©todo setter.
+					$error = _('Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el método setter.
 				}
 			}
 			
@@ -110,7 +110,7 @@ if (!defined($_namespace . '/' . $_class)):
 		
 		
 		/*
-		 * Para modificar el funcionamiento de esta funciÃ³n, debe reemplazarse la funciÃ³n
+		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función
 		 * ObjectClass::ToString()
 		 * */
 		final function __toString() {			
@@ -120,7 +120,7 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		public function ToString() {
-			//ImplementaciÃ³n por defecto			
+			//Implementación por defecto			
 			return "{". $this->GetType() . "}"; 
 			
 		}
