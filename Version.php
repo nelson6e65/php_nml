@@ -1,14 +1,14 @@
-ï»¿<?php
+<?php
 # #####################################################
-# Clase Â«VersionÂ» para PHP 
-# VersiÃ³n: 
+# Clase «Version» para PHP 
+# Versión: 
 # ----------------------------------------------
 # Autor: 
 # 	Nelson Martell (nelson6e65) 
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright Â© 2015 Nelson Martell 
+#  Copyright © 2015 Nelson Martell 
 # 
 # #####################################################
 
@@ -22,7 +22,7 @@ if (!defined($_namespace . '/' . $_class)):
 	include('IntString.php');
 	
 	/* 
-	 * Representa el nÃºmero de versiÃ³n de un elemento o ensamblado. No se puede heredar esta clase.
+	 * Representa el número de versión de un elemento o ensamblado. No se puede heredar esta clase.
 	 * 
 	 * @package  NelsonMartell.Version
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.com)
@@ -31,8 +31,8 @@ if (!defined($_namespace . '/' . $_class)):
 	final class Version extends Object {
 		
 		/* 
-		 * Crea una nueva instancia con los nÃºmeros principal, secundario, de compilaciÃ³n y 
-		 * revisiÃ³n. Si no se especifica ninguno, se usarÃ¡ el valor predeterminado (0.0).
+		 * Crea una nueva instancia con los números principal, secundario, de compilación y 
+		 * revisión. Si no se especifica ninguno, se usará el valor predeterminado (0.0).
 		 * 
 		 * @exceptions InvalidArgumentException, OutOfRangeException
 		 * */
@@ -41,41 +41,78 @@ if (!defined($_namespace . '/' . $_class)):
 			unset($this->Major, $this->Minor, $this->Build, $this->Revision);
 			
 			if (!is_integer($major)) {
-				throw new InvalidArgumentException(sprintf(_("Invalid type on setter. You are trying to set '%s' property with an invalid type. 'value' must be an instance of '%s'; '%s' given."), "Version::Major", gettype(0), gettype($value)));
-			}
-			
-			if ($major < 0) {
-				throw new OutOfRangeException(sprintf(_("Value for '%s' property must be positive; '%s' given"), "Version::Major", $value));
+				throw new InvalidArgumentException(sprintf(_("Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "major", 1, gettype(0), gettype($major)));
 			}
 			
 			if (!is_integer($minor)) {
-				throw new InvalidArgumentException(sprintf(_("Invalid type on setter. You are trying to set '%s' property with an invalid type. 'value' must be an instance of '%s'; '%s' given."), "Version::Minor", gettype(0), gettype($value)));
+				throw new InvalidArgumentException(sprintf(_("Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "minor", 2, gettype(0), gettype($major)));
+			}
+			
+			if ($major < 0) {
+				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "major", 1, $major));
 			}
 			
 			if ($minor < 0) {
-				throw new OutOfRangeException(sprintf(_("Value for '%s' property must be positive; '%s' given"), "Version::Minor", $value));
-			}			
+				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "minor", 2, $minor));
+			}
+			
+			$b = IntString::Parse($build); //TODO: Validar
+			$r = IntString::Parse($revision); //TODO: Validar
+			
+			if ($b->IntValue < 0) {
+				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must have a positive number; '%s' given."), "build", 3, $build));
+			}
+			
+			if ($r->IntValue < 0) {
+				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must have a positive number; '%s' given."), "revision", 4, $revision));
+			}
+			
+			if ($b->StringValue != '' && $b->IntValue <= 0) {
+				throw new InvalidArgumentException(sprintf(_("Invalid argument value format. '%s' (argument %s) has an invalid format: '%s'. Can't use a text-only value. Number value must be > 0 to append it text."), "build", 3, $build));
+			}
+			
+			if ($r->StringValue != '' && $b->IntValue <= 0) {
+				throw new InvalidArgumentException(sprintf(_("Invalid argument value format. '%s' (argument %s) has an invalid format: '%s'. Can't use a text-only value. Number value must be > 0 to append it text."), "revision", 4, $revision));
+			}
 			
 			$this->_major = $major;
 			$this->_minor = $minor;
-			$this->_build = IntString::Parse($build);
-			$this->_revision = IntString::Parse($revision);
-			
+			$this->_build = $b;
+			$this->_revision = $r;
 		}
 		
-		/*
-		public static function Parse($version) {
-			$version = explode('.', $version, 4);
+		
+		public static function Parse($value) {
+			$version = (string) $value;
+			
+			$version = explode('.', $version);
+			
+			$c = count($version);
+			
+			if ($c > 4 || $c < 2) {
+				//var_dump($version);
+				throw new InvalidArgumentException(sprintf(_("Unable to parse. Argument passed has an invalid format: '%s'."), $value));
+			}
+			
 			
 			$major = (int) $version[0];
 			$minor = (int) $version[1];
+			$build = 0;
+			$revision = 0;
 			
-			$build = (string) $version[2];
-			$revision = (string) $version[3];
+			if(count($version) >= 3) {
+				$build = IntString::Parse($version[2]);
+				
+				if(count($version) == 4) {
+					$revision = IntString::Parse($version[3]);
+				}
+			}
+			
+			
 			
 			return new Version($major, $minor, $build, $revision);
 		}
-		*/
+		
 		
 		
 		
@@ -84,9 +121,9 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Major;
 		
 		/* 
-		 * Obtiene el valor del componente principal del nÃºmero de versiÃ³n del objeto actual.
+		 * Obtiene el valor del componente principal del número de versión del objeto actual.
 		 * 
-		 * @return  int Componente principal del nÃºmero de versiÃ³n
+		 * @return  int Componente principal del número de versión
 		 * */		
 		public function get_Major() { return $this->_major; }
 		
@@ -96,9 +133,9 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Minor;
 		
 		/* 
-		 * Obtiene el valor del componente secundario del nÃºmero de versiÃ³n del objeto actual. 
+		 * Obtiene el valor del componente secundario del número de versión del objeto actual. 
 		 * 
-		 * @return  int Componente secundario del nÃºmero de versiÃ³n
+		 * @return  int Componente secundario del número de versión
 		 * */
 		public function get_Minor() { return $this->_minor; }		
 		
@@ -108,9 +145,9 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Build;
 		
 		/* 
-		 * Obtiene el valor del componente de compilaciÃ³n del nÃºmero de versiÃ³n del objeto actual. 
+		 * Obtiene el valor del componente de compilación del número de versión del objeto actual. 
 		 * 
-		 * @return  int Componente de compilaciÃ³n del nÃºmero de versiÃ³n
+		 * @return  int Componente de compilación del número de versión
 		 * */
 		public function get_Build() { return $this->_build->ToString(); }
 		
@@ -120,27 +157,27 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Revision;
 		
 		/* 
-		 * Obtiene el valor del componente de revisiÃ³n del nÃºmero de versiÃ³n del objeto actual. 
+		 * Obtiene el valor del componente de revisión del número de versión del objeto actual. 
 		 * 
-		 * @return  int Componente de revisiÃ³n del nÃºmero de versiÃ³n
+		 * @return  int Componente de revisión del número de versión
 		 * */
 		public function get_Revision() { return $this->_revision->ToString(); }	
 		
 		
 		/* 
-		 * Convierte la instancia actual en su representaciÃ³n en cadena.
-		 * Por defecto, si no se especifica el nÃºmero de revisiÃ³n (o es menor a 1), 
+		 * Convierte la instancia actual en su representación en cadena.
+		 * Por defecto, si no se especifica el número de revisión (o es menor a 1), 
 		 * no se incluye en la salida.
-		 * Si tampoco se especifica el nÃºmero de compilaciÃ³n (o es menor a 1), 
-		 * tampoco se incluye el nÃºmero de revisiÃ³n.
+		 * Si tampoco se especifica el número de compilación (o es menor a 1), 
+		 * tampoco se incluye el número de revisión.
 		 * Los componentes principal y secundario siempre se muestran, aunque sean cero (0).
 		 * 
-		 * @return  string RepresentaciÃ³n de la versiÃ³n en forma de cadena: 
+		 * @return  string Representación de la versión en forma de cadena: 
 		 *   'major.minor[.build[.revision]]'
 		 * */
-		public function ToString() {
+		public function ToString(string $dasdasd = null) {
 			$s = $this->Major . '.' . $this->Minor;
-			if ($this->Build->IntValue > 0){
+			if ($this->Build->IntValue > 0) {
 				$s .= '.' . $this->Build;
 				
 				if ($this->Revision->IntValue > 0) {
@@ -153,9 +190,9 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/*
-		 * Indica si la instancia actual es un nÃºmero de versiÃ³n vÃ¡lido. 
-		 * Al menos un atributo de la versiÃ³n debe estar establecido.
-		 * @return  boolean Un valor que indica si la instancia actual es vÃ¡lida.
+		 * Indica si la instancia actual es un número de versión válido. 
+		 * Al menos un atributo de la versión debe estar establecido.
+		 * @return  boolean Un valor que indica si la instancia actual es válida.
 		 * */
 		public function IsValid() {
 			if (!$this->Major){
