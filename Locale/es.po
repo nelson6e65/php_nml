@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nelson Martell 1.0\n"
+"POT-Creation-Date: 2015-01-02 23:03-0430\n"
+"PO-Revision-Date: 2015-01-02 23:03-0430\n"
+"Last-Translator: Nelson Martell <nelson6e65-transifex.com>\n"
+"Language-Team:  <nelson6e65-transifex@yahoo.es>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../Cake/Asset.php:22
+msgid "The name of resource must be an string."
+msgstr "El nombre del recurso debe ser una cadena."
+
+#: ../Object.php:64 ../Object.php:91
+msgid "Property do not exists"
+msgstr "La propiedad no existe"
+
+#: ../Object.php:71
+msgid "Property is write only"
+msgstr "La propiedad es de sólo escritura"
+
+#: ../Object.php:76
+#, php-format
+msgid "Unable to access to '%s' property in '%s' class. Reason: %s"
+msgstr "No se puede acesar a la propiedad '%s' en la clase '%s'. Razón: %s"
+
+#: ../Object.php:98
+msgid "Property is read only"
+msgstr "La propiedad es de sólo lectura"
+
+#: ../Object.php:103
+#, php-format
+msgid "Unable to assign '%s' property in '%s' class. Reason: %s"
+msgstr "No se puede asignar la propiedad '%s' en la clase '%s'. Razón: %s"
+
+#: ../Version.php:44 ../Version.php:52
+#, php-format
+msgid ""
+"Invalid type on setter. You are trying to set '%s' property with an invalid "
+"type. 'value' must be an instance of '%s'; '%s' given."
+msgstr ""
+"Tipo inválido en el establecedor. Estás intentando establecer la propiedad "
+"'%s' con un tipo inválido. 'value' debe ser una instancia de '%s'; '%s' dado"
+
+#: ../Version.php:48 ../Version.php:56
+#, php-format
+msgid "Value for '%s' property must be positive; '%s' given"
+msgstr "El valor para la propiedad '%s' debe ser positivo; '%s' dado"
+
+#~ msgid ""
+#~ "Argument \"%s\" has an invalid type. Expected: \"%s\"; Actual: \"%s\""
+#~ msgstr ""
+#~ "El argumento \"%s\" es de un tipo inválido. Se esperaba \"%s\", actual "
+#~ "\"%s\""
