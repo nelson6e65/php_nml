@@ -149,7 +149,7 @@ if (!defined($_namespace . '/' . $_class)):
 		 * 
 		 * @return  int Componente de compilación del número de versión
 		 * */
-		public function get_Build() { return $this->_build->ToString(); }
+		public function get_Build() { return $this->_build; }
 		
 		
 		private $_revision;
@@ -161,7 +161,7 @@ if (!defined($_namespace . '/' . $_class)):
 		 * 
 		 * @return  int Componente de revisión del número de versión
 		 * */
-		public function get_Revision() { return $this->_revision->ToString(); }	
+		public function get_Revision() { return $this->_revision; }	
 		
 		
 		/* 
@@ -175,8 +175,10 @@ if (!defined($_namespace . '/' . $_class)):
 		 * @return  string Representación de la versión en forma de cadena: 
 		 *   'major.minor[.build[.revision]]'
 		 * */
-		public function ToString(string $dasdasd = null) {
+		public function ToString() {
 			$s = $this->Major . '.' . $this->Minor;
+			//var_dump($this->Build);
+			
 			if ($this->Build->IntValue > 0) {
 				$s .= '.' . $this->Build;
 				
