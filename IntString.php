@@ -36,7 +36,7 @@ if (!defined($_namespace . '/' . $_class)):
 		public static function Parse($parseableString) {
 			$s = new IntString();
 			
-			if (Type::typeof($parseableString) == $s->GetType()) {
+			if (typeof($parseableString) == $s->GetType()) {
 				return $parseableString;
 			}
 			

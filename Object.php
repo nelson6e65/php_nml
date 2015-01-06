@@ -126,7 +126,7 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		public final function GetType() {
-			return Type::typeof($this);
+			return typeof($this);
 		}
 		
 		

@@ -1,14 +1,14 @@
 <?php
 # #####################################################
 # Clase Type para PHP 
-# Versión: 1.0.0.0 (2013-04-19) 
+# 
 # ----------------------------------------------
 # Autor: 
 # 	Nelson Martell (nelson6e65) 
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright © 2013 Nelson Martell 
+#  Copyright © 2013, 2015 Nelson Martell 
 #
 # #####################################################
 
@@ -21,28 +21,27 @@ if (!defined("C_Type")) {
 	
 	
 	final class Type {
-		private $Name;
+		public $Name;
 		
 		function __construct($nombre){
 			if (is_string($nombre)) {
 				$this->Name = $nombre;
 			} else {
-				$this->InicializeFromType(self::typeof($nombre));
+				$this->InicializeFromType(typeof($nombre));
 			}
-			
-			
 		}
+		
 		///Obtiene el nombre del tipo
 		public function GetName() {
 			return $this->Name;
 		}
 		
-		private $Vars;
+		public $Vars;
 		public function GetVars() {
 			return $this->Vars;
 		}
 				
-		private $Methods;
+		public $Methods;
 		public function GetMethods() {
 			return $this->Methods;
 		}
@@ -95,24 +94,6 @@ if (!defined("C_Type")) {
 			}
 		}
 
-
-		//Obtiene el tipo de una variable
-		public static function typeof($var) {
-			$tipo = new Type(gettype($var));				
-			
-			if ($tipo->Name == 'object') {
-				$tipo = new Type(get_class($var));
-				$tipo->Methods = get_class_methods($var);
-			}
-			
-			return $tipo;
-		}
-		
-		/*
-		public function __invoke($x) {
-			return Type::typeof($x); //funciona como un alias para typeof, usando: $a = "Soy una cadena"; Type($a); 
-		}*/
-		
 		public final function __toString() {
 			$aux = "t";
 			if ($this->IsCustom())
@@ -120,5 +101,23 @@ if (!defined("C_Type")) {
 			return $aux . ":" . $this->Name;
 		}
 	}
+	
+	/*
+	 * Obtiene el Type de un objeto
+	 * @param  mixed Objeto a extraer su tipo
+	 * @return  Type Tipo del objeto
+	 * */
+	function typeof($obj) {
+		$t = new Type(gettype($obj));				
+		
+		if ($t->Name == 'object') {
+			$t = new Type(get_class($obj));
+			$t->Methods = get_class_methods($obj);
+		}
+		
+		return $t;
+	}
+	
+	
 }
 ?>
