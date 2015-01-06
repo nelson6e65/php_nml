@@ -41,9 +41,7 @@ if (!defined("C_Type")) {
 					$methods = get_class_methods($obj);
 				}
 				
-			} else {
-				$name = $o;
-			}
+			} 
 			
 			$this->_name = $name;
 			$this->_vars = $vars;
