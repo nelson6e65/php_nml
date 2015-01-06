@@ -126,8 +126,8 @@ if (!defined($_namespace . '/' . $_class)):
 			if ($t->Name != 'Object') {
 				trigger_error(sprintf(_('Using default Object::ToString() method. You must override it, creating %s::ToString() public method.'), $t->Name), E_USER_NOTICE);
 			}
-				
-			return '{' . $this->GetType() . '}'; 
+			
+			return '{ ' . $this->GetType() . ' }'; 
 			
 		}
 		
