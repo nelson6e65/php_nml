@@ -18,6 +18,7 @@ if (!defined($_namespace . '/' . $_class)):
 	define($_namespace . '/' . $_class, true);
 	
 	include('Type.php');
+	include('IEquatable.php');
 	
 	/*
 	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
@@ -134,7 +135,15 @@ if (!defined($_namespace . '/' . $_class)):
 			return typeof($this);
 		}
 		
-		
+		public function Equals($other) {
+			
+			if ($this instanceof IEquatable) {
+				$t = $this->GetType();
+				trigger_error(sprintf(_('You implemented IEquatable interface, but using default Object::Equals() method. You must override it, creating %s::Equals() public method.'), $t->Name), E_USER_NOTICE);
+			}
+			
+			return $this == $other;
+		}
 		
 		
 	}
