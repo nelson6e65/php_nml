@@ -173,7 +173,7 @@ if (!defined("C_Type")) {
 			$s = $this->Name;
 			
 			if ($this->IsCustom()) {
-				$s = sprintf("object(%s)", $s);
+				$s = sprintf("object (%s)", $s);
 			}
 			
 			return $s;
