@@ -1,14 +1,14 @@
-<?php
+ï»¿<?php
 # #####################################################
-# Clase «Version» para PHP 
-# Versión: 
+# Clase Â«VersionÂ» para PHP 
+# VersiÃ³n: 
 # ----------------------------------------------
 # Autor: 
 # 	Nelson Martell (nelson6e65) 
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright © 2015 Nelson Martell 
+#  Copyright Â© 2015 Nelson Martell 
 # 
 # #####################################################
 
@@ -22,17 +22,17 @@ if (!defined($_namespace . '/' . $_class)):
 	include('IntString.php');
 	
 	/* 
-	 * Representa el número de versión de un elemento o ensamblado. No se puede heredar esta clase.
+	 * Representa el nÃºmero de versiÃ³n de un elemento o ensamblado. No se puede heredar esta clase.
 	 * 
 	 * @package  NelsonMartell.Version
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.com)
 	 * @license  MIT license
 	 * */
-	final class Version extends Object {
+	final class Version extends Object implements IEquatable {
 		
 		/* 
-		 * Crea una nueva instancia con los números principal, secundario, de compilación y 
-		 * revisión. Si no se especifica ninguno, se usará el valor predeterminado (0.0).
+		 * Crea una nueva instancia con los nÃºmeros principal, secundario, de compilaciÃ³n y 
+		 * revisiÃ³n. Si no se especifica ninguno, se usarÃ¡ el valor predeterminado (0.0).
 		 * 
 		 * @exceptions InvalidArgumentException, OutOfRangeException
 		 * */
@@ -121,9 +121,9 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Major;
 		
 		/* 
-		 * Obtiene el valor del componente principal del número de versión del objeto actual.
+		 * Obtiene el valor del componente principal del nÃºmero de versiÃ³n del objeto actual.
 		 * 
-		 * @return  int Componente principal del número de versión
+		 * @return  int Componente principal del nÃºmero de versiÃ³n
 		 * */		
 		public function get_Major() { return $this->_major; }
 		
@@ -133,9 +133,9 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Minor;
 		
 		/* 
-		 * Obtiene el valor del componente secundario del número de versión del objeto actual. 
+		 * Obtiene el valor del componente secundario del nÃºmero de versiÃ³n del objeto actual. 
 		 * 
-		 * @return  int Componente secundario del número de versión
+		 * @return  int Componente secundario del nÃºmero de versiÃ³n
 		 * */
 		public function get_Minor() { return $this->_minor; }		
 		
@@ -145,9 +145,9 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Build;
 		
 		/* 
-		 * Obtiene el valor del componente de compilación del número de versión del objeto actual. 
+		 * Obtiene el valor del componente de compilaciÃ³n del nÃºmero de versiÃ³n del objeto actual. 
 		 * 
-		 * @return  int Componente de compilación del número de versión
+		 * @return  int Componente de compilaciÃ³n del nÃºmero de versiÃ³n
 		 * */
 		public function get_Build() { return $this->_build; }
 		
@@ -157,22 +157,22 @@ if (!defined($_namespace . '/' . $_class)):
 		public $Revision;
 		
 		/* 
-		 * Obtiene el valor del componente de revisión del número de versión del objeto actual. 
+		 * Obtiene el valor del componente de revisiÃ³n del nÃºmero de versiÃ³n del objeto actual. 
 		 * 
-		 * @return  int Componente de revisión del número de versión
+		 * @return  int Componente de revisiÃ³n del nÃºmero de versiÃ³n
 		 * */
 		public function get_Revision() { return $this->_revision; }	
 		
 		
 		/* 
-		 * Convierte la instancia actual en su representación en cadena.
-		 * Por defecto, si no se especifica el número de revisión (o es menor a 1), 
+		 * Convierte la instancia actual en su representaciÃ³n en cadena.
+		 * Por defecto, si no se especifica el nÃºmero de revisiÃ³n (o es menor a 1), 
 		 * no se incluye en la salida.
-		 * Si tampoco se especifica el número de compilación (o es menor a 1), 
-		 * tampoco se incluye el número de revisión.
+		 * Si tampoco se especifica el nÃºmero de compilaciÃ³n (o es menor a 1), 
+		 * tampoco se incluye el nÃºmero de revisiÃ³n.
 		 * Los componentes principal y secundario siempre se muestran, aunque sean cero (0).
 		 * 
-		 * @return  string Representación de la versión en forma de cadena: 
+		 * @return  string RepresentaciÃ³n de la versiÃ³n en forma de cadena: 
 		 *   'major.minor[.build[.revision]]'
 		 * */
 		public function ToString() {
@@ -192,9 +192,9 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/*
-		 * Indica si la instancia actual es un número de versión válido. 
-		 * Al menos un atributo de la versión debe estar establecido.
-		 * @return  boolean Un valor que indica si la instancia actual es válida.
+		 * Indica si la instancia actual es un nÃºmero de versiÃ³n vÃ¡lido. 
+		 * Al menos un atributo de la versiÃ³n debe estar establecido.
+		 * @return  boolean Un valor que indica si la instancia actual es vÃ¡lida.
 		 * */
 		public function IsValid() {
 			if (!$this->Major){
@@ -208,6 +208,20 @@ if (!defined($_namespace . '/' . $_class)):
 			}
 			
 			return true;
+		}
+		
+		public function Equals($other) {
+			if ($other instanceof Version) {
+				if ($this->Major == $other->Major && $this->Minor == $other->Minor) {
+					if ($this->Build->Equals($other->Build)) {
+						if ($this->Revision->Equals($other->Revision)) {
+							return true;
+						}
+					}
+				}
+			}
+			
+			return false;
 		}
 	}
 	

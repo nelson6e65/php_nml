@@ -1,14 +1,14 @@
 ﻿<?php
 # #####################################################
-# Clase Â«IntStringÂ» para PHP 
-# VersiÃ³n: 
+# Clase «IntString» para PHP 
+# Versión: 
 # ----------------------------------------------
 # Autor: 
 # 	Nelson Martell (nelson6e65) 
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright Â© 2015 Nelson Martell 
+#  Copyright © 2015 Nelson Martell 
 # 
 # #####################################################
 
@@ -22,9 +22,9 @@ if (!defined($_namespace . '/' . $_class)):
 	
 	/*
 	 * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
-	 * El mÃ©todo ToString obtiene esa cadena compuesta.
+	 * El método ToString obtiene esa cadena compuesta.
 	 * */
-	class IntString extends Object {
+	class IntString extends Object implements IEquatable {
 		
 		function __construct($intValue = 0, $stringValue = '') {
 			unset($this->IntValue, $this->StringValue);
@@ -71,6 +71,18 @@ if (!defined($_namespace . '/' . $_class)):
 		
 		public function ToString() {
 			return $this->IntValue . $this->StringValue;
+		}
+		
+		public function Equals($other) {
+			if ($other instanceof IntString) {
+				if ($this->IntValue == $other->IntValue) {
+					if ($this->StringValue == $other->StringValue) {
+						return true;
+					}
+				}
+			}
+			
+			return false;
 		}
 	}
 
