@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 # #####################################################
 # Clase Object para PHP 
 # ----------------------------------------------
@@ -7,7 +7,7 @@
 #  	E-Mail: nelson6e65-dev@yahoo.es 
 # 	Facebook: http://fb.me/nelson6e65 
 #   
-#  Copyright © 2014 Nelson Martell 
+#  Copyright Â© 2014 Nelson Martell 
 #
 # #####################################################
 
@@ -21,11 +21,11 @@ if (!defined($_namespace . '/' . $_class)):
 	include('IEquatable.php');
 	
 	/*
-	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
+	 * Clase base de objetos, para encapsular propiedades y otros mÃ©todos bÃ¡sicos.
 	 * 
 	 * 
 	 * @example  Para usar los getter y setter de los atributos como propiedades, el atributo debe ser privado
-	 * y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe iniciar en Mayúscula,
+	 * y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe iniciar en MayÃºscula,
 	 * sin '_'. Ejemplo: 
 	 * 
 	 * private $_nombre = ''; //Atributo
@@ -42,7 +42,7 @@ if (!defined($_namespace . '/' . $_class)):
 	 * 		$this->_nombre = $value;
 	 * }
 	 * 
-	 * Además, en el constructor debe tener una línea como ésta:
+	 * AdemÃ¡s, en el constructor debe tener una lÃ­nea como Ã©sta:
 	 * 	parent::__construct();
 	 * ...
 	 * 	unset($this->Nombre);
@@ -54,9 +54,9 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/*
-		 * Obtiene el valor de una propiedad según el modelo: 'get_' + $name + '()'
-		 * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
-		 * método getter.
+		 * Obtiene el valor de una propiedad segÃºn el modelo: 'get_' + $name + '()'
+		 * Restringe la obtenciÃ³n de una propiedad no definida dentro de la clase si no posee su
+		 * mÃ©todo getter.
 		 * */
 		function __get($name) {
 			$error = false;
@@ -81,9 +81,9 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/*
-		 * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
-		 * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
-		 * método setter.
+		 * Establece el valor de una propiedad segÃºn el modelo: 'set_' + $name + '(' + $value + ')'
+		 * Restringe la asignaciÃ³n de una propiedad no definida dentro de la clase si no posee su
+		 * mÃ©todo setter.
 		 * */
 		function __set($name, $value) {
 			$error = false;
@@ -96,7 +96,7 @@ if (!defined($_namespace . '/' . $_class)):
 			
 			if (!$error) {
 				if (!method_exists($this, $setter)) {
-					$error = _('Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el método setter.
+					$error = _('Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el mÃ©todo setter.
 				}
 			}
 			
@@ -111,7 +111,7 @@ if (!defined($_namespace . '/' . $_class)):
 		
 		
 		/*
-		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función
+		 * Para modificar el funcionamiento de esta funciÃ³n, debe reemplazarse la funciÃ³n
 		 * ObjectClass::ToString()
 		 * */
 		final function __toString() {			
@@ -136,7 +136,6 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		public function Equals($other) {
-			
 			if ($this instanceof IEquatable) {
 				$t = $this->GetType();
 				trigger_error(sprintf(_('You implemented IEquatable interface, but using default Object::Equals() method. You must override it, creating %s::Equals() public method.'), $t->Name), E_USER_NOTICE);
