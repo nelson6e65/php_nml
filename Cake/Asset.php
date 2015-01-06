@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 /*
  * Clase para manejar los directorios de los diferentes recursos
@@ -80,7 +80,7 @@ if (!defined($_namespace . '/' . $_class)):
 		}*/
 		
 		/*
-		 * Obtiene la ruta relativa usando algún auxiliar, como Html->css(), por ejemplo.
+		 * Obtiene la ruta relativa usando algÃºn auxiliar, como Html->css(), por ejemplo.
 		 * */
 		public function getPath(boolean $endWithName, string $append){
 			
@@ -94,7 +94,7 @@ if (!defined($_namespace . '/' . $_class)):
 			if ($append != '')
 			$ruta .= $append; //Le adiciona $append al final de la cadena
 			
-			$ruta = strtolower($ruta); //Conversión a minúsculas
+			$ruta = strtolower($ruta); //ConversiÃ³n a minÃºsculas
 			
 			$ruta = str_replace(' ', '-', $ruta);		
 			
