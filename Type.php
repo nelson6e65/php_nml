@@ -65,6 +65,7 @@ if (!defined("C_Type")) {
 		 * @deprecated Use Name property instead
 		 * */
 		public function GetName() {
+			trigger_error(_('To get the name, use Type::Name property instead.'), E_USER_DEPRECATED);
 			return $this->get_Name();
 		}
 		
@@ -80,6 +81,7 @@ if (!defined("C_Type")) {
 		 * @deprecated Use Vars property instead
 		 * */
 		public function GetVars() {
+			trigger_error(_('To get vars, use Type::Vars property instead.'), E_USER_DEPRECATED);
 			return $this->get_Vars();
 		}
 		
@@ -96,6 +98,7 @@ if (!defined("C_Type")) {
 		 * @deprecated Use Methods property instead
 		 * */
 		public function GetMethods() {
+			trigger_error(_('To get methods, use Type::Methods property instead.'), E_USER_DEPRECATED);
 			return $this->get_Methods();
 		}
 
