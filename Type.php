@@ -172,10 +172,13 @@ if (!defined("C_Type")) {
 		}
 
 		public function ToString() {
-			$aux = "t";
-			if ($this->IsCustom())
-				$aux = "T";
-			return $aux . ":" . $this->Name;
+			$s = $this->Name;
+			
+			if ($this->IsCustom()) {
+				$s = sprintf("object(%s)", $s);
+			}
+			
+			return $s;
 		}
 		
 		
