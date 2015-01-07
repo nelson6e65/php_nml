@@ -116,51 +116,46 @@ if (!defined($_namespace . '/' . $_class)):
 		
 		
 		
-		private $_major;
 		
-		public $Major;
-		
-		/* 
+		/* *
 		 * Obtiene el valor del componente principal del número de versión del objeto actual.
 		 * 
-		 * @return  int Componente principal del número de versión
+		 * @var  int Componente principal del número de versión
 		 * */		
+		public $Major;
+		private $_major;
+		
 		public function get_Major() { return $this->_major; }
 		
 		
-		private $_minor;
-		
-		public $Minor;
-		
-		/* 
+		/* *
 		 * Obtiene el valor del componente secundario del número de versión del objeto actual. 
 		 * 
-		 * @return  int Componente secundario del número de versión
+		 * @var  int Componente secundario del número de versión
 		 * */
+		public $Minor;
+		private $_minor;
+		
 		public function get_Minor() { return $this->_minor; }		
 		
-		
-		private $_build;
-		
-		public $Build;
-		
-		/* 
+		/* *
 		 * Obtiene el valor del componente de compilación del número de versión del objeto actual. 
 		 * 
-		 * @return  int Componente de compilación del número de versión
+		 * @var  int Componente de compilación del número de versión
 		 * */
+		public $Build;
+		private $_build;
+		
 		public function get_Build() { return $this->_build; }
-		
-		
-		private $_revision;
-		
-		public $Revision;
 		
 		/* 
 		 * Obtiene el valor del componente de revisión del número de versión del objeto actual. 
 		 * 
-		 * @return  int Componente de revisión del número de versión
+		 * @var  int Componente de revisión del número de versión
 		 * */
+		public $Revision;
+		private $_revision;
+		
 		public function get_Revision() { return $this->_revision; }	
 		
 		
@@ -210,6 +205,11 @@ if (!defined($_namespace . '/' . $_class)):
 			return true;
 		}
 		
+		/* *
+		 * Determina si el objeto $other especificado es igual a la instancia actual.
+		 * 
+		 * @return  bool True si $other es igual esta instancia
+		 * */
 		public function Equals($other) {
 			if ($other instanceof Version) {
 				if ($this->Major == $other->Major && $this->Minor == $other->Minor) {
