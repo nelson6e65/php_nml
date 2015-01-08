@@ -101,7 +101,7 @@ if (!defined($_namespace . '/' . $_class)):
 			}
 			
 			if ($error) {
-				throw new BadMethodCallException(sprintf(_("Unable to assign '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->GetName(), $error));
+				throw new BadMethodCallException(sprintf(_("Unable to assign '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->Name, $error));
 			}
 			
 			$this->$setter($value);
