@@ -11,6 +11,7 @@ if (!defined($_namespace . '/' . $_class)):
 	define($_namespace . '/' . $_class, true);
 		
 	include('/../Object.php');
+	include('/../Version.php');
 	
 	class Asset extends Object {
 		/* *
@@ -21,7 +22,7 @@ if (!defined($_namespace . '/' . $_class)):
 		 * */
 		public function __construct($name = '', $versions = null, $cdnUri = null) {
 			parent::__construct();
-			unset($this->Name, $this->Versions, $this->ShortName, $this->CdnUri);
+			unset($this->Name, $this->Versions, $this->ShortName, $this->CdnUri, $this->RootDirectory);
 			
 			if ($name == '') {
 				if ($versions != null) {
@@ -138,13 +139,13 @@ if (!defined($_namespace . '/' . $_class)):
 		
 		
 		/* *
-		 * Obtiene el directorio inicial del recurso
+		 * Obtiene el directorio principal del recurso.
 		 * 
 		 * 
 		 * @var  string Ruta inicial del recurso
 		 * */
-		public $RootDir;
-		public function get_RootDir() {
+		public $RootDirectory;
+		public function get_RootDirectory() {
 			return $this->ShortName . '/';
 		}
 		
