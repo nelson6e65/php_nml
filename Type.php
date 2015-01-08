@@ -1,16 +1,19 @@
 ﻿<?php
-# #####################################################
-# Clase Type para PHP 
-# 
-# ----------------------------------------------
-# Autor: 
-# 	Nelson Martell (nelson6e65) 
-#  	E-Mail: nelson6e65-dev@yahoo.es 
-# 	Facebook: http://fb.me/nelson6e65 
-#   
-#  Copyright © 2013, 2015 Nelson Martell 
-#
-# #####################################################
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * PHP class «Type»
+ * 
+ * Copyright © 2013-2015 Nelson Martell (http://fb.me/nelson6e65)
+ * 
+ * Licensed under The MIT License (MIT)
+ * For full copyright and license information, please see the LICENSE
+ * Redistributions of files must retain the above copyright notice.
+ * 
+ * @copyright	Copyright © 2013-2015 Nelson Martell 
+ * @link		https://github.com/nelson6e65/NelsonMartell
+ * @package  	NelsonMartell
+ * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #ifndef C_Type
 	#define C_Type		
@@ -20,7 +23,13 @@ if (!defined("C_Type")) {
 
 	include('Object.php');
 	
-	
+	/* *
+	 * 
+	 * 
+	 * 
+	 * @package  NelsonMartell
+	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
+	 * */
 	final class Type extends Object {
 		
 		function __construct($obj){

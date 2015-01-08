@@ -1,12 +1,40 @@
 ﻿<?php
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * PHP class «Assert»
+ * 
+ * Copyright © 2013-2015 Nelson Martell (http://fb.me/nelson6e65)
+ * 
+ * Licensed under The MIT License (MIT)
+ * For full copyright and license information, please see the LICENSE
+ * Redistributions of files must retain the above copyright notice.
+ * 
+ * @copyright	Copyright © 2013-2015 Nelson Martell 
+ * @link		https://github.com/nelson6e65/NelsonMartell
+ * @package  	NelsonMartell.Cake
+ * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+
+
+
 if (!defined('C_DirectoryInfo')) {
 
 	define('C_DirectoryInfo', true);	
 	
-	include('Directory.php');
-	include('Property.php');
-	include('Exceptions/ALL.inc');
+	//include('Directory.php');
+	//include('Property.php');
+	//include('Exceptions/ALL.inc');
 		
+		
+	
+	/* *
+	 * 
+	 * @todo     Adapt class
+	 * @package  NelsonMartell.Version
+	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
+	 * */
 	final class DirectoryInfo {
 		private $Path;
 		

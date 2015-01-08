@@ -1,15 +1,19 @@
 ﻿<?php
-# #####################################################
-# Clase Object para PHP 
-# ----------------------------------------------
-# Autor: 
-# 	Nelson Martell (nelson6e65) 
-#  	E-Mail: nelson6e65-dev@yahoo.es 
-# 	Facebook: http://fb.me/nelson6e65 
-#   
-#  Copyright © 2014 Nelson Martell 
-#
-# #####################################################
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * PHP class «Object»
+ * 
+ * Copyright © 2014, 2015 Nelson Martell (http://fb.me/nelson6e65)
+ * 
+ * Licensed under The MIT License (MIT)
+ * For full copyright and license information, please see the LICENSE
+ * Redistributions of files must retain the above copyright notice.
+ * 
+ * @copyright	Copyright © 2014, 2015 Nelson Martell 
+ * @link		https://github.com/nelson6e65/NelsonMartell
+ * @package  	NelsonMartell
+ * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 $_namespace = "NelsonMartell";
 $_class = "Object";
@@ -24,14 +28,15 @@ if (!defined($_namespace . '/' . $_class)):
 	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
 	 * 
 	 * 
-	 * @example  Para usar los getter y setter de los atributos como propiedades, el atributo debe ser privado
-	 * y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe iniciar en Mayúscula,
-	 * sin '_'. Ejemplo: 
+	 * @example  Para usar los getter y setter de los atributos como propiedades, el atributo debe 
+	 * ser privado y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe 
+	 * iniciar en Mayúscula, sin '_'. Ejemplo: 
 	 * 
 	 * private $_nombre = ''; //Atributo
 	 * public $Nombre; //Propiedad para acceder a $_nombre
 	 * 
-	 * Luego, las respectivas funciones siguiendo el formato "get_" o "set_", seguido del nombre de la propiedad.
+	 * Luego, las respectivas funciones siguiendo el formato "get_" o "set_", seguido del nombre de 
+	 * la propiedad.
 	 * 
 	 * public function get_Nombre() {
 	 * 		return $this->_nombre;
@@ -42,11 +47,13 @@ if (!defined($_namespace . '/' . $_class)):
 	 * 		$this->_nombre = $value;
 	 * }
 	 * 
-	 * Además, en el constructor debe tener una línea como ésta:
-	 * 	parent::__construct();
-	 * ...
+	 * Además, para habilitar esta funcionalidad de propiedades, el constructor debe la siguiente
+	 * línea:
 	 * 	unset($this->Nombre);
-	 * ...
+	 * 
+	 * 
+	 * @package  NelsonMartell
+	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
  	 * */
 	class Object {
 		function __construct() { 

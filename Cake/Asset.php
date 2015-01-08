@@ -2,16 +2,15 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  * PHP class «Assert»
  * 
- * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
+ * Copyright © 2014, 2015 Nelson Martell (http://fb.me/nelson6e65)
  * 
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  * 
- * @copyright	Copyright © 2015 Nelson Martell 
+ * @copyright	Copyright © 2014, 2015 Nelson Martell 
  * @link		https://github.com/nelson6e65/NelsonMartell
  * @package  	NelsonMartell.Cake
- * @author  	nelson6e65
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -33,9 +32,8 @@ if (!defined($_namespace . '/' . $_class)):
 	 * diferentes versiones del framework.
 	 * 
 	 * 
-	 * @package  	NelsonMartell.Cake
-	 * @author  	~nelson6e65
-	 * 
+	 * @package  NelsonMartell.Cake
+	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
 	class Asset extends Object {
 		/* *

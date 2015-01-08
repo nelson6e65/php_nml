@@ -1,16 +1,19 @@
 ﻿<?php
-# #####################################################
-# Clase «IntString» para PHP 
-# Versión: 
-# ----------------------------------------------
-# Autor: 
-# 	Nelson Martell (nelson6e65) 
-#  	E-Mail: nelson6e65-dev@yahoo.es 
-# 	Facebook: http://fb.me/nelson6e65 
-#   
-#  Copyright © 2015 Nelson Martell 
-# 
-# #####################################################
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * PHP class «IntString»
+ * 
+ * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
+ * 
+ * Licensed under The MIT License (MIT)
+ * For full copyright and license information, please see the LICENSE
+ * Redistributions of files must retain the above copyright notice.
+ * 
+ * @copyright	Copyright © 2015 Nelson Martell 
+ * @link		https://github.com/nelson6e65/NelsonMartell
+ * @package  	NelsonMartell
+ * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 $_namespace = "NelsonMartell";
 $_class = "IntString";
@@ -23,6 +26,9 @@ if (!defined($_namespace . '/' . $_class)):
 	/*
 	 * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
 	 * El método ToString obtiene esa cadena compuesta.
+	 * 
+	 * @package  NelsonMartell
+	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
 	class IntString extends Object implements IEquatable {
 		
