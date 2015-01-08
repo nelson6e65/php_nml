@@ -20,23 +20,62 @@ if (!defined($_namespace . '/' . $_class)):
 		 * 
 		 * 
 		 * */
-		public function __construct($name = '', $versions = null, $cdnUri = null) {
+		public function __construct($name = null, $versions = null, $cdnUri = null) {
 			parent::__construct();
 			unset($this->Name, $this->Versions, $this->ShortName, $this->CdnUri, $this->RootDirectory);
 			
-			if ($name == '') {
-				if ($versions != null) {
-					throw new InvalidArgumentException(_('The $name of resource can not be null.'));
-				}
+			if ($name == null) {
+				$this->_name = '';
+				$this->_shortName = '';
 			} else {
-				$this->_name = $name;
-				
-				if (is_array($versions)) {
-					$this->_versions = $versions;
-				}
-			
+				$this->Name = $name;
 			}
 			
+			if ($this->Name == '' && $versions != null) {
+				throw new InvalidArgumentException(_('Can not specify $versions argument if $name argument is null.'));
+			}
+			
+			if ($versions == null) {
+				$versions = array();
+			} 
+			
+			
+			
+			
+			if (is_array($versions)) {
+				
+				$this->_versions = array();
+				
+				if (count($versions) > 0) {
+					$i = 0;
+					foreach($versions as $version) {
+						$v = $version;
+						if (!($v instanceof Version)) {
+							try {
+								$v = Version::Parse($version);
+							} catch (InvalidArgumentException $e) {
+								throw new InvalidArgumentException('$versions argument must be an array of Version objects or any objects parseable into Version.', 0, $e);
+							}
+						}
+						
+						$this->_versions[$i] = $v;
+						
+						$i += 1;
+					}
+				}
+				
+			} else {
+				// Trata de convertir $versions en un objeto Versión
+				try {
+					$v = Version::Parse($versions);
+				} catch (InvalidArgumentException $e) {
+					throw new InvalidArgumentException('$versions argument must be an array of Version objects (or empty), a Version object or any object parseable into Version.', 0, $e);
+				}
+				
+				$this->_versions = array($v); 
+			}
+			
+			$this->CdnUri = $cdnUri;
 		}
 		
 		
@@ -149,28 +188,49 @@ if (!defined($_namespace . '/' . $_class)):
 			return $this->ShortName . '/';
 		}
 		
-		
-		/*
-		 * Obtiene la ruta relativa usando algún auxiliar, como Html->css(), por ejemplo.
+		/* *
+		 * Obtiene la ruta del directorio de la versión especificada. Si no se especifica, 
+		 * se devuelve la versión más reciente.
+		 * 
+		 * 
+		 * @return  string Ruta del directorio de la versión especificada.
 		 * */
-		public function getPath(boolean $endWithName, string $append){
+		public function GetDirectoryPath($version = null) {
+			$p = $this->RootDirectory;
 			
-			$ruta = $this->name . '/' . $this->version . '/';
+			if ($version == null) {
+				sort($this->_versions); // TODO: Check performance 
+				
+				$c = count($this->Versions);
+				
+				if ($c > 0) {
+					$version = $this->Versions[$c - 1];
+				} 
+			}
 			
-			if ($endWithName)
-				$ruta .= $this->name;
+			try {
+				$version = Version::Parse($version);
+			} catch (InvalidArgumentException $e) {
+				throw new InvalidArgumentException('$version argument must be an Version object or any object parseable into Version.', 0, $e);
+			}
 			
+			return sprintf('%s%s/', $this->RootDirectory, $version);
 			
+		}
+		
+		
+		/* *
+		 * Obtiene la ruta del recurso de la versión especificada. Si no se especifica, se devuelve la 
+		 * versión más reciente.
+		 * 
+		 * @return  string Ruta del recurso
+		 * */
+		public function GetResourcePath($version = null, $append = '') {
 			
-			if ($append != '')
-			$ruta .= $append; //Le adiciona $append al final de la cadena
+			$r = sprintf('%s%s%s', $this->GetDirectoryPath($version), $this->ShortName, $append);
 			
-			$ruta = strtolower($ruta); //Conversión a minúsculas
-			
-			$ruta = str_replace(' ', '-', $ruta);		
-			
-			return $ruta;
-		}	
+			return $r;
+		}
 	}
 endif;
 	
