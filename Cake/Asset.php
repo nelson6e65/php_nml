@@ -135,6 +135,20 @@ if (!defined($_namespace . '/' . $_class)):
 			
 		}*/
 		
+		
+		
+		/* *
+		 * Obtiene el directorio inicial del recurso
+		 * 
+		 * 
+		 * @var  string Ruta inicial del recurso
+		 * */
+		public $RootDir;
+		public function get_RootDir() {
+			return $this->ShortName . '/';
+		}
+		
+		
 		/*
 		 * Obtiene la ruta relativa usando algún auxiliar, como Html->css(), por ejemplo.
 		 * */
