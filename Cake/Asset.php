@@ -1,8 +1,21 @@
 ﻿<?php
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * PHP class «Assert»
+ * 
+ * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
+ * 
+ * Licensed under The MIT License (MIT)
+ * For full copyright and license information, please see the LICENSE
+ * Redistributions of files must retain the above copyright notice.
+ * 
+ * @copyright	Copyright © 2015 Nelson Martell 
+ * @link		https://github.com/nelson6e65/NelsonMartell
+ * @package  	NelsonMartell.Cake
+ * @author  	nelson6e65
+ * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/*
- * Clase para manejar los directorios de los diferentes recursos
- * */
 
 $_namespace = "NelsonMartell/Cake";
 $_class = "Asset";
@@ -13,6 +26,17 @@ if (!defined($_namespace . '/' . $_class)):
 	include('/../Object.php');
 	include('/../Version.php');
 	
+	/* *
+	 * Representa un recurso estático de una página, como elementos js y css, que poseen varias
+	 * versiones y están organizadas en subdirectorios, proponiendo una estructura predeterminada.
+	 * Contiene métodos y propiedades para obtener las rutas de los directorios y recursos de las
+	 * diferentes versiones del framework.
+	 * 
+	 * 
+	 * @package  	NelsonMartell.Cake
+	 * @author  	~nelson6e65
+	 * 
+	 * */
 	class Asset extends Object {
 		/* *
 		 * Crea una nueva instancia de la clase Asset
@@ -79,9 +103,13 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		
-		/*
-		 * Obtiene o establece el nombre original del recurso.
+		/* *
+		 * Obtiene o establece el nombre original del recurso. 
+		 * A partir de éste se determinará la ruta y el nombre real del archivo (que, por defecto, 
+		 * será éste mismo pero convertido en minúsculas y reemplazando sus espacios en blanco por 
+		 * guiones (' ' -> '-')).
 		 * 
+		 * @see  $ShortName
 		 * @var  string Nombre del recurso
 		 * */
 		public $Name;
@@ -106,7 +134,7 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/*
-		 * Obtiene el nombre auto-generado del recurso.
+		 * Obtiene el nombre real del recurso, que representa al nombre real de .
 		 * 
 		 * @var  string Nombre del recurso en su forma generada
 		 * */
