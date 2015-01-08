@@ -83,6 +83,10 @@ if (!defined($_namespace . '/' . $_class)):
 		
 		
 		public static function Parse($value) {
+			if ($value instanceof Version) {
+				return $value;
+			}
+			
 			$version = (string) $value;
 			
 			$version = explode('.', $version);
