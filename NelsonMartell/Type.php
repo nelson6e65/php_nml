@@ -24,14 +24,19 @@ if (!defined("C_Type")) {
 	include('Object.php');
 	
 	/* *
-	 * 
-	 * 
+	 * Representa al tipo de un objeto PHP.
+	 * Posee propiedades y métodos que describen a un tipo.
 	 * 
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
 	final class Type extends Object {
 		
+		/* *
+		 * Obtiene el Type del objeto especificado.
+		 * 
+		 * @param  mixed $obj Objeto al cual se le extraerá su tipo.
+		 * */
 		function __construct($obj){
 			parent::__construct();
 			unset($this->Name, $this->Vars, $this->Methods);
@@ -57,87 +62,62 @@ if (!defined("C_Type")) {
 			$this->_methods = $methods;
 		}
 		
-		
-		private $_name;
-		public $Name;
-		
-		/*
+		/* *
+		 * Gets the name of this Type.
+		 * This property is readonly.
 		 * 
-		 * @return  string  Nombre del tipo
+		 * @var  string
 		 * */
+		public $Name;
+		private $_name;		
 		public function get_Name() {
 			return $this->_name;
 		}
 		
-		/*
-		 * 
-		 * @deprecated Use Name property instead
-		 * */
 		public function GetName() {
 			trigger_error(_('To get the name, use Type::Name property instead.'), E_USER_DEPRECATED);
 			return $this->get_Name();
 		}
 		
-		private $_vars;
+		/* *
+		 * Gets the vars list of this Type.
+		 * This property is readonly.
+		 * 
+		 * @var  array
+		 * */
 		public $Vars;
-		
+		private $_vars;		
 		public function get_Vars() {
 			return $this->_vars;
 		}
 		
-		
-		/*
-		 * @deprecated Use Vars property instead
-		 * */
 		public function GetVars() {
 			trigger_error(_('To get vars, use Type::Vars property instead.'), E_USER_DEPRECATED);
 			return $this->get_Vars();
 		}
 		
-		
-		private $_methods;
+		/* *
+		 * Gets the methods list of this Type.
+		 * This property is readonly.
+		 * 
+		 * @var  array
+		 * */
 		public $Methods;
-		
+		private $_methods;
 		public function get_Methods(){
 			return $this->_methods;
 		}
 		
-		/*
-		 * 
-		 * @deprecated Use Methods property instead
-		 * */
 		public function GetMethods() {
 			trigger_error(_('To get methods, use Type::Methods property instead.'), E_USER_DEPRECATED);
 			return $this->get_Methods();
 		}
-
 		
-		/*
-		//Genera un Type a partir de otro.
-		public function InicializeFromType($type) {
-			$this->Name = $type->Name;
-			$this->Methods = $type->Methods;
-		}
-		*/
-		
-		private static function _isCustom($s) {
-			$s = (string) $s;
-			
-			switch($s){
-				case 'string':
-				case 'integer':
-				case 'double':
-				case 'boolean':
-				case 'array':
-				case 'object':
-				case 'NULL':
-				case 'null':
-					return false;
-				default:
-					return true;
-			}
-		}
-		
+		/* *
+		 * Determina si este Type es NULL.
+		 * 
+		 * @return  boolean True if this type is null; other case, False.
+		 * */
 		public function IsNull() {
 			if ($this->Name == 'NULL' || $this->Name == 'null') {
 				return true;
@@ -146,7 +126,11 @@ if (!defined("C_Type")) {
 			return false;			
 		}
 		
-		//Indica si el tipo especificado es una clase definida; es decir, diferente a 'integer', 'double', 'array' y 'object'.
+		/* *
+		 * Determina si este Type es una clase personalizada.
+		 * 
+		 * @return  boolean  True, if this Type is a custom class; another case, False.
+		 * */
 		public function IsCustom() {
 			
 
@@ -165,6 +149,11 @@ if (!defined("C_Type")) {
 			}
 		}
 		
+		/* *
+		 * Determina si este Type es de tipo valor.
+		 * 
+		 * @return  boolean
+		 * */
 		public function IsValueType() {
 			switch($this->Name){
 				case 'string':
@@ -178,10 +167,20 @@ if (!defined("C_Type")) {
 			}
 		}
 		
+		/* *
+		 * Determina si este Type es de tipo referencia.
+		 * 
+		 * @return  boolean
+		 * */
 		public function IsReferenceType() {
 			return !IsValueType();
 		}
 
+		/* *
+		 * Convierte la instancia actual en su representación en cadena.
+		 * 
+		 * @return  string
+		 * */
 		public function ToString() {
 			$s = $this->Name;
 			
@@ -192,15 +191,14 @@ if (!defined("C_Type")) {
 			return $s;
 		}
 		
-		
-		 
 	}
 	
-	/*
-	 * Obtiene el Type de un objeto. Es un alias para el constructor de Type.
+	/* *
+	 * Obtiene el tipo del objeto especificado. 
+	 * Es un alias para el constructor de Type.
 	 * 
-	 * @param  mixed Objeto a extraer su tipo
-	 * @return  Type Tipo del objeto
+	 * @param   mixed $obj Objeto al cual se le extraerá su tipo.
+	 * @return  Type
 	 * */
 	function typeof($obj) {
 		return new Type($obj);
