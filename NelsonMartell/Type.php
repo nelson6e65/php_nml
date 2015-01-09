@@ -138,6 +138,14 @@ if (!defined("C_Type")) {
 			}
 		}
 		
+		public function IsNull() {
+			if ($this->Name == 'NULL' || $this->Name == 'null') {
+				return true;
+			}
+			
+			return false;			
+		}
+		
 		//Indica si el tipo especificado es una clase definida; es decir, diferente a 'integer', 'double', 'array' y 'object'.
 		public function IsCustom() {
 			
