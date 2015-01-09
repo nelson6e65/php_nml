@@ -25,7 +25,9 @@ if (!defined($_namespace . '/' . $_class)):
 	include('IntString.php');
 	
 	/* 
-	 * Representa el número de versión de un elemento o ensamblado. No se puede heredar esta clase.
+	 * Representa el número de versión de un elemento o ensamblado, de la forma "1.0.0.0". Sólo 
+	 * siendo obligatorios el primer y segundo componente.
+	 * No se puede heredar esta clase.
 	 * 
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
@@ -33,8 +35,9 @@ if (!defined($_namespace . '/' . $_class)):
 	final class Version extends Object implements IEquatable {
 		
 		/* 
-		 * Crea una nueva instancia con los números principal, secundario, de compilación y 
-		 * revisión. Si no se especifica ninguno, se usará el valor predeterminado (0.0).
+		 * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
+		 * y revisión (opcional).
+		 * 
 		 * 
 		 * @exceptions InvalidArgumentException, OutOfRangeException
 		 * */
