@@ -171,16 +171,7 @@ if (!defined("C_Type")) {
 		}
 		
 		public function IsReferenceType() {
-			switch($this->Name){
-				case 'string':
-				case 'integer':
-				case 'double':	
-				case 'array':
-				case 'boolean':
-					return false;
-				default:
-					return true;
-			}
+			return !IsValueType();
 		}
 
 		public function ToString() {
