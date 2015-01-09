@@ -146,6 +146,7 @@ if (!defined("C_Type")) {
 				case 'string':
 				case 'integer':
 				case 'double':
+				case 'boolean':
 				case 'array':
 				case 'object':
 				case 'NULL':
@@ -161,8 +162,8 @@ if (!defined("C_Type")) {
 				case 'string':
 				case 'integer':
 				case 'double':
-				case 'array':
 				case 'boolean':
+				case 'array':
 					return true;
 				default:
 					return false;
@@ -175,6 +176,7 @@ if (!defined("C_Type")) {
 				case 'integer':
 				case 'double':	
 				case 'array':
+				case 'boolean':
 					return false;
 				default:
 					return true;
