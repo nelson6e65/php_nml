@@ -15,11 +15,12 @@
  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#ifndef C_Type
-	#define C_Type		
-#endif
-if (!defined("C_Type")) {		
-	define("C_Type", true);
+$_namespace = "NelsonMartell";
+$_class = "Type";
+
+if (!defined($_namespace . '/' . $_class)):
+	define($_namespace . '/' . $_class, true);
+
 
 	include('Object.php');
 	
@@ -204,6 +205,4 @@ if (!defined("C_Type")) {
 		return new Type($obj);
 	}
 	
-	
-}
-?>
+endif;
