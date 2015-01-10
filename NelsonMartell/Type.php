@@ -128,6 +128,18 @@ if (!defined($_namespace . '/' . $_class)):
 		}
 		
 		/* *
+		 * Determina si este Type NO es NULL.
+		 * 
+		 * @return  boolean True if this type is NOT null; other case, False.
+		 * */
+		public function IsNotNull() {
+			return !$this->IsNull();
+		}
+		
+		
+		
+		
+		/* *
 		 * Determina si este Type es una clase personalizada.
 		 * 
 		 * @return  boolean  True, if this Type is a custom class; another case, False.
