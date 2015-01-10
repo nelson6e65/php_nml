@@ -40,14 +40,18 @@ if (!defined($_namespace . '/' . $_class)):
 				throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) must be positive; "%s" given.'), '$intValue', 1, $intValue));
 			} 
 			
-			if ($this->IntValue == 0 && $this->StringValue != '') {
-				throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has an invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
-			}
 			
 			if ($this->StringValue != '') {
-				throw new Exception("Undone constructor validations.");
-				//TODO Agregar validaciones
-				//$correct = (boolean) preg_match('~^([a-z])(-*)([0-9])$~', $this->StringValue)
+				if ($this->IntValue == 0) {
+					throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
+				}
+				
+				$pattern = '~^([a-z])+([a-z]|[0-9]|-)*([a-z]|[0-9])*$~';
+				$correct = (boolean) preg_match($pattern, $this->StringValue);
+			
+				if (!$correct) {
+					throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has invalid chars: "%s".'), '$stringValue', 2, $stringValue));
+				}
 			}
 			
 			
