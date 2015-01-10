@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nelson Martell 1.0\n"
-"POT-Creation-Date: 2015-01-02 23:03-0430\n"
-"PO-Revision-Date: 2015-01-02 23:03-0430\n"
+"POT-Creation-Date: 2015-01-10 14:31-0430\n"
+"PO-Revision-Date: 2015-01-10 14:43-0430\n"
 "Last-Translator: Nelson Martell <nelson6e65-transifex.com>\n"
 "Language-Team:  <nelson6e65-transifex@yahoo.es>\n"
 "Language: es\n"
@@ -14,45 +14,131 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../Cake/Asset.php:22
-msgid "The name of resource must be an string."
-msgstr "El nombre del recurso debe ser una cadena."
+#: ../NelsonMartell/Cake/Asset.php:57
+msgid "Can not specify $versions argument if $name argument is null."
+msgstr ""
+"No se puede especificar el argumento $versions si el argumento $name es null."
 
-#: ../Object.php:64 ../Object.php:91
+#: ../NelsonMartell/Object.php:72 ../NelsonMartell/Object.php:99
 msgid "Property do not exists"
 msgstr "La propiedad no existe"
 
-#: ../Object.php:71
+#: ../NelsonMartell/Object.php:79
 msgid "Property is write only"
 msgstr "La propiedad es de sólo escritura"
 
-#: ../Object.php:76
+#: ../NelsonMartell/Object.php:84
 #, php-format
 msgid "Unable to access to '%s' property in '%s' class. Reason: %s"
 msgstr "No se puede acesar a la propiedad '%s' en la clase '%s'. Razón: %s"
 
-#: ../Object.php:98
+#: ../NelsonMartell/Object.php:106
 msgid "Property is read only"
 msgstr "La propiedad es de sólo lectura"
 
-#: ../Object.php:103
+#: ../NelsonMartell/Object.php:111
 #, php-format
 msgid "Unable to assign '%s' property in '%s' class. Reason: %s"
 msgstr "No se puede asignar la propiedad '%s' en la clase '%s'. Razón: %s"
 
-#: ../Version.php:44 ../Version.php:52
+#: ../NelsonMartell/Object.php:134
 #, php-format
 msgid ""
-"Invalid type on setter. You are trying to set '%s' property with an invalid "
-"type. 'value' must be an instance of '%s'; '%s' given."
+"Using default Object::ToString() method. You must override it, creating %s::"
+"ToString() public method."
 msgstr ""
-"Tipo inválido en el establecedor. Estás intentando establecer la propiedad "
-"'%s' con un tipo inválido. 'value' debe ser una instancia de '%s'; '%s' dado"
+"Usando el método Object::ToString() predeterminado. Debes sobreescribirlo, "
+"creando el método público %s::ToString()."
 
-#: ../Version.php:48 ../Version.php:56
+#: ../NelsonMartell/Object.php:148
 #, php-format
-msgid "Value for '%s' property must be positive; '%s' given"
-msgstr "El valor para la propiedad '%s' debe ser positivo; '%s' dado"
+msgid ""
+"You implemented IEquatable interface, but using default Object::Equals() "
+"method. You must override it, creating %s::Equals() public method."
+msgstr ""
+"Haz implementado la interfaz IEquatable, pero se está usando el método "
+"predeterminado Object::Equals(). Debes sobreescribirlo creando el método "
+"público %s::Equals()."
+
+#: ../NelsonMartell/Type.php:79
+msgid "To get the name, use Type::Name property instead."
+msgstr "Para obtener el nombre, usa la propiedad Type::Name más bien."
+
+#: ../NelsonMartell/Type.php:96
+msgid "To get vars, use Type::Vars property instead."
+msgstr "Para obtener las variables, usa la propiedad Type::Vars más bien."
+
+#: ../NelsonMartell/Type.php:113
+msgid "To get methods, use Type::Methods property instead."
+msgstr "Para obtener los métodos, usa la propiedad Type::Methods más bien."
+
+#: ../NelsonMartell/Version.php:49 ../NelsonMartell/Version.php:53
+#, php-format
+msgid ""
+"Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' "
+"given. Convert value or use the static method Version::Parse(string|mixed) "
+"to create a new instance from an string."
+msgstr ""
+"Tipo inválido del argumento. '%s' (argumento %s) debe ser una instancia de "
+"'%s', '%s' given. Convierte el valor o usa el método estático Version::"
+"Parse(string|mixed) para crear una nueva instancia de una cadena."
+
+#: ../NelsonMartell/Version.php:57 ../NelsonMartell/Version.php:61
+#, php-format
+msgid ""
+"Invalid argument value. '%s' (argument %s) must be a positive number; '%s' "
+"given."
+msgstr ""
+"Valor inválido de argumento. '%s' (argumento %s) debe ser un número "
+"positivo; '%s' dado."
+
+#: ../NelsonMartell/Version.php:68 ../NelsonMartell/Version.php:72
+#, php-format
+msgid ""
+"Invalid argument value. '%s' (argument %s) must have a positive number; '%s' "
+"given."
+msgstr ""
+
+#: ../NelsonMartell/Version.php:76 ../NelsonMartell/Version.php:80
+#, php-format
+msgid ""
+"Invalid argument value format. '%s' (argument %s) has an invalid format: "
+"'%s'. Can't use a text-only value. Number value must be > 0 to append it "
+"text."
+msgstr ""
+
+#: ../NelsonMartell/Version.php:103
+#, php-format
+msgid "Unable to parse. Argument passed has an invalid format: '%s'."
+msgstr ""
+
+#: ../NelsonMartell/VersionComponent.php:40
+#, php-format
+msgid ""
+"Invalid argument value. \"%s\" (argument %s) must be positive; \"%s\" given."
+msgstr ""
+
+#: ../NelsonMartell/VersionComponent.php:44
+#, php-format
+msgid ""
+"Invalid argument value. \"%s\" (argument %s) has an invalid format: \"%s\". "
+"VersionComponent can not be a text-only value. $intValue must be > 0 to "
+"append it text."
+msgstr ""
+
+#~ msgid "The name of resource must be an string."
+#~ msgstr "El nombre del recurso debe ser una cadena."
+
+#~ msgid ""
+#~ "Invalid type on setter. You are trying to set '%s' property with an "
+#~ "invalid type. 'value' must be an instance of '%s'; '%s' given."
+#~ msgstr ""
+#~ "Tipo inválido en el establecedor. Estás intentando establecer la "
+#~ "propiedad '%s' con un tipo inválido. 'value' debe ser una instancia de "
+#~ "'%s'; '%s' dado"
+
+#~ msgid "Value for '%s' property must be positive; '%s' given"
+#~ msgstr "El valor para la propiedad '%s' debe ser positivo; '%s' dado"
 
 #~ msgid ""
 #~ "Argument \"%s\" has an invalid type. Expected: \"%s\"; Actual: \"%s\""
