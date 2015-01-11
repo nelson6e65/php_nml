@@ -10,13 +10,13 @@
  * 
  * @copyright	Copyright © 2014, 2015 Nelson Martell 
  * @link		https://github.com/nelson6e65/NelsonMartell
- * @package  	NelsonMartell.Cake
+ * @package  	NelsonMartell.Utilities
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-$_namespace = "NelsonMartell/Cake";
+$_namespace = "NelsonMartell/Utilities";
 $_class = "Asset";
 
 if (!defined($_namespace . '/' . $_class)):
@@ -32,7 +32,7 @@ if (!defined($_namespace . '/' . $_class)):
 	 * diferentes versiones del framework.
 	 * 
 	 * 
-	 * @package  NelsonMartell.Cake
+	 * @package  NelsonMartell.Utilities
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
 	class Asset extends Object {
