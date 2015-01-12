@@ -22,7 +22,7 @@ if (!defined($_namespace . '/' . $_class)):
 	define($_namespace . '/' . $_class, true);
 
 	include('Object.php');
-	include('IntString.php');
+	include('VersionComponent.php');
 	
 	/* 
 	 * Representa el número de versión de un elemento o ensamblado, de la forma "1.0.0.0". Sólo 
@@ -61,29 +61,10 @@ if (!defined($_namespace . '/' . $_class)):
 				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "minor", 2, $minor));
 			}
 			
-			$b = IntString::Parse($build); //TODO: Validar
-			$r = IntString::Parse($revision); //TODO: Validar
-			
-			if ($b->IntValue < 0) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must have a positive number; '%s' given."), "build", 3, $build));
-			}
-			
-			if ($r->IntValue < 0) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must have a positive number; '%s' given."), "revision", 4, $revision));
-			}
-			
-			if ($b->StringValue != '' && $b->IntValue <= 0) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument value format. '%s' (argument %s) has an invalid format: '%s'. Can't use a text-only value. Number value must be > 0 to append it text."), "build", 3, $build));
-			}
-			
-			if ($r->StringValue != '' && $b->IntValue <= 0) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument value format. '%s' (argument %s) has an invalid format: '%s'. Can't use a text-only value. Number value must be > 0 to append it text."), "revision", 4, $revision));
-			}
-			
 			$this->_major = $major;
 			$this->_minor = $minor;
-			$this->_build = $b;
-			$this->_revision = $r;
+			$this->_build = VersionComponent::Parse($build);
+			$this->_revision = VersionComponent::Parse($revision);
 		}
 		
 		
@@ -110,10 +91,10 @@ if (!defined($_namespace . '/' . $_class)):
 			$revision = 0;
 			
 			if(count($version) >= 3) {
-				$build = IntString::Parse($version[2]);
+				$build = VersionComponent::Parse($version[2]);
 				
 				if(count($version) == 4) {
-					$revision = IntString::Parse($version[3]);
+					$revision = VersionComponent::Parse($version[3]);
 				}
 			}
 			
