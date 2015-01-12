@@ -23,7 +23,7 @@ if (!defined($_namespace . '/' . $_class)):
 
 	include('IntString.php');
 	
-	/*
+	/* *
 	 * Representa un componente de un número de Version.
 	 * Extiende la clase IntString, pero restringe los valores que puede tomar.
 	 * 
@@ -46,7 +46,12 @@ if (!defined($_namespace . '/' . $_class)):
 					throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
 				}
 				
-				$pattern = '~^([a-z])+([a-z]|[0-9]|-)*([a-z]|[0-9])*$~';
+				$pattern = '~^([a-z])+$~';
+				
+				if (strlen($this->StringValue) > 1) {
+					$pattern = '~^([a-z])+([a-z]|[0-9]|-)*([a-z]|[0-9])+$~';
+				}
+				
 				$correct = (boolean) preg_match($pattern, $this->StringValue);
 			
 				if (!$correct) {
