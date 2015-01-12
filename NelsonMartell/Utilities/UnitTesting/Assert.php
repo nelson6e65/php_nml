@@ -138,7 +138,6 @@ if (!defined($_namespace . '/' . $_class)):
 				call_user_method_array($method_name, $obj, $params);
 			} catch (Exception $e) {
 				$actual = typeof($e);
-				var_dump($e);
 			}
 
 			if ($actual->IsNotNull()) {
@@ -193,7 +192,6 @@ if (!defined($_namespace . '/' . $_class)):
 				$obj->$property_name = $value;
 			} catch (Exception $e) {
 				$actual = typeof($e);
-				var_dump($e);
 			}
 
 			if ($actual->IsNotNull()) {
