@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * PHP interface «IList»
  *
@@ -16,11 +16,13 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-$_namespace = "NelsonMartell/Collections";
-$_class = "IList";
+namespace NelsonMartell\Collections {
 
-if (!defined($_namespace . '/' . $_class)):
-	define($_namespace . '/' . $_class, true);
+	$_class = "IList";
+	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
+
+	if (!defined($_constant)):
+		define($_constant, true);
 
 	include('ICollection.php');
 

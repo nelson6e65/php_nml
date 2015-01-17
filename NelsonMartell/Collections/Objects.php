@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * PHP class «Objects»
  *
@@ -15,14 +15,17 @@
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$_namespace = "NelsonMartell";
-$_class = "Objects";
+namespace NelsonMartell\Collections {
 
-if (!defined($_namespace . '/' . $_class)):
-	define($_namespace . '/' . $_class, true);
+	$_class = "Objects";
+	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
+
+	if (!defined($_constant)):
+		define($_constant, true);
 
 	include('/../Object.php');
 
+	use NelsonMartell\Object;
 
 	/* *
 	 * Clase base de una colección de objetos, que define métodos y propiedades básicas para
@@ -121,4 +124,5 @@ if (!defined($_namespace . '/' . $_class)):
 
 	}
 
-endif;
+	endif;
+}

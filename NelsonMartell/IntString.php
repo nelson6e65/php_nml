@@ -1,67 +1,69 @@
-﻿<?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+<?php
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * PHP class «IntString»
- * 
+ *
  * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
- * 
+ *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
- * 
- * @copyright	Copyright © 2015 Nelson Martell 
+ *
+ * @copyright	Copyright © 2015 Nelson Martell
  * @link		https://github.com/nelson6e65/NelsonMartell
  * @package  	NelsonMartell
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
- * 
+ *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$_namespace = "NelsonMartell";
-$_class = "IntString";
+namespace NelsonMartell {
 
-if (!defined($_namespace . '/' . $_class)):
-	define($_namespace . '/' . $_class, true);
+	$_class = "IntString";
+	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
+
+	if (!defined($_constant)):
+		define($_constant, true);
 
 	include('Object.php');
-	
+
 	/*
 	 * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
 	 * El método ToString obtiene esa cadena compuesta.
-	 * 
+	 *
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
 	class IntString extends Object implements IEquatable {
-		
+
 		function __construct($intValue = 0, $stringValue = '') {
 			unset($this->IntValue, $this->StringValue);
-			
+
 			$this->_intValue = (int) $intValue;
-			$this->_stringValue = (string) $stringValue;			
+			$this->_stringValue = (string) $stringValue;
 		}
-		
+
 		public static function Parse($parseableString) {
 			$s = new IntString();
-			
+
 			if (typeof($parseableString) == $s->GetType()) {
 				return $parseableString;
 			}
-			
-			
+
+
 			$s = (string) $parseableString;
-			$intValue = (int) $s; 
-			
+			$intValue = (int) $s;
+
 			$stringValue = explode($intValue, $s, 2);
-			
+
 			if ($intValue) {
 				$stringValue = $stringValue[1];
 			} else {
 				$stringValue = $stringValue[0];
 			}
-			
+
 			return new IntString($intValue, $stringValue);
 		}
-		
-		
+
+
 		private $_intValue = 0;
 		private $_stringValue = '';
 
@@ -69,16 +71,16 @@ if (!defined($_namespace . '/' . $_class)):
 		public function get_IntValue() {
 			return $this->_intValue;
 		}
-		
+
 		public $StringValue;
 		public function get_StringValue() {
 			return $this->_stringValue;
 		}
-		
+
 		public function ToString() {
 			return $this->IntValue . $this->StringValue;
 		}
-		
+
 		public function Equals($other) {
 			if ($other instanceof IntString) {
 				if ($this->IntValue == $other->IntValue) {
@@ -87,9 +89,10 @@ if (!defined($_namespace . '/' . $_class)):
 					}
 				}
 			}
-			
+
 			return false;
 		}
 	}
 
-endif;
+	endif;
+}

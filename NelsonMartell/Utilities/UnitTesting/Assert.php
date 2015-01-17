@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * PHP class «Assert»
  *
@@ -12,15 +12,19 @@
  * @link       https://github.com/nelson6e65/NelsonMartell
  * @package    NelsonMartell.Utilities.UnitTesting
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
- * 
+ *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+namespace NelsonMartell\Utilities\UnitTesting {
+	use NelsonMartell\Object;
+	use NelsonMartell\Version;
+	use \Exception;
 
-$_namespace = "NelsonMartell/Utilities/UnitTesting";
-$_class = "Assert";
+	$_class = "Assert";
+	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
 
-if (!defined($_namespace . '/' . $_class)):
-	define($_namespace . '/' . $_class, true);
+	if (!defined($_constant)):
+		define($_constant, true);
 
 	include("/../../Type.php");
 	include("/../../Object.php");
@@ -236,4 +240,5 @@ if (!defined($_namespace . '/' . $_class)):
 
 	}
 
-endif;
+	endif;
+}
