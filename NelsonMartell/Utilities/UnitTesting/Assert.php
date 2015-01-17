@@ -135,7 +135,7 @@ if (!defined($_namespace . '/' . $_class)):
 			$actual = typeof(null);
 
 			try {
-				call_user_method_array($method_name, $obj, $params);
+				call_user_func_array(array($obj, $method_name), $params);
 			} catch (Exception $e) {
 				$actual = typeof($e);
 			}
