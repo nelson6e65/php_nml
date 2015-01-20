@@ -1,6 +1,6 @@
 <?php
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * PHP class «Assert»
+ * PHP class «Asset»
  *
  * Copyright © 2014, 2015 Nelson Martell (http://fb.me/nelson6e65)
  *
