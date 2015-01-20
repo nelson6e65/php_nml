@@ -44,8 +44,8 @@ namespace NelsonMartell {
 		 *
 		 * @param  int $major  Componente principal
 		 * @param  int $minor  Componente secundario
-		 * @param  int | string | VersionComponent  $build  Componente de compilación
-		 * @param  int | string | VersionComponent  $revision  Componente de revisión
+		 * @param  mixed  $build  Componente de compilación
+		 * @param  mixed  $revision  Componente de revisión
 		 * @throw  InvalidArgumentException
 		 * */
 		function __construct($major = 0, $minor = 0, $build = 0, $revision = 0) {
