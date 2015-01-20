@@ -27,7 +27,7 @@ namespace NelsonMartell\Collections {
 
 	use NelsonMartell\Object;
 
-	/* *
+	/**
 	 * Clase base de una colección de objetos, que define métodos y propiedades básicas para
 	 * trabajar con colecciones.
 	 *
