@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
  * PHP class «Type»
  *
  * Copyright © 2013-2015 Nelson Martell (http://fb.me/nelson6e65)
@@ -13,7 +13,7 @@
  * @package  	NelsonMartell
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * */
 
 namespace NelsonMartell {
 
@@ -25,18 +25,20 @@ namespace NelsonMartell {
 
 	include('Object.php');
 
-	/* *
+	/**
 	 * Representa al tipo de un objeto PHP.
 	 * Posee propiedades y métodos que describen a un tipo.
+	 * 
 	 *
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
 	final class Type extends Object {
 
-		/* *
+		/**
 		 * Obtiene el Type del objeto especificado.
-		 *
+		 * 
+		 * 
 		 * @param  mixed $obj Objeto al cual se le extraerá su tipo.
 		 * */
 		function __construct($obj){
@@ -64,9 +66,10 @@ namespace NelsonMartell {
 			$this->_methods = $methods;
 		}
 
-		/* *
+		/**
 		 * Gets the name of this Type.
 		 * This property is readonly.
+		 *
 		 *
 		 * @var  string
 		 * */
@@ -81,10 +84,11 @@ namespace NelsonMartell {
 			return $this->get_Name();
 		}
 
-		/* *
+		/**
 		 * Gets the vars list of this Type.
 		 * This property is readonly.
-		 *
+		 * 
+		 * 
 		 * @var  array
 		 * */
 		public $Vars;
@@ -98,10 +102,11 @@ namespace NelsonMartell {
 			return $this->get_Vars();
 		}
 
-		/* *
+		/**
 		 * Gets the methods list of this Type.
 		 * This property is readonly.
-		 *
+		 * 
+		 * 
 		 * @var  array
 		 * */
 		public $Methods;
@@ -115,9 +120,10 @@ namespace NelsonMartell {
 			return $this->get_Methods();
 		}
 
-		/* *
+		/**
 		 * Determina si este Type es NULL.
-		 *
+		 * 
+		 * 
 		 * @return  boolean True if this type is null; other case, False.
 		 * */
 		public function IsNull() {
@@ -128,9 +134,10 @@ namespace NelsonMartell {
 			return false;
 		}
 
-		/* *
+		/**
 		 * Determina si este Type NO es NULL.
-		 *
+		 * 
+		 * 
 		 * @return  boolean True if this type is NOT null; other case, False.
 		 * */
 		public function IsNotNull() {
@@ -138,11 +145,10 @@ namespace NelsonMartell {
 		}
 
 
-
-
-		/* *
+		/**
 		 * Determina si este Type es una clase personalizada.
-		 *
+		 * 
+		 * 
 		 * @return  boolean  True, if this Type is a custom class; another case, False.
 		 * */
 		public function IsCustom() {
@@ -163,9 +169,10 @@ namespace NelsonMartell {
 			}
 		}
 
-		/* *
+		/**
 		 * Determina si este Type es de tipo valor.
-		 *
+		 * 
+		 * 
 		 * @return  boolean
 		 * */
 		public function IsValueType() {
@@ -181,18 +188,20 @@ namespace NelsonMartell {
 			}
 		}
 
-		/* *
+		/**
 		 * Determina si este Type es de tipo referencia.
-		 *
+		 * 
+		 * 
 		 * @return  boolean
 		 * */
 		public function IsReferenceType() {
 			return !IsValueType();
 		}
 
-		/* *
+		/**
 		 * Convierte la instancia actual en su representación en cadena.
-		 *
+		 * 
+		 * 
 		 * @return  string
 		 * */
 		public function ToString() {
@@ -214,13 +223,14 @@ namespace {
 	use NelsonMartell\Type;
 
 	if (!function_exists('typeof')) {
-		/* *
-	 * Obtiene el tipo del objeto especificado.
-	 * Es un alias para el constructor de Type.
-	 *
-	 * @param   mixed $obj Objeto al cual se le extraerá su tipo.
-	 * @return  Type
-	 * */
+		/**
+		 * Obtiene el tipo del objeto especificado.
+		 * Es un alias para el constructor de Type.
+		 * 
+		 * 
+		 * @param   mixed $obj Objeto al cual se le extraerá su tipo.
+		 * @return  Type
+		 * */
 		function typeof($obj) {
 			return new Type($obj);
 		}

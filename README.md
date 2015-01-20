@@ -4,9 +4,6 @@
 ## Description
 PHP library for PHP5+ applications. 
 
-
-
-
 ## Requirements
 * PHP 5.5 or greater
 

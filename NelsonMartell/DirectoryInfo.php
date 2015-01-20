@@ -1,6 +1,6 @@
 ﻿<?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
- * PHP class «Assert»
+/**
+ * PHP class «DirectoryInfo»
  * 
  * Copyright © 2013-2015 Nelson Martell (http://fb.me/nelson6e65)
  * 
@@ -10,13 +10,10 @@
  * 
  * @copyright	Copyright © 2013-2015 Nelson Martell 
  * @link		http://nelson6e65.github.io/php_nml/
- * @package  	NelsonMartell.Cake
+ * @package  	NelsonMartell
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * 
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-
-
+ * */
 
 
 if (!defined('C_DirectoryInfo')) {
@@ -29,7 +26,9 @@ if (!defined('C_DirectoryInfo')) {
 		
 		
 	
-	/* *
+	/**
+	 * 
+	 * 
 	 * 
 	 * @todo     Adapt class
 	 * @package  NelsonMartell.Version
@@ -67,4 +66,3 @@ if (!defined('C_DirectoryInfo')) {
 		
 	}
 }
-?>

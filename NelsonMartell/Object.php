@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
  * PHP class «Object»
  *
  * Copyright © 2014, 2015 Nelson Martell (http://fb.me/nelson6e65)
@@ -13,7 +13,7 @@
  * @package  	NelsonMartell
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * */
 
 namespace NelsonMartell {
 
@@ -62,10 +62,13 @@ namespace NelsonMartell {
 
 		}
 
-		/*
-		 * Obtiene el valor de una propiedad según el modelo: 'get_' + $name + '()'
+		/**
+		 * Obtiene el valor de una propiedad. Ésta debe definir un método getter, que sigue este
+		 * modelo: 'get_' + $name + '()'.
 		 * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
 		 * método getter.
+		 * 
+		 * 
 		 * */
 		function __get($name) {
 			$error = false;
@@ -89,10 +92,12 @@ namespace NelsonMartell {
 			return $this->$getter();
 		}
 
-		/*
+		/**
 		 * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
 		 * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
 		 * método setter.
+		 * 
+		 * 
 		 * */
 		function __set($name, $value) {
 			$error = false;
@@ -119,16 +124,26 @@ namespace NelsonMartell {
 
 
 
-		/*
+		/**
+		 * Convierte esta instancia en su representación de cadena.
 		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función
 		 * ObjectClass::ToString()
+		 * 
+		 * 
+		 * @return  string
 		 * */
 		final function __toString() {
 			//$args = null;
 			//list($args) = func_get_args();
 			return $this->ToString();
 		}
-
+		
+		/**
+		 * Convierte la instancia actual en su representación de cadena.
+		 * 
+		 * 
+		 * @return  string
+		 * */
 		public function ToString() {
 			$t = $this->GetType();
 
@@ -140,6 +155,12 @@ namespace NelsonMartell {
 
 		}
 
+		/**
+		 * Obtiene el tipo del objeto actual.
+		 * 
+		 * 
+		 * @return  Type
+		 * */
 		public final function GetType() {
 			return typeof($this);
 		}

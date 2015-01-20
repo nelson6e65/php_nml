@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
  * PHP class «Assert»
  *
  * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
@@ -13,7 +13,7 @@
  * @package    NelsonMartell.Utilities.UnitTesting
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * */
 
 namespace NelsonMartell\Utilities\UnitTesting {
 	use NelsonMartell\Object;
@@ -30,13 +30,10 @@ namespace NelsonMartell\Utilities\UnitTesting {
 	include("/../../Object.php");
 	include("/../../IEquatable.php");
 
-	/* *
+	/**
 	 * Comprueba condiciones de pruebas.
-	 *
-	 *
-	 *
-	 *
-	 *
+	 * 
+	 * 
 	 * @package  NelsonMartell.Utilities.UnitTesting
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
@@ -61,10 +58,11 @@ namespace NelsonMartell\Utilities\UnitTesting {
 		}
 
 
-		/* *
+		/**
 		 * Comprueba si los dos objetos especificados son iguales. Caso contrario, emite una
 		 * advertencia.
-		 *
+		 * 
+		 * 
 		 * @param   string $msg Custom message to append on assert failed.
 		 * @return  boolean true si son iguales; false, en caso contrario.
 		 * */
@@ -87,11 +85,11 @@ namespace NelsonMartell\Utilities\UnitTesting {
 
 
 
-		/* *
+		/**
 		 * Comprueba si los dos objetos especificados NO son iguales. En caso de que sí lo sean,
 		 * emite una advertencia.
-		 *
-		 *
+		 * 
+		 * 
 		 * @param  string $msg Custom message to append on assert failed.
 		 * @return  boolean true si NO son iguales; false, en caso contrario.
 		 * */
@@ -120,10 +118,11 @@ namespace NelsonMartell\Utilities\UnitTesting {
 			return self::AreEqual(false, $actual);
 		}
 
-		/* *
+		/**
 		 * Comprueba que, si al llamar un método público de un objeto, se obtiene una excepción del
 		 * tipo especificado.
-		 *
+		 * 
+		 * 
 		 * @param   string $method_name Method name.
 		 * @param   mixed $obj Object to check.
 		 * @param   array $params Method params.

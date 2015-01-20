@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
  * PHP class «IntString»
  *
  * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
@@ -13,7 +13,7 @@
  * @package  	NelsonMartell
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * */
 
 namespace NelsonMartell {
 
@@ -25,10 +25,11 @@ namespace NelsonMartell {
 
 	include('Object.php');
 
-	/*
+	/**
 	 * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
 	 * El método ToString obtiene esa cadena compuesta.
-	 *
+	 * 
+	 * 
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */

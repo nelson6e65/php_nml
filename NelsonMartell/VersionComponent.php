@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
  * PHP class «VersionComponent»
  *
  * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
@@ -13,7 +13,7 @@
  * @package  	NelsonMartell
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * */
 
 namespace NelsonMartell {
 	use \InvalidArgumentException;
@@ -26,10 +26,11 @@ namespace NelsonMartell {
 
 	include('IntString.php');
 
-	/* *
+	/**
 	 * Representa un componente de un número de Version.
 	 * Extiende la clase IntString, pero restringe los valores que puede tomar.
-	 *
+	 * 
+	 * 
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */

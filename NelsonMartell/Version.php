@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
  * PHP class «Version»
  *
  * Copyright © 2015 Nelson Martell (http://fb.me/nelson6e65)
@@ -13,7 +13,7 @@
  * @package    NelsonMartell
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * */
 
 namespace NelsonMartell {
 	use \InvalidArgumentException;
@@ -38,7 +38,7 @@ namespace NelsonMartell {
 	 * */
 	final class Version extends Object implements IEquatable {
 
-		/*
+		/**
 		 * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
 		 * y revisión (opcional).
 		 *
@@ -107,13 +107,10 @@ namespace NelsonMartell {
 			return new Version($major, $minor, $build, $revision);
 		}
 
-
-
-
-
-		/* *
+		/**
 		 * Obtiene el valor del componente principal del número de versión del objeto actual.
-		 *
+		 * 
+		 * 
 		 * @var  int Componente principal del número de versión
 		 * */
 		public $Major;
@@ -122,9 +119,10 @@ namespace NelsonMartell {
 		public function get_Major() { return $this->_major; }
 
 
-		/* *
+		/**
 		 * Obtiene el valor del componente secundario del número de versión del objeto actual.
-		 *
+		 * 
+		 * 
 		 * @var  int Componente secundario del número de versión
 		 * */
 		public $Minor;
@@ -132,9 +130,10 @@ namespace NelsonMartell {
 
 		public function get_Minor() { return $this->_minor; }
 
-		/* *
+		/**
 		 * Obtiene el valor del componente de compilación del número de versión del objeto actual.
-		 *
+		 * 
+		 * 
 		 * @var  int Componente de compilación del número de versión
 		 * */
 		public $Build;
@@ -142,9 +141,10 @@ namespace NelsonMartell {
 
 		public function get_Build() { return $this->_build; }
 
-		/*
+		/**
 		 * Obtiene el valor del componente de revisión del número de versión del objeto actual.
-		 *
+		 * 
+		 * 
 		 * @var  int Componente de revisión del número de versión
 		 * */
 		public $Revision;
@@ -153,14 +153,15 @@ namespace NelsonMartell {
 		public function get_Revision() { return $this->_revision; }
 
 
-		/*
+		/**
 		 * Convierte la instancia actual en su representación en cadena.
 		 * Por defecto, si no se especifica el número de revisión (o es menor a 1),
 		 * no se incluye en la salida.
 		 * Si tampoco se especifica el número de compilación (o es menor a 1),
 		 * tampoco se incluye el número de revisión.
 		 * Los componentes principal y secundario siempre se muestran, aunque sean cero (0).
-		 *
+		 * 
+		 * 
 		 * @return  string Representación de la versión en forma de cadena:
 		 *   'major.minor[.build[.revision]]'
 		 * */
@@ -180,9 +181,11 @@ namespace NelsonMartell {
 			return $s;
 		}
 
-		/*
+		/**
 		 * Indica si la instancia actual es un número de versión válido.
 		 * Al menos un atributo de la versión debe estar establecido.
+		 * 
+		 * 
 		 * @return  boolean Un valor que indica si la instancia actual es válida.
 		 * */
 		public function IsValid() {
@@ -199,8 +202,9 @@ namespace NelsonMartell {
 			return true;
 		}
 
-		/* *
+		/**
 		 * Determina si el objeto $other especificado es igual a la instancia actual.
+		 * 
 		 *
 		 * @return  bool True si $other es igual esta instancia
 		 * */

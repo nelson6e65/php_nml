@@ -1,5 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/**
  * PHP class «Asset»
  *
  * Copyright © 2014, 2015 Nelson Martell (http://fb.me/nelson6e65)
@@ -13,7 +13,7 @@
  * @package  	NelsonMartell.Utilities
  * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ * */
 
 namespace NelsonMartell\Utilities {
 	use NelsonMartell\Object;
@@ -32,7 +32,7 @@ namespace NelsonMartell\Utilities {
 	include('/../Object.php');
 	include('/../Version.php');
 
-	/* *
+	/**
 	 * Representa un recurso estático de una página, como elementos js y css, que poseen varias
 	 * versiones y están organizadas en subdirectorios, proponiendo una estructura predeterminada.
 	 * Contiene métodos y propiedades para obtener las rutas de los directorios y recursos de las
@@ -43,7 +43,7 @@ namespace NelsonMartell\Utilities {
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
 	class Asset extends Object {
-		/* *
+		/**
 		 * Crea una nueva instancia de la clase Asset
 		 *
 		 *
@@ -67,9 +67,6 @@ namespace NelsonMartell\Utilities {
 			if ($versions == null) {
 				$versions = array();
 			}
-
-
-
 
 			if (is_array($versions)) {
 
@@ -108,12 +105,13 @@ namespace NelsonMartell\Utilities {
 		}
 
 
-		/* *
+		/**
 		 * Obtiene o establece el nombre original del recurso.
 		 * A partir de éste se determinará la ruta y el nombre real del archivo (que, por defecto,
 		 * será éste mismo pero convertido en minúsculas y reemplazando sus espacios en blanco por
 		 * guiones (' ' -> '-')).
-		 *
+		 * 
+		 * 
 		 * @see  $ShortName
 		 * @var  string Nombre del recurso
 		 * */
@@ -138,9 +136,10 @@ namespace NelsonMartell\Utilities {
 			$this->_shortName = str_replace(' ', '-', strtolower($this->_name));
 		}
 
-		/*
+		/**
 		 * Obtiene el nombre real del recurso, que representa al nombre real de .
-		 *
+		 * 
+		 * 
 		 * @var  string Nombre del recurso en su forma generada
 		 * */
 		public $ShortName;
@@ -150,9 +149,10 @@ namespace NelsonMartell\Utilities {
 			return $this->_shortName;
 		}
 
-		/*
+		/**
 		 * Obtiene la lista de versiones
-		 *
+		 * 
+		 * 
 		 * @var  List Lista de versiones del recurso
 		 * */
 		public $Versions;
@@ -161,21 +161,14 @@ namespace NelsonMartell\Utilities {
 		public function get_Versions() {
 			return $this->_versions;
 		}
-		/*
-		public function set_Versions($value) {
-			$this->_versions = $value;
-		}
-		*/
 
-
-		/* *
+		/**
 		 * Obtiene o establece el CDN del recurso.
 		 * Debe modificarse la URL, colocando '{v}' en vez de la versión.
 		 * @example  Un CDN para el JavaScript de jQuery UI v1.11.2 es:
 		 *   "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"
 		 *   Entonces el valor de esta propiedad debe ser:
 		 *   "//ajax.googleapis.com/ajax/libs/jqueryui/{v}/jquery-ui"
-		 *
 		 *
 		 *
 		 * @var  string CDN
@@ -191,26 +184,8 @@ namespace NelsonMartell\Utilities {
 			$this->_cdnUri = (string) $value;
 		}
 
-		/*
-			public static function getJavascriptPath($api) {
 
-			}
-
-			public static function getCssPath($api) {
-
-			}
-
-			public static function getImgPath($api){
-
-			}
-
-			public static function getResourcesPath($api){
-
-		}*/
-
-
-
-		/* *
+		/**
 		 * Obtiene el directorio principal del recurso.
 		 *
 		 *
@@ -221,7 +196,7 @@ namespace NelsonMartell\Utilities {
 			return $this->ShortName . '/';
 		}
 
-		/* *
+		/**
 		 * Obtiene la ruta del directorio de la versión especificada. Si no se especifica,
 		 * se devuelve la versión más reciente.
 		 *
@@ -252,10 +227,11 @@ namespace NelsonMartell\Utilities {
 		}
 
 
-		/* *
+		/**
 		 * Obtiene la ruta del recurso de la versión especificada. Si no se especifica, se devuelve la
 		 * versión más reciente.
-		 *
+		 * 
+		 * 
 		 * @return  string Ruta del recurso
 		 * */
 		public function GetResourcePath($version = null, $append = '') {
