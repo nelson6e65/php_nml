@@ -23,13 +23,10 @@ namespace NelsonMartell {
 	if (!defined($_constant)):
 		define($_constant, true);
 
-
-
-
 	include('Type.php');
 	include('IEquatable.php');
 
-	/*
+	/**
 	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
 	 *
 	 *
