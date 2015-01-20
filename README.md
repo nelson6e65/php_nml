@@ -1,5 +1,4 @@
-[![API Docs](http://apigenerator.org/badge.png)](http://nelson6e65.github.io/php_nml/)
-
+[![API Docs](http://apigenerator.org/badge.png)](http://nelson6e65.github.io/php_nml/api)
 # PHP: Nelson Martell Library
 
 ## Description
