@@ -1,0 +1,10 @@
+allowed-html: b,i,a,ul,ol,li,p,br,var,samp,kbd,tt,table,thead,tbody,tr,td,pre,code
+autocomplete: classes,constants,functions,methods,properties,classconstants
+access-levels: public,protected
+internal: yes
+php: false
+deprecated: true
+todo: true
+
+docs-path: /api
+google-analytics: UA-58599811-1
