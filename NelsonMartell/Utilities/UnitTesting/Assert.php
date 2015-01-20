@@ -9,7 +9,7 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2015 Nelson Martell
- * @link       https://github.com/nelson6e65/NelsonMartell
+ * @link       http://nelson6e65.github.io/php_nml/
  * @package    NelsonMartell.Utilities.UnitTesting
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  *
