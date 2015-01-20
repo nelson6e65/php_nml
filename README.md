@@ -1,7 +1,10 @@
 # PHP: Nelson Martell Library
 
 ## Description
-PHP library for PHP5+ applications.
+PHP library for PHP5+ applications. 
+
+[![API Docs](http://apigenerator.org/badge.png)](http://nelson6e65.github.io/php_nml/)
+
 
 ## Requirements
 * PHP 5.5 or greater
