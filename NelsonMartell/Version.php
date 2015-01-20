@@ -42,8 +42,11 @@ namespace NelsonMartell {
 		 * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
 		 * y revisión (opcional).
 		 *
-		 *
-		 * @exceptions InvalidArgumentException, OutOfRangeException
+		 * @param  int $major  Componente principal
+		 * @param  int $minor  Componente secundario
+		 * @param  int | string | VersionComponent  $build  Componente de compilación
+		 * @param  int | string | VersionComponent  $revision  Componente de revisión
+		 * @throw  InvalidArgumentException
 		 * */
 		function __construct($major = 0, $minor = 0, $build = 0, $revision = 0) {
 			parent::__construct();
@@ -71,7 +74,13 @@ namespace NelsonMartell {
 			$this->_revision = VersionComponent::Parse($revision);
 		}
 
-
+		/**
+		 * Convierte una cadena a su representación del tipo Version
+		 * 
+		 * 
+		 * @param   string  Cadena a convertir.
+		 * @return  Version Objeto convertido desde $value.
+		 * */
 		public static function Parse($value) {
 			if ($value instanceof Version) {
 				return $value;
@@ -134,7 +143,7 @@ namespace NelsonMartell {
 		 * Obtiene el valor del componente de compilación del número de versión del objeto actual.
 		 * 
 		 * 
-		 * @var  int Componente de compilación del número de versión
+		 * @var  VersionComponent  Componente de compilación del número de versión
 		 * */
 		public $Build;
 		private $_build;
@@ -145,7 +154,7 @@ namespace NelsonMartell {
 		 * Obtiene el valor del componente de revisión del número de versión del objeto actual.
 		 * 
 		 * 
-		 * @var  int Componente de revisión del número de versión
+		 * @var  VersionComponent  Componente de revisión del número de versión
 		 * */
 		public $Revision;
 		private $_revision;
