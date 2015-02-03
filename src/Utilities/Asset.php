@@ -98,8 +98,8 @@ namespace NelsonMartell\Utilities {
 		 * A partir de éste se determinará la ruta y el nombre real del archivo (que, por defecto,
 		 * será éste mismo pero convertido en minúsculas y reemplazando sus espacios en blanco por
 		 * guiones (' ' -> '-')).
-		 * 
-		 * 
+		 *
+		 *
 		 * @see  $ShortName
 		 * @var  string Nombre del recurso
 		 * */
@@ -126,8 +126,8 @@ namespace NelsonMartell\Utilities {
 
 		/**
 		 * Obtiene el nombre real del recurso, que representa al nombre real de .
-		 * 
-		 * 
+		 *
+		 *
 		 * @var  string Nombre del recurso en su forma generada
 		 * */
 		public $ShortName;
@@ -139,8 +139,8 @@ namespace NelsonMartell\Utilities {
 
 		/**
 		 * Obtiene la lista de versiones
-		 * 
-		 * 
+		 *
+		 *
 		 * @var  List Lista de versiones del recurso
 		 * */
 		public $Versions;
@@ -184,45 +184,65 @@ namespace NelsonMartell\Utilities {
 			return $this->ShortName . '/';
 		}
 
+		const NEWEST = 'newest';
+
+		const OLDEST = 'oldest';
+
 		/**
 		 * Obtiene la ruta del directorio de la versión especificada. Si no se especifica,
 		 * se devuelve la versión más reciente.
 		 *
 		 *
+		 * @param  string|Version  $version  Versión a obtener. También puede tomar los valores
+		 *   'newest' u 'oldest' para representar a la versión más nueva o más vieja, respectivamente.
 		 * @return  string Ruta del directorio de la versión especificada.
 		 * */
-		public function GetDirectoryPath($version = null) {
-			$p = $this->RootDirectory;
+		public function GetDirectoryPath($version = self::NEWEST) {
+			$c = count($this->Versions);
 
-			if ($version == null) {
-				sort($this->_versions); // TODO: Check performance
+			if ($c == 0) {
+				throw new LogicException(_('Asset has not versions.'));
+			}
+			$v = $version;
 
-				$c = count($this->Versions);
+			if ($version == self::OLDEST or $version == self::NEWEST) {
+				$v = $this->Versions[0];
 
-				if ($c > 0) {
-					$version = $this->Versions[$c - 1];
+				if ($c > 1) {
+					sort($this->_versions); // TODO: Check performance //Reemplazar con usort
+
+					$v = $this->Versions[0];
+
+					if ($version == self::NEWEST) {
+						$v = $this->Versions[$c - 1];
+					}
+				}
+			} else {
+				try {
+					$v = Version::Parse($version);
+				} catch (InvalidArgumentException $e) {
+					throw new InvalidArgumentException('$version argument must be an Version object or any object parseable into Version.', 0, $e);
+				}
+
+				if (array_search($v, $this->Versions) === false) {
+					throw new InvalidArgumentException(sprintf(_('Asset has not version %s.'), $v));
 				}
 			}
 
-			try {
-				$version = Version::Parse($version);
-			} catch (InvalidArgumentException $e) {
-				throw new InvalidArgumentException('$version argument must be an Version object or any object parseable into Version.', 0, $e);
-			}
-
-			return sprintf('%s%s/', $this->RootDirectory, $version);
-
+			return sprintf('%s%s/', $this->RootDirectory, $v);
 		}
 
 
 		/**
 		 * Obtiene la ruta del recurso de la versión especificada. Si no se especifica, se devuelve la
 		 * versión más reciente.
-		 * 
-		 * 
+		 *
+		 * @param  string|Version  $version  Versión a obtener. También puede tomar los valores
+		 *   'newest' u 'oldest' para representar a la versión más nueva o más vieja, respectivamente.
+		 * @param  string          $append   Texto que se le anezará a la cadena de salida
 		 * @return  string Ruta del recurso
 		 * */
-		public function GetResourcePath($version = null, $append = '') {
+		public function GetResourcePath($version = self::NEWEST, $append = '') {
 
 			$r = sprintf('%s%s%s', $this->GetDirectoryPath($version), $this->ShortName, $append);
 
