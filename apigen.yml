@@ -5,6 +5,6 @@ internal: yes
 php: false
 deprecated: true
 todo: true
-src-path: /NelsonMartell
+src-path: /src
 docs-path: /api
 google-analytics: UA-58599811-1
