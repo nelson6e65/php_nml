@@ -1,0 +1,36 @@
+{
+	"name": "nelson6e65/NML",
+	"description": "PHP: Nelson Martell Library",
+	"type": "library",
+	"keywords": ["framework"],
+	"homepage": "http://nelson6e65.github.io/php_nml",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Nelson Martell",
+			"homepage": "http://nelson6e65.github.io"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/nelson6e65/php_nml/issues",
+		"forum": "http://stackoverflow.com/tags/nml", //UNDONE
+		"irc": "irc://irc.freenode.org/nml", //UNDONE
+		"source": "https://github.com/nelson6e65/php_nml"
+	},
+	"require": {
+		"php": ">=5.5.0",
+	},
+	"require-dev": {
+		"phpunit/phpunit": "*",
+	},
+	"autoload": {
+		"psr-4": {
+			"NelsonMartell\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"NelsonMartell\\Test\\": "tests",
+		}
+	}
+}

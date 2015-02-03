@@ -18,11 +18,11 @@
 
 namespace NelsonMartell\Collections {
 
-	$_class = "ICollection";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
+	// $_class = "ICollection";
+	// $_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
 
-	if (!defined($_constant)):
-		define($_constant, true);
+	// if (!defined($_constant)):
+		// define($_constant, true);
 
 	/**
 	 * Define métodos para manipular colecciones.
@@ -84,6 +84,5 @@ namespace NelsonMartell\Collections {
 		public function Remove($item);
 
 	}
-
-
-endif;
+// endif;
+}

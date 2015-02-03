@@ -18,15 +18,6 @@
 namespace NelsonMartell {
 	use \InvalidArgumentException;
 
-	$_class = "Version";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	if (!defined($_constant)):
-		define($_constant, true);
-
-	include('Object.php');
-	include('VersionComponent.php');
-
 	/**
 	 * Representa el número de versión de un elemento o ensamblado, de la forma "1.0.0.0". Sólo
 	 * siendo obligatorios el primer y segundo componente.
@@ -231,6 +222,4 @@ namespace NelsonMartell {
 			return false;
 		}
 	}
-
-	endif;
 }

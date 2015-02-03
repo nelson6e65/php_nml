@@ -16,15 +16,6 @@
  * */
 
 namespace NelsonMartell\Collections {
-
-	$_class = "Objects";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	if (!defined($_constant)):
-		define($_constant, true);
-
-	include('/../Object.php');
-
 	use NelsonMartell\Object;
 
 	/**
@@ -123,6 +114,4 @@ namespace NelsonMartell\Collections {
 		}
 
 	}
-
-	endif;
 }

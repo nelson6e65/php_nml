@@ -17,14 +17,6 @@
 
 namespace NelsonMartell {
 
-	$_class = "Type";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	if (!defined($_constant)):
-		define($_constant, true);
-
-	include('Object.php');
-
 	/**
 	 * Representa al tipo de un objeto PHP.
 	 * Posee propiedades y métodos que describen a un tipo.
@@ -214,9 +206,18 @@ namespace NelsonMartell {
 			return $s;
 		}
 
-	}
+		/**
+		 * Obtiene el tipo del objeto especificado.
+		 * Es un alias para el constructor de Type.
+		 *
+		 *
+		 * @return  Type
+		 * */
+		public static function typeof($obj) {
+			return new static($obj);
+		}
 
-	endif;
+	}
 }
 
 namespace {
@@ -225,14 +226,14 @@ namespace {
 	if (!function_exists('typeof')) {
 		/**
 		 * Obtiene el tipo del objeto especificado.
-		 * Es un alias para el constructor de Type.
+		 * Accede de manera global a la función Type::typeof.
 		 * 
 		 * 
 		 * @param   mixed $obj Objeto al cual se le extraerá su tipo.
 		 * @return  Type
 		 * */
 		function typeof($obj) {
-			return new Type($obj);
+			return Type::typeof($obj);
 		}
 	}
 }

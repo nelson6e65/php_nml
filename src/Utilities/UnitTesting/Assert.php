@@ -20,16 +20,6 @@ namespace NelsonMartell\Utilities\UnitTesting {
 	use NelsonMartell\Version;
 	use \Exception;
 
-	$_class = "Assert";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	if (!defined($_constant)):
-		define($_constant, true);
-
-	include("/../../Type.php");
-	include("/../../Object.php");
-	include("/../../IEquatable.php");
-
 	/**
 	 * Comprueba condiciones de pruebas.
 	 * 
@@ -238,6 +228,4 @@ namespace NelsonMartell\Utilities\UnitTesting {
 		}
 
 	}
-
-	endif;
 }

@@ -18,14 +18,6 @@
 namespace NelsonMartell {
 	use \InvalidArgumentException;
 
-	$_class = "VersionComponent";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	if (!defined($_constant)):
-		define($_constant, true);
-
-	include('IntString.php');
-
 	/**
 	 * Representa un componente de un número de Version.
 	 * Extiende la clase IntString, pero restringe los valores que puede tomar.
@@ -87,6 +79,4 @@ namespace NelsonMartell {
 		}
 
 	}
-
-	endif;
 }

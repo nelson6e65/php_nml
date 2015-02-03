@@ -20,18 +20,6 @@ namespace NelsonMartell\Utilities {
 	use NelsonMartell\Version;
 	use \InvalidArgumentException;
 
-	//spl_autoload_register();
-
-	$_class = "Asset";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	if (!defined($_constant)):
-		define($_constant, true);
-
-
-	include('/../Object.php');
-	include('/../Version.php');
-
 	/**
 	 * Representa un recurso estático de una página, como elementos js y css, que poseen varias
 	 * versiones y están organizadas en subdirectorios, proponiendo una estructura predeterminada.
@@ -241,6 +229,4 @@ namespace NelsonMartell\Utilities {
 			return $r;
 		}
 	}
-
-	endif;
 }

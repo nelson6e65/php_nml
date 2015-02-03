@@ -18,14 +18,6 @@
 
 namespace NelsonMartell\Collections {
 
-	$_class = "IList";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	if (!defined($_constant)):
-		define($_constant, true);
-
-	include('ICollection.php');
-
 	/**
 	 * Representa una colección de objetos a los que se puede tener acceso por un índice.
 	 * 
@@ -66,6 +58,4 @@ namespace NelsonMartell\Collections {
 		public function RemoveAt($index);
 
 	}
-
-
-endif;
+}

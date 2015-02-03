@@ -17,14 +17,14 @@
 
 namespace NelsonMartell {
 
-	$_class = "Object";
-	$_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
+	// $_class = "Object";
+	// $_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
 
-	if (!defined($_constant)):
-		define($_constant, true);
+	// if (!defined($_constant)):
+		// define($_constant, true);
 
-	include('Type.php');
-	include('IEquatable.php');
+	// include('Type.php');
+	// include('IEquatable.php');
 
 	/**
 	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
@@ -58,9 +58,7 @@ namespace NelsonMartell {
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
  	 * */
 	class Object {
-		function __construct() {
-
-		}
+		function __construct() { }
 
 		/**
 		 * Obtiene el valor de una propiedad. Ésta debe definir un método getter, que sigue este
@@ -146,12 +144,11 @@ namespace NelsonMartell {
 		 * */
 		public function ToString() {
 			$t = $this->GetType();
-
-			if ($t->Name != 'Object') {
-				trigger_error(sprintf(_('Using default Object::ToString() method. You must override it, creating %s::ToString() public method.'), $t->Name), E_USER_NOTICE);
+			if ($t->Name == 'NelsonMartell\Object') {
+				trigger_error(sprintf(_('Using default ' . __METHOD__ . ' method. You must override it, creating %s::ToString() public method.'), $t->Name), E_USER_NOTICE);
 			}
 
-			return '{ ' . $this->GetType() . ' }';
+			return '{ ' . $t . ' }';
 
 		}
 
@@ -162,7 +159,7 @@ namespace NelsonMartell {
 		 * @return  Type
 		 * */
 		public final function GetType() {
-			return typeof($this);
+			return Type::typeof($this);
 		}
 
 		public function Equals($other) {
@@ -177,7 +174,5 @@ namespace NelsonMartell {
 
 	}
 
-	endif;
+	//endif;
 }
-
-
