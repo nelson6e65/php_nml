@@ -37,9 +37,9 @@ namespace NelsonMartell {
 			}
 
 			if ($this->StringValue != '') {
-				if ($this->IntValue == 0) {
-					throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
-				}
+				// if ($this->IntValue == 0) {
+					// throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
+				// } Sí puede ser 0
 
 				$pattern = '~^([a-z])$~'; // 1 char
 
