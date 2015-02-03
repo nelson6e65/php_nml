@@ -16,15 +16,7 @@
  * */
 
 namespace NelsonMartell {
-
-	// $_class = "Object";
-	// $_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	// if (!defined($_constant)):
-		// define($_constant, true);
-
-	// include('Type.php');
-	// include('IEquatable.php');
+	spl_autoload_call('NelsonMartell\Type');
 
 	/**
 	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
@@ -119,9 +111,6 @@ namespace NelsonMartell {
 			$this->$setter($value);
 		}
 
-
-
-
 		/**
 		 * Convierte esta instancia en su representación de cadena.
 		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función
@@ -159,7 +148,7 @@ namespace NelsonMartell {
 		 * @return  Type
 		 * */
 		public final function GetType() {
-			return Type::typeof($this);
+			return typeof($this);
 		}
 
 		public function Equals($other) {
@@ -170,9 +159,5 @@ namespace NelsonMartell {
 
 			return $this == $other;
 		}
-
-
 	}
-
-	//endif;
 }
