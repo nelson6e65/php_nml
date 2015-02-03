@@ -22,8 +22,8 @@ namespace NelsonMartell\Utilities\UnitTesting {
 
 	/**
 	 * Comprueba condiciones de pruebas.
-	 * 
-	 * 
+	 *
+	 *
 	 * @package  NelsonMartell.Utilities.UnitTesting
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
@@ -51,8 +51,8 @@ namespace NelsonMartell\Utilities\UnitTesting {
 		/**
 		 * Comprueba si los dos objetos especificados son iguales. Caso contrario, emite una
 		 * advertencia.
-		 * 
-		 * 
+		 *
+		 *
 		 * @param   string $msg Custom message to append on assert failed.
 		 * @return  boolean true si son iguales; false, en caso contrario.
 		 * */
@@ -61,7 +61,18 @@ namespace NelsonMartell\Utilities\UnitTesting {
 			$equals = self::Equals($expected, $actual);
 
 			if (!$equals) {
-				$error = sprintf(_('%5$s failed. Expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), typeof($actual), $actual, typeof($expected), $expected, __METHOD__);
+				$a_string = $actual;
+				$e_string = $expected;
+
+				if (is_array($actual)) {
+					$a_string = implode(', ', $actual);
+				}
+
+				if (is_array($expected)) {
+					$e_string = implode(', ', $expected);
+				}
+
+				$error = sprintf(_('%5$s failed. Expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), typeof($actual), $a_string, typeof($expected), $e_string, __METHOD__);
 
 				if ($msg) {
 					$error .= ' ' . sprintf(_('Message: %s'), $msg);
@@ -78,8 +89,8 @@ namespace NelsonMartell\Utilities\UnitTesting {
 		/**
 		 * Comprueba si los dos objetos especificados NO son iguales. En caso de que sí lo sean,
 		 * emite una advertencia.
-		 * 
-		 * 
+		 *
+		 *
 		 * @param  string $msg Custom message to append on assert failed.
 		 * @return  boolean true si NO son iguales; false, en caso contrario.
 		 * */
@@ -87,7 +98,18 @@ namespace NelsonMartell\Utilities\UnitTesting {
 			$not_equals = !self::Equals($notExpected, $actual);
 
 			if (!$not_equals) {
-				$error = sprintf(_('%5$s failed. Not expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), Type::typeof($actual), $actual, Type::typeof($notExpected), $notExpected, __METHOD__);
+				$a_string = $actual;
+				$e_string = $notExpected;
+
+				if (is_array($actual)) {
+					$a_string = implode(', ', $actual);
+				}
+
+				if (is_array($expected)) {
+					$ne_string = implode(', ', $notExpected);
+				}
+
+				$error = sprintf(_('%5$s failed. Not expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), Type::typeof($actual), $a_string, Type::typeof($notExpected), $ne_string, __METHOD__);
 
 				if ($msg) {
 					$error .= ' ' . sprintf(_('Message: %s'), $msg);
@@ -111,8 +133,8 @@ namespace NelsonMartell\Utilities\UnitTesting {
 		/**
 		 * Comprueba que, si al llamar un método público de un objeto, se obtiene una excepción del
 		 * tipo especificado.
-		 * 
-		 * 
+		 *
+		 *
 		 * @param   string $method_name Method name.
 		 * @param   mixed $obj Object to check.
 		 * @param   array $params Method params.
