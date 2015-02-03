@@ -27,12 +27,10 @@ function autoload_NML($class) {
 
 	$path = sprintf('%s' . DS . '%s.php', __DIR__, implode(DS, $classArray));
 
-
-
 	if (is_file($path)) {
 		require_once($path);
 	} else {
-		echo __FUNCTION__ . ': path: ' . $path;
+		throw new Exception(sprintf('Unable to auto-load class "%s" in path "%s": File do not exist (Wrong sub-namespace?). Check for availability of that class in Nelson Martell Library.', $class, $path));
 	}
 }
 
