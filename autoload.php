@@ -22,7 +22,7 @@ function autoload_NML($class) {
 	if ($classArray[0] == 'NelsonMartell') {
 		$classArray[0] = 'src';
 	} else {
-		return;
+		return; // Only checks for NelsonMartell namespace.
 	}
 
 	$path = sprintf('%s' . DS . '%s.php', __DIR__, implode(DS, $classArray));
@@ -30,7 +30,7 @@ function autoload_NML($class) {
 	if (is_file($path)) {
 		require_once($path);
 	} else {
-		throw new Exception(sprintf('Unable to auto-load class "%s" in path "%s": File do not exist (Wrong sub-namespace?). Check for availability of that class in Nelson Martell Library.', $class, $path));
+		throw new Exception(sprintf('Unable to auto-load class "%s" in path "%s": File do not exist (wrong sub-namespace?). Check for availability of that class in Nelson Martell Library (NML).', $class, $path));
 	}
 }
 
