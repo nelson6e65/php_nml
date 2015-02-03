@@ -27,7 +27,7 @@ namespace NelsonMartell {
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
-	final class Version extends Object implements IEquatable {
+	final class Version extends Object implements IEquatable, IComparable {
 
 		/**
 		 * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
@@ -67,8 +67,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Convierte una cadena a su representación del tipo Version
-		 * 
-		 * 
+		 *
+		 *
 		 * @param   string  Cadena a convertir.
 		 * @return  Version Objeto convertido desde $value.
 		 * */
@@ -109,8 +109,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente principal del número de versión del objeto actual.
-		 * 
-		 * 
+		 *
+		 *
 		 * @var  int Componente principal del número de versión
 		 * */
 		public $Major;
@@ -121,8 +121,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente secundario del número de versión del objeto actual.
-		 * 
-		 * 
+		 *
+		 *
 		 * @var  int Componente secundario del número de versión
 		 * */
 		public $Minor;
@@ -132,8 +132,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente de compilación del número de versión del objeto actual.
-		 * 
-		 * 
+		 *
+		 *
 		 * @var  VersionComponent  Componente de compilación del número de versión
 		 * */
 		public $Build;
@@ -143,8 +143,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente de revisión del número de versión del objeto actual.
-		 * 
-		 * 
+		 *
+		 *
 		 * @var  VersionComponent  Componente de revisión del número de versión
 		 * */
 		public $Revision;
@@ -160,8 +160,8 @@ namespace NelsonMartell {
 		 * Si tampoco se especifica el número de compilación (o es menor a 1),
 		 * tampoco se incluye el número de revisión.
 		 * Los componentes principal y secundario siempre se muestran, aunque sean cero (0).
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  string Representación de la versión en forma de cadena:
 		 *   'major.minor[.build[.revision]]'
 		 * */
@@ -184,8 +184,8 @@ namespace NelsonMartell {
 		/**
 		 * Indica si la instancia actual es un número de versión válido.
 		 * Al menos un atributo de la versión debe estar establecido.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  boolean Un valor que indica si la instancia actual es válida.
 		 * */
 		public function IsValid() {
@@ -204,7 +204,7 @@ namespace NelsonMartell {
 
 		/**
 		 * Determina si el objeto $other especificado es igual a la instancia actual.
-		 * 
+		 *
 		 *
 		 * @return  bool True si $other es igual esta instancia
 		 * */
@@ -221,5 +221,41 @@ namespace NelsonMartell {
 
 			return false;
 		}
+
+
+		#region IComparable
+
+		/**
+		 * Determina la posición relativa del objeto especificado con respecto a esta instancia.
+		 *
+		 *
+		 * @param   Version  $other
+		 * @return  integer  0, si es igual; >0, si es mayor; <0, si es menor.
+		 * */
+		public function CompareTo($other){
+
+			$r = $this->Equals($other) ? 0 : 9999;
+
+			if ($r != 0) {
+				$r = $this->Major - $other->Major;
+
+				if ($r == 0) {
+					$r = $this->Minor - $other->Minor;
+
+					if ($r == 0) {
+						$r = $this->Build->CompareTo($other->Build);
+
+						if ($r == 0) {
+							$r = $this->Revision->CompareTo($other->Revision);
+						}
+					}
+				}
+			}
+
+			return $r;
+		}
+
+		#endregion
+
 	}
 }

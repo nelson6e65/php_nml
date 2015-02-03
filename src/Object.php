@@ -57,8 +57,8 @@ namespace NelsonMartell {
 		 * modelo: 'get_' + $name + '()'.
 		 * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
 		 * método getter.
-		 * 
-		 * 
+		 *
+		 *
 		 * */
 		function __get($name) {
 			$error = false;
@@ -86,8 +86,8 @@ namespace NelsonMartell {
 		 * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
 		 * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
 		 * método setter.
-		 * 
-		 * 
+		 *
+		 *
 		 * */
 		function __set($name, $value) {
 			$error = false;
@@ -115,8 +115,8 @@ namespace NelsonMartell {
 		 * Convierte esta instancia en su representación de cadena.
 		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función
 		 * ObjectClass::ToString()
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  string
 		 * */
 		final function __toString() {
@@ -124,11 +124,11 @@ namespace NelsonMartell {
 			//list($args) = func_get_args();
 			return $this->ToString();
 		}
-		
+
 		/**
 		 * Convierte la instancia actual en su representación de cadena.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  string
 		 * */
 		public function ToString() {
@@ -143,8 +143,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el tipo del objeto actual.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  Type
 		 * */
 		public final function GetType() {
@@ -158,6 +158,36 @@ namespace NelsonMartell {
 			}
 
 			return $this == $other;
+		}
+
+		/**
+		 * Determina la posición relativa del objeto de la derecha con respecto al de la izquierda.
+		 * Puede usarse como segundo argumento en la función de ordenamiento de arrays 'usort'.
+		 *
+		 *
+		 * @param   mixed  $left   Objeto de la izquierda
+		 * @param   mixed  $right  Objeto de la derecha
+		 * @return  integer  0, si ambos son iguales; >0, si $right es mayor a $left; <0, si $left es mayor a $right.
+		 * */
+		public static function Compare($left, $right) {
+			$r = null;
+
+			if ($left instanceof IComparable) {
+				$r = $left->CompareTo($right);
+			} else {
+				if ($right instanceof IComparable) {
+					$r = $right->CompareTo($left);
+				} else {
+					//Si no son miembros de IComparable, se usa por defecto:
+					if ($left == $right) {
+						$r = 0;
+					} else {
+						$r = ($left > $right) ? +1 : -1;
+					}
+				}
+			}
+
+			return $r;
 		}
 	}
 }

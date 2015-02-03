@@ -20,12 +20,12 @@ namespace NelsonMartell {
 	/**
 	 * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
 	 * El método ToString obtiene esa cadena compuesta.
-	 * 
-	 * 
+	 *
+	 *
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
-	class IntString extends Object implements IEquatable {
+	class IntString extends Object implements IEquatable, IComparable {
 
 		function __construct($intValue = 0, $stringValue = '') {
 			unset($this->IntValue, $this->StringValue);
@@ -85,5 +85,33 @@ namespace NelsonMartell {
 
 			return false;
 		}
+
+
+		#region IComparable
+
+		/**
+		 * Determina la posición relativa del objeto especificado con respecto a esta instancia.
+		 *
+		 *
+		 * @param   IntString  $other
+		 * @return  integer  0, si es igual; >0, si es mayor; <0, si es menor.
+		 * */
+		public function CompareTo($other){
+
+			$r = $this->Equals($other) ? 0 : 9999;
+
+			if ($r != 0) {
+				$r = $this->IntValue - $other->IntValue;
+
+				if ($r == 0) {
+					$r = $this->StringValue < $other->StringValue ? -1 : 1;
+				}
+			}
+
+			return $r;
+		}
+
+		#endregion
+
 	}
 }
