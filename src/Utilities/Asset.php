@@ -209,7 +209,7 @@ namespace NelsonMartell\Utilities {
 				$v = $this->Versions[0];
 
 				if ($c > 1) {
-					sort($this->_versions); // TODO: Check performance //Reemplazar con usort
+					usort($this->_versions, array("NelsonMartell\\Version", "Compare"));
 
 					$v = $this->Versions[0];
 
