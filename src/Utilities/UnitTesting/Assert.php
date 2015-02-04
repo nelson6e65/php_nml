@@ -72,6 +72,14 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					$e_string = implode(', ', $expected);
 				}
 
+				if (is_bool($actual)) {
+					$a_string = $actual ? 'true' : 'false';
+				}
+
+				if (is_bool($expected)) {
+					$e_string = $expected ? 'true' : 'false';
+				}
+
 				$error = sprintf(_('%5$s failed. Expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), typeof($actual), $a_string, typeof($expected), $e_string, __METHOD__);
 
 				if ($msg) {
@@ -99,14 +107,22 @@ namespace NelsonMartell\Utilities\UnitTesting {
 
 			if (!$not_equals) {
 				$a_string = $actual;
-				$e_string = $notExpected;
+				$ne_string = $notExpected;
 
 				if (is_array($actual)) {
 					$a_string = implode(', ', $actual);
 				}
 
-				if (is_array($expected)) {
+				if (is_array($notExpected)) {
 					$ne_string = implode(', ', $notExpected);
+				}
+
+				if (is_bool($actual)) {
+					$a_string = $actual ? 'true' : 'false';
+				}
+
+				if (is_bool($notExpected)) {
+					$ne_string = $notExpected ? 'true' : 'false';
 				}
 
 				$error = sprintf(_('%5$s failed. Not expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), Type::typeof($actual), $a_string, Type::typeof($notExpected), $ne_string, __METHOD__);
