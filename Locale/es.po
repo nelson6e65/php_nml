@@ -1,56 +1,48 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Nelson Martell 1.0\n"
-"POT-Creation-Date: 2015-01-10 14:31-0430\n"
-"PO-Revision-Date: 2015-01-10 14:43-0430\n"
-"Last-Translator: Nelson Martell <nelson6e65-transifex.com>\n"
+"Project-Id-Version: PHP: Nelson Martell Lybrary 1.0\n"
+"POT-Creation-Date: 2015-02-04 00:47-0430\n"
+"PO-Revision-Date: 2015-02-04 00:56-0430\n"
+"Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
 "Language-Team:  <nelson6e65-transifex@yahoo.es>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ./src\n"
 
-#: ../NelsonMartell/Cake/Asset.php:57
-msgid "Can not specify $versions argument if $name argument is null."
-msgstr ""
-"No se puede especificar el argumento $versions si el argumento $name es null."
-
-#: ../NelsonMartell/Object.php:72 ../NelsonMartell/Object.php:99
+#: ../src/Object.php:67 ../src/Object.php:96
 msgid "Property do not exists"
 msgstr "La propiedad no existe"
 
-#: ../NelsonMartell/Object.php:79
+#: ../src/Object.php:74
 msgid "Property is write only"
 msgstr "La propiedad es de sólo escritura"
 
-#: ../NelsonMartell/Object.php:84
+#: ../src/Object.php:79
 #, php-format
 msgid "Unable to access to '%s' property in '%s' class. Reason: %s"
 msgstr "No se puede acesar a la propiedad '%s' en la clase '%s'. Razón: %s"
 
-#: ../NelsonMartell/Object.php:106
+#: ../src/Object.php:103
 msgid "Property is read only"
 msgstr "La propiedad es de sólo lectura"
 
-#: ../NelsonMartell/Object.php:111
+#: ../src/Object.php:108
 #, php-format
 msgid "Unable to assign '%s' property in '%s' class. Reason: %s"
 msgstr "No se puede asignar la propiedad '%s' en la clase '%s'. Razón: %s"
 
-#: ../NelsonMartell/Object.php:134
+#: ../src/Object.php:137
 #, php-format
-msgid ""
-"Using default Object::ToString() method. You must override it, creating %s::"
-"ToString() public method."
+msgid "Using default "
 msgstr ""
-"Usando el método Object::ToString() predeterminado. Debes sobreescribirlo, "
-"creando el método público %s::ToString()."
 
-#: ../NelsonMartell/Object.php:148
+#: ../src/Object.php:157
 #, php-format
 msgid ""
 "You implemented IEquatable interface, but using default Object::Equals() "
@@ -60,30 +52,73 @@ msgstr ""
 "predeterminado Object::Equals(). Debes sobreescribirlo creando el método "
 "público %s::Equals()."
 
-#: ../NelsonMartell/Type.php:79
+#: ../src/Type.php:75
 msgid "To get the name, use Type::Name property instead."
 msgstr "Para obtener el nombre, usa la propiedad Type::Name más bien."
 
-#: ../NelsonMartell/Type.php:96
+#: ../src/Type.php:93
 msgid "To get vars, use Type::Vars property instead."
 msgstr "Para obtener las variables, usa la propiedad Type::Vars más bien."
 
-#: ../NelsonMartell/Type.php:113
+#: ../src/Type.php:111
 msgid "To get methods, use Type::Methods property instead."
 msgstr "Para obtener los métodos, usa la propiedad Type::Methods más bien."
 
-#: ../NelsonMartell/Version.php:49 ../NelsonMartell/Version.php:53
+#: ../src/Utilities/Asset.php:52
+msgid "Can not specify $versions argument if $name argument is null."
+msgstr ""
+"No se puede especificar el argumento $versions si el argumento $name es null."
+
+#: ../src/Utilities/Asset.php:204
+msgid "Asset has not versions."
+msgstr "Recurso no tiene versiones definidas."
+
+#: ../src/Utilities/Asset.php:228
+#, php-format
+msgid "Asset has not version %s."
+msgstr "Recurso no tiene definida la versión %s."
+
+#: ../src/Utilities/UnitTesting/Assert.php:83
+#, php-format
+msgid "%5$s failed. Expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
+msgstr "%5$s ha fallado. Se esperaba: (%3$s) \"%4$s\". Real: (%1$s) \"%2$s\"."
+
+#: ../src/Utilities/UnitTesting/Assert.php:86
+#: ../src/Utilities/UnitTesting/Assert.php:131
+#: ../src/Utilities/UnitTesting/Assert.php:187
+#: ../src/Utilities/UnitTesting/Assert.php:204
+#: ../src/Utilities/UnitTesting/Assert.php:241
+#: ../src/Utilities/UnitTesting/Assert.php:258
+#, php-format
+msgid "Message: %s"
+msgstr "Mensaje: %s"
+
+#: ../src/Utilities/UnitTesting/Assert.php:128
+#, php-format
+msgid "%5$s failed. Not expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
+msgstr ""
+"%5$s ha fallado. No se esperaba: (%3$s) \"%4$s\". Real: (%1$s) \"%2$s\"."
+
+#: ../src/Utilities/UnitTesting/Assert.php:184
+#: ../src/Utilities/UnitTesting/Assert.php:201
+#: ../src/Utilities/UnitTesting/Assert.php:238
+#: ../src/Utilities/UnitTesting/Assert.php:255
+#, php-format
+msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
+msgstr "%1$s ha fallado. Se esperaba: \"%2$s\". Real: \"%3$s\"."
+
+#: ../src/Version.php:49 ../src/Version.php:53
 #, php-format
 msgid ""
 "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' "
 "given. Convert value or use the static method Version::Parse(string|mixed) "
 "to create a new instance from an string."
 msgstr ""
-"Tipo inválido del argumento. '%s' (argumento %s) debe ser una instancia de "
+"Tipo inválido de argumento. '%s' (argumento %s) debe ser una instancia de "
 "'%s', '%s' given. Convierte el valor o usa el método estático Version::"
 "Parse(string|mixed) para crear una nueva instancia de una cadena."
 
-#: ../NelsonMartell/Version.php:57 ../NelsonMartell/Version.php:61
+#: ../src/Version.php:57 ../src/Version.php:61
 #, php-format
 msgid ""
 "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' "
@@ -92,39 +127,34 @@ msgstr ""
 "Valor inválido de argumento. '%s' (argumento %s) debe ser un número "
 "positivo; '%s' dado."
 
-#: ../NelsonMartell/Version.php:68 ../NelsonMartell/Version.php:72
-#, php-format
-msgid ""
-"Invalid argument value. '%s' (argument %s) must have a positive number; '%s' "
-"given."
-msgstr ""
-
-#: ../NelsonMartell/Version.php:76 ../NelsonMartell/Version.php:80
-#, php-format
-msgid ""
-"Invalid argument value format. '%s' (argument %s) has an invalid format: "
-"'%s'. Can't use a text-only value. Number value must be > 0 to append it "
-"text."
-msgstr ""
-
-#: ../NelsonMartell/Version.php:103
+#: ../src/Version.php:90
 #, php-format
 msgid "Unable to parse. Argument passed has an invalid format: '%s'."
 msgstr ""
+"No se puede convertir. El argumento que se ha pasado tiene un formato "
+"inválido '%s'."
 
-#: ../NelsonMartell/VersionComponent.php:40
+#: ../src/VersionComponent.php:36
 #, php-format
 msgid ""
 "Invalid argument value. \"%s\" (argument %s) must be positive; \"%s\" given."
 msgstr ""
+"Valor inválido de argumento. \"%s\" (argumento %s) debe ser positivo; se dio "
+"\"%s\"."
 
-#: ../NelsonMartell/VersionComponent.php:44
+#: ../src/VersionComponent.php:62
 #, php-format
-msgid ""
-"Invalid argument value. \"%s\" (argument %s) has an invalid format: \"%s\". "
-"VersionComponent can not be a text-only value. $intValue must be > 0 to "
-"append it text."
+msgid "Invalid argument value. \"%s\" (argument %s) has invalid chars: \"%s\"."
 msgstr ""
+"Valor inválido de argumento. \"%s\" (argumento %s) tiene caracteres "
+"inválidos: \"%s\"."
+
+#~ msgid ""
+#~ "Using default Object::ToString() method. You must override it, creating "
+#~ "%s::ToString() public method."
+#~ msgstr ""
+#~ "Usando el método Object::ToString() predeterminado. Debes "
+#~ "sobreescribirlo, creando el método público %s::ToString()."
 
 #~ msgid "The name of resource must be an string."
 #~ msgstr "El nombre del recurso debe ser una cadena."
