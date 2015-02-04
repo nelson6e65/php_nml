@@ -21,8 +21,8 @@ namespace NelsonMartell {
 	/**
 	 * Representa un componente de un número de Version.
 	 * Extiende la clase IntString, pero restringe los valores que puede tomar.
-	 * 
-	 * 
+	 *
+	 *
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 * */
@@ -78,5 +78,30 @@ namespace NelsonMartell {
 			return $r;
 		}
 
+		/**
+		 * Determina si este componente tiene los valores predeterminados (0).
+		 *
+		 *
+		 * @return  boolean
+		 * */
+		public function IsDefault() {
+			if ($this->IntValue == 0){
+				if ($this->StringValue == '') {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/**
+		 * Determina si este componente NO tiene los valores predeterminados.
+		 *
+		 *
+		 * @return  boolean
+		 * */
+		public function IsNotDefault() {
+			return !$this->IsDefault();
+		}
 	}
 }
