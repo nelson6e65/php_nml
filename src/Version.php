@@ -19,7 +19,7 @@ namespace NelsonMartell {
 	use \InvalidArgumentException;
 
 	/**
-	 * Representa el número de versión de un elemento o ensamblado, de la forma "1.0.0.0". Sólo
+	 * Representa el número de versión de un programa o ensamblado, de la forma "1.2.3.4". Sólo
 	 * siendo obligatorios el primer y segundo componente.
 	 * No se puede heredar esta clase.
 	 *
@@ -32,11 +32,13 @@ namespace NelsonMartell {
 		/**
 		 * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
 		 * y revisión (opcional).
+		 * Para comprobar si la versión es válida, usar el método IsValid.
 		 *
-		 * @param  int $major  Componente principal
-		 * @param  int $minor  Componente secundario
-		 * @param  mixed  $build  Componente de compilación
-		 * @param  mixed  $revision  Componente de revisión
+		 *
+		 * @param  int                          $major    Componente principal
+		 * @param  int                          $minor    Componente secundario
+		 * @param  int|string|VersionComponent  $build    Componente de compilación
+		 * @param  int|string|VersionComponent  $revision Componente de revisión
 		 * @throw  InvalidArgumentException
 		 * */
 		function __construct($major = 0, $minor = 0, $build = 0, $revision = 0) {
@@ -109,6 +111,7 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente principal del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
 		 * @var  int Componente principal del número de versión
@@ -121,6 +124,7 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente secundario del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
 		 * @var  int Componente secundario del número de versión
@@ -132,6 +136,7 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente de compilación del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
 		 * @var  VersionComponent  Componente de compilación del número de versión
@@ -143,6 +148,7 @@ namespace NelsonMartell {
 
 		/**
 		 * Obtiene el valor del componente de revisión del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
 		 * @var  VersionComponent  Componente de revisión del número de versión
@@ -155,51 +161,66 @@ namespace NelsonMartell {
 
 		/**
 		 * Convierte la instancia actual en su representación en cadena.
-		 * Por defecto, si no se especifica el número de revisión (o es menor a 1),
-		 * no se incluye en la salida.
-		 * Si tampoco se especifica el número de compilación (o es menor a 1),
-		 * tampoco se incluye el número de revisión.
-		 * Los componentes principal y secundario siempre se muestran, aunque sean cero (0).
+		 * Por defecto, si no están definidos los componentes de compilación y revisión, no se
+		 * incluyen en la salida.
+		 * Use el método IsValid para determinar si la versión es válida antes de devolver esta cadena.
 		 *
 		 *
-		 * @return  string Representación de la versión en forma de cadena:
-		 *   'major.minor[.build[.revision]]'
+		 * @see     Version::IsValid
+		 * @return  string  Representación de la versión en forma de cadena: 'major.minor[.build[.revision]]'
 		 * */
 		public function ToString() {
-			$s = $this->Major . '.' . $this->Minor;
-			//var_dump($this->Build);
+			$s[0] = $this->Major;
+			$s[1] = $this->Minor;
 
-			if ($this->Build->IntValue > 0) {
-				$s .= '.' . $this->Build;
+			if ($this->Revision->IsNotDefault()) {
+				$s[2] = $this->Build;
+				$s[3] = $this->Revision;
+			} else {
+				if ($this->Build->IsNotDefault()) {
+					$s[2] = $this->Build;
 
-				if ($this->Revision->IntValue > 0) {
-					$s .= '.' . $this->Revision;
+					if ($this->Revision->IsNotDefault()) {
+						$s[3] = $this->Revision;
+					}
 				}
-
 			}
+			$v = implode('.', $s);
 
-			return $s;
+			return $v;
 		}
 
 		/**
 		 * Indica si la instancia actual es un número de versión válido.
-		 * Al menos un atributo de la versión debe estar establecido.
+		 * Al menos los componentes Major y Minor de la versión deben estar establecidos.
 		 *
 		 *
 		 * @return  boolean Un valor que indica si la instancia actual es válida.
 		 * */
 		public function IsValid() {
-			if (!$this->Major){
-				if (!$this->Minor) {
-					if (!$this->Build->IntValue > 0) {
-						if (!$this->Revision->IntValue > 0) {
-							return false;
+			$r = ($this->Major > 0 or $this->Minor > 0); //No puede ser '0.0'
+
+			if ($r) {
+				$r = ($this->Build != null and $this->Revision != null);
+				if ($r) {
+
+					$r = (bool)(($this->Build->StringValue == '') and ($this->Revision->StringValue == ''));
+
+					if (!$r) {
+						if ($this->Build->StringValue != '') {
+							//Sólo es válido el texto en Build si el componente de revisión es cero:
+							$r = $this->Revision->IsDefault();
+						}
+
+						if ($this->Revision->StringValue != '') {
+							//Sólo es válido el texto en Revision si el texto de Build está vacío:
+							$r = ($this->Build->StringValue == '');
 						}
 					}
 				}
 			}
 
-			return true;
+			return (bool) $r;
 		}
 
 		/**
