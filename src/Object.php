@@ -134,7 +134,7 @@ namespace NelsonMartell {
 		public function ToString() {
 			$t = $this->GetType();
 			if ($t->Name == 'NelsonMartell\Object') {
-				trigger_error(sprintf(_('Using default ' . __METHOD__ . ' method. You must override it, creating %s::ToString() public method.'), $t->Name), E_USER_NOTICE);
+				trigger_error(sprintf(_('Using default %s method. You can replace its behavior, overriding it by creating %s::ToString() public method.'), __METHOD__, $t->Name), E_USER_NOTICE);
 			}
 
 			return '{ ' . $t . ' }';
