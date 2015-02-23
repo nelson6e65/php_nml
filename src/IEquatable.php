@@ -2,7 +2,7 @@
 /**
  * PHP interface «IEquatable»
  *
- * Copyright © 2014, 2015 Nelson Martell (http://fb.me/nelson6e65)
+ * Copyright © 2014, 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
