@@ -158,21 +158,26 @@ namespace NelsonMartell\Collections {
 		/**
 		 * Obtiene la representación en cadena de esta colección.
 		 *
+		 *
+		 * @param   string $format String format. By default = '%1$s (%2$d items): { %3$s }'; where
+		 *   %1 = Class name, %2 = items count and %3 = items values (using ', ' as separator).
 		 * @return  string
 		 * */
-		public function ToString() {
-			$t = $this->GetType();
+		public function ToString($format = null) {
+			static $defaultFormat;
+			$defaultFormat = _('%1$s (%2$d items): { %3$s }');
 
-			$s = '(' . $t->Name . '): { ';
-
-			foreach ($this->_items as $item) {
-				$s .= $item . ', ';
+			if ($format == null or !is_string($format)) {
+				$format = $defaultFormat;
 			}
 
-			$s .= '}';
+			$t = $this->GetType();
+
+			$items = implode(', ', $this->_items);
+
+			$s = sprintf($format, $t->Name, $this->Count, $items);
 
 			return $s;
-
 		}
 
 
