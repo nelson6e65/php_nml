@@ -15,29 +15,23 @@
  *
  * */
 
-
 namespace NelsonMartell\Collections {
-
-	// $_class = "ICollection";
-	// $_constant = implode('_', explode('\\', __NAMESPACE__)) . '_' . $_class;
-
-	// if (!defined($_constant)):
-		// define($_constant, true);
+	use \Iterator;
 
 	/**
-	 * Define métodos para manipular colecciones.
-	 * 
-	 * 
+	 * Define métodos para manipular colecciones de objetos.
+	 *
+	 *
 	 * @package  NelsonMartell.Collections
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
 	 *
 	 * */
-	interface ICollection {
+	interface ICollection extends Iterator {
 
 		/**
 		 * Obtiene el número de elementos incluidos en la colección.
 		 * Si extiende la clase NelsonMartell.Object, debe definirse la propiedad 'public $Count'.
-		 * 
+		 *
 		 *
 		 * @see     NelsonMartell\Object
 		 * @return  integer
@@ -55,8 +49,8 @@ namespace NelsonMartell\Collections {
 
 		/**
 		 * Quita todos los elementos de la colección.
-		 * 
-		 * 
+		 *
+		 *
 		 * La propiedad Count se debe establecer en 0 y deben liberarse las referencias a otros
 		 * objetos desde los elementos de la colección.
 		 *
@@ -66,7 +60,7 @@ namespace NelsonMartell\Collections {
 
 		/**
 		 * Determina si la colección contiene un valor específico.
-		 * 
+		 *
 		 *
 		 * @param   mixed $item Objeto que se va a buscar.
 		 * @return  boolean true si $item se encuentra; en caso contrario, false.
@@ -75,7 +69,7 @@ namespace NelsonMartell\Collections {
 
 		/**
 		 * Quita la primera aparición de un objeto específico de la colección.
-		 * 
+		 *
 		 *
 		 * @param   $item Objeto que se va a quitar.
 		 * @return  boolean True si $item se ha quitado correctamente; en caso contrario, False.
@@ -84,5 +78,4 @@ namespace NelsonMartell\Collections {
 		public function Remove($item);
 
 	}
-// endif;
 }
