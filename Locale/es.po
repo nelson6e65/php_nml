@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
-"POT-Creation-Date: 2015-02-23 01:02-0430\n"
-"PO-Revision-Date: 2015-02-23 01:19-0430\n"
+"POT-Creation-Date: 2015-02-25 01:02-0430\n"
+"PO-Revision-Date: 2015-02-25 07:43-0430\n"
 "Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
 "Language-Team:  <nelson6e65-transifex@yahoo.es>\n"
 "Language: es\n"
@@ -15,6 +15,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: ./src\n"
+
+#: ../src/Collections/Collection.php:168
+#, php-format
+msgid "%1$s (%2$d items): { %3$s }"
+msgstr "%1$s (%2$d elementos): { %3$s }"
 
 #: ../src/Object.php:67 ../src/Object.php:96
 msgid "Property do not exists"
