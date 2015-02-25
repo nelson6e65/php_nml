@@ -33,12 +33,12 @@ namespace NelsonMartell {
 
 			//Validaciones:
 			if ($this->IntValue < 0) {
-				throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) must be positive; "%s" given.'), '$intValue', 1, $intValue));
+				throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) must be positive; "%s" given.'), '$intValue', 1, $intValue));
 			}
 
 			if ($this->StringValue != '') {
 				// if ($this->IntValue == 0) {
-					// throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
+					// throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
 				// } Sí puede ser 0
 
 				$pattern = '~^([a-z])$~'; // 1 char
@@ -59,7 +59,7 @@ namespace NelsonMartell {
 				}
 
 				if (!$correct) {
-					throw new InvalidArgumentException(sprintf(_('Invalid argument value. "%s" (argument %s) has invalid chars: "%s".'), '$stringValue', 2, $stringValue));
+					throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) has invalid chars: "%s".'), '$stringValue', 2, $stringValue));
 				}
 
 			}

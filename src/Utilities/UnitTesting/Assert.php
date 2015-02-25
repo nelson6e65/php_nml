@@ -80,10 +80,10 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					$e_string = $expected ? 'true' : 'false';
 				}
 
-				$error = sprintf(_('%5$s failed. Expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), typeof($actual), $a_string, typeof($expected), $e_string, __METHOD__);
+				$error = sprintf(dgettext('nml', '%5$s failed. Expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), typeof($actual), $a_string, typeof($expected), $e_string, __METHOD__);
 
 				if ($msg) {
-					$error .= ' ' . sprintf(_('Message: %s'), $msg);
+					$error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
 				}
 
 				trigger_error($error, E_USER_WARNING);
@@ -125,10 +125,10 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					$ne_string = $notExpected ? 'true' : 'false';
 				}
 
-				$error = sprintf(_('%5$s failed. Not expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), Type::typeof($actual), $a_string, Type::typeof($notExpected), $ne_string, __METHOD__);
+				$error = sprintf(dgettext('nml', '%5$s failed. Not expected: (%3$s) "%4$s". Actual: (%1$s) "%2$s".'), Type::typeof($actual), $a_string, Type::typeof($notExpected), $ne_string, __METHOD__);
 
 				if ($msg) {
-					$error .= ' ' . sprintf(_('Message: %s'), $msg);
+					$error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
 				}
 
 				trigger_error($error, E_USER_WARNING);
@@ -181,10 +181,10 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					$equals = self::Equals($expected, $actual);
 
 					if (!$equals) {
-						$error = sprintf(_('%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
+						$error = sprintf(dgettext('nml', '%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
 
 						if ($msg) {
-							$error .= ' ' . sprintf(_('Message: %s'), $msg);
+							$error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
 						}
 
 						trigger_error($error, E_USER_WARNING);
@@ -198,10 +198,10 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					$expected = "Any exception";
 				}
 
-				$error = sprintf(_('%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
+				$error = sprintf(dgettext('nml', '%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
 
 				if ($msg) {
-					$error .= ' ' . sprintf(_('Message: %s'), $msg);
+					$error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
 				}
 
 				trigger_error($error, E_USER_WARNING);
@@ -235,10 +235,10 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					$equals = self::Equals($expected, $actual);
 
 					if (!$equals) {
-						$error = sprintf(_('%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
+						$error = sprintf(dgettext('nml', '%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
 
 						if ($msg) {
-							$error .= ' ' . sprintf(_('Message: %s'), $msg);
+							$error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
 						}
 
 						trigger_error($error, E_USER_WARNING);
@@ -252,10 +252,10 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					$expected = "Any exception";
 				}
 
-				$error = sprintf(_('%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
+				$error = sprintf(dgettext('nml', '%1$s failed. Expected: "%2$s". Actual: "%3$s".'), __METHOD__, $expected, $actual);
 
 				if ($msg) {
-					$error .= ' ' . sprintf(_('Message: %s'), $msg);
+					$error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
 				}
 
 				trigger_error($error, E_USER_WARNING);

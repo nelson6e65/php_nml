@@ -165,7 +165,7 @@ namespace NelsonMartell\Collections {
 		 * */
 		public function ToString($format = null) {
 			static $defaultFormat;
-			$defaultFormat = _('%1$s (%2$d items): { %3$s }');
+			$defaultFormat = dgettext('nml', '%1$s (%2$d items): { %3$s }');
 
 			if ($format == null or !is_string($format)) {
 				$format = $defaultFormat;

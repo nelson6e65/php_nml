@@ -64,19 +64,19 @@ namespace NelsonMartell {
 			$error = false;
 
 			if (!property_exists($this, $name)) {
-				$error = _('Property do not exists') . '.';
+				$error = dgettext('nml', 'Property do not exists') . '.';
 			}
 
 			$getter = 'get_' . $name;
 
 			if (!$error) {
 				if (!method_exists($this, $getter)) {
-					$error = _('Property is write only') . '.'; //?
+					$error = dgettext('nml', 'Property is write only') . '.'; //?
 				}
 			}
 
 			if ($error) {
-				throw new BadMethodCallException(sprintf(_("Unable to access to '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->GetName(), $error));
+				throw new BadMethodCallException(sprintf(dgettext('nml', "Unable to access to '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->GetName(), $error));
 			}
 
 			return $this->$getter();
@@ -93,19 +93,19 @@ namespace NelsonMartell {
 			$error = false;
 
 			if (!property_exists($this, $name)) {
-				$error = _('Property do not exists') . '.';
+				$error = dgettext('nml', 'Property do not exists') . '.';
 			}
 
 			$setter = 'set_' . $name;
 
 			if (!$error) {
 				if (!method_exists($this, $setter)) {
-					$error = _('Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el método setter.
+					$error = dgettext('nml', 'Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el método setter.
 				}
 			}
 
 			if ($error) {
-				throw new BadMethodCallException(sprintf(_("Unable to assign '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->Name, $error));
+				throw new BadMethodCallException(sprintf(dgettext('nml', "Unable to assign '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->Name, $error));
 			}
 
 			$this->$setter($value);
@@ -134,7 +134,7 @@ namespace NelsonMartell {
 		public function ToString() {
 			$t = $this->GetType();
 			if ($t->Name != 'NelsonMartell\Object') {
-				trigger_error(sprintf(_('Using default %s method. You can replace its behavior, overriding it by creating %s::ToString() public method.'), __METHOD__, $t->Name), E_USER_NOTICE);
+				trigger_error(sprintf(dgettext('nml', 'Using default %s method. You can replace its behavior, overriding it by creating %s::ToString() public method.'), __METHOD__, $t->Name), E_USER_NOTICE);
 			}
 
 			return '{ ' . $t . ' }';
@@ -154,7 +154,7 @@ namespace NelsonMartell {
 		public function Equals($other) {
 			if ($this instanceof IEquatable) {
 				$t = $this->GetType();
-				trigger_error(sprintf(_('You implemented IEquatable interface, but using default Object::Equals() method. You must override it, creating %s::Equals() public method.'), $t->Name), E_USER_NOTICE);
+				trigger_error(sprintf(dgettext('nml', 'You implemented IEquatable interface, but using default Object::Equals() method. You must override it, creating %s::Equals() public method.'), $t->Name), E_USER_NOTICE);
 			}
 
 			return $this == $other;

@@ -46,19 +46,19 @@ namespace NelsonMartell {
 			unset($this->Major, $this->Minor, $this->Build, $this->Revision);
 
 			if (!is_integer($major)) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "major", 1, typeof(0), typeof($major)));
+				throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "major", 1, typeof(0), typeof($major)));
 			}
 
 			if (!is_integer($minor)) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "minor", 2, typeof(0), typeof($major)));
+				throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "minor", 2, typeof(0), typeof($major)));
 			}
 
 			if ($major < 0) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "major", 1, $major));
+				throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "major", 1, $major));
 			}
 
 			if ($minor < 0) {
-				throw new InvalidArgumentException(sprintf(_("Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "minor", 2, $minor));
+				throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "minor", 2, $minor));
 			}
 
 			$this->_major = $major;
@@ -87,7 +87,7 @@ namespace NelsonMartell {
 
 			if ($c > 4 || $c < 2) {
 				//var_dump($version);
-				throw new InvalidArgumentException(sprintf(_("Unable to parse. Argument passed has an invalid format: '%s'."), $value));
+				throw new InvalidArgumentException(sprintf(dgettext('nml', "Unable to parse. Argument passed has an invalid format: '%s'."), $value));
 			}
 
 

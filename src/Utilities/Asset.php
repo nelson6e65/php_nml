@@ -49,7 +49,7 @@ namespace NelsonMartell\Utilities {
 			}
 
 			if ($this->Name == '' && $versions != null) {
-				throw new InvalidArgumentException(_('Can not specify $versions argument if $name argument is null.'));
+				throw new InvalidArgumentException(dgettext('nml', 'Can not specify $versions argument if $name argument is null.'));
 			}
 
 			if ($versions == null) {
@@ -201,7 +201,7 @@ namespace NelsonMartell\Utilities {
 			$c = count($this->Versions);
 
 			if ($c == 0) {
-				throw new LogicException(_('Asset has not versions.'));
+				throw new LogicException(dgettext('nml', 'Asset has not versions.'));
 			}
 			$v = $version;
 
@@ -225,7 +225,7 @@ namespace NelsonMartell\Utilities {
 				}
 
 				if (array_search($v, $this->Versions) === false) {
-					throw new InvalidArgumentException(sprintf(_('Asset has not version %s.'), $v));
+					throw new InvalidArgumentException(sprintf(dgettext('nml', 'Asset has not version %s.'), $v));
 				}
 			}
 

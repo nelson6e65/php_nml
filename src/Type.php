@@ -72,7 +72,7 @@ namespace NelsonMartell {
 		}
 
 		public function GetName() {
-			trigger_error(_('To get the name, use Type::Name property instead.'), E_USER_DEPRECATED);
+			trigger_error(dgettext('nml', 'To get the name, use Type::Name property instead.'), E_USER_DEPRECATED);
 			return $this->get_Name();
 		}
 
@@ -90,7 +90,7 @@ namespace NelsonMartell {
 		}
 
 		public function GetVars() {
-			trigger_error(_('To get vars, use Type::Vars property instead.'), E_USER_DEPRECATED);
+			trigger_error(dgettext('nml', 'To get vars, use Type::Vars property instead.'), E_USER_DEPRECATED);
 			return $this->get_Vars();
 		}
 
@@ -108,7 +108,7 @@ namespace NelsonMartell {
 		}
 
 		public function GetMethods() {
-			trigger_error(_('To get methods, use Type::Methods property instead.'), E_USER_DEPRECATED);
+			trigger_error(dgettext('nml', 'To get methods, use Type::Methods property instead.'), E_USER_DEPRECATED);
 			return $this->get_Methods();
 		}
 
