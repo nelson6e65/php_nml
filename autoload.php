@@ -1,12 +1,6 @@
 <?php
 
-if (!defined('DS')) {
-    /**
-	 * Define DS as short form of DIRECTORY_SEPARATOR.
-	 *
-	 */
-    define('DS', DIRECTORY_SEPARATOR);
-}
+bindtextdomain('nml', __DIR__ . DIRECTORY_SEPARATOR . 'Locale');
 
 /**
  * Custom autoloader for non-composer installations.
@@ -25,7 +19,7 @@ function autoload_NML($class) {
 		return; // Only checks for NelsonMartell namespace.
 	}
 
-	$path = sprintf('%s' . DS . '%s.php', __DIR__, implode(DS, $classArray));
+	$path = sprintf('%s' . DIRECTORY_SEPARATOR . '%s.php', __DIR__, implode(DIRECTORY_SEPARATOR, $classArray));
 
 	if (is_file($path)) {
 		require_once($path);
