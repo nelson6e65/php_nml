@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
-"POT-Creation-Date: 2015-02-25 01:02-0430\n"
-"PO-Revision-Date: 2015-02-25 08:43-0430\n"
+"POT-Creation-Date: 2015-02-25 12:27-0430\n"
+"PO-Revision-Date: 2015-02-25 12:39-0430\n"
 "Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
 "Language-Team:  <nelson6e65-transifex@yahoo.es>\n"
 "Language: es\n"
@@ -13,37 +13,37 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: ..\n"
-"X-Poedit-SearchPath-1: ./src\n"
+"X-Poedit-SearchPath-0: ../../../src\n"
+"X-Poedit-SearchPath-1: ../../..\n"
 
-#: ../src/Collections/Collection.php:168
+#: ../../../src/Collections/Collection.php:168
 #, php-format
 msgid "%1$s (%2$d items): { %3$s }"
 msgstr "%1$s (%2$d elementos): { %3$s }"
 
-#: ../src/Object.php:67 ../src/Object.php:96
+#: ../../../src/Object.php:67 ../../../src/Object.php:96
 msgid "Property do not exists"
 msgstr "La propiedad no existe"
 
-#: ../src/Object.php:74
+#: ../../../src/Object.php:74
 msgid "Property is write only"
 msgstr "La propiedad es de sólo escritura"
 
-#: ../src/Object.php:79
+#: ../../../src/Object.php:79
 #, php-format
 msgid "Unable to access to '%s' property in '%s' class. Reason: %s"
-msgstr "No se puede acesar a la propiedad '%s' en la clase '%s'. Razón: %s"
+msgstr "No se puede acceder a la propiedad '%s' en la clase '%s'. Razón: %s"
 
-#: ../src/Object.php:103
+#: ../../../src/Object.php:103
 msgid "Property is read only"
 msgstr "La propiedad es de sólo lectura"
 
-#: ../src/Object.php:108
+#: ../../../src/Object.php:108
 #, php-format
 msgid "Unable to assign '%s' property in '%s' class. Reason: %s"
 msgstr "No se puede asignar la propiedad '%s' en la clase '%s'. Razón: %s"
 
-#: ../src/Object.php:137
+#: ../../../src/Object.php:137
 #, php-format
 msgid ""
 "Using default %s method. You can replace its behavior, overriding it by "
@@ -52,72 +52,72 @@ msgstr ""
 "Usando el método %s predeterminado. Puedes reemplazar su comportamiento, "
 "sobrescribiéndolo, creando el método público %s::ToString()."
 
-#: ../src/Object.php:157
+#: ../../../src/Object.php:157
 #, php-format
 msgid ""
 "You implemented IEquatable interface, but using default Object::Equals() "
 "method. You must override it, creating %s::Equals() public method."
 msgstr ""
-"Haz implementado la interfaz IEquatable, pero se está usando el método "
+"Has implementado la interfaz IEquatable, pero se está usando el método "
 "predeterminado Object::Equals(). Debes sobreescribirlo creando el método "
 "público %s::Equals()."
 
-#: ../src/Type.php:75
+#: ../../../src/Type.php:75
 msgid "To get the name, use Type::Name property instead."
 msgstr "Para obtener el nombre, usa la propiedad Type::Name más bien."
 
-#: ../src/Type.php:93
+#: ../../../src/Type.php:93
 msgid "To get vars, use Type::Vars property instead."
 msgstr "Para obtener las variables, usa la propiedad Type::Vars más bien."
 
-#: ../src/Type.php:111
+#: ../../../src/Type.php:111
 msgid "To get methods, use Type::Methods property instead."
 msgstr "Para obtener los métodos, usa la propiedad Type::Methods más bien."
 
-#: ../src/Utilities/Asset.php:52
+#: ../../../src/Utilities/Asset.php:52
 msgid "Can not specify $versions argument if $name argument is null."
 msgstr ""
 "No se puede especificar el argumento $versions si el argumento $name es null."
 
-#: ../src/Utilities/Asset.php:204
+#: ../../../src/Utilities/Asset.php:204
 msgid "Asset has not versions."
 msgstr "Recurso no tiene versiones definidas."
 
-#: ../src/Utilities/Asset.php:228
+#: ../../../src/Utilities/Asset.php:228
 #, php-format
 msgid "Asset has not version %s."
 msgstr "Recurso no tiene definida la versión %s."
 
-#: ../src/Utilities/UnitTesting/Assert.php:83
+#: ../../../src/Utilities/UnitTesting/Assert.php:83
 #, php-format
 msgid "%5$s failed. Expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
 msgstr "%5$s ha fallado. Se esperaba: (%3$s) \"%4$s\". Real: (%1$s) \"%2$s\"."
 
-#: ../src/Utilities/UnitTesting/Assert.php:86
-#: ../src/Utilities/UnitTesting/Assert.php:131
-#: ../src/Utilities/UnitTesting/Assert.php:187
-#: ../src/Utilities/UnitTesting/Assert.php:204
-#: ../src/Utilities/UnitTesting/Assert.php:241
-#: ../src/Utilities/UnitTesting/Assert.php:258
+#: ../../../src/Utilities/UnitTesting/Assert.php:86
+#: ../../../src/Utilities/UnitTesting/Assert.php:131
+#: ../../../src/Utilities/UnitTesting/Assert.php:187
+#: ../../../src/Utilities/UnitTesting/Assert.php:204
+#: ../../../src/Utilities/UnitTesting/Assert.php:241
+#: ../../../src/Utilities/UnitTesting/Assert.php:258
 #, php-format
 msgid "Message: %s"
 msgstr "Mensaje: %s"
 
-#: ../src/Utilities/UnitTesting/Assert.php:128
+#: ../../../src/Utilities/UnitTesting/Assert.php:128
 #, php-format
 msgid "%5$s failed. Not expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
 msgstr ""
 "%5$s ha fallado. No se esperaba: (%3$s) \"%4$s\". Real: (%1$s) \"%2$s\"."
 
-#: ../src/Utilities/UnitTesting/Assert.php:184
-#: ../src/Utilities/UnitTesting/Assert.php:201
-#: ../src/Utilities/UnitTesting/Assert.php:238
-#: ../src/Utilities/UnitTesting/Assert.php:255
+#: ../../../src/Utilities/UnitTesting/Assert.php:184
+#: ../../../src/Utilities/UnitTesting/Assert.php:201
+#: ../../../src/Utilities/UnitTesting/Assert.php:238
+#: ../../../src/Utilities/UnitTesting/Assert.php:255
 #, php-format
 msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
 msgstr "%1$s ha fallado. Se esperaba: \"%2$s\". Real: \"%3$s\"."
 
-#: ../src/Version.php:49 ../src/Version.php:53
+#: ../../../src/Version.php:49 ../../../src/Version.php:53
 #, php-format
 msgid ""
 "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' "
@@ -128,7 +128,7 @@ msgstr ""
 "'%s', '%s' given. Convierte el valor o usa el método estático Version::"
 "Parse(string|mixed) para crear una nueva instancia de una cadena."
 
-#: ../src/Version.php:57 ../src/Version.php:61
+#: ../../../src/Version.php:57 ../../../src/Version.php:61
 #, php-format
 msgid ""
 "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' "
@@ -137,14 +137,14 @@ msgstr ""
 "Valor inválido de argumento. '%s' (argumento %s) debe ser un número "
 "positivo; '%s' dado."
 
-#: ../src/Version.php:90
+#: ../../../src/Version.php:90
 #, php-format
 msgid "Unable to parse. Argument passed has an invalid format: '%s'."
 msgstr ""
 "No se puede convertir. El argumento que se ha pasado tiene un formato "
 "inválido '%s'."
 
-#: ../src/VersionComponent.php:36
+#: ../../../src/VersionComponent.php:36
 #, php-format
 msgid ""
 "Invalid argument value. \"%s\" (argument %s) must be positive; \"%s\" given."
@@ -152,12 +152,15 @@ msgstr ""
 "Valor inválido de argumento. \"%s\" (argumento %s) debe ser positivo; se dio "
 "\"%s\"."
 
-#: ../src/VersionComponent.php:62
+#: ../../../src/VersionComponent.php:62
 #, php-format
 msgid "Invalid argument value. \"%s\" (argument %s) has invalid chars: \"%s\"."
 msgstr ""
 "Valor inválido de argumento. \"%s\" (argumento %s) tiene caracteres "
 "inválidos: \"%s\"."
+
+#~ msgid "Property is readonly"
+#~ msgstr "La propiedad es de sólo lectura"
 
 #~ msgid ""
 #~ "Using default %s method. You can replace this behavior, overriding it by "
