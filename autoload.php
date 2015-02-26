@@ -41,3 +41,5 @@ function autoload_NML($class) {
 }
 
 spl_autoload_register('autoload_NML');
+
+require_once('vendor/autoload.php');
