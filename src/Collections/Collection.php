@@ -17,6 +17,7 @@
 
 namespace NelsonMartell\Collections {
 	use NelsonMartell\Object;
+	use NelsonMartell\Extensions\String;
 
 	/**
 	 * Implementa los métodos de la interfaz Iterator para una colección de objetos.
@@ -156,26 +157,67 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Obtiene la representación en cadena de esta colección.
+		 * Gets the string representation of this object collection.
+		 *
+		 * You can format the output, by setting $format param to one of this options:
+		 * - `R` or `r`: All items, separated by comma and space (`, `). This is the default format.
+		 * - `L` or `l`: Same as `r` option, but enclosed in braces  (`{`, `}`).
+		 * - `g`: A full string, containing class name, items count and items list (this list, like `L` option).
+		 * - `G`: Same as `g`, but using a full class name (including namespace).
+		 *
+		 * You can also use a custom format instead, using this placeholders:
+		 * - `{class}`: Short class name (without namespace part);
+		 * - `{nsclass}`: Full class name (included namespace);
+		 * - `{count}`: Items count; and
+		 * - `{items}`: List of items, using comma and space (`, `) as separator.
+		 *
+		 * Example: For a instance with 10 elements (numbers: 1-10), using:
+		 * `Collection::ToString('My collection ({count} items): { {items} }');`
+		 * Result: 'My collection (10 items): { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }'
 		 *
 		 *
-		 * @param   string $format String format. By default = '%1$s (%2$d items): { %3$s }'; where
-		 *   %1 = Class name, %2 = items count and %3 = items values (using ', ' as separator).
+		 * @param  string  $format  String format (optional). By default, `r`.
 		 * @return  string
+		 * @see  String::Format()
 		 * */
-		public function ToString($format = null) {
-			static $defaultFormat;
-			$defaultFormat = dgettext('nml', '%1$s (%2$d items): { %3$s }');
+		public function ToString($format = 'r') {
+			static $defaultFormats = [
+				'r' => '{items}',
+				'l' => '{ {items} }',
+				'g' => '{class} ({count} items): { {items} }',
+				'G' => '{nsclass} ({count} items): { {items} }',
+			];
 
 			if ($format == null or !is_string($format)) {
-				$format = $defaultFormat;
+				$format = 'r'; //Override if is not an string
+			}
+
+			$str = '';
+			switch ($format) {
+				case 'r':
+				case 'l':
+				case 'g':
+				case 'G':
+					$str = $defaultFormats[$format];
+					break;
+
+				default:
+					$str = $format;
 			}
 
 			$t = $this->GetType();
 
 			$items = implode(', ', $this->_items);
 
-			$s = sprintf($format, $t->Name, $this->Count, $items);
+			$placeHoldersValues = [
+				'class' 	=> $t->ShortName,
+				'nsclass'	=> $t->Name,
+				'count' 	=> $this->Count,
+				'items' 	=> $items,
+			];
+
+
+			$s = String::Format($str, $placeHoldersValues);
 
 			return $s;
 		}
