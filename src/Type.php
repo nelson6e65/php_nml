@@ -16,11 +16,12 @@
  * */
 
 namespace NelsonMartell {
+	use \ReflectionClass;
+	use \ReflectionProperty;
 
 	/**
-	 * Representa al tipo de un objeto PHP.
-	 * Posee propiedades y métodos que describen a un tipo.
-	 * 
+	 * Represents a PHP object type, and provides some properties and methods to describe some info
+	 * about itself.
 	 *
 	 * @package  NelsonMartell
 	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
@@ -28,94 +29,145 @@ namespace NelsonMartell {
 	final class Type extends Object {
 
 		/**
-		 * Obtiene el Type del objeto especificado.
-		 * 
-		 * 
-		 * @param  mixed $obj Objeto al cual se le extraerá su tipo.
+		 * Gets the type of specified $obj and collect some info about itself.
+		 *
+		 * @param  mixed  $obj  Target object.
 		 * */
-		function __construct($obj){
+		function __construct($obj) {
 			parent::__construct();
-			unset($this->Name, $this->Vars, $this->Methods);
+			unset($this->Namespace, $this->Name, $this->ShortName, $this->Vars, $this->Methods);
 
 			$name = gettype($obj);
-			$vars = array();
-			$methods = array();
+			$shortname = null;
+			$namespace = null;
+			$vars = null;
+			$methods = null;
+			$ref = null;
 
-			if ($name == 'object') {
-				$name = get_class($obj);
-				if ($name == 'Type') {
-					$vars = $obj->Vars;
-					$methods = $obj->Methods;
-				} else {
-					$vars = get_class_vars($name);
-					$methods = get_class_methods($obj);
-				}
+			switch ($name) {
+				case 'object':
+					$ref = new ReflectionClass($obj);
+					$name = $ref->getName();
+					$shortName = $ref->getShortName();
+					$namespace = $ref->getNamespaceName();
+					break;
 
+				case 'resource':
+					$shortName = get_resource_type($obj);
+					$name = 'resource: ' . $shortName;
+					$vars = [];
+					$methods = [];
+					break;
+
+				default:
+					$shortName = $name;
+					$vars = [];
+					$methods = [];
 			}
 
 			$this->_name = $name;
+			$this->_shortName = $shortName;
+			$this->_namespace = $namespace;
 			$this->_vars = $vars;
 			$this->_methods = $methods;
+			$this->_reflectionObject = $ref;
 		}
+
+		private $_reflectionObject = null;
 
 		/**
 		 * Gets the name of this Type.
-		 * This property is readonly.
-		 *
+		 * This property is read-only.
 		 *
 		 * @var  string
 		 * */
 		public $Name;
 		private $_name;
+
+		/**
+		 * Getter for Type::Name property.
+		 *
+		 * @return  string
+		 * */
 		public function get_Name() {
 			return $this->_name;
 		}
 
-		public function GetName() {
-			trigger_error(dgettext('nml', 'To get the name, use Type::Name property instead.'), E_USER_DEPRECATED);
-			return $this->get_Name();
+		/**
+		 * Gets the abbreviated name of class, in other words, without the namespace.
+		 * This property is read-only.
+		 *
+		 * @var  string
+		 * */
+		public $ShortName;
+		private $_shortName = null;
+
+		/**
+		 * Getter for Type::ShortName property.
+		 *
+		 * @return  string
+		 * @see  Type::ShortName
+		 * */
+		public function get_ShortName() {
+			return $this->_shortName;
 		}
 
 		/**
-		 * Gets the vars list of this Type.
-		 * This property is readonly.
-		 * 
-		 * 
+		 * Gets the namespace name of this class.
+		 * If this Type is not a class, this property is set to `NULL`.
+		 * This property is read-only.
+		 *
+		 * @var  string|NULL
+		 * */
+		public $Namespace;
+		private $_namespace;
+
+		/**
+		 * Getter for Type::Namespace property.
+		 *
+		 * @return  string|NULL
+		 * @see  Type::Namespace
+		 * */
+		public function get_Namespace() {
+			return $this->_namespace;
+		}
+
+		/**
+		 * Gets the public|protected properties (ReflectionProperty) of this Type.
+		 * This property is read-only.
+		 *
+		 *
 		 * @var  array
 		 * */
 		public $Vars;
-		private $_vars;
+		private $_vars = null;
 		public function get_Vars() {
+			if ($this->_vars == NULL) {
+				$this->_vars = $this->_reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED);
+			}
 			return $this->_vars;
 		}
 
-		public function GetVars() {
-			trigger_error(dgettext('nml', 'To get vars, use Type::Vars property instead.'), E_USER_DEPRECATED);
-			return $this->get_Vars();
-		}
-
 		/**
-		 * Gets the methods list of this Type.
-		 * This property is readonly.
-		 * 
-		 * 
+		 * Gets the public|protected methods (ReflectionMethod) of this Type.
+		 * This property is read-only.
+		 *
+		 *
 		 * @var  array
 		 * */
 		public $Methods;
-		private $_methods;
-		public function get_Methods(){
+		private $_methods = null;
+		public function get_Methods() {
+			if ($this->_methods == null) {
+				$this->_methods = $this->_reflectionObject->getMethods(ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED);
+			}
 			return $this->_methods;
-		}
-
-		public function GetMethods() {
-			trigger_error(dgettext('nml', 'To get methods, use Type::Methods property instead.'), E_USER_DEPRECATED);
-			return $this->get_Methods();
 		}
 
 		/**
 		 * Determina si este Type es NULL.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  boolean True if this type is null; other case, False.
 		 * */
 		public function IsNull() {
@@ -128,8 +180,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Determina si este Type NO es NULL.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  boolean True if this type is NOT null; other case, False.
 		 * */
 		public function IsNotNull() {
@@ -139,33 +191,55 @@ namespace NelsonMartell {
 
 		/**
 		 * Determina si este Type es una clase personalizada.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  boolean  True, if this Type is a custom class; another case, False.
 		 * */
 		public function IsCustom() {
-
-
-			switch($this->Name){
-				case 'string':
+			switch ($this->Name) {
+				case 'boolean':
 				case 'integer':
 				case 'double':
-				case 'boolean':
+				case 'string':
 				case 'array':
-				case 'object':
 				case 'NULL':
 				case 'null':
-				return false;
+					return false;
 				default:
-				return true;
+					return true;
 			}
 		}
 
 		/**
-		 * Determina si este Type es de tipo valor.
-		 * 
-		 * 
+		 * Determinate if this type is scalar.
+		 *
 		 * @return  boolean
+		 * @see  is_scalar()
+		 * */
+		public function IsScalar() {
+			$r = false;
+
+			switch ($this->Name) {
+				case 'boolean':
+				case 'integer':
+				case 'double':
+				case 'string':
+					$r = true;
+					break;
+
+				default:
+					$r = false;
+			}
+
+			return $r;
+		}
+
+		/**
+		 * Determina si este Type es de tipo valor.
+		 *
+		 *
+		 * @return  boolean
+		 * @deprecated  Use more precise method: Type::IsScalar, which excludes `array`.
 		 * */
 		public function IsValueType() {
 			switch($this->Name){
@@ -174,16 +248,16 @@ namespace NelsonMartell {
 				case 'double':
 				case 'boolean':
 				case 'array':
-				return true;
+					return true;
 				default:
-				return false;
+					return false;
 			}
 		}
 
 		/**
 		 * Determina si este Type es de tipo referencia.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  boolean
 		 * */
 		public function IsReferenceType() {
@@ -192,8 +266,8 @@ namespace NelsonMartell {
 
 		/**
 		 * Convierte la instancia actual en su representación en cadena.
-		 * 
-		 * 
+		 *
+		 *
 		 * @return  string
 		 * */
 		public function ToString() {
@@ -227,8 +301,8 @@ namespace {
 		/**
 		 * Obtiene el tipo del objeto especificado.
 		 * Accede de manera global a la función Type::typeof.
-		 * 
-		 * 
+		 *
+		 *
 		 * @param   mixed $obj Objeto al cual se le extraerá su tipo.
 		 * @return  Type
 		 * */
