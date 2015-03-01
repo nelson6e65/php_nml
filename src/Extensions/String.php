@@ -29,49 +29,59 @@ namespace NelsonMartell\Extensions;
 class String extends \Cake\Utility\String {
 
 	/**
-	 * Replaces variable placeholders inside a $str with any given $data. Each key in the $data array
-	 * corresponds to a variable placeholder name in $str.
-	 * Example: `String::Format('{name} is {age} years old.', ['name' => 'Bob', 'age' => '65']);`
-	 * Returns: `Bob is 65 years old.´
+	 * Replaces format elements in a string with the string representation of an object matching the
+	 * list of arguments specified. You can give as many params as you need, or an array with values.
 	 *
-	 * You can use also numbers as placeholders from and array without keys. The last example:
-	 * `String::Format('{0} is {1} years old.', ['Bob', '65']);`
-	 *
-	 * Using numbers, you can also pass a list of arguments after $str. The first arg after $str,
-	 * is for {0}, the second, {1}, and so:
+	 * ##Usage
+	 * Using numbers as placeholders (encloses between `{` and `}`), you can get the matching string
+	 * representation of each object given. Use `{0}` for the fist object, `{1}` for the second,
+	 *  and so on.
 	 * Example: `String::Format('{0} is {1} years old, and have {2} cats.', 'Bob', 65, 101);`
-	 * Returns: `Bob is 65 years old, and have 101 cats.`
+	 * Returns: 'Bob is 65 years old, and have 101 cats.'
+	 *
+	 * You can also use an array to give objects values.
+	 * Example: `String::Format('{0} is {1} years old.', ['Bob', 65, 101]);`
+	 * Returns: 'Bob is 65 years old, and have 101 cats.'
+	 *
+	 * If give an key => value array, each key stands for a placeholder variable name to be replaced
+	 * with value key. In this case, order of keys do not matter.
+	 * Example:
+	 * `$arg0 = ['name' => 'Bob', 'n' => 101, 'age' => 65];`
+	 * `$format = '{name} is {age} years old, and have {n} cats.';`
+	 * `String::Format($format, $arg0);`
+	 * Returns: 'Bob is 65 years old, and have 101 cats.'
 	 *
 	 *
-	 * @param  string  $str A string containing variable placeholders.
-	 * @param  array|mixed  $data A key => val array where each key stands for a placeholder variable
-	 *     name to be replaced with val. | arg0: first object (index 0) for {0} placeholder (can be
-	 *     followed by arg1, arg2, ..., argn).
+	 * @param   string       $format  A string containing variable placeholders.
+	 * @param   array|mixed  $arg0  Object(s) to be replacen into $format placeholders.
 	 * @return  string
 	 * @todo  Implement php.net/functions.arguments.html#functions.variable-arg-list.new for PHP 5.6+
 	 * @todo  Implement formatting, like IFormatProvider or something like that.
 	 */
-	public static function Format($str, $data) {
+	public static function Format($format, $arg0) {
 		static $options = [
 			'before'	=> 	'{',
 			'after' 	=> 	'}',
 		];
+
+		$data = [];
 
 		//Carga de argumentos, compatible con PHP < 5.6
 		$nArgs = func_num_args();
 
 		if ($nArgs > 2) {
 			$args = func_get_args();
-			$data = [];
 
 			foreach ($args as $index => $arg) {
 				if ($index == 0) { continue; }
 
 				$data[] = $arg;
 			}
+		} else {
+			$data = $arg0;
 		}
 
-		return parent::insert($str, $data, $options);
+		return parent::insert($format, $data, $options);
 	}
 
 }
