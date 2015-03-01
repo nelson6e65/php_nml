@@ -1,10 +1,10 @@
 <?php
 /**
- * PHP: Nelson Martell Library
+ * PHP: Nelson Martell Library file
  *
  * File info:
- * - Namespace:    NelsonMartell\Extensions
- * - Content:      Class definition for String
+ * - Namespace: NelsonMartell\Extensions
+ * - Content:   Class definition
  *
  * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -15,7 +15,7 @@
  * @copyright  Copyright © 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      0.4.1
- * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT) *
+ * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 namespace NelsonMartell\Extensions;
 
