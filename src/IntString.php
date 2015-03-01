@@ -31,8 +31,14 @@ namespace NelsonMartell {
 		function __construct($intValue = 0, $stringValue = '') {
 			unset($this->IntValue, $this->StringValue);
 
-			$this->_intValue = $intValue;
-			$this->_stringValue = $stringValue;
+			if (is_integer($intValue) or $intValue == NULL) {
+				$this->_intValue = $intValue;
+			} else {
+				//Try convert to integer
+				$this->_intValue = (integer) $intValue;
+			}
+
+			$this->_stringValue = (string) $stringValue;
 		}
 
 		public static function Parse($value) {
@@ -56,8 +62,8 @@ namespace NelsonMartell {
 		}
 
 
-		private $_intValue;
-		private $_stringValue;
+		protected $_intValue;
+		protected $_stringValue;
 
 		public $IntValue;
 		public function get_IntValue() {
@@ -66,7 +72,7 @@ namespace NelsonMartell {
 
 		public $StringValue;
 		public function get_StringValue() {
-			return (string) $this->_stringValue;
+			return $this->_stringValue;
 		}
 
 		public function ToString() {
@@ -90,7 +96,7 @@ namespace NelsonMartell {
 
 		/**
 		 * Determina la posición relativa de esta instancia con respecto al objeto especificado.
-		 * Cualquier objeto que no sea instancia de IntString, se considera menor.
+		 * Nota: Cualquier objeto que no sea instancia de IntString se considerará menor.
 		 *
 		 *
 		 * @param  IntString|mixed  $other  Objeto con el que se va a comparar.
