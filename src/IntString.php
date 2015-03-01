@@ -89,21 +89,27 @@ namespace NelsonMartell {
 		#region IComparable
 
 		/**
-		 * Determina la posición relativa del objeto especificado con respecto a esta instancia.
+		 * Determina la posición relativa de esta instancia con respecto al objeto especificado.
+		 * Cualquier objeto que no sea instancia de IntString, se considera menor.
 		 *
 		 *
-		 * @param   IntString  $other
-		 * @return  integer  0, si es igual; >0, si es mayor; <0, si es menor.
+		 * @param  IntString|mixed  $other  Objeto con el que se va a comparar.
+		 * @return  integer  Cero (0), si esta instancia es igual a $other; mayor a cero (>0),
+		 *     si es mayor a $other; menor a cero (<0), si es menor.
 		 * */
 		public function CompareTo($other) {
 
 			$r = $this->Equals($other) ? 0 : 9999;
 
 			if ($r != 0) {
-				$r = $this->IntValue - $other->IntValue;
+				if ($other instanceof IntString) {
+					$r = $this->IntValue - $other->IntValue;
 
-				if ($r == 0) {
-					$r = $this->StringValue < $other->StringValue ? -1 : 1;
+					if ($r == 0) {
+						$r = $this->StringValue < $other->StringValue ? -1 : 1;
+					}
+				} else {
+					$r = 1;
 				}
 			}
 
