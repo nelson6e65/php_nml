@@ -79,7 +79,7 @@ namespace NelsonMartell {
 			}
 
 			if ($error) {
-				throw new BadMethodCallException(sprintf(dgettext('nml', "Unable to access to '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->GetName(), $error));
+				throw new BadMethodCallException(sprintf(dgettext('nml', "Unable to access to '%s' property in '%s' class. Reason: %s"), $name, $this->GetType()->Name, $error));
 			}
 
 			return $this->$getter();
