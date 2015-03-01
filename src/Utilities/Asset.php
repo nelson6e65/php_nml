@@ -1,6 +1,9 @@
 <?php
 /**
- * PHP class «Asset»
+ * PHP: Nelson Martell Library file
+ *
+ * Content:
+ * - Class definition:  [NelsonMartell\Utilities]  Asset
  *
  * Copyright © 2014, 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -8,11 +11,10 @@
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright	Copyright © 2014, 2015 Nelson Martell
- * @link		http://nelson6e65.github.io/php_nml/
- * @package  	NelsonMartell.Utilities
- * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
- *
+ * @copyright  Copyright © 2014, 2015 Nelson Martell
+ * @link       http://nelson6e65.github.io/php_nml/
+ * @since      v0.1.1
+ * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
 namespace NelsonMartell\Utilities {
@@ -27,8 +29,7 @@ namespace NelsonMartell\Utilities {
 	 * diferentes versiones del framework.
 	 *
 	 *
-	 * @package  NelsonMartell.Utilities
-	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
+	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * */
 	class Asset extends Object {
 		/**

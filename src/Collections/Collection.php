@@ -1,6 +1,10 @@
 <?php
 /**
- * PHP class «Collection»
+ * PHP: Nelson Martell Library file
+ *
+ * Content:
+ * - Trait definition:  [NelsonMartell\Collections]  CollectionIterator
+ * - Class definition:  [NelsonMartell\Collections]  Collection
  *
  * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -8,11 +12,10 @@
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright	Copyright © 2015 Nelson Martell
- * @link		http://nelson6e65.github.io/php_nml/
- * @package  	NelsonMartell.Collections
- * @license  	http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
- *
+ * @copyright  Copyright © 2015 Nelson Martell
+ * @link       http://nelson6e65.github.io/php_nml/
+ * @since      v0.4.0
+ * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
 namespace NelsonMartell\Collections {
@@ -22,8 +25,8 @@ namespace NelsonMartell\Collections {
 	/**
 	 * Implementa los métodos de la interfaz Iterator para una colección de objetos.
 	 *
-	 * @package  NelsonMartell.Collections
-	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
+	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+	 * @since  v0.4.0
 	 * */
 	trait CollectionIterator {
 		private $_iteratorPosition = 0;
@@ -56,8 +59,7 @@ namespace NelsonMartell\Collections {
 	 * Clase base de una colección de objetos, que provee una implementación predeterminada de la
 	 * interfaz ICollection.
 	 *
-	 * @package  NelsonMartell.Collections
-	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
+	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * */
 	class Collection extends Object implements ICollection {
 		use CollectionIterator; //Implementación de la interfaz Iterator

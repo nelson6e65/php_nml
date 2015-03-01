@@ -1,6 +1,9 @@
 <?php
 /**
- * PHP class «Version»
+ * PHP: Nelson Martell Library file
+ *
+ * Content:
+ * - Class definition:  [NelsonMartell]  Version
  *
  * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -10,9 +13,8 @@
  *
  * @copyright  Copyright © 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
- * @package    NelsonMartell
+ * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
- *
  * */
 
 namespace NelsonMartell {
@@ -24,8 +26,7 @@ namespace NelsonMartell {
 	 * No se puede heredar esta clase.
 	 *
 	 *
-	 * @package  NelsonMartell
-	 * @author   Nelson Martell (@yahoo.es: nelson6e65-dev)
+	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * */
 	final class Version extends Object implements IEquatable, IComparable {
 

@@ -2,9 +2,8 @@
 /**
  * PHP: Nelson Martell Library file
  *
- * File info:
- * - Namespace: NelsonMartell\Extensions
- * - Content:   Class definition
+ * Content:
+ * - Class definition:  [NelsonMartell\Extensions]  String
  *
  * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -14,7 +13,7 @@
  *
  * @copyright  Copyright © 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
- * @since      0.4.1
+ * @since      v0.4.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 namespace NelsonMartell\Extensions;
@@ -57,6 +56,7 @@ class String extends \Cake\Utility\String {
 	 * @return  string
 	 * @todo  Implement php.net/functions.arguments.html#functions.variable-arg-list.new for PHP 5.6+
 	 * @todo  Implement formatting, like IFormatProvider or something like that.
+	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 */
 	public static function Format($format, $arg0) {
 		static $options = [
