@@ -6,13 +6,13 @@
  * - Class definition:    [NelsonMartell]  Type
  * - Function definition: []               typeof(mixed)
  *
- * Copyright Â© 2013-2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2013-2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright Â© 2013-2015 Nelson Martell
+ * @copyright  Copyright © 2013-2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -268,7 +268,7 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Convierte la instancia actual en su representaciÃ³n en cadena.
+		 * Convierte la instancia actual en su representación en cadena.
 		 *
 		 *
 		 * @return  string
@@ -303,10 +303,10 @@ namespace {
 	if (!function_exists('typeof')) {
 		/**
 		 * Obtiene el tipo del objeto especificado.
-		 * Accede de manera global a la funciÃ³n Type::typeof.
+		 * Accede de manera global a la función Type::typeof.
 		 *
 		 *
-		 * @param   mixed $obj Objeto al cual se le extraerÃ¡ su tipo.
+		 * @param   mixed $obj Objeto al cual se le extraerá su tipo.
 		 * @return  Type
 		 * */
 		function typeof($obj) {

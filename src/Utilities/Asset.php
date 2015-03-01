@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell\Utilities]  Asset
  *
- * Copyright Â© 2014, 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2014, 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright Â© 2014, 2015 Nelson Martell
+ * @copyright  Copyright © 2014, 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -23,9 +23,9 @@ namespace NelsonMartell\Utilities {
 	use \InvalidArgumentException;
 
 	/**
-	 * Representa un recurso estÃ¡tico de una pÃ¡gina, como elementos js y css, que poseen varias
-	 * versiones y estÃ¡n organizadas en subdirectorios, proponiendo una estructura predeterminada.
-	 * Contiene mÃ©todos y propiedades para obtener las rutas de los directorios y recursos de las
+	 * Representa un recurso estático de una página, como elementos js y css, que poseen varias
+	 * versiones y están organizadas en subdirectorios, proponiendo una estructura predeterminada.
+	 * Contiene métodos y propiedades para obtener las rutas de los directorios y recursos de las
 	 * diferentes versiones del framework.
 	 *
 	 *
@@ -80,7 +80,7 @@ namespace NelsonMartell\Utilities {
 				}
 
 			} else {
-				// Trata de convertir $versions en un objeto VersiÃ³n
+				// Trata de convertir $versions en un objeto Versión
 				try {
 					$v = Version::Parse($versions);
 				} catch (InvalidArgumentException $e) {
@@ -96,8 +96,8 @@ namespace NelsonMartell\Utilities {
 
 		/**
 		 * Obtiene o establece el nombre original del recurso.
-		 * A partir de Ã©ste se determinarÃ¡ la ruta y el nombre real del archivo (que, por defecto,
-		 * serÃ¡ Ã©ste mismo pero convertido en minÃºsculas y reemplazando sus espacios en blanco por
+		 * A partir de éste se determinará la ruta y el nombre real del archivo (que, por defecto,
+		 * será éste mismo pero convertido en minúsculas y reemplazando sus espacios en blanco por
 		 * guiones (' ' -> '-')).
 		 *
 		 *
@@ -153,7 +153,7 @@ namespace NelsonMartell\Utilities {
 
 		/**
 		 * Obtiene o establece el CDN del recurso.
-		 * Debe modificarse la URL, colocando '{v}' en vez de la versiÃ³n.
+		 * Debe modificarse la URL, colocando '{v}' en vez de la versión.
 		 * @example  Un CDN para el JavaScript de jQuery UI v1.11.2 es:
 		 *   "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"
 		 *   Entonces el valor de esta propiedad debe ser:
@@ -190,13 +190,13 @@ namespace NelsonMartell\Utilities {
 		const OLDEST = 'oldest';
 
 		/**
-		 * Obtiene la ruta del directorio de la versiÃ³n especificada. Si no se especifica,
-		 * se devuelve la versiÃ³n mÃ¡s reciente.
+		 * Obtiene la ruta del directorio de la versión especificada. Si no se especifica,
+		 * se devuelve la versión más reciente.
 		 *
 		 *
-		 * @param  string|Version  $version  VersiÃ³n a obtener. TambiÃ©n puede tomar los valores
-		 *   'newest' u 'oldest' para representar a la versiÃ³n mÃ¡s nueva o mÃ¡s vieja, respectivamente.
-		 * @return  string Ruta del directorio de la versiÃ³n especificada.
+		 * @param  string|Version  $version  Versión a obtener. También puede tomar los valores
+		 *   'newest' u 'oldest' para representar a la versión más nueva o más vieja, respectivamente.
+		 * @return  string Ruta del directorio de la versión especificada.
 		 * */
 		public function GetDirectoryPath($version = self::NEWEST) {
 			$c = count($this->Versions);
@@ -235,12 +235,12 @@ namespace NelsonMartell\Utilities {
 
 
 		/**
-		 * Obtiene la ruta del recurso de la versiÃ³n especificada. Si no se especifica, se devuelve la
-		 * versiÃ³n mÃ¡s reciente.
+		 * Obtiene la ruta del recurso de la versión especificada. Si no se especifica, se devuelve la
+		 * versión más reciente.
 		 *
-		 * @param  string|Version  $version  VersiÃ³n a obtener. TambiÃ©n puede tomar los valores
-		 *   'newest' u 'oldest' para representar a la versiÃ³n mÃ¡s nueva o mÃ¡s vieja, respectivamente.
-		 * @param  string          $append   Texto que se le anezarÃ¡ a la cadena de salida
+		 * @param  string|Version  $version  Versión a obtener. También puede tomar los valores
+		 *   'newest' u 'oldest' para representar a la versión más nueva o más vieja, respectivamente.
+		 * @param  string          $append   Texto que se le anezará a la cadena de salida
 		 * @return  string Ruta del recurso
 		 * */
 		public function GetResourcePath($version = self::NEWEST, $append = '') {

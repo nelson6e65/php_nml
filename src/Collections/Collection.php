@@ -6,13 +6,13 @@
  * - Trait definition:  [NelsonMartell\Collections]  CollectionIterator
  * - Class definition:  [NelsonMartell\Collections]  Collection
  *
- * Copyright Â© 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright Â© 2015 Nelson Martell
+ * @copyright  Copyright © 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.4.0
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -23,7 +23,7 @@ namespace NelsonMartell\Collections {
 	use NelsonMartell\Extensions\String;
 
 	/**
-	 * Implementa los mÃ©todos de la interfaz Iterator para una colecciÃ³n de objetos.
+	 * Implementa los métodos de la interfaz Iterator para una colección de objetos.
 	 *
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * @since  v0.4.0
@@ -56,13 +56,13 @@ namespace NelsonMartell\Collections {
 	}
 
 	/**
-	 * Clase base de una colecciÃ³n de objetos, que provee una implementaciÃ³n predeterminada de la
+	 * Clase base de una colección de objetos, que provee una implementación predeterminada de la
 	 * interfaz ICollection.
 	 *
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * */
 	class Collection extends Object implements ICollection {
-		use CollectionIterator; //ImplementaciÃ³n de la interfaz Iterator
+		use CollectionIterator; //Implementación de la interfaz Iterator
 
 		function __construct() {
 			parent::__construct();
@@ -81,10 +81,10 @@ namespace NelsonMartell\Collections {
 
 
 		/**
-		 * Inserta un nuevo elemento a la colecciÃ³n, en el Ã­ndice especificado.
+		 * Inserta un nuevo elemento a la colección, en el índice especificado.
 		 *
-		 * @param   integer  $index    Ãndice del elemento a insertar.
-		 * @param   mixed    $newItem  Nuevo elemento a insertar a la colecciÃ³n.
+		 * @param   integer  $index    Índice del elemento a insertar.
+		 * @param   mixed    $newItem  Nuevo elemento a insertar a la colección.
 		 * @access  protected
 		 * @return  void
 		 * */
@@ -102,7 +102,7 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Quita todos los elementos de la colecciÃ³n.
+		 * Quita todos los elementos de la colección.
 		 *
 		 * @return  void
 		 * */
@@ -112,9 +112,9 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Establece un elemento en el Ã­ndice especificado.
+		 * Establece un elemento en el índice especificado.
 		 *
-		 * @param  integer  $index    Ãndice del elemento a establecer.
+		 * @param  integer  $index    Índice del elemento a establecer.
 		 * @param  mixed    $newItem  Nuevo valor con el que se va a reemplazar.
 		 * @return  void
 		 * */
@@ -127,13 +127,13 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Obtiene el elemento almacenado en el Ã­ndice especificado.
-		 * Este mÃ©todo no lanza excepciÃ³n en caso de indicar un Ã­ndice fuera del rango; en cambio,
+		 * Obtiene el elemento almacenado en el índice especificado.
+		 * Este método no lanza excepción en caso de indicar un índice fuera del rango; en cambio,
 		 * devuelve NULL.
-		 * El elemento obtenido es de sÃ³lo lectura. Para modificar el elemento dentro de la colecciÃ³n,
-		 * tendrÃ­a que utilizarse el mÃ©todo Collection::SetItem una vez modificado.
+		 * El elemento obtenido es de sólo lectura. Para modificar el elemento dentro de la colección,
+		 * tendría que utilizarse el método Collection::SetItem una vez modificado.
 		 *
-		 * @param   integer  $index  Ãndice del elemento a obtener.
+		 * @param   integer  $index  Índice del elemento a obtener.
 		 * @return  mixed
 		 * */
 		protected function GetItem($index) {
@@ -153,7 +153,7 @@ namespace NelsonMartell\Collections {
 				$this->_items[$i] = $this->_items[$i + 1]; //Mueve los valores
 			}
 
-			unset($this->_items[$this->Count - 1]); //Des-asigna el Ãºltimo elemento
+			unset($this->_items[$this->Count - 1]); //Des-asigna el último elemento
 
 			$this->_count--;
 		}
@@ -225,11 +225,11 @@ namespace NelsonMartell\Collections {
 		}
 
 
-		#region {ImplementaciÃ³n de la interfaz ICollection}
+		#region {Implementación de la interfaz ICollection}
 
 		/**
-		 * Obtiene el nÃºmero de elementos incluidos en la colecciÃ³n.
-		 * Ã‰sta propiedad es de sÃ³lo lectura.
+		 * Obtiene el número de elementos incluidos en la colección.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 * @var  integer
 		 * */
@@ -237,7 +237,7 @@ namespace NelsonMartell\Collections {
 		private $_count = 0;
 
 		/**
-		 * Obtiene el nÃºmero de elementos incluidos en la colecciÃ³n.
+		 * Obtiene el número de elementos incluidos en la colección.
 		 *
 		 * @return  integer
 		 * */
@@ -246,11 +246,11 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Agrega un nuevo elemento al final de la colecciÃ³n.
-		 * Nota para herederos: Para cambiar el comportamiento de este mÃ©todo, reemplazar mÃ¡s bien
-		 * el mÃ©todo protegido 'InsertItem'.
+		 * Agrega un nuevo elemento al final de la colección.
+		 * Nota para herederos: Para cambiar el comportamiento de este método, reemplazar más bien
+		 * el método protegido 'InsertItem'.
 		 *
-		 * @param   mixed  Elemento que se va a agregar a la colecciÃ³n.
+		 * @param   mixed  Elemento que se va a agregar a la colección.
 		 * @return  void
 		 * */
 		public function Add($item) {
@@ -258,9 +258,9 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Quita todos los elementos de la colecciÃ³n.
-		 * Nota para herederos: Para cambiar el comportamiento de este mÃ©todo, reemplazar mÃ¡s bien
-		 * el mÃ©todo protegido 'ClearItems'.
+		 * Quita todos los elementos de la colección.
+		 * Nota para herederos: Para cambiar el comportamiento de este método, reemplazar más bien
+		 * el método protegido 'ClearItems'.
 		 *
 		 * @return  void
 		 * */
@@ -269,7 +269,7 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Determina si la colecciÃ³n contiene al elemento especificado.
+		 * Determina si la colección contiene al elemento especificado.
 		 *
 		 * @param   mixed   $item Objeto que se va a buscar.
 		 * @return  boolean true si $item se encuentra; en caso contrario, false.
@@ -285,11 +285,11 @@ namespace NelsonMartell\Collections {
 		}
 
 		/**
-		 * Quita, si existe, la primera apariciÃ³n de un objeto especÃ­fico de la colecciÃ³n.
+		 * Quita, si existe, la primera aparición de un objeto específico de la colección.
 		 *
 		 * @param   mixed   $item Objeto que se va a quitar.
 		 * @return  boolean True si $item se ha quitado correctamente; en caso contrario, False.
-		 *   Este mÃ©todo tambiÃ©n devuelve false si no se encontrÃ³ $item.
+		 *   Este método también devuelve false si no se encontró $item.
 		 * */
 		public function Remove($item) {
 			for ($i = 0; $i < $this->Count; $i++) {

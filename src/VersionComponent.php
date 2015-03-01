@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell]  VersionComponent
  *
- * Copyright Â© 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright Â© 2015 Nelson Martell
+ * @copyright  Copyright © 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -21,7 +21,7 @@ namespace NelsonMartell {
 	use \InvalidArgumentException;
 
 	/**
-	 * Representa un componente de un nÃºmero de Version.
+	 * Representa un componente de un número de Version.
 	 * Extiende la clase IntString, pero restringe los valores que puede tomar.
 	 *
 	 *
@@ -40,7 +40,7 @@ namespace NelsonMartell {
 			if ($this->StringValue != '') {
 				// if ($this->IntValue == 0) {
 					// throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
-				// } SÃ­ puede ser 0
+				// } Sí puede ser 0
 
 				$pattern = '~^([a-z])$~'; // 1 char
 
@@ -55,7 +55,7 @@ namespace NelsonMartell {
 				$correct = (boolean) preg_match($pattern, $this->StringValue);
 
 				if ($correct) {
-					//Ãšltimo chequeo: que no hayan 2 '-' consecutivos.
+					//Último chequeo: que no hayan 2 '-' consecutivos.
 					$correct = strpos($this->StringValue, '--') == false ? true : false;
 				}
 

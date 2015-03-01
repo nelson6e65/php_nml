@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell\Utilities\UnitTesting]  Assert
  *
- * Copyright Â© 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright Â© 2015 Nelson Martell
+ * @copyright  Copyright © 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -96,7 +96,7 @@ namespace NelsonMartell\Utilities\UnitTesting {
 
 
 		/**
-		 * Comprueba si los dos objetos especificados NO son iguales. En caso de que sÃ­ lo sean,
+		 * Comprueba si los dos objetos especificados NO son iguales. En caso de que sí lo sean,
 		 * emite una advertencia.
 		 *
 		 *
@@ -148,7 +148,7 @@ namespace NelsonMartell\Utilities\UnitTesting {
 		}
 
 		/**
-		 * Comprueba que, si al llamar un mÃ©todo pÃºblico de un objeto, se obtiene una excepciÃ³n del
+		 * Comprueba que, si al llamar un método público de un objeto, se obtiene una excepción del
 		 * tipo especificado.
 		 *
 		 *
@@ -173,9 +173,9 @@ namespace NelsonMartell\Utilities\UnitTesting {
 			}
 
 			if ($actual->IsNotNull()) {
-				// Se lanzÃ³ la excepciÃ³n...
+				// Se lanzó la excepción...
 				if ($expected->IsNull()) {
-					// ...pero no se especificÃ³ el tipo de excepciÃ³n, es decir, puede ser cualquiera
+					// ...pero no se especificó el tipo de excepción, es decir, puede ser cualquiera
 					$equals = true;
 				} else {
 					// ...pero debe comprobarse si son del mismo tipo:
@@ -192,7 +192,7 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					}
 				}
 			} else {
-				// No se lanzÃ³ la excepciÃ³n
+				// No se lanzó la excepción
 				$actual = "No exception";
 
 				if ($expected->IsNull()) {
@@ -227,9 +227,9 @@ namespace NelsonMartell\Utilities\UnitTesting {
 			}
 
 			if ($actual->IsNotNull()) {
-				// Se lanzÃ³ la excepciÃ³n...
+				// Se lanzó la excepción...
 				if ($expected->IsNull()) {
-					// ...pero no se especificÃ³ el tipo de excepciÃ³n, es decir, puede ser cualquiera
+					// ...pero no se especificó el tipo de excepción, es decir, puede ser cualquiera
 					$equals = true;
 				} else {
 					// ...pero debe comprobarse si son del mismo tipo:
@@ -246,7 +246,7 @@ namespace NelsonMartell\Utilities\UnitTesting {
 					}
 				}
 			} else {
-				// No se lanzÃ³ la excepciÃ³n
+				// No se lanzó la excepción
 				$actual = "No exception";
 
 				if ($expected->IsNull()) {

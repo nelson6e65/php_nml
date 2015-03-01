@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell]  Version
  *
- * Copyright Â© 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright Â© 2015 Nelson Martell
+ * @copyright  Copyright © 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -21,7 +21,7 @@ namespace NelsonMartell {
 	use \InvalidArgumentException;
 
 	/**
-	 * Representa el nÃºmero de versiÃ³n de un programa o ensamblado, de la forma "1.2.3.4". SÃ³lo
+	 * Representa el número de versión de un programa o ensamblado, de la forma "1.2.3.4". Sólo
 	 * siendo obligatorios el primer y segundo componente.
 	 * No se puede heredar esta clase.
 	 *
@@ -31,15 +31,15 @@ namespace NelsonMartell {
 	final class Version extends Object implements IEquatable, IComparable {
 
 		/**
-		 * Crea una nueva instancia con los nÃºmeros principal, secundario, de compilaciÃ³n (opcional)
-		 * y revisiÃ³n (opcional).
-		 * Para comprobar si la versiÃ³n es vÃ¡lida, usar el mÃ©todo IsValid.
+		 * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
+		 * y revisión (opcional).
+		 * Para comprobar si la versión es válida, usar el método IsValid.
 		 *
 		 *
 		 * @param  int                          $major    Componente principal
 		 * @param  int                          $minor    Componente secundario
-		 * @param  int|string|VersionComponent  $build    Componente de compilaciÃ³n
-		 * @param  int|string|VersionComponent  $revision Componente de revisiÃ³n
+		 * @param  int|string|VersionComponent  $build    Componente de compilación
+		 * @param  int|string|VersionComponent  $revision Componente de revisión
 		 * @throw  InvalidArgumentException
 		 * */
 		function __construct($major = 0, $minor = 0, $build = 0, $revision = 0) {
@@ -69,7 +69,7 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Convierte una cadena a su representaciÃ³n del tipo Version
+		 * Convierte una cadena a su representación del tipo Version
 		 *
 		 *
 		 * @param   string  Cadena a convertir.
@@ -111,11 +111,11 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Obtiene el valor del componente principal del nÃºmero de versiÃ³n del objeto actual.
-		 * Ã‰sta propiedad es de sÃ³lo lectura.
+		 * Obtiene el valor del componente principal del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
-		 * @var  int Componente principal del nÃºmero de versiÃ³n
+		 * @var  int Componente principal del número de versión
 		 * */
 		public $Major;
 		private $_major;
@@ -124,11 +124,11 @@ namespace NelsonMartell {
 
 
 		/**
-		 * Obtiene el valor del componente secundario del nÃºmero de versiÃ³n del objeto actual.
-		 * Ã‰sta propiedad es de sÃ³lo lectura.
+		 * Obtiene el valor del componente secundario del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
-		 * @var  int Componente secundario del nÃºmero de versiÃ³n
+		 * @var  int Componente secundario del número de versión
 		 * */
 		public $Minor;
 		private $_minor;
@@ -136,11 +136,11 @@ namespace NelsonMartell {
 		public function get_Minor() { return $this->_minor; }
 
 		/**
-		 * Obtiene el valor del componente de compilaciÃ³n del nÃºmero de versiÃ³n del objeto actual.
-		 * Ã‰sta propiedad es de sÃ³lo lectura.
+		 * Obtiene el valor del componente de compilación del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
-		 * @var  VersionComponent  Componente de compilaciÃ³n del nÃºmero de versiÃ³n
+		 * @var  VersionComponent  Componente de compilación del número de versión
 		 * */
 		public $Build;
 		private $_build;
@@ -148,11 +148,11 @@ namespace NelsonMartell {
 		public function get_Build() { return $this->_build; }
 
 		/**
-		 * Obtiene el valor del componente de revisiÃ³n del nÃºmero de versiÃ³n del objeto actual.
-		 * Ã‰sta propiedad es de sÃ³lo lectura.
+		 * Obtiene el valor del componente de revisión del número de versión del objeto actual.
+		 * Ésta propiedad es de sólo lectura.
 		 *
 		 *
-		 * @var  VersionComponent  Componente de revisiÃ³n del nÃºmero de versiÃ³n
+		 * @var  VersionComponent  Componente de revisión del número de versión
 		 * */
 		public $Revision;
 		private $_revision;
@@ -161,14 +161,14 @@ namespace NelsonMartell {
 
 
 		/**
-		 * Convierte la instancia actual en su representaciÃ³n en cadena.
-		 * Por defecto, si no estÃ¡n definidos los componentes de compilaciÃ³n y revisiÃ³n, no se
+		 * Convierte la instancia actual en su representación en cadena.
+		 * Por defecto, si no están definidos los componentes de compilación y revisión, no se
 		 * incluyen en la salida.
-		 * Use el mÃ©todo IsValid para determinar si la versiÃ³n es vÃ¡lida antes de devolver esta cadena.
+		 * Use el método IsValid para determinar si la versión es válida antes de devolver esta cadena.
 		 *
 		 *
 		 * @see     Version::IsValid
-		 * @return  string  RepresentaciÃ³n de la versiÃ³n en forma de cadena: 'major.minor[.build[.revision]]'
+		 * @return  string  Representación de la versión en forma de cadena: 'major.minor[.build[.revision]]'
 		 * */
 		public function ToString() {
 			$s[0] = $this->Major;
@@ -192,11 +192,11 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Indica si la instancia actual es un nÃºmero de versiÃ³n vÃ¡lido.
-		 * Al menos los componentes Major y Minor de la versiÃ³n deben estar establecidos.
+		 * Indica si la instancia actual es un número de versión válido.
+		 * Al menos los componentes Major y Minor de la versión deben estar establecidos.
 		 *
 		 *
-		 * @return  boolean Un valor que indica si la instancia actual es vÃ¡lida.
+		 * @return  boolean Un valor que indica si la instancia actual es válida.
 		 * */
 		public function IsValid() {
 			$r = ($this->Major > 0 or $this->Minor > 0); //No puede ser '0.0'
@@ -209,12 +209,12 @@ namespace NelsonMartell {
 
 					if (!$r) {
 						if ($this->Build->StringValue != '') {
-							//SÃ³lo es vÃ¡lido el texto en Build si el componente de revisiÃ³n es cero:
+							//Sólo es válido el texto en Build si el componente de revisión es cero:
 							$r = $this->Revision->IsDefault();
 						}
 
 						if ($this->Revision->StringValue != '') {
-							//SÃ³lo es vÃ¡lido el texto en Revision si el texto de Build estÃ¡ vacÃ­o:
+							//Sólo es válido el texto en Revision si el texto de Build está vacío:
 							$r = ($this->Build->StringValue == '');
 						}
 					}
@@ -248,7 +248,7 @@ namespace NelsonMartell {
 		#region IComparable
 
 		/**
-		 * Determina la posiciÃ³n relativa del objeto especificado con respecto a esta instancia.
+		 * Determina la posición relativa del objeto especificado con respecto a esta instancia.
 		 *
 		 *
 		 * @param   Version  $other

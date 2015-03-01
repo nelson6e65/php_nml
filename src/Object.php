@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell]  Object
  *
- * Copyright Â© 2014, 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2014, 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright Â© 2014, 2015 Nelson Martell
+ * @copyright  Copyright © 2014, 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -21,12 +21,12 @@ namespace NelsonMartell {
 	spl_autoload_call('NelsonMartell\Type');
 
 	/**
-	 * Clase base de objetos, para encapsular propiedades y otros mÃ©todos bÃ¡sicos.
+	 * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
 	 *
 	 *
 	 * @example  Para usar los getter y setter de los atributos como propiedades, el atributo debe
 	 * ser privado y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe
-	 * iniciar en MayÃºscula, sin '_'. Ejemplo:
+	 * iniciar en Mayúscula, sin '_'. Ejemplo:
 	 *
 	 * private $_nombre = ''; //Atributo
 	 * public $Nombre; //Propiedad para acceder a $_nombre
@@ -43,8 +43,8 @@ namespace NelsonMartell {
 	 * 		$this->_nombre = $value;
 	 * }
 	 *
-	 * AdemÃ¡s, para habilitar esta funcionalidad de propiedades, el constructor debe la siguiente
-	 * lÃ­nea:
+	 * Además, para habilitar esta funcionalidad de propiedades, el constructor debe la siguiente
+	 * línea:
 	 * 	unset($this->Nombre);
 	 *
 	 *
@@ -54,10 +54,10 @@ namespace NelsonMartell {
 		function __construct() { }
 
 		/**
-		 * Obtiene el valor de una propiedad. Ã‰sta debe definir un mÃ©todo getter, que sigue este
+		 * Obtiene el valor de una propiedad. Ésta debe definir un método getter, que sigue este
 		 * modelo: 'get_' + $name + '()'.
-		 * Restringe la obtenciÃ³n de una propiedad no definida dentro de la clase si no posee su
-		 * mÃ©todo getter.
+		 * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
+		 * método getter.
 		 *
 		 *
 		 * */
@@ -84,9 +84,9 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Establece el valor de una propiedad segÃºn el modelo: 'set_' + $name + '(' + $value + ')'
-		 * Restringe la asignaciÃ³n de una propiedad no definida dentro de la clase si no posee su
-		 * mÃ©todo setter.
+		 * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
+		 * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
+		 * método setter.
 		 *
 		 *
 		 * */
@@ -101,7 +101,7 @@ namespace NelsonMartell {
 
 			if (!$error) {
 				if (!method_exists($this, $setter)) {
-					$error = dgettext('nml', 'Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el mÃ©todo setter.
+					$error = dgettext('nml', 'Property is read only') . '.'; //La propiedad existe, pero no tiene establecido el método setter.
 				}
 			}
 
@@ -113,8 +113,8 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Convierte esta instancia en su representaciÃ³n de cadena.
-		 * Para modificar el funcionamiento de esta funciÃ³n, debe reemplazarse la funciÃ³n
+		 * Convierte esta instancia en su representación de cadena.
+		 * Para modificar el funcionamiento de esta función, debe reemplazarse la función
 		 * ObjectClass::ToString()
 		 *
 		 *
@@ -127,7 +127,7 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Convierte la instancia actual en su representaciÃ³n de cadena.
+		 * Convierte la instancia actual en su representación de cadena.
 		 *
 		 *
 		 * @return  string
@@ -162,8 +162,8 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Determina la posiciÃ³n relativa del objeto de la derecha con respecto al de la izquierda.
-		 * Puede usarse como segundo argumento en la funciÃ³n de ordenamiento de arrays 'usort'.
+		 * Determina la posición relativa del objeto de la derecha con respecto al de la izquierda.
+		 * Puede usarse como segundo argumento en la función de ordenamiento de arrays 'usort'.
 		 *
 		 *
 		 * @param   mixed  $left   Objeto de la izquierda
