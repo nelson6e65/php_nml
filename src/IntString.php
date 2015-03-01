@@ -31,19 +31,17 @@ namespace NelsonMartell {
 		function __construct($intValue = 0, $stringValue = '') {
 			unset($this->IntValue, $this->StringValue);
 
-			$this->_intValue = (int) $intValue;
-			$this->_stringValue = (string) $stringValue;
+			$this->_intValue = $intValue;
+			$this->_stringValue = $stringValue;
 		}
 
-		public static function Parse($parseableString) {
-			$s = new IntString();
-
-			if (typeof($parseableString) == $s->GetType()) {
-				return $parseableString;
+		public static function Parse($value) {
+			if ($value instanceof IntString) {
+				return $value;
 			}
 
 
-			$s = (string) $parseableString;
+			$s = (string) $value;
 			$intValue = (int) $s;
 
 			$stringValue = explode($intValue, $s, 2);
@@ -58,17 +56,17 @@ namespace NelsonMartell {
 		}
 
 
-		private $_intValue = 0;
-		private $_stringValue = '';
+		private $_intValue;
+		private $_stringValue;
 
 		public $IntValue;
 		public function get_IntValue() {
-			return $this->_intValue;
+			return (int) $this->_intValue;
 		}
 
 		public $StringValue;
 		public function get_StringValue() {
-			return $this->_stringValue;
+			return (string) $this->_stringValue;
 		}
 
 		public function ToString() {
@@ -97,7 +95,7 @@ namespace NelsonMartell {
 		 * @param   IntString  $other
 		 * @return  integer  0, si es igual; >0, si es mayor; <0, si es menor.
 		 * */
-		public function CompareTo($other){
+		public function CompareTo($other) {
 
 			$r = $this->Equals($other) ? 0 : 9999;
 
