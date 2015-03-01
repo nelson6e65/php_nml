@@ -18,6 +18,8 @@
  * */
 
 namespace NelsonMartell {
+	use \BadMethodCallException;
+
 	spl_autoload_call('NelsonMartell\Type');
 
 	/**
