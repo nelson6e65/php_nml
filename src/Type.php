@@ -18,6 +18,7 @@
 namespace NelsonMartell {
 	use \ReflectionClass;
 	use \ReflectionProperty;
+	use \ReflectionMethod;
 
 	/**
 	 * Represents a PHP object type, and provides some properties and methods to describe some info
