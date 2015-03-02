@@ -38,8 +38,12 @@ namespace NelsonMartell {
 					throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) must be positive; "%s" given.'), '$intValue', 1, $intValue));
 				}
 			} else {
-				if ($intValue != null) {
-					throw new InvalidArgumentException($intValue);
+				if ($intValue === null) {
+					if ($stringValue != null) {
+						throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument type. "%s" must be NULL when "%s" is NULL; "%s" given.'), '$stringValue', '$intValue', $stringValue));
+					}
+				} else {
+					throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument type. "%s" (argument %s) must be an integer or NULL; "%s" given.'), '$intValue', 1, $intValue));
 				}
 			} //Only integer or null
 
@@ -73,7 +77,7 @@ namespace NelsonMartell {
 				}
 			} else {
 				if ($stringValue != null) {
-					throw new InvalidArgumentException($stringValue);
+					throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument type. "%s" (argument %s) must be an string or NULL; "%s" given.'), '$stringValue', 2, $stringValue));
 				}
 			} // Only integer or null
 		}
