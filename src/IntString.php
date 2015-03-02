@@ -46,13 +46,12 @@ namespace NelsonMartell {
 				return $value;
 			}
 
-
 			$s = (string) $value;
 			$intValue = (int) $s;
 
 			$stringValue = explode($intValue, $s, 2);
 
-			if ($intValue) {
+			if ($intValue > 0 or $stringValue[1] != '') {
 				$stringValue = $stringValue[1];
 			} else {
 				$stringValue = $stringValue[0];
