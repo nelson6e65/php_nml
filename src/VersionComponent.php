@@ -78,9 +78,13 @@ namespace NelsonMartell {
 			} // Only integer or null
 		}
 
-		public static function Parse($value) {
+		public static function Parse($value = null) {
 			if ($value instanceof VersionComponent) {
 				return $value;
+			}
+
+			if (empty($value) or empty(trim((string) $value))) {
+				return new VersionComponent();
 			}
 
 			$s = parent::Parse($value);
