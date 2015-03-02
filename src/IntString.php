@@ -81,8 +81,8 @@ namespace NelsonMartell {
 
 		public function Equals($other) {
 			if ($other instanceof IntString) {
-				if ($this->IntValue == $other->IntValue) {
-					if ($this->StringValue == $other->StringValue) {
+				if ($this->IntValue === $other->IntValue) {
+					if ($this->StringValue === $other->StringValue) {
 						return true;
 					}
 				}
