@@ -29,42 +29,53 @@ namespace NelsonMartell {
 	 * */
 	class VersionComponent extends IntString implements IEquatable {
 
-		function __construct($intValue = 0, $stringValue = '') {
+		function __construct($intValue = null, $stringValue = null) {
 			parent::__construct($intValue, $stringValue);
 
-			//Validaciones:
-			if ($this->IntValue < 0) {
-				throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) must be positive; "%s" given.'), '$intValue', 1, $intValue));
-			}
-
-			if ($this->StringValue != '') {
-				// if ($this->IntValue == 0) {
-					// throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
-				// } Sí puede ser 0
-
-				$pattern = '~^([a-z])$~'; // 1 char
-
-				if (strlen($this->StringValue) > 1) {
-					$start = '~^([a-z]|-)';
-					$middle = '([a-z]|[0-9]|-)*';
-					$end = '([a-z]|[0-9])$~';
-
-					$pattern = $start . $middle . $end;
+			if (is_integer($intValue)) {
+				//Validaciones:
+				if ($this->IntValue < 0) {
+					throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) must be positive; "%s" given.'), '$intValue', 1, $intValue));
 				}
-
-				$correct = (boolean) preg_match($pattern, $this->StringValue);
-
-				if ($correct) {
-					//Último chequeo: que no hayan 2 '-' consecutivos.
-					$correct = strpos($this->StringValue, '--') == false ? true : false;
+			} else {
+				if ($intValue != null) {
+					throw new InvalidArgumentException($intValue);
 				}
+			} //Only integer or null
 
-				if (!$correct) {
-					throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) has invalid chars: "%s".'), '$stringValue', 2, $stringValue));
+			if (is_string($stringValue)) {
+				if ($this->StringValue != '') {
+					// if ($this->IntValue == 0) {
+						// throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) has invalid format: "%s". VersionComponent can not be a text-only value. $intValue must be > 0 to append it text.'), '$stringValue', 2, $stringValue));
+					// } Sí puede ser 0
+
+					$pattern = '~^([a-z])$~'; // 1 char
+
+					if (strlen($this->StringValue) > 1) {
+						$start = '~^([a-z]|-)';
+						$middle = '([a-z]|[0-9]|-)*';
+						$end = '([a-z]|[0-9])$~';
+
+						$pattern = $start . $middle . $end;
+					}
+
+					$correct = (boolean) preg_match($pattern, $this->StringValue);
+
+					if ($correct) {
+						//Último chequeo: que no hayan 2 '-' consecutivos.
+						$correct = strpos($this->StringValue, '--') == false ? true : false;
+					}
+
+					if (!$correct) {
+						throw new InvalidArgumentException(sprintf(dgettext('nml', 'Invalid argument value. "%s" (argument %s) has invalid chars: "%s".'), '$stringValue', 2, $stringValue));
+					}
+
 				}
-
-			}
-
+			} else {
+				if ($stringValue != null) {
+					throw new InvalidArgumentException($stringValue);
+				}
+			} // Only integer or null
 		}
 
 		public static function Parse($value) {
@@ -95,6 +106,17 @@ namespace NelsonMartell {
 			return false;
 		}
 
+
+		/**
+		 * Getter method for VersionComponent::IntValue property.
+		 *
+		 * @return  integer|NULL
+		 * */
+		public function get_IntValue() {
+			return $this->_intValue;
+		}
+
+
 		/**
 		 * Determina si este componente NO tiene los valores predeterminados.
 		 *
@@ -104,5 +126,28 @@ namespace NelsonMartell {
 		public function IsNotDefault() {
 			return !$this->IsDefault();
 		}
+
+		/**
+		 * Determina si esta instancia es nula.
+		 *
+		 * @return  boolean
+		 * */
+		public function IsNull() {
+			if ($this->IntValue == null or $this->StringValue == null) {
+				return true;
+			}
+
+			return false;
+		}
+
+		/**
+		 * Determina si esta instancia NO es nula.
+		 *
+		 * @return  boolean
+		 * */
+		public function IsNotNull() {
+			return !$this->IsNull();
+		}
+
 	}
 }
