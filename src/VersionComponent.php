@@ -78,12 +78,12 @@ namespace NelsonMartell {
 			} // Only integer or null
 		}
 
-		public static function Parse($value = null) {
+		public static function Parse($value = NULL) {
 			if ($value instanceof VersionComponent) {
 				return $value;
 			}
 
-			if (empty($value) or empty(trim((string) $value))) {
+			if ($value === NULL or trim((string) $value) === '') {
 				return new VersionComponent();
 			}
 
@@ -137,7 +137,7 @@ namespace NelsonMartell {
 		 * @return  boolean
 		 * */
 		public function IsNull() {
-			if ($this->IntValue == null or $this->StringValue == null) {
+			if ($this->IntValue === NULL) {
 				return true;
 			}
 
