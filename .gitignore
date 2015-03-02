@@ -1,0 +1,5 @@
+# Notepad++ backup files #
+##########################
+/nppBackup
+/*/nppBackup
+*.bak
