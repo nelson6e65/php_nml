@@ -36,13 +36,13 @@ namespace NelsonMartell {
 		 * Para comprobar si la versión es válida, usar el método IsValid.
 		 *
 		 *
-		 * @param  int                          $major    Componente principal
-		 * @param  int                          $minor    Componente secundario
-		 * @param  int|string|VersionComponent  $build    Componente de compilación
-		 * @param  int|string|VersionComponent  $revision Componente de revisión
+		 * @param  int  $major  Componente principal
+		 * @param  int  $minor  Componente secundario
+		 * @param  int|string|VersionComponent|NULL  $build  Componente de compilación
+		 * @param  int|string|VersionComponent|NULL  $revision  Componente de revisión
 		 * @throw  InvalidArgumentException
 		 * */
-		function __construct($major = 0, $minor = 0, $build = 0, $revision = 0) {
+		function __construct($major, $minor, $build = null, $revision = null) {
 			parent::__construct();
 			unset($this->Major, $this->Minor, $this->Build, $this->Revision);
 
@@ -69,7 +69,7 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Convierte una cadena a su representación del tipo Version
+		 * Convierte una cadena a su representación del tipo Version.
 		 *
 		 *
 		 * @param   string  Cadena a convertir.
@@ -94,8 +94,8 @@ namespace NelsonMartell {
 
 			$major = (int) $version[0];
 			$minor = (int) $version[1];
-			$build = 0;
-			$revision = 0;
+			$build = null;
+			$revision = null;
 
 			if(count($version) >= 3) {
 				$build = VersionComponent::Parse($version[2]);
@@ -164,26 +164,23 @@ namespace NelsonMartell {
 		 * Convierte la instancia actual en su representación en cadena.
 		 * Por defecto, si no están definidos los componentes de compilación y revisión, no se
 		 * incluyen en la salida.
-		 * Use el método IsValid para determinar si la versión es válida antes de devolver esta cadena.
+		 * Use el método IsValid si quiere determinar si la versión es válida antes de devolver esta cadena.
 		 *
 		 *
-		 * @see     Version::IsValid
 		 * @return  string  Representación de la versión en forma de cadena: 'major.minor[.build[.revision]]'
+		 * @see  VersionComponent::IsNull
+		 * @see  Version::IsValid
 		 * */
 		public function ToString() {
 			$s[0] = $this->Major;
 			$s[1] = $this->Minor;
 
-			if ($this->Revision->IsNotDefault()) {
+			if ($this->Revision->IsNotNull()) {
 				$s[2] = $this->Build;
 				$s[3] = $this->Revision;
 			} else {
-				if ($this->Build->IsNotDefault()) {
+				if ($this->Build->IsNotNull()) {
 					$s[2] = $this->Build;
-
-					if ($this->Revision->IsNotDefault()) {
-						$s[3] = $this->Revision;
-					}
 				}
 			}
 			$v = implode('.', $s);
@@ -193,30 +190,46 @@ namespace NelsonMartell {
 
 		/**
 		 * Indica si la instancia actual es un número de versión válido.
-		 * Al menos los componentes Major y Minor de la versión deben estar establecidos.
 		 *
+		 * Se considera válido si:
+		 * 1. Major o Minor es mayor a cero (0). No puede ser '0.0'.
+		 * 2. Build y Revision son nulos (no están definidos).
+		 * 3. Build está definido pero Revision no.
+		 * 4. Ambos están definidos, pero no poseen la parte de la cadena.
+		 * 5. Ambos están definidos, pero Build no posee la parte de cadena.
+		 * 6. Build está definido y tiene la cadena, pero Revision no está definido.
+		 * 7. Revision posee cadena, pero Build no.
 		 *
-		 * @return  boolean Un valor que indica si la instancia actual es válida.
+		 * @return  boolean  Un valor que indica si la instancia actual es válida.
 		 * */
 		public function IsValid() {
-			$r = ($this->Major > 0 or $this->Minor > 0); //No puede ser '0.0'
+			// Validación de Major y Minor:
+			$r = ($this->Major > 0 or $this->Minor > 0); //#1
 
+			// Validación de Build y Revision:
 			if ($r) {
-				$r = ($this->Build != null and $this->Revision != null);
-				if ($r) {
+				$r = ($this->Build->IsNull() and $this->Revision->IsNull()); // #2
 
-					$r = (bool)(($this->Build->StringValue == '') and ($this->Revision->StringValue == ''));
+				if (!$r) {
+					if ($this->Build->IsNotNull() and $this->Revision->IsNotNull()) { // Si ambos están definidos...
 
-					if (!$r) {
-						if ($this->Build->StringValue != '') {
-							//Sólo es válido el texto en Build si el componente de revisión es cero:
-							$r = $this->Revision->IsDefault();
+						$r = (bool)($this->Build->StringValue == ''); //#5
+
+						if (!$r) {
+							$r = (bool)(($this->Build->StringValue == '') and ($this->Revision->StringValue == '')); //#4
+
+							if (!$r) {
+								if ($this->Build->StringValue != '') {
+									$r = $this->Revision->IsNull(); #6
+								}
+
+								if ($this->Revision->StringValue != '') {
+									$r = ($this->Build->StringValue == ''); #7
+								}
+							}
 						}
-
-						if ($this->Revision->StringValue != '') {
-							//Sólo es válido el texto en Revision si el texto de Build está vacío:
-							$r = ($this->Build->StringValue == '');
-						}
+					} else {
+						$r = ($this->Build->IsNotNull() and $this->Revision->IsNull()); //#3
 					}
 				}
 			}
