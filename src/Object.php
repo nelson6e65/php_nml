@@ -136,12 +136,14 @@ namespace NelsonMartell {
 		 * */
 		public function ToString() {
 			$t = $this->GetType();
-			if ($t->Name != 'NelsonMartell\Object') {
-				trigger_error(sprintf(dgettext('nml', 'Using default %s method. You can replace its behavior, overriding it by creating %s::ToString() public method.'), __METHOD__, $t->Name), E_USER_NOTICE);
+
+			if (defined('CODE_ANALYSIS')) {
+				if ($t->Name != 'NelsonMartell\Object') {
+					trigger_error(sprintf(dgettext('nml', 'Using default %s method. You can replace its behavior, overriding it by creating %s::ToString() public method.'), __METHOD__, $t->Name), E_USER_NOTICE);
+				}
 			}
 
 			return '{ ' . $t . ' }';
-
 		}
 
 		/**
@@ -155,9 +157,11 @@ namespace NelsonMartell {
 		}
 
 		public function Equals($other) {
-			if ($this instanceof IEquatable) {
-				$t = $this->GetType();
-				trigger_error(sprintf(dgettext('nml', 'You implemented IEquatable interface, but using default Object::Equals() method. You must override it, creating %s::Equals() public method.'), $t->Name), E_USER_NOTICE);
+			if (defined('CODE_ANALYSIS')) {
+				if ($this instanceof IEquatable) {
+					$t = $this->GetType();
+					trigger_error(sprintf(dgettext('nml', 'You implemented IEquatable interface, but using default Object::Equals() method. You must override it, creating %s::Equals() public method.'), $t->Name), E_USER_NOTICE);
+				}
 			}
 
 			return $this == $other;
