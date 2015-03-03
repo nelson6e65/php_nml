@@ -313,4 +313,6 @@ namespace {
 			return Type::typeof($obj);
 		}
 	}
+
+	include_once('nml.php');
 }
