@@ -2,7 +2,7 @@
 # PHP: Nelson Martell Library
 
 ## Description
-PHP library for PHP5+ applications. 
+PHP library for PHP5+ applications.
 
 ## Requirements
 * PHP 5.5 or greater
@@ -15,7 +15,7 @@ In your app directory, type:
     git submodule add https://github.com/nelson6e65/php_nml.git Vendor/NML
 	git submodule init
 	git submodule update
-	
+
 This installs NML into your Vendor directory.
 
 ### Manually
@@ -47,3 +47,15 @@ echo $nmlVersion.ToString();
 ```
 
 For more details, you can check the [API reference](http://nelson6e65.github.io/php_nml/api).
+
+### Code Analysis
+You can, optionally, define the '' constant if you like some notices and warnings to be
+throws while you are coding/debugging. This is useful to watch some recommendations about usage of
+some clases, functions, methods, etc.
+
+```php
+<?php
+	define('CODE_ANALYSIS', true);
+
+	//...
+```
