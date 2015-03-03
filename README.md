@@ -2,7 +2,9 @@
 # PHP: Nelson Martell Library
 
 ## Description
-PHP library for PHP5+ applications.
+Provides a set of classes for PHP applications.
+
+**Note**: This is an unstable repository in development and should be treated as an ***alpha***.
 
 ## Requirements
 * PHP 5.5 or greater
