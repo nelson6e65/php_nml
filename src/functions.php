@@ -19,6 +19,48 @@
  * */
 
 use NelsonMartell\Type;
+use NelsonMartell\Extensions\String;
+
+define('NML_GETTEXT_DOMAIN', 'nml');
+
+/**
+ * Busca un mensaje único traducido en el dominio 'nml'.
+ * El mensaje puede contener cadenas de formato.
+ *
+ *
+ * @param  string  $message  Mensaje con formato que se va a buscar.
+ * @param  array|mixed  $args  Un objeto, una lista de objetos o múltiples argumentos que se van a
+ *     incluir en las cadenas de formato del mensaje.
+ * @return  string
+ * @see  dgettext
+ * @see  String::Format
+ * */
+function nml_msg($message, $args = null) {
+	$s = String::Format($message, array_slice(func_get_args(), 1));
+
+	return dgettext(NML_GETTEXT_DOMAIN, $s);
+}
+
+
+/**
+ * Busca un mensaje único, en singular y plural, traducido en el dominio 'nml'.
+ * El mensaje puede contener cadenas de formato.
+ *
+ * @param  string  $singular  Mensaje con formato que se va a buscar cuando $n es uno (1).
+ * @param  string  $plural  Mensaje con formato que se va a buscar cuando $n es distinto a (1).
+ * @param  integer  $n  Cantidad
+ * @param  array|mixed  $args  Un objeto, una lista de objetos o múltiples argumentos que se van a
+ *     incluir en las cadenas de formato del mensaje.
+ * @return  string
+ * @see  dngettext
+ * @see  String::Format
+ * */
+function nml_nmsg($singular, $plural, $n, $args = null) {
+	$s = String::Format($singular, array_slice(func_get_args(), 1));
+	$p = String::Format($plural, array_slice(func_get_args(), 1));
+
+	return dngettext(NML_GETTEXT_DOMAIN, $s, $p, $n);
+}
 
 if (!function_exists('typeof')) {
 
