@@ -52,36 +52,20 @@ class String extends \Cake\Utility\String {
 	 *
 	 *
 	 * @param   string       $format  A string containing variable placeholders.
-	 * @param   array|mixed  $arg0  Object(s) to be replacen into $format placeholders.
+	 * @param   array|mixed  $args  Object(s) to be replaced into $format placeholders.
 	 * @return  string
 	 * @todo  Implement php.net/functions.arguments.html#functions.variable-arg-list.new for PHP 5.6+
 	 * @todo  Implement formatting, like IFormatProvider or something like that.
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 */
-	public static function Format($format, $arg0) {
+	public static function Format($format, $args) {
 		static $options = [
-			'before'	=> 	'{',
-			'after' 	=> 	'}',
+			'before'  => '{',
+			'after'   => '}',
 		];
 
-		$data = [];
-
-		//Carga de argumentos, compatible con PHP < 5.6
-		$nArgs = func_num_args();
-
-		if ($nArgs > 2) {
-			$args = func_get_args();
-
-			foreach ($args as $index => $arg) {
-				if ($index == 0) { continue; }
-
-				$data[] = $arg;
-			}
-		} else {
-			$data = $arg0;
-		}
+		$data = func_num_args() === 2 ? (array) $args : array_slice(func_get_args(), 1);
 
 		return parent::insert($format, $data, $options);
 	}
-
 }
