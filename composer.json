@@ -26,7 +26,11 @@
 	"autoload": {
 		"psr-4": {
 			"NelsonMartell\\": "src"
-		}
+		},
+		"files": [
+			"src/functions.php",
+			"src/nml.php"
+		]
 	},
 	"autoload-dev": {
 		"psr-4": {

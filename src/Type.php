@@ -289,30 +289,11 @@ namespace NelsonMartell {
 		 *
 		 *
 		 * @return  Type
+		 * @deprecated
 		 * */
 		public static function typeof($obj) {
 			return new static($obj);
 		}
 
 	}
-}
-
-namespace {
-	use NelsonMartell\Type;
-
-	if (!function_exists('typeof')) {
-		/**
-		 * Obtiene el tipo del objeto especificado.
-		 * Accede de manera global a la función Type::typeof.
-		 *
-		 *
-		 * @param   mixed $obj Objeto al cual se le extraerá su tipo.
-		 * @return  Type
-		 * */
-		function typeof($obj) {
-			return Type::typeof($obj);
-		}
-	}
-
-	include_once('nml.php');
 }
