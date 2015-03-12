@@ -1,5 +1,5 @@
 {
-	"name": "nelson6e65/NML",
+	"name": "nelson6e65/nml",
 	"description": "PHP: Nelson Martell Library",
 	"type": "library",
 	"keywords": ["framework"],
@@ -8,13 +8,14 @@
 	"authors": [
 		{
 			"name": "Nelson Martell",
-			"homepage": "http://nelson6e65.github.io"
+			"email": "nelson6e65-dev@yahoo.es",
+			"homepage": "http://nelson6e65.github.io",
+			"role": "Developer"
 		}
 	],
 	"support": {
 		"issues": "https://github.com/nelson6e65/php_nml/issues",
-		"forum": "http://stackoverflow.com/tags/nml", //UNDONE
-		"irc": "irc://irc.freenode.org/nml", //UNDONE
+		"forum": "http://stackoverflow.com/tags/nml",
 		"source": "https://github.com/nelson6e65/php_nml"
 	},
 	"require": {
