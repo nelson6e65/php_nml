@@ -17,8 +17,8 @@
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-define('NML_VERSION', '0.4.4'); //Can be parsed with NelsonMartell\Version::Parse method. ;)
+define('NML_VERSION', '0.4.5'); //Can be parsed with NelsonMartell\Version::Parse method. ;)
 define('NML_VERSION_MAJOR', 0);
 define('NML_VERSION_MINOR', 4);
-define('NML_VERSION_BUILD', 4);
+define('NML_VERSION_BUILD', 5);
 define('NML_VERSION_REVISION', NULL);
