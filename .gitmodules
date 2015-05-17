@@ -1,3 +1,4 @@
 [submodule "vendor/Cake/Utility"]
 	path = vendor/Cake/Utility
 	url = https://github.com/cakephp/utility.git
+	branch = master
