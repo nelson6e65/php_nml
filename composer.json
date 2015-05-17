@@ -1,5 +1,5 @@
 {
-	"name": "nelson6e65/nml",
+	"name": "nelson6e65/php_nml",
 	"description": "PHP: Nelson Martell Library",
 	"type": "library",
 	"keywords": ["framework"],
@@ -15,11 +15,12 @@
 	],
 	"support": {
 		"issues": "https://github.com/nelson6e65/php_nml/issues",
-		"forum": "http://stackoverflow.com/tags/nml",
+		"forum": "http://stackoverflow.com/tags/php_nml",
 		"source": "https://github.com/nelson6e65/php_nml"
 	},
 	"require": {
 		"php": ">=5.5.0",
+		"cakephp/utility": "3.*",
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*",
