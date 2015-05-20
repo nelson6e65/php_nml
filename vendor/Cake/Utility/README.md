@@ -1,39 +1,8 @@
-# CakePHP Utility Classes
+# [CakePHP Utility Classes](https://github.com/cakephp/utility) (partial)
 
-This library provides a range of utility classes that are used throughout the CakePHP framework
+This is a partial copy ([v3.0.5](https://github.com/cakephp/utility/releases/tag/3.0.5)) of a library that provides a range of utility classes that are used throughout the CakePHP framework for use in [PHP: Nelson Martell Library](https://github.com/nelson6e65/php_nml).
 
 ## What's in the toolbox?
-
-### Hash
-
-A ``Hash`` (as in PHP arrays) class, capable of extracting data using an intuitive DSL:
-
-```php
-$things = [
-    ['name' => 'Mark', 'age' => 15],
-    ['name' => 'Susan', 'age' => 30],
-    ['name' => 'Lucy', 'age' => 25]
-];
-
-$bigPeople = Hash::extract($things, '{n}[age>21].name');
-
-// $bigPeople will contain ['Susan', 'Lucy']
-```
-
-Check the [official Hash class documentation](http://book.cakephp.org/3.0/en/core-libraries/hash.html)
-
-### Inflector
-
-The Inflector class takes a string and can manipulate it to handle word variations
-such as pluralizations or camelizing.
-
-```php
-echo Inflector::pluralize('Apple'); // echoes Apples
-
-echo Inflector::singularize('People'); // echoes Person
-```
-
-Check the [official Inflector class documentation](http://book.cakephp.org/3.0/en/core-libraries/inflector.html)
 
 ### Text
 
@@ -55,34 +24,3 @@ that never ends.
 ```
 
 Check the [official Text class documentation](http://book.cakephp.org/3.0/en/core-libraries/text.html)
-
-### Security
-
-The security library handles basic security measures such as providing methods for hashing and encrypting data.
-
-```php
-$key = 'wt1U5MACWJFTXGenFoZoiLwQGrLgdbHA';
-$result = Security::encrypt($value, $key);
-
-Security::decrypt($result, $key);
-```
-
-Check the [official Security class documentation](http://book.cakephp.org/3.0/en/core-libraries/security.html)
-
-### Xml
-
-The Xml class allows you to easily transform arrays into SimpleXMLElement or DOMDocument objects
-and back into arrays again
-
-```php
-$data = [
-    'post' => [
-        'id' => 1,
-        'title' => 'Best post',
-        'body' => ' ... '
-    ]
-];
-$xml = Xml::build($data);
-```
-
-Check the [official Xml class documentation](http://book.cakephp.org/3.0/en/core-libraries/xml.html)
