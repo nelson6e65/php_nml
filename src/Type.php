@@ -6,13 +6,13 @@
  * - Class definition:    [NelsonMartell]  Type
  * - Function definition: []               typeof(mixed)
  *
- * Copyright © 2013-2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright Â© 2013-2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright © 2013-2015 Nelson Martell
+ * @copyright  Copyright Â© 2013-2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -268,7 +268,7 @@ namespace NelsonMartell {
 		}
 
 		/**
-		 * Convierte la instancia actual en su representación en cadena.
+		 * Convierte la instancia actual en su representaciÃ³n en cadena.
 		 *
 		 *
 		 * @return  string

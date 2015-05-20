@@ -6,13 +6,13 @@
  * - Global functions definition for NML.
  * - Global constant definition:  NML_GETTEXT_DOMAIN
  *
- * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright Â© 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright © 2015 Nelson Martell
+ * @copyright  Copyright Â© 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.4.5
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -24,12 +24,12 @@ use NelsonMartell\Extensions\String;
 define('NML_GETTEXT_DOMAIN', 'nml');
 
 /**
- * Busca un mensaje único traducido en el dominio 'nml'.
+ * Busca un mensaje Ãºnico traducido en el dominio 'nml'.
  * El mensaje puede contener cadenas de formato.
  *
  *
  * @param  string  $message  Mensaje con formato que se va a buscar.
- * @param  array|mixed  $args  Un objeto, una lista de objetos o múltiples argumentos que se van a
+ * @param  array|mixed  $args  Un objeto, una lista de objetos o mÃºltiples argumentos que se van a
  *     incluir en las cadenas de formato del mensaje.
  * @return  string
  * @see  dgettext
@@ -43,13 +43,13 @@ function nml_msg($message, $args = null) {
 
 
 /**
- * Busca un mensaje único, en singular y plural, traducido en el dominio 'nml'.
+ * Busca un mensaje Ãºnico, en singular y plural, traducido en el dominio 'nml'.
  * El mensaje puede contener cadenas de formato.
  *
  * @param  string  $singular  Mensaje con formato que se va a buscar cuando $n es uno (1).
  * @param  string  $plural  Mensaje con formato que se va a buscar cuando $n es distinto a (1).
  * @param  integer  $n  Cantidad
- * @param  array|mixed  $args  Un objeto, una lista de objetos o múltiples argumentos que se van a
+ * @param  array|mixed  $args  Un objeto, una lista de objetos o mÃºltiples argumentos que se van a
  *     incluir en las cadenas de formato del mensaje.
  * @return  string
  * @see  dngettext
@@ -69,7 +69,7 @@ if (!function_exists('typeof')) {
 	 * Es un alias para el constructor de la clase Type.
 	 *
 	 *
-	 * @param   mixed  $obj Objeto al cual se le extraerá su tipo.
+	 * @param   mixed  $obj Objeto al cual se le extraerÃ¡ su tipo.
 	 * @return  Type
 	 * @see  Type::__construct
 	 * */

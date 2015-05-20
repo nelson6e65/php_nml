@@ -5,13 +5,13 @@
  * Content:
  * - Interface definition:  [NelsonMartell\Collections]  IList
  *
- * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright ¬© 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright © 2015 Nelson Martell
+ * @copyright  Copyright ¬© 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -20,7 +20,7 @@
 namespace NelsonMartell\Collections {
 
 	/**
-	 * Representa una colecciÛn de objetos a los que se puede tener acceso por un Ìndice.
+	 * Representa una colecci√≥n de objetos a los que se puede tener acceso por un √≠ndice.
 	 * 
 	 * 
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
@@ -28,31 +28,31 @@ namespace NelsonMartell\Collections {
 	interface IList extends ICollection {
 
 		/**
-		 * Determina el Ìndice de un elemento especÌfico de la lista.
-		 * Si un objeto aparece varias veces en la lista, el mÈtodo IndexOf siempre devolver· la
+		 * Determina el √≠ndice de un elemento espec√≠fico de la lista.
+		 * Si un objeto aparece varias veces en la lista, el m√©todo IndexOf siempre devolver√° la
 		 * primera instancia encontrada.
 		 * 
 		 * 
 		 * @param   mixed $item Objeto que se va a buscar.
-		 * @return  integer Õndice de $item si se encuentra en la lista; en caso contrario, -1.
+		 * @return  integer √çndice de $item si se encuentra en la lista; en caso contrario, -1.
 		 * */
 		public function IndexOf($item);
 
 		/**
-		 * Inserta un elemento en la lista, en el Ìndice especificado.
+		 * Inserta un elemento en la lista, en el √≠ndice especificado.
 		 * 
 		 * 
-		 * @param  integer $index Õndice de base cero en el que debe insertarse $item.
+		 * @param  integer $index √çndice de base cero en el que debe insertarse $item.
 		 * @param   mixed $item Objeto que se va a insertar.
 		 *
 		 * */
 		public function Insert($index, $item);
 
 		/**
-		 * Quita el elemento del Ìndice especificado.
+		 * Quita el elemento del √≠ndice especificado.
 		 * 
 		 * 
-		 * @param  integer $index Õndice de base cero del elemento que se va a quitar.
+		 * @param  integer $index √çndice de base cero del elemento que se va a quitar.
 		 * */
 		public function RemoveAt($index);
 

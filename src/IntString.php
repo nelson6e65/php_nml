@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell]  IntString
  *
- * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright Â© 2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright © 2015 Nelson Martell
+ * @copyright  Copyright Â© 2015 Nelson Martell
  * @link       http://nelson6e65.github.io/php_nml/
  * @since      v0.1.1
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -21,7 +21,7 @@ namespace NelsonMartell {
 
 	/**
 	 * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
-	 * El método ToString obtiene esa cadena compuesta.
+	 * El mÃ©todo ToString obtiene esa cadena compuesta.
 	 *
 	 *
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
@@ -94,8 +94,8 @@ namespace NelsonMartell {
 		#region IComparable
 
 		/**
-		 * Determina la posición relativa de esta instancia con respecto al objeto especificado.
-		 * Nota: Cualquier objeto que no sea instancia de IntString se considerará menor.
+		 * Determina la posiciÃ³n relativa de esta instancia con respecto al objeto especificado.
+		 * Nota: Cualquier objeto que no sea instancia de IntString se considerarÃ¡ menor.
 		 *
 		 *
 		 * @param  IntString|mixed  $other  Objeto con el que se va a comparar.
