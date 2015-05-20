@@ -8,7 +8,7 @@ Provides a set of classes for PHP applications.
 
 ## Requirements
 * PHP 5.5 or greater
-* [CakePHP Utility Classes](https://github.com/cakephp/utility) (temporal; only used `Cake\Utility\Text` class) - Added as submodule.
+* [CakePHP Utility Classes](https://github.com/cakephp/utility) [3.0.5](https://github.com/cakephp/utility/releases/tag/3.0.5) or grater - Only needed `Cake\Utility\Text` class, that should be loaded. There is a copy of that class into `vendor` directory to be auto-used if CakePHP Utility Classes is not available.
 
 ## Installation
 
@@ -33,9 +33,7 @@ This installs NML into your Vendor directory as `php_nml`.
 * Rename the resulting folder to `php_nml`.
 * Then copy/move this folder into your vendor directory
 
-**Note:** You will need to get the [CakePHP Utility Classes](https://github.com/cakephp/utility) (if you do not use that package already) and place it into `php_nml/vendor/Cake/Utility` directory. There is an `php_nml/vendor/autoload.php` witch loads dependencies from that path using psr-4 structure.
-
-## Usage
+# Usage
 This library implements an auto-load system even for non-composer installs.
 
 First you should import `autoload.php` file from `php_nml` root directory into your app configuration file:
@@ -61,7 +59,9 @@ echo $nmlVersion.ToString();
 
 ```
 
-For more details, you can check the [API Documentation](http://nelson6e65.github.io/php_nml/api).
+**Note:** If you dont' use [CakePHP Utility Classes](https://github.com/cakephp/utility), there is a minimal copy of needed class in `php_nml/vendor/Cake/Utility` directory. This `autoload.php` includes `php_nml/vendor/autoload.php` file to autoloads psr-4 classes from that `vendor`.
+
+For more details about available classes from NML, you can check the [API Documentation](http://nelson6e65.github.io/php_nml/api).
 
 #### Code Analysis
 You can, optionally, define the `CODE_ANALYSIS` constant if you like some notices and warnings to be
