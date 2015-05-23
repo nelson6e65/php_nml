@@ -27,7 +27,7 @@ namespace NelsonMartell\Collections {
      * Clase base de una colección de objetos, que provee una implementación predeterminada de la
      * interfaz ICollection.
      *
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     class Collection extends Object implements ICollection
     {

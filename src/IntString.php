@@ -24,7 +24,7 @@ namespace NelsonMartell {
      * El método ToString obtiene esa cadena compuesta.
      *
      *
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     class IntString extends Object implements IEquatable, IComparable
     {

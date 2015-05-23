@@ -28,7 +28,7 @@ namespace NelsonMartell {
      * Represents a PHP object type, and provides some properties and methods to describe some info
      * about itself.
      *
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     final class Type extends Object
     {

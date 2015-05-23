@@ -26,7 +26,7 @@ namespace NelsonMartell {
      * Extiende la clase IntString, pero restringe los valores que puede tomar.
      *
      *
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     class VersionComponent extends IntString implements IEquatable
     {

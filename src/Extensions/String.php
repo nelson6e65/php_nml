@@ -57,7 +57,7 @@ class String extends \Cake\Utility\Text
      * @return  string
      * @todo  Implement php.net/functions.arguments.html#functions.variable-arg-list.new for PHP 5.6+
      * @todo  Implement formatting, like IFormatProvider or something like that.
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
      */
     public static function format($format, $args)
     {

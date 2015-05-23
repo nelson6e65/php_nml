@@ -27,7 +27,7 @@ namespace NelsonMartell\Utilities\UnitTesting {
      * Comprueba condiciones de pruebas.
      *
      *
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     final class Assert
     {

@@ -27,7 +27,7 @@ namespace NelsonMartell {
      * No se puede heredar esta clase.
      *
      *
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
+     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     final class Version extends Object implements IEquatable, IComparable
     {
