@@ -25,7 +25,8 @@ namespace NelsonMartell\Extensions;
  * @copyright  This class is based on Cake\Utility\String of CakePHP(tm) class.
  * @see  Original DOC of String based on: http://book.cakephp.org/3.0/en/core-libraries/string.html
  * */
-class String extends \Cake\Utility\Text {
+class String extends \Cake\Utility\Text
+{
 
     /**
      * Replaces format elements in a string with the string representation of an object matching the
@@ -58,7 +59,8 @@ class String extends \Cake\Utility\Text {
      * @todo  Implement formatting, like IFormatProvider or something like that.
      * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
      */
-    public static function Format($format, $args) {
+    public static function format($format, $args)
+    {
         static $options = [
             'before'  => '{',
             'after'   => '}',
