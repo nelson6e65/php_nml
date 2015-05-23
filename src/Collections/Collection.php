@@ -24,45 +24,6 @@ namespace NelsonMartell\Collections {
     use NelsonMartell\Extensions\String;
 
     /**
-     * Implementa los métodos de la interfaz Iterator para una colección de objetos.
-     *
-     * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
-     * @since  v0.4.0
-     * */
-    trait CollectionIterator
-    {
-        private $_iteratorPosition = 0;
-
-        public function current()
-        {
-            return $this->getItem($this->_iteratorPosition);
-        }
-
-        public function rewind()
-        {
-            $this->_iteratorPosition = 0;
-        }
-
-        public function key()
-        {
-            return $this->_iteratorPosition;
-        }
-
-        public function next()
-        {
-            ++$this->_iteratorPosition;
-        }
-
-        public function valid()
-        {
-            $v = (bool) ($this->GetItem($this->_iteratorPosition) != null);
-            return $v;
-        }
-
-        protected abstract function getItem($index);
-    }
-
-    /**
      * Clase base de una colección de objetos, que provee una implementación predeterminada de la
      * interfaz ICollection.
      *
