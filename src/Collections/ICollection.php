@@ -18,6 +18,7 @@
  * */
 
 namespace NelsonMartell\Collections {
+
     use \Iterator;
 
     /**
@@ -26,7 +27,8 @@ namespace NelsonMartell\Collections {
      *
      * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
      * */
-    interface ICollection extends Iterator {
+    interface ICollection extends Iterator
+    {
 
         /**
          * Obtiene el número de elementos incluidos en la colección.
@@ -45,7 +47,7 @@ namespace NelsonMartell\Collections {
          * @param   mixed $item Objeto que se va a agregar.
          * @return  void
          * */
-        public function Add($item);
+        public function add($item);
 
         /**
          * Quita todos los elementos de la colección.
@@ -56,7 +58,7 @@ namespace NelsonMartell\Collections {
          *
          * @return  void
          * */
-        public function Clear();
+        public function clear();
 
         /**
          * Determina si la colección contiene un valor específico.
@@ -65,7 +67,7 @@ namespace NelsonMartell\Collections {
          * @param   mixed $item Objeto que se va a buscar.
          * @return  boolean true si $item se encuentra; en caso contrario, false.
          * */
-        public function Contains($item);
+        public function contains($item);
 
         /**
          * Quita la primera aparición de un objeto específico de la colección.
@@ -75,7 +77,6 @@ namespace NelsonMartell\Collections {
          * @return  boolean True si $item se ha quitado correctamente; en caso contrario, False.
          *   Este método también devuelve false si no se encontró $item.
          * */
-        public function Remove($item);
-
+        public function remove($item);
     }
 }

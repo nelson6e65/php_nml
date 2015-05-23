@@ -19,6 +19,7 @@
  * */
 
 namespace NelsonMartell\Collections {
+
     use NelsonMartell\Object;
     use NelsonMartell\Extensions\String;
 
@@ -28,31 +29,37 @@ namespace NelsonMartell\Collections {
      * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
      * @since  v0.4.0
      * */
-    trait CollectionIterator {
+    trait CollectionIterator
+    {
         private $_iteratorPosition = 0;
 
-        public function current() {
-            return $this->GetItem($this->_iteratorPosition);
+        public function current()
+        {
+            return $this->getItem($this->_iteratorPosition);
         }
 
-        public function rewind() {
+        public function rewind()
+        {
             $this->_iteratorPosition = 0;
         }
 
-        public function key() {
+        public function key()
+        {
             return $this->_iteratorPosition;
         }
 
-        public function next() {
+        public function next()
+        {
             ++$this->_iteratorPosition;
         }
 
-        public function valid() {
+        public function valid()
+        {
             $v = (bool) ($this->GetItem($this->_iteratorPosition) != null);
             return $v;
         }
 
-        protected abstract function GetItem($index);
+        protected abstract function getItem($index);
     }
 
     /**
@@ -61,20 +68,23 @@ namespace NelsonMartell\Collections {
      *
      * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
      * */
-    class Collection extends Object implements ICollection {
+    class Collection extends Object implements ICollection
+    {
         use CollectionIterator; //Implementación de la interfaz Iterator
 
-        function __construct() {
+        public function __construct()
+        {
             parent::__construct();
             unset($this->Count);
         }
 
-        public final function __invoke($index, $value = null) {
+        final public function __invoke($index, $value = null)
+        {
             if ($value == null) {
                 return $this->_items[$index];
             }
 
-            $this->SetItem($index, $value);
+            $this->setItem($index, $value);
         }
 
         private $_items = array();
@@ -88,12 +98,13 @@ namespace NelsonMartell\Collections {
          * @access  protected
          * @return  void
          * */
-        protected function InsertItem($index, $newItem) {
+        protected function insertItem($index, $newItem)
+        {
             if ($index > $this->Count || $index < 0) {
                 throw new OutOfRangeException();
             }
 
-            if ($index == $this->Count){
+            if ($index == $this->Count) {
                 $this->_items[$index] = null;
                 $this->_count++;
             }
@@ -106,7 +117,8 @@ namespace NelsonMartell\Collections {
          *
          * @return  void
          * */
-        protected function ClearItems() {
+        protected function clearItems()
+        {
             $this->_items = array();
             $this->_count = 0;
         }
@@ -118,7 +130,8 @@ namespace NelsonMartell\Collections {
          * @param  mixed    $newItem  Nuevo valor con el que se va a reemplazar.
          * @return  void
          * */
-        protected function SetItem($index, $newItem) {
+        protected function setItem($index, $newItem)
+        {
             if ($index >= $this->Count || $index < 0) {
                 throw new OutOfRangeException();
             }
@@ -136,7 +149,8 @@ namespace NelsonMartell\Collections {
          * @param   integer  $index  Índice del elemento a obtener.
          * @return  mixed
          * */
-        protected function GetItem($index) {
+        protected function getItem($index)
+        {
             if ($index >= $this->Count || $index < 0) {
                 return null;
             }
@@ -144,12 +158,13 @@ namespace NelsonMartell\Collections {
             return $this->_items[$index];
         }
 
-        protected function RemoveItem($index) {
+        protected function removeItem($index)
+        {
             if ($index >= $this->Count || $index < 0) {
                 throw new OutOfRangeException();
             }
 
-            for($i = $index; $i < $this->Count - 1; $i++) {
+            for ($i = $index; $i < $this->Count - 1; $i++) {
                 $this->_items[$i] = $this->_items[$i + 1]; //Mueve los valores
             }
 
@@ -182,7 +197,8 @@ namespace NelsonMartell\Collections {
          * @return  string
          * @see  String::Format()
          * */
-        public function ToString($format = 'r') {
+        public function toString($format = 'r')
+        {
             static $defaultFormats = [
                 'r' => '{items}',
                 'l' => '{ {items} }',
@@ -241,7 +257,8 @@ namespace NelsonMartell\Collections {
          *
          * @return  integer
          * */
-        public function get_Count() {
+        public function get_Count()
+        {
             return $this->_count;
         }
 
@@ -253,7 +270,8 @@ namespace NelsonMartell\Collections {
          * @param   mixed  Elemento que se va a agregar a la colección.
          * @return  void
          * */
-        public function Add($item) {
+        public function add($item)
+        {
             $this->InsertItem($this->Count, $item);
         }
 
@@ -264,7 +282,8 @@ namespace NelsonMartell\Collections {
          *
          * @return  void
          * */
-        public function Clear() {
+        public function clear()
+        {
             $this->ClearItems();
         }
 
@@ -274,8 +293,9 @@ namespace NelsonMartell\Collections {
          * @param   mixed   $item Objeto que se va a buscar.
          * @return  boolean true si $item se encuentra; en caso contrario, false.
          * */
-        public function Contains($item) {
-            foreach($this->_items as $i) {
+        public function contains($item)
+        {
+            foreach ($this->_items as $i) {
                 if ($item === $i) {
                     return true;
                 }
@@ -291,7 +311,8 @@ namespace NelsonMartell\Collections {
          * @return  boolean True si $item se ha quitado correctamente; en caso contrario, False.
          *   Este método también devuelve false si no se encontró $item.
          * */
-        public function Remove($item) {
+        public function remove($item)
+        {
             for ($i = 0; $i < $this->Count; $i++) {
                 if ($this->_items[$i] === $item) {
                     $this->RemoveItem($i);
@@ -302,7 +323,5 @@ namespace NelsonMartell\Collections {
         }
 
         #end region
-
-
     }
 }

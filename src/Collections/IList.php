@@ -25,7 +25,8 @@ namespace NelsonMartell\Collections {
      *
      * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
      * */
-    interface IList extends ICollection {
+    interface IList extends ICollection
+    {
 
         /**
          * Determina el índice de un elemento específico de la lista.
@@ -36,7 +37,7 @@ namespace NelsonMartell\Collections {
          * @param   mixed $item Objeto que se va a buscar.
          * @return  integer Índice de $item si se encuentra en la lista; en caso contrario, -1.
          * */
-        public function IndexOf($item);
+        public function indexOf($item);
 
         /**
          * Inserta un elemento en la lista, en el índice especificado.
@@ -46,7 +47,7 @@ namespace NelsonMartell\Collections {
          * @param   mixed $item Objeto que se va a insertar.
          *
          * */
-        public function Insert($index, $item);
+        public function insert($index, $item);
 
         /**
          * Quita el elemento del índice especificado.
@@ -54,7 +55,6 @@ namespace NelsonMartell\Collections {
          *
          * @param  integer $index Índice de base cero del elemento que se va a quitar.
          * */
-        public function RemoveAt($index);
-
+        public function removeAt($index);
     }
 }
