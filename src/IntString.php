@@ -26,12 +26,14 @@ namespace NelsonMartell {
 	 *
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * */
-	class IntString extends Object implements IEquatable, IComparable {
+	class IntString extends Object implements IEquatable, IComparable
+	{
 
-		function __construct($intValue = 0, $stringValue = '') {
+		public function __construct($intValue = 0, $stringValue = '')
+		{
 			unset($this->IntValue, $this->StringValue);
 
-			if (is_integer($intValue) or $intValue == NULL) {
+			if (is_integer($intValue) or $intValue == null) {
 				$this->_intValue = $intValue;
 			} else {
 				//Try convert to integer
@@ -41,7 +43,8 @@ namespace NelsonMartell {
 			$this->_stringValue = (string) $stringValue;
 		}
 
-		public static function Parse($value) {
+		public static function parse($value)
+		{
 			if ($value instanceof IntString) {
 				return $value;
 			}
@@ -65,20 +68,24 @@ namespace NelsonMartell {
 		protected $_stringValue;
 
 		public $IntValue;
-		public function get_IntValue() {
+		public function get_IntValue()
+		{
 			return (int) $this->_intValue;
 		}
 
 		public $StringValue;
-		public function get_StringValue() {
+		public function get_StringValue()
+		{
 			return $this->_stringValue;
 		}
 
-		public function ToString() {
+		public function toString()
+		{
 			return $this->IntValue . $this->StringValue;
 		}
 
-		public function Equals($other) {
+		public function equals($other)
+		{
 			if ($other instanceof IntString) {
 				if ($this->IntValue === $other->IntValue) {
 					if ($this->StringValue === $other->StringValue) {
@@ -102,7 +109,8 @@ namespace NelsonMartell {
 		 * @return  integer  Cero (0), si esta instancia es igual a $other; mayor a cero (>0),
 		 *     si es mayor a $other; menor a cero (<0), si es menor.
 		 * */
-		public function CompareTo($other) {
+		public function compareTo($other)
+		{
 
 			$r = $this->Equals($other) ? 0 : 9999;
 
@@ -122,6 +130,5 @@ namespace NelsonMartell {
 		}
 
 		#endregion
-
 	}
 }
