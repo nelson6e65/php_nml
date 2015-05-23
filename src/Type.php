@@ -4,7 +4,7 @@
  *
  * Content:
  * - Class definition:    [NelsonMartell]  Type
- * - Function definition: []               typeof(mixed)
+ * - Function definition: []			   typeof(mixed)
  *
  * Copyright © 2013-2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -19,6 +19,7 @@
  * */
 
 namespace NelsonMartell {
+
 	use \ReflectionClass;
 	use \ReflectionProperty;
 	use \ReflectionMethod;
@@ -29,14 +30,16 @@ namespace NelsonMartell {
 	 *
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * */
-	final class Type extends Object {
+	final class Type extends Object
+	{
 
 		/**
 		 * Gets the type of specified $obj and collect some info about itself.
 		 *
 		 * @param  mixed  $obj  Target object.
 		 * */
-		function __construct($obj) {
+		public function __construct($obj)
+		{
 			parent::__construct();
 			unset($this->Namespace, $this->Name, $this->ShortName, $this->Vars, $this->Methods);
 
@@ -92,7 +95,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  string
 		 * */
-		public function get_Name() {
+		public function get_Name()
+		{
 			return $this->_name;
 		}
 
@@ -111,7 +115,8 @@ namespace NelsonMartell {
 		 * @return  string
 		 * @see  Type::ShortName
 		 * */
-		public function get_ShortName() {
+		public function get_ShortName()
+		{
 			return $this->_shortName;
 		}
 
@@ -131,7 +136,8 @@ namespace NelsonMartell {
 		 * @return  string|NULL
 		 * @see  Type::Namespace
 		 * */
-		public function get_Namespace() {
+		public function get_Namespace()
+		{
 			return $this->_namespace;
 		}
 
@@ -144,8 +150,9 @@ namespace NelsonMartell {
 		 * */
 		public $Vars;
 		private $_vars = null;
-		public function get_Vars() {
-			if ($this->_vars == NULL) {
+		public function get_Vars()
+		{
+			if ($this->_vars == null) {
 				$this->_vars = $this->_reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED);
 			}
 			return $this->_vars;
@@ -160,7 +167,8 @@ namespace NelsonMartell {
 		 * */
 		public $Methods;
 		private $_methods = null;
-		public function get_Methods() {
+		public function get_Methods()
+		{
 			if ($this->_methods == null) {
 				$this->_methods = $this->_reflectionObject->getMethods(ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED);
 			}
@@ -173,7 +181,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean True if this type is null; other case, False.
 		 * */
-		public function IsNull() {
+		public function isNull()
+		{
 			if ($this->Name == 'NULL' || $this->Name == 'null') {
 				return true;
 			}
@@ -187,7 +196,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean True if this type is NOT null; other case, False.
 		 * */
-		public function IsNotNull() {
+		public function isNotNull()
+		{
 			return !$this->IsNull();
 		}
 
@@ -198,7 +208,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean  True, if this Type is a custom class; another case, False.
 		 * */
-		public function IsCustom() {
+		public function isCustom()
+		{
 			switch ($this->Name) {
 				case 'boolean':
 				case 'integer':
@@ -219,7 +230,8 @@ namespace NelsonMartell {
 		 * @return  boolean
 		 * @see  is_scalar()
 		 * */
-		public function IsScalar() {
+		public function isScalar()
+		{
 			$r = false;
 
 			switch ($this->Name) {
@@ -244,7 +256,8 @@ namespace NelsonMartell {
 		 * @return  boolean
 		 * @deprecated  Use more precise method: Type::IsScalar, which excludes `array`.
 		 * */
-		public function IsValueType() {
+		public function isValueType()
+		{
 			switch($this->Name){
 				case 'string':
 				case 'integer':
@@ -263,7 +276,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean
 		 * */
-		public function IsReferenceType() {
+		public function isReferenceType()
+		{
 			return !IsValueType();
 		}
 
@@ -273,7 +287,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  string
 		 * */
-		public function ToString() {
+		public function toString()
+		{
 			$s = $this->Name;
 
 			if ($this->IsCustom()) {
@@ -291,9 +306,9 @@ namespace NelsonMartell {
 		 * @return  Type
 		 * @deprecated
 		 * */
-		public static function typeof($obj) {
+		public static function typeof($obj)
+		{
 			return new static($obj);
 		}
-
 	}
 }
