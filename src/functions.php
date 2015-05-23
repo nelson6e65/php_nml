@@ -35,10 +35,10 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  * @see  dgettext
  * @see  String::Format
  * */
-function nml_msg($message, $args = null) {
-	$s = String::Format($message, array_slice(func_get_args(), 1));
-
-	return dgettext(NML_GETTEXT_DOMAIN, $s);
+function nml_msg($message, $args = null)
+{
+    $s = String::Format($message, array_slice(func_get_args(), 1));
+    return dgettext(NML_GETTEXT_DOMAIN, $s);
 }
 
 
@@ -55,25 +55,26 @@ function nml_msg($message, $args = null) {
  * @see  dngettext
  * @see  String::Format
  * */
-function nml_nmsg($singular, $plural, $n, $args = null) {
-	$s = String::Format($singular, array_slice(func_get_args(), 1));
-	$p = String::Format($plural, array_slice(func_get_args(), 1));
+function nml_nmsg($singular, $plural, $n, $args = null)
+{
+    $s = String::Format($singular, array_slice(func_get_args(), 1));
+    $p = String::Format($plural, array_slice(func_get_args(), 1));
 
-	return dngettext(NML_GETTEXT_DOMAIN, $s, $p, $n);
+    return dngettext(NML_GETTEXT_DOMAIN, $s, $p, $n);
 }
 
 if (!function_exists('typeof')) {
-
-	/**
-	 * Obtiene el tipo del objeto especificado.
-	 * Es un alias para el constructor de la clase Type.
-	 *
-	 *
-	 * @param   mixed  $obj Objeto al cual se le extraerá su tipo.
-	 * @return  Type
-	 * @see  Type::__construct
-	 * */
-	function typeof($obj) {
-		return new Type($obj);
-	}
+    /**
+     * Obtiene el tipo del objeto especificado.
+     * Es un alias para el constructor de la clase Type.
+     *
+     *
+     * @param   mixed  $obj Objeto al cual se le extraerá su tipo.
+     * @return  Type
+     * @see  Type::__construct
+     * */
+    function typeof($obj)
+    {
+        return new Type($obj);
+    }
 }

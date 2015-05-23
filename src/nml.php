@@ -21,4 +21,4 @@ define('NML_VERSION', '0.4.6');
 define('NML_VERSION_MAJOR', 0);
 define('NML_VERSION_MINOR', 4);
 define('NML_VERSION_BUILD', 6);
-define('NML_VERSION_REVISION', NULL);
+define('NML_VERSION_REVISION', null);
