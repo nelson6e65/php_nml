@@ -18,6 +18,7 @@
  * */
 
 namespace NelsonMartell {
+
     use \InvalidArgumentException;
 
     /**
@@ -28,7 +29,8 @@ namespace NelsonMartell {
      *
      * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
      * */
-    final class Version extends Object implements IEquatable, IComparable {
+    final class Version extends Object implements IEquatable, IComparable
+    {
 
         /**
          * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
@@ -42,24 +44,69 @@ namespace NelsonMartell {
          * @param  int|string|VersionComponent|NULL  $revision  Componente de revisión
          * @throw  InvalidArgumentException
          * */
-        function __construct($major, $minor, $build = null, $revision = null) {
+        public function __construct($major, $minor, $build = null, $revision = null)
+        {
             parent::__construct();
             unset($this->Major, $this->Minor, $this->Build, $this->Revision);
 
             if (!is_integer($major)) {
-                throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "major", 1, typeof(0), typeof($major)));
+                throw new InvalidArgumentException(
+                    sprintf(
+                        dgettext(
+                            'nml',
+                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. " .
+                            "Convert value or use the static method Version::parse."
+                        ),
+                        "major",
+                        1,
+                        typeof(0),
+                        typeof($major)
+                    )
+                );
             }
 
             if (!is_integer($minor)) {
-                throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. Convert value or use the static method Version::Parse(string|mixed) to create a new instance from an string."), "minor", 2, typeof(0), typeof($major)));
+                throw new InvalidArgumentException(
+                    sprintf(
+                        dgettext(
+                            'nml',
+                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. " .
+                            "Convert value or use the static method Version::parse."
+                        ),
+                        "minor",
+                        2,
+                        typeof(0),
+                        typeof($minor)
+                    )
+                );
             }
 
             if ($major < 0) {
-                throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "major", 1, $major));
+                throw new InvalidArgumentException(
+                    sprintf(
+                        dgettext(
+                            'nml',
+                            "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."
+                        ),
+                        "major",
+                        1,
+                        $major
+                    )
+                );
             }
 
             if ($minor < 0) {
-                throw new InvalidArgumentException(sprintf(dgettext('nml', "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."), "minor", 2, $minor));
+                throw new InvalidArgumentException(
+                    sprintf(
+                        dgettext(
+                            'nml',
+                            "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."
+                        ),
+                        "minor",
+                        2,
+                        $minor
+                    )
+                );
             }
 
             $this->_major = $major;
@@ -75,7 +122,8 @@ namespace NelsonMartell {
          * @param   string  Cadena a convertir.
          * @return  Version Objeto convertido desde $value.
          * */
-        public static function Parse($value) {
+        public static function parse($value)
+        {
             if ($value instanceof Version) {
                 return $value;
             }
@@ -88,7 +136,15 @@ namespace NelsonMartell {
 
             if ($c > 4 || $c < 2) {
                 //var_dump($version);
-                throw new InvalidArgumentException(sprintf(dgettext('nml', "Unable to parse. Argument passed has an invalid format: '%s'."), $value));
+                throw new InvalidArgumentException(
+                    sprintf(
+                        dgettext(
+                            'nml',
+                            "Unable to parse. Argument passed has an invalid format: '%s'."
+                        ),
+                        $value
+                    )
+                );
             }
 
 
@@ -97,10 +153,10 @@ namespace NelsonMartell {
             $build = null;
             $revision = null;
 
-            if(count($version) >= 3) {
+            if (count($version) >= 3) {
                 $build = VersionComponent::Parse($version[2]);
 
-                if(count($version) == 4) {
+                if (count($version) == 4) {
                     $revision = VersionComponent::Parse($version[3]);
                 }
             }
@@ -120,7 +176,10 @@ namespace NelsonMartell {
         public $Major;
         private $_major;
 
-        public function get_Major() { return $this->_major; }
+        public function get_Major()
+        {
+            return $this->_major;
+        }
 
 
         /**
@@ -133,7 +192,10 @@ namespace NelsonMartell {
         public $Minor;
         private $_minor;
 
-        public function get_Minor() { return $this->_minor; }
+        public function get_Minor()
+        {
+            return $this->_minor;
+        }
 
         /**
          * Obtiene el valor del componente de compilación del número de versión del objeto actual.
@@ -145,7 +207,10 @@ namespace NelsonMartell {
         public $Build;
         private $_build;
 
-        public function get_Build() { return $this->_build; }
+        public function get_Build()
+        {
+            return $this->_build;
+        }
 
         /**
          * Obtiene el valor del componente de revisión del número de versión del objeto actual.
@@ -157,7 +222,10 @@ namespace NelsonMartell {
         public $Revision;
         private $_revision;
 
-        public function get_Revision() { return $this->_revision; }
+        public function get_Revision()
+        {
+            return $this->_revision;
+        }
 
 
         /**
@@ -171,7 +239,8 @@ namespace NelsonMartell {
          * @see  VersionComponent::IsNull
          * @see  Version::IsValid
          * */
-        public function ToString() {
+        public function toString()
+        {
             $s[0] = $this->Major;
             $s[1] = $this->Minor;
 
@@ -202,7 +271,8 @@ namespace NelsonMartell {
          *
          * @return  boolean  Un valor que indica si la instancia actual es válida.
          * */
-        public function IsValid() {
+        public function isValid()
+        {
             // Validación de Major y Minor:
             $r = ($this->Major > 0 or $this->Minor > 0); //#1
 
@@ -211,12 +281,14 @@ namespace NelsonMartell {
                 $r = ($this->Build->IsNull() and $this->Revision->IsNull()); // #2
 
                 if (!$r) {
-                    if ($this->Build->IsNotNull() and $this->Revision->IsNotNull()) { // Si ambos están definidos...
+                    if ($this->Build->IsNotNull() and $this->Revision->IsNotNull()) {
+                        // Si ambos están definidos...
 
                         $r = (bool)($this->Build->StringValue == ''); //#5
 
                         if (!$r) {
-                            $r = (bool)(($this->Build->StringValue == '') and ($this->Revision->StringValue == '')); //#4
+                            //#4
+                            $r = (bool)(($this->Build->StringValue == '') and ($this->Revision->StringValue == ''));
 
                             if (!$r) {
                                 if ($this->Build->StringValue != '') {
@@ -243,7 +315,8 @@ namespace NelsonMartell {
          *
          * @return  bool True si $other es igual esta instancia
          * */
-        public function Equals($other) {
+        public function equals($other)
+        {
             if ($other instanceof Version) {
                 if ($this->Major == $other->Major && $this->Minor == $other->Minor) {
                     if ($this->Build->Equals($other->Build)) {
@@ -267,7 +340,8 @@ namespace NelsonMartell {
          * @param   Version  $other
          * @return  integer  0, si es igual; >0, si es mayor; <0, si es menor.
          * */
-        public function CompareTo($other){
+        public function compareTo($other)
+        {
 
             $r = $this->Equals($other) ? 0 : 9999;
 
@@ -291,6 +365,5 @@ namespace NelsonMartell {
         }
 
         #endregion
-
     }
 }
