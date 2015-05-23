@@ -18,6 +18,7 @@
  * */
 
 namespace NelsonMartell {
+
 	use \InvalidArgumentException;
 
 	/**
@@ -27,9 +28,11 @@ namespace NelsonMartell {
 	 *
 	 * @author  Nelson Martell (nelson6e65-dev@yahoo.es)
 	 * */
-	class VersionComponent extends IntString implements IEquatable {
+	class VersionComponent extends IntString implements IEquatable
+	{
 
-		function __construct($intValue = null, $stringValue = null) {
+		public function __construct($intValue = null, $stringValue = null)
+		{
 			parent::__construct($intValue, $stringValue);
 
 			if (is_integer($intValue)) {
@@ -82,12 +85,13 @@ namespace NelsonMartell {
 			} // Only integer or null
 		}
 
-		public static function Parse($value = NULL) {
+		public static function parse($value = null)
+		{
 			if ($value instanceof VersionComponent) {
 				return $value;
 			}
 
-			if ($value === NULL or trim((string) $value) === '') {
+			if ($value === null or trim((string) $value) === '') {
 				return new VersionComponent();
 			}
 
@@ -104,8 +108,9 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean
 		 * */
-		public function IsDefault() {
-			if ($this->IntValue == 0){
+		public function isDefault()
+		{
+			if ($this->IntValue == 0) {
 				if ($this->StringValue == '') {
 					return true;
 				}
@@ -120,7 +125,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  integer|NULL
 		 * */
-		public function get_IntValue() {
+		public function get_IntValue()
+		{
 			return $this->_intValue;
 		}
 
@@ -131,7 +137,8 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean
 		 * */
-		public function IsNotDefault() {
+		public function isNotDefault()
+		{
 			return !$this->IsDefault();
 		}
 
@@ -140,8 +147,9 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean
 		 * */
-		public function IsNull() {
-			if ($this->IntValue === NULL) {
+		public function isNull()
+		{
+			if ($this->IntValue === null) {
 				return true;
 			}
 
@@ -153,9 +161,9 @@ namespace NelsonMartell {
 		 *
 		 * @return  boolean
 		 * */
-		public function IsNotNull() {
+		public function isNotNull()
+		{
 			return !$this->IsNull();
 		}
-
 	}
 }
