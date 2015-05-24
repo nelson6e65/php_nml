@@ -68,7 +68,8 @@ namespace NelsonMartell\Utilities {
                         if (!($v instanceof Version)) {
                             try {
                                 $v = Version::Parse($version);
-                            } catch (InvalidArgumentException $e) {
+                            }
+                            catch (InvalidArgumentException $e) {
                                 throw new InvalidArgumentException(
                                     '$versions argument must be an array of Version objects ' .
                                     'or any objects parseable into Version.',
@@ -88,7 +89,8 @@ namespace NelsonMartell\Utilities {
                 // Trata de convertir $versions en un objeto Versión
                 try {
                     $v = Version::Parse($versions);
-                } catch (InvalidArgumentException $e) {
+                }
+                catch (InvalidArgumentException $e) {
                     throw new InvalidArgumentException(
                         '$versions argument must be an array of Version objects (or empty), a Version object ' .
                         'or any object parseable into Version.',
@@ -234,7 +236,8 @@ namespace NelsonMartell\Utilities {
             } else {
                 try {
                     $v = Version::Parse($version);
-                } catch (InvalidArgumentException $e) {
+                }
+                catch (InvalidArgumentException $e) {
                     throw new InvalidArgumentException(
                         '$version argument must be an Version object or any object parseable into Version.',
                         0,

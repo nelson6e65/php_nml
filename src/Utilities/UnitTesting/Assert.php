@@ -20,7 +20,6 @@
 namespace NelsonMartell\Utilities\UnitTesting {
 
     use NelsonMartell\Object;
-    use NelsonMartell\Version;
     use \Exception;
 
     /**
@@ -195,7 +194,8 @@ namespace NelsonMartell\Utilities\UnitTesting {
 
             try {
                 call_user_func_array(array($obj, $method_name), $params);
-            } catch (Exception $e) {
+            }
+            catch (Exception $e) {
                 $actual = typeof($e);
             }
 
@@ -265,7 +265,8 @@ namespace NelsonMartell\Utilities\UnitTesting {
 
             try {
                 $obj->$property_name = $value;
-            } catch (Exception $e) {
+            }
+            catch (Exception $e) {
                 $actual = typeof($e);
             }
 

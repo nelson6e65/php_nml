@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'src'. DIRECTORY_SEPARATOR . 'functions.php';
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'src'. DIRECTORY_SEPARATOR . 'nml.php';
+require_once __DIR__.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'functions.php';
+require_once __DIR__.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'nml.php';
 
-bindtextdomain(NML_GETTEXT_DOMAIN, __DIR__ . DIRECTORY_SEPARATOR . 'Locale');
+bindtextdomain(NML_GETTEXT_DOMAIN, __DIR__.DIRECTORY_SEPARATOR.'Locale');
 
 /**
  * Custom autoloader for non-composer installations.
@@ -35,7 +35,7 @@ function autoload_NML($class)
         return; // Only checks for NelsonMartell namespace.
     }
 
-    $path = sprintf('%s' . DIRECTORY_SEPARATOR . '%s.php', __DIR__, implode(DIRECTORY_SEPARATOR, $classArray));
+    $path = sprintf('%s'.DIRECTORY_SEPARATOR.'%s.php', __DIR__, implode(DIRECTORY_SEPARATOR, $classArray));
 
     if (is_file($path)) {
         require_once($path);

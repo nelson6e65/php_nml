@@ -72,14 +72,14 @@ namespace NelsonMartell {
             $error = false;
 
             if (!property_exists($this, $name)) {
-                $error = dgettext('nml', 'Property do not exists') . '.';
+                $error = dgettext('nml', 'Property do not exists').'.';
             }
 
-            $getter = 'get' . $name;
+            $getter = 'get'.$name;
 
             if (!$error) {
                 if (!method_exists($this, $getter)) {
-                    $error = dgettext('nml', 'Property is write only') . '.'; //?
+                    $error = dgettext('nml', 'Property is write only').'.'; //?
                 }
             }
 
@@ -112,15 +112,15 @@ namespace NelsonMartell {
             $error = false;
 
             if (!property_exists($this, $name)) {
-                $error = dgettext('nml', 'Property do not exists') . '.';
+                $error = dgettext('nml', 'Property do not exists').'.';
             }
 
-            $setter = 'set' . $name;
+            $setter = 'set'.$name;
 
             if (!$error) {
                 if (!method_exists($this, $setter)) {
                     //La propiedad existe, pero no tiene establecido el método setter.
-                    $error = dgettext('nml', 'Property is read only') . '.';
+                    $error = dgettext('nml', 'Property is read only').'.';
                 }
             }
 
@@ -172,7 +172,7 @@ namespace NelsonMartell {
                         sprintf(
                             dgettext(
                                 'nml',
-                                'Using default %s method. ' .
+                                'Using default %s method. '.
                                 'You can replace its behavior, overriding it by creating %s::ToString() public method.'
                             ),
                             __METHOD__,
@@ -183,7 +183,7 @@ namespace NelsonMartell {
                 }
             }
 
-            return '{ ' . $type . ' }';
+            return '{ '.$type.' }';
         }
 
         /**

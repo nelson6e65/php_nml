@@ -60,7 +60,7 @@ namespace NelsonMartell {
 
                 case 'resource':
                     $shortName = get_resource_type($obj);
-                    $name = 'resource: ' . $shortName;
+                    $name = 'resource: '.$shortName;
                     $vars = [];
                     $methods = [];
                     break;
@@ -258,7 +258,7 @@ namespace NelsonMartell {
          * */
         public function isValueType()
         {
-            switch($this->Name){
+            switch ($this->Name) {
                 case 'string':
                 case 'integer':
                 case 'double':
