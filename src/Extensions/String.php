@@ -68,6 +68,6 @@ class String extends \Cake\Utility\Text
 
         $data = func_num_args() === 2 ? (array) $args : array_slice(func_get_args(), 1);
 
-        return parent::insert($format, $data, $options);
+        return static::insert($format, $data, $options);
     }
 }
