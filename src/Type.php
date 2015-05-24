@@ -95,7 +95,7 @@ namespace NelsonMartell {
          *
          * @return  string
          * */
-        public function get_Name()
+        public function getName()
         {
             return $this->_name;
         }
@@ -115,7 +115,7 @@ namespace NelsonMartell {
          * @return  string
          * @see  Type::ShortName
          * */
-        public function get_ShortName()
+        public function getShortName()
         {
             return $this->_shortName;
         }
@@ -136,7 +136,7 @@ namespace NelsonMartell {
          * @return  string|NULL
          * @see  Type::Namespace
          * */
-        public function get_Namespace()
+        public function getNamespace()
         {
             return $this->_namespace;
         }
@@ -150,7 +150,7 @@ namespace NelsonMartell {
          * */
         public $Vars;
         private $_vars = null;
-        public function get_Vars()
+        public function getVars()
         {
             if ($this->_vars == null) {
                 $this->_vars = $this->_reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED);
@@ -167,7 +167,7 @@ namespace NelsonMartell {
          * */
         public $Methods;
         private $_methods = null;
-        public function get_Methods()
+        public function getMethods()
         {
             if ($this->_methods == null) {
                 $this->_methods = $this->_reflectionObject->getMethods(ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED);

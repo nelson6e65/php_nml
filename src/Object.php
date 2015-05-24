@@ -37,11 +37,11 @@ namespace NelsonMartell {
      * Luego, las respectivas funciones siguiendo el formato "get_" o "set_", seguido del nombre de
      * la propiedad.
      *
-     * public function get_Nombre() {
+     * public function getNombre() {
      *         return $this->_nombre;
      * }
      *
-     * public function set_Nombre(string $value) {
+     * public function setNombre(string $value) {
      *         // Validaciones
      *         $this->_nombre = $value;
      * }
@@ -75,7 +75,7 @@ namespace NelsonMartell {
                 $error = dgettext('nml', 'Property do not exists') . '.';
             }
 
-            $getter = 'get_' . $name;
+            $getter = 'get' . $name;
 
             if (!$error) {
                 if (!method_exists($this, $getter)) {
@@ -115,7 +115,7 @@ namespace NelsonMartell {
                 $error = dgettext('nml', 'Property do not exists') . '.';
             }
 
-            $setter = 'set_' . $name;
+            $setter = 'set' . $name;
 
             if (!$error) {
                 if (!method_exists($this, $setter)) {

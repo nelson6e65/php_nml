@@ -68,13 +68,13 @@ namespace NelsonMartell {
         protected $_stringValue;
 
         public $IntValue;
-        public function get_IntValue()
+        public function getIntValue()
         {
             return (int) $this->_intValue;
         }
 
         public $StringValue;
-        public function get_StringValue()
+        public function getStringValue()
         {
             return $this->_stringValue;
         }

@@ -38,7 +38,7 @@ namespace NelsonMartell\Collections {
          * @see     NelsonMartell\Object
          * @return  integer
          * */
-        public function get_Count();
+        public function getCount();
 
         /**
          * Agrega un elemento a la colección.

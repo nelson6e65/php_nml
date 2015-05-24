@@ -218,7 +218,7 @@ namespace NelsonMartell\Collections {
          *
          * @return  integer
          * */
-        public function get_Count()
+        public function getCount()
         {
             return $this->_count;
         }

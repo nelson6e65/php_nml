@@ -176,7 +176,7 @@ namespace NelsonMartell {
         public $Major;
         private $_major;
 
-        public function get_Major()
+        public function getMajor()
         {
             return $this->_major;
         }
@@ -192,7 +192,7 @@ namespace NelsonMartell {
         public $Minor;
         private $_minor;
 
-        public function get_Minor()
+        public function getMinor()
         {
             return $this->_minor;
         }
@@ -207,7 +207,7 @@ namespace NelsonMartell {
         public $Build;
         private $_build;
 
-        public function get_Build()
+        public function getBuild()
         {
             return $this->_build;
         }
@@ -222,7 +222,7 @@ namespace NelsonMartell {
         public $Revision;
         private $_revision;
 
-        public function get_Revision()
+        public function getRevision()
         {
             return $this->_revision;
         }

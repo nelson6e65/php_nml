@@ -125,7 +125,7 @@ namespace NelsonMartell {
          *
          * @return  integer|NULL
          * */
-        public function get_IntValue()
+        public function getIntValue()
         {
             return $this->_intValue;
         }

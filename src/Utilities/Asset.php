@@ -116,12 +116,12 @@ namespace NelsonMartell\Utilities {
         public $Name;
         private $_name;
 
-        public function get_Name()
+        public function getName()
         {
             return $this->_name;
         }
 
-        public function set_Name($value)
+        public function setName($value)
         {
             if (!is_string($value)) {
                 throw new InvalidArgumentException('$value argument must be string.');
@@ -144,7 +144,7 @@ namespace NelsonMartell\Utilities {
         public $ShortName;
         private $_shortName;
 
-        public function get_ShortName()
+        public function getShortName()
         {
             return $this->_shortName;
         }
@@ -157,7 +157,7 @@ namespace NelsonMartell\Utilities {
         public $Versions;
         private $_versions;
 
-        public function get_Versions()
+        public function getVersions()
         {
             return $this->_versions;
         }
@@ -176,12 +176,12 @@ namespace NelsonMartell\Utilities {
         public $CdnUri;
         private $_cdnUri;
 
-        public function get_CdnUri()
+        public function getCdnUri()
         {
             return $this->_cdnUri;
         }
 
-        public function set_CdnUri($value)
+        public function setCdnUri($value)
         {
             $this->_cdnUri = (string) $value;
         }
@@ -193,7 +193,7 @@ namespace NelsonMartell\Utilities {
          * @var string Ruta inicial del recurso
          * */
         public $RootDirectory;
-        public function get_RootDirectory()
+        public function getRootDirectory()
         {
             return $this->ShortName . '/';
         }
