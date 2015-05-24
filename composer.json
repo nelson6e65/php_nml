@@ -20,10 +20,10 @@
 	},
 	"require": {
 		"php": ">=5.5.0",
-		"cakephp/utility": "3.*",
+		"cakephp/utility": "3.*"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "*",
+		"phpunit/phpunit": "*"
 	},
 	"autoload": {
 		"psr-4": {
@@ -36,7 +36,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"NelsonMartell\\Test\\": "tests",
+			"NelsonMartell\\Test\\": "tests"
 		}
 	}
 }

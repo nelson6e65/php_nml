@@ -1,5 +1,10 @@
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/build.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/build-status/master)
+
 [![API Docs](http://apigenerator.org/badge.png)](http://nelson6e65.github.io/php_nml/api)
-# [PHP: Nelson Martell Library](http://nelson6e65.github.io/php_nml)
+
+# [PHP: Nelson Martell Library](http://nelson6e65.github.io/php_nml) 
 
 ## Description
 Provides a set of classes for PHP applications.
