@@ -20,8 +20,8 @@
 
 namespace NelsonMartell\Collections {
 
-    use NelsonMartell\Object;
     use NelsonMartell\Extensions\String;
+    use NelsonMartell\Object;
 
     /**
      * Clase base de una colección de objetos, que provee una implementación predeterminada de la
@@ -119,6 +119,9 @@ namespace NelsonMartell\Collections {
             return $this->_items[$index];
         }
 
+        /**
+         * @param integer $index
+         */
         protected function removeItem($index)
         {
             if ($index >= $this->Count || $index < 0) {

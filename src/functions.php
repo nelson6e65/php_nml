@@ -18,8 +18,8 @@
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-use NelsonMartell\Type;
 use NelsonMartell\Extensions\String;
+use NelsonMartell\Type;
 
 define('NML_GETTEXT_DOMAIN', 'nml');
 

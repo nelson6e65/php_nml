@@ -81,7 +81,7 @@ namespace NelsonMartell {
 
         public function toString()
         {
-            return $this->IntValue . $this->StringValue;
+            return $this->IntValue.$this->StringValue;
         }
 
         public function equals($other)
