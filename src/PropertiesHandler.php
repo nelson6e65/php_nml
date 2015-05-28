@@ -37,24 +37,24 @@ namespace NelsonMartell {
          * You can override to use another prefix.
          * @var string
          */
-        const GETTER_PREFIX = 'get';
+        protected static $getterPrefix = 'get';
 
         /**
          * Prefix for methods witch set properties value.
          * You can override to use another prefix.
          * @var string
          */
-        const SETTER_PREFIX = 'set';
+        protected static $setterPrefix = 'set';
 
         /**
          * Obtiene el valor de una propiedad, usando automáticamente el método
-         * `GETTER_PREFIX + nombre_propiedad` (getter).
+         * `$getterPrefix + nombre_propiedad` (getter).
          *
          * Restringe la obtención de una propiedad no definida dentro de la clase
          * si no posee su método getter.
          *
          * @param string  $name Property name.
-         * @see   PropertiesHandler::GETTER_PREFIX
+         * @see   PropertiesHandler::$getterPrefix
          * */
         public function __get($name)
         {
@@ -64,7 +64,7 @@ namespace NelsonMartell {
                 $error = dgettext('nml', 'Property do not exists').'.';
             }
 
-            $getter = 'get'.$name;
+            $getter = static::$getterPrefix.$name;
 
             if (!$error) {
                 if (!method_exists($this, $getter)) {
@@ -91,13 +91,14 @@ namespace NelsonMartell {
 
         /**
          * Establece el valor de una propiedad, usando automáticamente el método
-         * `SETTER_PREFIX + nombre_propiedad` (setter).
+         * `$setterPrefix + nombre_propiedad` (setter).
          * Restringe la asignación de una propiedad no definida dentro de la clase
          * si no posee su método setter.
          *
          * @param string  $name  Property name-
          * @param mixed   $value Property value.
-         *
+         * @see   PropertiesHandler::$setterPrefix
+         * @return void
          * */
         public function __set($name, $value)
         {
@@ -107,7 +108,7 @@ namespace NelsonMartell {
                 $error = dgettext('nml', 'Property do not exists').'.';
             }
 
-            $setter = 'set'.$name;
+            $setter = static::$setterPrefix.$name;
 
             if (!$error) {
                 if (!method_exists($this, $setter)) {
