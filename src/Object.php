@@ -21,8 +21,6 @@ namespace NelsonMartell {
 
     use \BadMethodCallException;
 
-    spl_autoload_call('NelsonMartell\Type');
-
     /**
      * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
      *
@@ -55,90 +53,10 @@ namespace NelsonMartell {
       * */
     class Object
     {
+        use PropertiesHandler;
+
         public function __construct()
         {
-        }
-
-        /**
-         * Obtiene el valor de una propiedad. Ésta debe definir un método getter, que sigue este
-         * modelo: 'get_' + $name + '()'.
-         * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
-         * método getter.
-         *
-         *
-         * */
-        public function __get($name)
-        {
-            $error = false;
-
-            if (!property_exists($this, $name)) {
-                $error = dgettext('nml', 'Property do not exists').'.';
-            }
-
-            $getter = 'get'.$name;
-
-            if (!$error) {
-                if (!method_exists($this, $getter)) {
-                    $error = dgettext('nml', 'Property is write only').'.'; //?
-                }
-            }
-
-            if ($error) {
-                throw new BadMethodCallException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Unable to access to '%s' property in '%s' class. Reason: %s"
-                        ),
-                        $name,
-                        $this->GetType()->Name,
-                        $error
-                    )
-                );
-            }
-
-            return $this->$getter();
-        }
-
-        /**
-         * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
-         * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
-         * método setter.
-         *
-         *
-         * */
-        public function __set($name, $value)
-        {
-            $error = false;
-
-            if (!property_exists($this, $name)) {
-                $error = dgettext('nml', 'Property do not exists').'.';
-            }
-
-            $setter = 'set'.$name;
-
-            if (!$error) {
-                if (!method_exists($this, $setter)) {
-                    //La propiedad existe, pero no tiene establecido el método setter.
-                    $error = dgettext('nml', 'Property is read only').'.';
-                }
-            }
-
-            if ($error) {
-                throw new BadMethodCallException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Unable to assign '%s' property in '%s' class. Reason: %s"
-                        ),
-                        $name,
-                        $this->GetType()->Name,
-                        $error
-                    )
-                );
-            }
-
-            $this->$setter($value);
         }
 
         /**
