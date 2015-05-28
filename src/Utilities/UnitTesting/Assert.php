@@ -57,6 +57,7 @@ namespace NelsonMartell\Utilities\UnitTesting {
          *
          *
          * @param   string $msg Custom message to append on assert failed.
+         * @param boolean $expected
          * @return  boolean true si son iguales; false, en caso contrario.
          * */
         public static function areEqual($expected, $actual, $msg = '')

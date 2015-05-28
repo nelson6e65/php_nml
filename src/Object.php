@@ -50,7 +50,7 @@ namespace NelsonMartell {
      *
      *
      * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
-      * */
+     * */
     class Object
     {
         use PropertiesHandler;
