@@ -47,12 +47,14 @@ namespace NelsonMartell {
         const SETTER_PREFIX = 'set';
 
         /**
-         * Obtiene el valor de una propiedad. Ésta debe definir un método getter, que sigue este
-         * modelo: 'get_' + $name + '()'.
-         * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
-         * método getter.
+         * Obtiene el valor de una propiedad, usando automáticamente el método
+         * `GETTER_PREFIX + nombre_propiedad` (getter).
          *
+         * Restringe la obtención de una propiedad no definida dentro de la clase
+         * si no posee su método getter.
          *
+         * @param string  $name Property name.
+         * @see   PropertiesHandler::GETTER_PREFIX
          * */
         public function __get($name)
         {
@@ -88,10 +90,13 @@ namespace NelsonMartell {
         }
 
         /**
-         * Establece el valor de una propiedad según el modelo: 'set_' + $name + '(' + $value + ')'
-         * Restringe la asignación de una propiedad no definida dentro de la clase si no posee su
-         * método setter.
+         * Establece el valor de una propiedad, usando automáticamente el método
+         * `SETTER_PREFIX + nombre_propiedad` (setter).
+         * Restringe la asignación de una propiedad no definida dentro de la clase
+         * si no posee su método setter.
          *
+         * @param string  $name  Property name-
+         * @param mixed   $value Property value.
          *
          * */
         public function __set($name, $value)
