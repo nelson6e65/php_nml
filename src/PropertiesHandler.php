@@ -33,6 +33,20 @@ namespace NelsonMartell {
     trait PropertiesHandler
     {
         /**
+         * Prefix for methods witch get properties value.
+         * You can override to use another prefix.
+         * @var string
+         */
+        const GETTER_PREFIX = 'get';
+
+        /**
+         * Prefix for methods witch set properties value.
+         * You can override to use another prefix.
+         * @var string
+         */
+        const SETTER_PREFIX = 'set';
+
+        /**
          * Obtiene el valor de una propiedad. Ésta debe definir un método getter, que sigue este
          * modelo: 'get_' + $name + '()'.
          * Restringe la obtención de una propiedad no definida dentro de la clase si no posee su
