@@ -63,7 +63,7 @@ namespace NelsonMartell {
                         $middle = '([a-z]|[0-9]|-)*';
                         $end = '([a-z]|[0-9])$~';
 
-                        $pattern = $start . $middle . $end;
+                        $pattern = $start.$middle.$end;
                     }
 
                     $correct = (boolean) preg_match($pattern, $this->StringValue);
