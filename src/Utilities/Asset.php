@@ -71,7 +71,7 @@ namespace NelsonMartell\Utilities {
                             }
                             catch (InvalidArgumentException $e) {
                                 throw new InvalidArgumentException(
-                                    '$versions argument must be an array of Version objects ' .
+                                    '$versions argument must be an array of Version objects '.
                                     'or any objects parseable into Version.',
                                     0,
                                     $e
@@ -92,7 +92,7 @@ namespace NelsonMartell\Utilities {
                 }
                 catch (InvalidArgumentException $e) {
                     throw new InvalidArgumentException(
-                        '$versions argument must be an array of Version objects (or empty), a Version object ' .
+                        '$versions argument must be an array of Version objects (or empty), a Version object '.
                         'or any object parseable into Version.',
                         0,
                         $e
@@ -197,7 +197,7 @@ namespace NelsonMartell\Utilities {
         public $RootDirectory;
         public function getRootDirectory()
         {
-            return $this->ShortName . '/';
+            return $this->ShortName.'/';
         }
 
         const NEWEST = 'newest';

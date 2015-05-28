@@ -54,7 +54,7 @@ namespace NelsonMartell {
                     sprintf(
                         dgettext(
                             'nml',
-                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. " .
+                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. ".
                             "Convert value or use the static method Version::parse."
                         ),
                         "major",
@@ -70,7 +70,7 @@ namespace NelsonMartell {
                     sprintf(
                         dgettext(
                             'nml',
-                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. " .
+                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. ".
                             "Convert value or use the static method Version::parse."
                         ),
                         "minor",
@@ -284,11 +284,11 @@ namespace NelsonMartell {
                     if ($this->Build->IsNotNull() and $this->Revision->IsNotNull()) {
                         // Si ambos están definidos...
 
-                        $r = (bool)($this->Build->StringValue == ''); //#5
+                        $r = (bool) ($this->Build->StringValue == ''); //#5
 
                         if (!$r) {
                             //#4
-                            $r = (bool)(($this->Build->StringValue == '') and ($this->Revision->StringValue == ''));
+                            $r = (bool) (($this->Build->StringValue == '') and ($this->Revision->StringValue == ''));
 
                             if (!$r) {
                                 if ($this->Build->StringValue != '') {
@@ -313,6 +313,7 @@ namespace NelsonMartell {
          * Determina si el objeto $other especificado es igual a la instancia actual.
          *
          *
+         * @param Version $other
          * @return  bool True si $other es igual esta instancia
          * */
         public function equals($other)
