@@ -97,7 +97,7 @@ class String extends \Cake\Utility\Text
      */
     public static function ensureIsString($obj)
     {
-        if (is_null($obj)) {
+        if (!is_string(static::ensureIsNotNull($obj))) {
             $msg = nml_msg('Provided object must to be an string; "{0}" given.', typeof($obj));
             throw new InvalidArgumentException($msg);
         }
