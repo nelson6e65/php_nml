@@ -3,7 +3,7 @@
  * PHP: Nelson Martell Library file
  *
  * Content:
- * - Class definition:  [NelsonMartell]  PropertiesHandler
+ * - Trait definition:  [NelsonMartell]  PropertiesHandler
  *
  * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -19,8 +19,8 @@
 
 namespace NelsonMartell {
 
+    use NelsonMartell\Extensions\String;
     use \BadMethodCallException;
-
 
     /**
      * Permite encapsular propiedades para usar setters y getters automáticamente.
@@ -29,7 +29,7 @@ namespace NelsonMartell {
      *
      *
      * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
-      * */
+     * */
     trait PropertiesHandler
     {
         /**
@@ -58,32 +58,11 @@ namespace NelsonMartell {
          * */
         public function __get($name)
         {
-            $error = false;
-
-            if (!property_exists($this, $name)) {
-                $error = dgettext('nml', 'Property do not exists').'.';
-            }
-
-            $getter = static::$getterPrefix.$name;
-
-            if (!$error) {
-                if (!method_exists($this, $getter)) {
-                    $error = dgettext('nml', 'Property is write only').'.'; //?
-                }
-            }
-
-            if ($error) {
-                throw new BadMethodCallException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Unable to access to '%s' property in '%s' class. Reason: %s"
-                        ),
-                        $name,
-                        $this->GetType()->Name,
-                        $error
-                    )
-                );
+            try {
+                $getter = $this->getPropertyGetter($name);
+            } catch (BadMethodCallException $error) {
+                $msg = nml_msg('Unable to get the property value in "{0}" class.', typeof($this)->Name);
+                throw new BadMethodCallException($msg, 31, $error);
             }
 
             return $this->$getter();
@@ -102,37 +81,155 @@ namespace NelsonMartell {
          * */
         public function __set($name, $value)
         {
-            $error = false;
-
-            if (!property_exists($this, $name)) {
-                $error = dgettext('nml', 'Property do not exists').'.';
-            }
-
-            $setter = static::$setterPrefix.$name;
-
-            if (!$error) {
-                if (!method_exists($this, $setter)) {
-                    //La propiedad existe, pero no tiene establecido el método setter.
-                    $error = dgettext('nml', 'Property is read only').'.';
-                }
-            }
-
-            if ($error) {
-                throw new BadMethodCallException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Unable to assign '%s' property in '%s' class. Reason: %s"
-                        ),
-                        $name,
-                        $this->GetType()->Name,
-                        $error
-                    )
-                );
+            try {
+                $setter = $this->getPropertySetter($name);
+            } catch (BadMethodCallException $error) {
+                $msg = nml_msg('Unable to set the property value in "{0}" class.', typeof($this)->Name);
+                throw new BadMethodCallException($msg, 41, $error);
             }
 
             $this->$setter($value);
         }
 
+        /**
+         * Ensures that property provided exists in this class.
+         *
+         * @param  string $name Property name.
+         * @return string       Same property name, but validated.
+         * @throws BadMethodCallException if property do not exists or name is invalid.
+         */
+        private function ensurePropertyExists($name)
+        {
+            try {
+                $pName = String::ensureIsValidVarName($name);
+            } catch (InvalidArgumentException $error) {
+                $msg = nml_msg('Property name is not valid.');
+                throw new BadMethodCallException($msg, 10, $error);
+            }
+
+            if (!property_exists($this, $name)) {
+                $args = [
+                    'class'    => typeof($this)->Name,
+                    'property' => $name,
+                ];
+
+                $msg = nml_msg('Property "{class}::{property}" do not exists.', $args);
+
+                throw new BadMethodCallException($msg, 11);
+            }
+
+            return $name;
+        }
+
+        /**
+         * Ensures that method provided exists in this class.
+         *
+         * @param  string $name Method name
+         * @return string       Same method name, but validated.
+         */
+        private function ensureMethodExists($name)
+        {
+            try {
+                $mName = String::ensureIsValidVarName($name);
+            } catch (InvalidArgumentException $error) {
+                $msg = nml_msg('Method name is not valid.');
+                throw new BadMethodCallException($msg, 20, $error);
+            }
+
+            if (!method_exists($this, $name)) {
+                $args = [
+                    'class'  => typeof($this)->Name,
+                    'method' => $name,
+                ];
+
+                $msg = nml_msg('Method "{class}::{method}" do not exists.', $args);
+
+                throw new BadMethodCallException($msg, 21);
+            }
+
+            return $name;
+        }
+
+        /**
+         * Ensures that there is a setter for the provided property name.
+         *
+         * @param  string $name Property name.
+         * @return string       Same property name, after checks that setter exists.
+         * @throws BadMethodCallException if property is not writable or inexistent.
+         */
+        private function ensurePropertyHasSetter($name)
+        {
+            $setter = static::$setterPrefix.$this->ensurePropertyExists($name);
+
+            try {
+                $setter = $this->ensureMethodExists($setter);
+            } catch (BadMethodCallException $error) {
+                $args = [
+                    'class'  => typeof($this)->Name,
+                    'name'   => $name,
+                ];
+
+                $msg = nml_msg('Property "{class}::{name}" has not a setter.', $args);
+
+                throw new BadMethodCallException($msg, 40, $error);
+            }
+
+            return $name;
+        }
+
+        /**
+         * Ensures that there is a getter for the provided property name.
+         *
+         * @param  string $name Property name.
+         * @return string       Same property name, after checks that getter exists.
+         * @throws BadMethodCallException if or inexistent.
+         */
+        private function ensurePropertyHasGetter($name)
+        {
+            $getter = static::$getterPrefix.$this->ensurePropertyExists($name);
+
+            try {
+                $getter = $this->ensureMethodExists($getter);
+            } catch (BadMethodCallException $error) {
+                $args = [
+                    'class'  => typeof($this)->Name,
+                    'name'   => $name,
+                ];
+
+                $msg = nml_msg('Property "{class}::{name}" has not a getter.', $args);
+
+                throw new BadMethodCallException($msg, 30, $error);
+            }
+
+            return $name;
+        }
+
+        /**
+         * Gets the property setter method name.
+         *
+         * @param  string $name Property name.
+         * @return string
+         * @throws BadMethodCallException if property is not valid or has not setter.
+         */
+        private function getPropertySetter($name)
+        {
+            $setter = static::$setterPrefix.$this->ensurePropertyHasSetter($name);
+
+            return $setter;
+        }
+
+        /**
+         * Gets the property getter method name.
+         *
+         * @param  string $name Property name.
+         * @return string
+         * @throws BadMethodCallException if property is not valid or has not getter.
+         */
+        private function getPropertyGetter($name)
+        {
+            $setter = static::$getterPrefix.$this->ensurePropertyHasGetter($name);
+
+            return $setter;
+        }
     }
 }
