@@ -138,4 +138,22 @@ class String extends \Cake\Utility\Text
 
         return $string;
     }
+
+    /**
+     * Ensures that an string follows the PHP variables naming convention.
+     *
+     * @param  string $string [description]
+     * @return [type]         [description]
+     */
+    public static function ensureIsValidVarName($string)
+    {
+        $pattern = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/';
+
+        if (!preg_match($pattern, static::ensureIsString($string))) {
+            $msg = nml_msg('Provided string do not follows PHP variables naming convention: "{0}".', $string);
+            throw new InvalidArgumentException($msg);
+        }
+
+        return $string;
+    }
 }
