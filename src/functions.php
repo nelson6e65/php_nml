@@ -33,11 +33,15 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  *     incluir en las cadenas de formato del mensaje.
  * @return  string
  * @see  dgettext
- * @see  String::Format
+ * @see  String::format
  * */
 function nml_msg($message, $args = null)
 {
-    $s = String::Format($message, array_slice(func_get_args(), 1));
+    if (func_num_args() > 2) {
+        $args = array_slice(func_get_args(), 1);
+    }
+
+    $s = String::format($message, $args);
     return dgettext(NML_GETTEXT_DOMAIN, $s);
 }
 
