@@ -74,7 +74,7 @@ class String extends \Cake\Utility\Text
     /**
      * Ensures that object given is not null. If is `null`, throws and exception.
      *
-     * @param  mixed $string Object to validate
+     * @param  mixed $obj Object to validate
      * @throws InvalidArgumentException if object is `null`.
      * @return mixed         Same object
      */
