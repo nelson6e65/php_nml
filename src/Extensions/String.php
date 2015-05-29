@@ -70,4 +70,72 @@ class String extends \Cake\Utility\Text
 
         return static::insert($format, $data, $options);
     }
+
+    /**
+     * Ensures that object given is not null. If is `null`, throws and exception.
+     *
+     * @param  mixed $string Object to validate
+     * @throws InvalidArgumentException if object is `null`.
+     * @return mixed         Same object
+     */
+    public static function ensureIsNotNull($obj)
+    {
+        if (is_null($obj)) {
+            $msg = nml_msg('Provided object must not be NULL.');
+            throw new InvalidArgumentException($msg);
+        }
+
+        return $obj;
+    }
+
+    /**
+     * Ensures that object given is an string. Else, thows an exception
+     *
+     * @param  mixed $obj Object to validate.
+     * @return string     Same object given, but ensured that is an string.
+     * @throws InvalidArgumentException if object is not an `string`.
+     */
+    public static function ensureIsString($obj)
+    {
+        if (is_null($obj)) {
+            $msg = nml_msg('Provided object must to be an string; "{0}" given.', typeof($obj));
+            throw new InvalidArgumentException($msg);
+        }
+
+        return $obj;
+    }
+
+    /**
+     * Ensures that given string is not empty.
+     *
+     * @param  string $string String to validate.
+     * @return string         Same string given, but ensured that is not empty.
+     * @throws InvalidArgumentException if string is null or empty.
+     */
+    public static function ensureIsNotEmpty($string)
+    {
+        if (static::ensureIsString($string) === '') {
+            $msg = nml_msg('Provided string must not be empty.');
+            throw new InvalidArgumentException($msg);
+        }
+
+        return $string;
+    }
+
+    /**
+     * Ensures that given string is not empty or whitespaces.
+     *
+     * @param  string $string String to validate.
+     * @return string          Same string given, but ensured that is not whitespaces.
+     * @see    trim
+     */
+    public static function ensureIsNotWhiteSpaces($string)
+    {
+        if (trim(static::ensureIsString($string)) === '') {
+            $msg = nml_msg('Provided string must not be white spaces.');
+            throw new InvalidArgumentException($msg);
+        }
+
+        return $string;
+    }
 }
