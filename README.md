@@ -2,10 +2,8 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/build.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/build-status/master)
 
-[![API Docs](http://apigenerator.org/badge.png)](http://nelson6e65.github.io/php_nml/api)
-
 # PHP: Nelson Martell Library
-
+[![API Docs](http://apigenerator.org/badge.png)](http://nelson6e65.github.io/php_nml/api)
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Description
