@@ -6,6 +6,8 @@
 
 # PHP: Nelson Martell Library
 
+[![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Description
 Provides a set of classes for PHP applications.
 
