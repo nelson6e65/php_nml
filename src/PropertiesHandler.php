@@ -11,10 +11,10 @@
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright  Copyright © 2015 Nelson Martell
- * @link       http://nelson6e65.github.io/php_nml/
- * @since      v0.5.0
- * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
+ * @copyright Copyright © 2015 Nelson Martell
+ * @link      http://nelson6e65.github.io/php_nml/
+ * @since     v0.5.0
+ * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
 namespace NelsonMartell {
@@ -26,9 +26,7 @@ namespace NelsonMartell {
      * Permite encapsular propiedades para usar setters y getters automáticamente.
      * Por defecto, esta funcionalidad viene por defecto en la clase Object.
      *
-     *
-     *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     trait PropertiesHandler
     {
@@ -46,6 +44,7 @@ namespace NelsonMartell {
          */
         protected static $setterPrefix = 'set';
 
+
         /**
          * Obtiene el valor de una propiedad, usando automáticamente el método
          * `$getterPrefix + nombre_propiedad` (getter).
@@ -53,8 +52,11 @@ namespace NelsonMartell {
          * Restringe la obtención de una propiedad no definida dentro de la clase
          * si no posee su método getter.
          *
-         * @param string  $name Property name.
-         * @see   PropertiesHandler::$getterPrefix
+         * @param string $name Property name.
+         *
+         * @see    PropertiesHandler::$getterPrefix
+         * @return mixed
+         * @throws BadMethodCallException If unable to get the property value.
          * */
         public function __get($name)
         {
@@ -68,16 +70,19 @@ namespace NelsonMartell {
             return $this->$getter();
         }
 
+
         /**
          * Establece el valor de una propiedad, usando automáticamente el método
          * `$setterPrefix + nombre_propiedad` (setter).
          * Restringe la asignación de una propiedad no definida dentro de la clase
          * si no posee su método setter.
          *
-         * @param string  $name  Property name-
-         * @param mixed   $value Property value.
-         * @see   PropertiesHandler::$setterPrefix
+         * @param string $name  Property name.
+         * @param mixed  $value Property value.
+         *
+         * @see    PropertiesHandler::$setterPrefix
          * @return void
+         * @throws BadMethodCallException If unable to set property value.
          * */
         public function __set($name, $value)
         {
@@ -89,14 +94,17 @@ namespace NelsonMartell {
             }
 
             $this->$setter($value);
+
         }
+
 
         /**
          * Ensures that property provided exists in this class.
          *
-         * @param  string $name Property name.
-         * @return string       Same property name, but validated.
-         * @throws BadMethodCallException if property do not exists or name is invalid.
+         * @param string $name Property name.
+         *
+         * @return string Same property name, but validated.
+         * @throws BadMethodCallException If property do not exists or name is invalid.
          */
         private function ensurePropertyExists($name)
         {
@@ -107,11 +115,11 @@ namespace NelsonMartell {
                 throw new BadMethodCallException($msg, 10, $error);
             }
 
-            if (!property_exists($this, $name)) {
+            if (property_exists($this, $name) === false) {
                 $args = [
-                    'class'    => typeof($this)->Name,
-                    'property' => $name,
-                ];
+                         'class'    => typeof($this)->Name,
+                         'property' => $name,
+                        ];
 
                 $msg = nml_msg('Property "{class}::{property}" do not exists.', $args);
 
@@ -121,11 +129,14 @@ namespace NelsonMartell {
             return $name;
         }
 
+
         /**
          * Ensures that method provided exists in this class.
          *
-         * @param  string $name Method name
-         * @return string       Same method name, but validated.
+         * @param string $name Method name.
+         *
+         * @return string Same method name, but validated.
+         * @throws BadMethodCallException If method name is invalid or do not exists.
          */
         private function ensureMethodExists($name)
         {
@@ -136,11 +147,11 @@ namespace NelsonMartell {
                 throw new BadMethodCallException($msg, 20, $error);
             }
 
-            if (!method_exists($this, $name)) {
+            if (method_exists($this, $name) === false) {
                 $args = [
-                    'class'  => typeof($this)->Name,
-                    'method' => $name,
-                ];
+                         'class'  => typeof($this)->Name,
+                         'method' => $name,
+                        ];
 
                 $msg = nml_msg('Method "{class}::{method}" do not exists.', $args);
 
@@ -150,12 +161,14 @@ namespace NelsonMartell {
             return $name;
         }
 
+
         /**
          * Ensures that there is a setter for the provided property name.
          *
-         * @param  string $name Property name.
-         * @return string       Same property name, after checks that setter exists.
-         * @throws BadMethodCallException if property is not writable or inexistent.
+         * @param string $name Property name.
+         *
+         * @return string Same property name, after checks that setter exists.
+         * @throws BadMethodCallException If property is not writable or do not exists.
          */
         private function ensurePropertyHasSetter($name)
         {
@@ -165,9 +178,9 @@ namespace NelsonMartell {
                 $setter = $this->ensureMethodExists($setter);
             } catch (BadMethodCallException $error) {
                 $args = [
-                    'class'  => typeof($this)->Name,
-                    'name'   => $name,
-                ];
+                         'class' => typeof($this)->Name,
+                         'name'  => $name,
+                        ];
 
                 $msg = nml_msg('Property "{class}::{name}" has not a setter.', $args);
 
@@ -177,12 +190,14 @@ namespace NelsonMartell {
             return $name;
         }
 
+
         /**
          * Ensures that there is a getter for the provided property name.
          *
-         * @param  string $name Property name.
-         * @return string       Same property name, after checks that getter exists.
-         * @throws BadMethodCallException if or inexistent.
+         * @param string $name Property name.
+         *
+         * @return string Same property name, after checks that getter exists.
+         * @throws BadMethodCallException If property is not readable or do not exists.
          */
         private function ensurePropertyHasGetter($name)
         {
@@ -192,9 +207,9 @@ namespace NelsonMartell {
                 $getter = $this->ensureMethodExists($getter);
             } catch (BadMethodCallException $error) {
                 $args = [
-                    'class'  => typeof($this)->Name,
-                    'name'   => $name,
-                ];
+                         'class' => typeof($this)->Name,
+                         'name'  => $name,
+                        ];
 
                 $msg = nml_msg('Property "{class}::{name}" has not a getter.', $args);
 
@@ -204,12 +219,14 @@ namespace NelsonMartell {
             return $name;
         }
 
+
         /**
          * Gets the property setter method name.
          *
-         * @param  string $name Property name.
+         * @param string $name Property name.
+         *
          * @return string
-         * @throws BadMethodCallException if property is not valid or has not setter.
+         * @throws BadMethodCallException If property is not valid or has not setter.
          */
         private function getPropertySetter($name)
         {
@@ -218,12 +235,14 @@ namespace NelsonMartell {
             return $setter;
         }
 
+
         /**
          * Gets the property getter method name.
          *
-         * @param  string $name Property name.
+         * @param string $name Property name.
+         *
          * @return string
-         * @throws BadMethodCallException if property is not valid or has not getter.
+         * @throws BadMethodCallException If property is not valid or has not getter.
          */
         private function getPropertyGetter($name)
         {
