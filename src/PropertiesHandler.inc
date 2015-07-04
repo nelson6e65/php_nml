@@ -26,6 +26,10 @@ namespace NelsonMartell {
      * Permite encapsular propiedades para usar setters y getters automáticamente.
      * Por defecto, esta funcionalidad viene por defecto en la clase Object.
      *
+     * Nota: Los nombres de las propiedades deberían estar en CamelCase (primera
+     * letra en mayúscula) para que, por ejemplo, los getters queden `getName()`
+     * y se accedan $obj->Name.
+     *
      * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     trait PropertiesHandler
