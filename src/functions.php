@@ -57,12 +57,16 @@ function nml_msg($message, $args = null)
  *     incluir en las cadenas de formato del mensaje.
  * @return  string
  * @see  dngettext
- * @see  String::Format
+ * @see  String::format
  * */
 function nml_nmsg($singular, $plural, $n, $args = null)
 {
-    $s = String::Format($singular, array_slice(func_get_args(), 1));
-    $p = String::Format($plural, array_slice(func_get_args(), 1));
+    if (func_num_args() > 4) {
+        $args = array_slice(func_get_args(), 3);
+    }
+
+    $s = String::Format($singular, $args);
+    $p = String::Format($plural, $args);
 
     return dngettext(NML_GETTEXT_DOMAIN, $s, $p, $n);
 }
