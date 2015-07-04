@@ -34,13 +34,13 @@ namespace NelsonMartell {
             unset($this->IntValue, $this->StringValue);
 
             if (is_integer($intValue) or $intValue == null) {
-                $this->_intValue = $intValue;
+                $this->intValue = $intValue;
             } else {
                 //Try convert to integer
-                $this->_intValue = (integer) $intValue;
+                $this->intValue = (integer) $intValue;
             }
 
-            $this->_stringValue = (string) $stringValue;
+            $this->stringValue = (string) $stringValue;
         }
 
         public static function parse($value)
@@ -64,19 +64,19 @@ namespace NelsonMartell {
         }
 
 
-        protected $_intValue;
-        protected $_stringValue;
+        protected $intValue;
+        protected $stringValue;
 
         public $IntValue;
         public function getIntValue()
         {
-            return (int) $this->_intValue;
+            return (int) $this->intValue;
         }
 
         public $StringValue;
         public function getStringValue()
         {
-            return $this->_stringValue;
+            return $this->stringValue;
         }
 
         public function toString()

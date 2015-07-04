@@ -109,10 +109,10 @@ namespace NelsonMartell {
                 );
             }
 
-            $this->_major = $major;
-            $this->_minor = $minor;
-            $this->_build = VersionComponent::Parse($build);
-            $this->_revision = VersionComponent::Parse($revision);
+            $this->major = $major;
+            $this->minor = $minor;
+            $this->build = VersionComponent::Parse($build);
+            $this->revision = VersionComponent::Parse($revision);
         }
 
         /**
@@ -174,11 +174,11 @@ namespace NelsonMartell {
          * @var  int Componente principal del número de versión
          * */
         public $Major;
-        private $_major;
+        private $major;
 
         public function getMajor()
         {
-            return $this->_major;
+            return $this->major;
         }
 
 
@@ -190,11 +190,11 @@ namespace NelsonMartell {
          * @var  int Componente secundario del número de versión
          * */
         public $Minor;
-        private $_minor;
+        private $minor;
 
         public function getMinor()
         {
-            return $this->_minor;
+            return $this->minor;
         }
 
         /**
@@ -205,11 +205,11 @@ namespace NelsonMartell {
          * @var  VersionComponent  Componente de compilación del número de versión
          * */
         public $Build;
-        private $_build;
+        private $build;
 
         public function getBuild()
         {
-            return $this->_build;
+            return $this->build;
         }
 
         /**
@@ -220,11 +220,11 @@ namespace NelsonMartell {
          * @var  VersionComponent  Componente de revisión del número de versión
          * */
         public $Revision;
-        private $_revision;
+        private $revision;
 
         public function getRevision()
         {
-            return $this->_revision;
+            return $this->revision;
         }
 
 

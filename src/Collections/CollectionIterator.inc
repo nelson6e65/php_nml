@@ -28,31 +28,31 @@ namespace NelsonMartell\Collections;
  * */
 trait CollectionIterator
 {
-    private $_iteratorPosition = 0;
+    private $iteratorPosition = 0;
 
     public function current()
     {
-        return $this->getItem($this->_iteratorPosition);
+        return $this->getItem($this->iteratorPosition);
     }
 
     public function rewind()
     {
-        $this->_iteratorPosition = 0;
+        $this->iteratorPosition = 0;
     }
 
     public function key()
     {
-        return $this->_iteratorPosition;
+        return $this->iteratorPosition;
     }
 
     public function next()
     {
-        ++$this->_iteratorPosition;
+        ++$this->iteratorPosition;
     }
 
     public function valid()
     {
-        $v = (bool) ($this->GetItem($this->_iteratorPosition) != null);
+        $v = (bool) ($this->GetItem($this->iteratorPosition) != null);
         return $v;
     }
 

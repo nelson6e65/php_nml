@@ -42,13 +42,13 @@ namespace NelsonMartell\Collections {
         final public function __invoke($index, $value = null)
         {
             if ($value == null) {
-                return $this->_items[$index];
+                return $this->items[$index];
             }
 
             $this->setItem($index, $value);
         }
 
-        private $_items = array();
+        private $items = array();
 
 
         /**
@@ -66,11 +66,11 @@ namespace NelsonMartell\Collections {
             }
 
             if ($index == $this->Count) {
-                $this->_items[$index] = null;
-                $this->_count++;
+                $this->items[$index] = null;
+                $this->count++;
             }
 
-            $this->_items[$index] = $newItem;
+            $this->items[$index] = $newItem;
         }
 
         /**
@@ -80,8 +80,8 @@ namespace NelsonMartell\Collections {
          * */
         protected function clearItems()
         {
-            $this->_items = array();
-            $this->_count = 0;
+            $this->items = array();
+            $this->count = 0;
         }
 
         /**
@@ -97,7 +97,7 @@ namespace NelsonMartell\Collections {
                 throw new OutOfRangeException();
             }
 
-            $this->_items[$index] = $newItem;
+            $this->items[$index] = $newItem;
         }
 
         /**
@@ -116,7 +116,7 @@ namespace NelsonMartell\Collections {
                 return null;
             }
 
-            return $this->_items[$index];
+            return $this->items[$index];
         }
 
         /**
@@ -129,12 +129,12 @@ namespace NelsonMartell\Collections {
             }
 
             for ($i = $index; $i < $this->Count - 1; $i++) {
-                $this->_items[$i] = $this->_items[$i + 1]; //Mueve los valores
+                $this->items[$i] = $this->items[$i + 1]; //Mueve los valores
             }
 
-            unset($this->_items[$this->Count - 1]); //Des-asigna el último elemento
+            unset($this->items[$this->Count - 1]); //Des-asigna el último elemento
 
-            $this->_count--;
+            $this->count--;
         }
 
         /**
@@ -189,7 +189,7 @@ namespace NelsonMartell\Collections {
 
             $t = $this->GetType();
 
-            $items = implode(', ', $this->_items);
+            $items = implode(', ', $this->items);
 
             $placeHoldersValues = [
                 'class'     => $t->ShortName,
@@ -214,7 +214,7 @@ namespace NelsonMartell\Collections {
          * @var  integer
          * */
         public $Count;
-        private $_count = 0;
+        private $count = 0;
 
         /**
          * Obtiene el número de elementos incluidos en la colección.
@@ -223,7 +223,7 @@ namespace NelsonMartell\Collections {
          * */
         public function getCount()
         {
-            return $this->_count;
+            return $this->count;
         }
 
         /**
@@ -259,7 +259,7 @@ namespace NelsonMartell\Collections {
          * */
         public function contains($item)
         {
-            foreach ($this->_items as $i) {
+            foreach ($this->items as $i) {
                 if ($item === $i) {
                     return true;
                 }
@@ -278,7 +278,7 @@ namespace NelsonMartell\Collections {
         public function remove($item)
         {
             for ($i = 0; $i < $this->Count; $i++) {
-                if ($this->_items[$i] === $item) {
+                if ($this->items[$i] === $item) {
                     $this->RemoveItem($i);
                 }
             }

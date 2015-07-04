@@ -42,8 +42,8 @@ namespace NelsonMartell\Utilities {
             unset($this->Name, $this->Versions, $this->ShortName, $this->CdnUri, $this->RootDirectory);
 
             if ($name == null) {
-                $this->_name = '';
-                $this->_shortName = '';
+                $this->name = '';
+                $this->shortName = '';
             } else {
                 $this->Name = $name;
             }
@@ -59,7 +59,7 @@ namespace NelsonMartell\Utilities {
             }
 
             if (is_array($versions)) {
-                $this->_versions = array();
+                $this->versions = array();
 
                 if (count($versions) > 0) {
                     $i = 0;
@@ -78,7 +78,7 @@ namespace NelsonMartell\Utilities {
                             }
                         }
 
-                        $this->_versions[$i] = $v;
+                        $this->versions[$i] = $v;
 
                         $i += 1;
                     }
@@ -97,7 +97,7 @@ namespace NelsonMartell\Utilities {
                     );
                 }
 
-                $this->_versions = array($v);
+                $this->versions = array($v);
             }
 
             $this->CdnUri = $cdnUri;
@@ -114,11 +114,11 @@ namespace NelsonMartell\Utilities {
          * @var string Nombre del recurso
          * */
         public $Name;
-        private $_name;
+        private $name;
 
         public function getName()
         {
-            return $this->_name;
+            return $this->name;
         }
 
         public function setName($value)
@@ -131,9 +131,9 @@ namespace NelsonMartell\Utilities {
                 throw new InvalidArgumentException('$value argument can not be an empty or whitespace string.');
             }
 
-            $this->_name = trim($value);
+            $this->name = trim($value);
 
-            $this->_shortName = str_replace(' ', '-', strtolower($this->_name));
+            $this->shortName = str_replace(' ', '-', strtolower($this->name));
         }
 
         /**
@@ -142,11 +142,11 @@ namespace NelsonMartell\Utilities {
          * @var string Nombre del recurso en su forma generada
          * */
         public $ShortName;
-        private $_shortName;
+        private $shortName;
 
         public function getShortName()
         {
-            return $this->_shortName;
+            return $this->shortName;
         }
 
         /**
@@ -155,11 +155,11 @@ namespace NelsonMartell\Utilities {
          * @var List Lista de versiones del recurso
          * */
         public $Versions;
-        private $_versions;
+        private $versions;
 
         public function getVersions()
         {
-            return $this->_versions;
+            return $this->versions;
         }
 
         /**
@@ -174,16 +174,16 @@ namespace NelsonMartell\Utilities {
          * @var string CDN
          * */
         public $CdnUri;
-        private $_cdnUri;
+        private $cdnUri;
 
         public function getCdnUri()
         {
-            return $this->_cdnUri;
+            return $this->cdnUri;
         }
 
         public function setCdnUri($value)
         {
-            $this->_cdnUri = (string) $value;
+            $this->cdnUri = (string) $value;
         }
 
 
@@ -223,7 +223,7 @@ namespace NelsonMartell\Utilities {
                 $v = $this->Versions[0];
 
                 if ($c > 1) {
-                    usort($this->_versions, array("NelsonMartell\\Version", "Compare"));
+                    usort($this->versions, array("NelsonMartell\\Version", "Compare"));
 
                     $v = $this->Versions[0];
 

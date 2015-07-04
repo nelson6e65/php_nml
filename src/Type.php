@@ -71,15 +71,15 @@ namespace NelsonMartell {
                     $methods = [];
             }
 
-            $this->_name = $name;
-            $this->_shortName = $shortName;
-            $this->_namespace = $namespace;
-            $this->_vars = $vars;
-            $this->_methods = $methods;
-            $this->_reflectionObject = $ref;
+            $this->name = $name;
+            $this->shortName = $shortName;
+            $this->namespace = $namespace;
+            $this->vars = $vars;
+            $this->methods = $methods;
+            $this->reflectionObject = $ref;
         }
 
-        private $_reflectionObject = null;
+        private $reflectionObject = null;
 
         /**
          * Gets the name of this Type.
@@ -88,7 +88,7 @@ namespace NelsonMartell {
          * @var  string
          * */
         public $Name;
-        private $_name;
+        private $name;
 
         /**
          * Getter for Type::Name property.
@@ -97,7 +97,7 @@ namespace NelsonMartell {
          * */
         public function getName()
         {
-            return $this->_name;
+            return $this->name;
         }
 
         /**
@@ -107,7 +107,7 @@ namespace NelsonMartell {
          * @var  string
          * */
         public $ShortName;
-        private $_shortName = null;
+        private $shortName = null;
 
         /**
          * Getter for Type::ShortName property.
@@ -117,7 +117,7 @@ namespace NelsonMartell {
          * */
         public function getShortName()
         {
-            return $this->_shortName;
+            return $this->shortName;
         }
 
         /**
@@ -128,7 +128,7 @@ namespace NelsonMartell {
          * @var  string|NULL
          * */
         public $Namespace;
-        private $_namespace;
+        private $namespace;
 
         /**
          * Getter for Type::Namespace property.
@@ -138,7 +138,7 @@ namespace NelsonMartell {
          * */
         public function getNamespace()
         {
-            return $this->_namespace;
+            return $this->namespace;
         }
 
         /**
@@ -149,13 +149,13 @@ namespace NelsonMartell {
          * @var  array
          * */
         public $Vars;
-        private $_vars = null;
+        private $vars = null;
         public function getVars()
         {
-            if ($this->_vars == null) {
-                $this->_vars = $this->_reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED);
+            if ($this->vars == null) {
+                $this->vars = $this->reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED);
             }
-            return $this->_vars;
+            return $this->vars;
         }
 
         /**
@@ -166,13 +166,13 @@ namespace NelsonMartell {
          * @var  array
          * */
         public $Methods;
-        private $_methods = null;
+        private $methods = null;
         public function getMethods()
         {
-            if ($this->_methods == null) {
-                $this->_methods = $this->_reflectionObject->getMethods(ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED);
+            if ($this->methods == null) {
+                $this->methods = $this->reflectionObject->getMethods(ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED);
             }
-            return $this->_methods;
+            return $this->methods;
         }
 
         /**
