@@ -153,7 +153,9 @@ namespace NelsonMartell {
         public function getVars()
         {
             if ($this->vars == null) {
-                $this->vars = $this->reflectionObject->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED);
+                $this->vars = $this->reflectionObject->getProperties(
+                    ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED
+                );
             }
             return $this->vars;
         }
@@ -170,7 +172,9 @@ namespace NelsonMartell {
         public function getMethods()
         {
             if ($this->methods == null) {
-                $this->methods = $this->reflectionObject->getMethods(ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED);
+                $this->methods = $this->reflectionObject->getMethods(
+                    ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED
+                );
             }
             return $this->methods;
         }
