@@ -37,12 +37,13 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  * */
 function nml_msg($message, $args = null)
 {
+    $translated = dgettext(NML_GETTEXT_DOMAIN, $message);
+
     if (func_num_args() > 2) {
         $args = array_slice(func_get_args(), 1);
     }
 
-    $s = String::format($message, $args);
-    return dgettext(NML_GETTEXT_DOMAIN, $s);
+    return String::format($translated, $args);
 }
 
 
@@ -61,14 +62,13 @@ function nml_msg($message, $args = null)
  * */
 function nml_nmsg($singular, $plural, $n, $args = null)
 {
+    $translated = dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
+
     if (func_num_args() > 4) {
         $args = array_slice(func_get_args(), 3);
     }
 
-    $s = String::Format($singular, $args);
-    $p = String::Format($plural, $args);
-
-    return dngettext(NML_GETTEXT_DOMAIN, $s, $p, $n);
+    return String::format($translated, $args);
 }
 
 if (!function_exists('typeof')) {
