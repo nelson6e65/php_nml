@@ -50,63 +50,73 @@ namespace NelsonMartell {
             unset($this->Major, $this->Minor, $this->Build, $this->Revision);
 
             if (!is_integer($major)) {
-                throw new InvalidArgumentException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. ".
-                            "Convert value or use the static method Version::parse."
-                        ),
-                        "major",
-                        1,
-                        typeof(0),
-                        typeof($major)
-                    )
+                $args = [
+                    'class'    => $this->getType()->Name,
+                    'name'     => 'major',
+                    'pos'      => 0,
+                    'expected' => typeof(0),
+                    'actual'   => typeof($major),
+                ];
+
+                $msg = nml_msg('Invalid argument type.');
+                $msg .= nml_msg(
+                    ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
+                    $args
                 );
+                $msg .= nml_msg(' Convert value or use the "{class}::parse" (static) method.', $args);
+
+                throw new InvalidArgumentException($msg);
             }
 
             if (!is_integer($minor)) {
-                throw new InvalidArgumentException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' given. ".
-                            "Convert value or use the static method Version::parse."
-                        ),
-                        "minor",
-                        2,
-                        typeof(0),
-                        typeof($minor)
-                    )
+                $args = [
+                    'class'    => $this->getType()->Name,
+                    'name'     => 'minor',
+                    'pos'      => 1,
+                    'expected' => typeof(0),
+                    'actual'   => typeof($minor),
+                ];
+
+                $msg = nml_msg('Invalid argument type.');
+                $msg .= nml_msg(
+                    ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
+                    $args
                 );
+                $msg .= nml_msg(' Convert value or use the "{class}::parse" (static) method.', $args);
+
+                throw new InvalidArgumentException($msg);
             }
 
             if ($major < 0) {
-                throw new InvalidArgumentException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."
-                        ),
-                        "major",
-                        1,
-                        $major
-                    )
+                $args = [
+                    'name'     => 'major',
+                    'pos'      => 0,
+                    'actual'   => $major,
+                ];
+
+                $msg = nml_msg('Invalid argument value.');
+                $msg .= nml_msg(
+                    ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
+                    $args
                 );
+
+                throw new InvalidArgumentException($msg);
             }
 
             if ($minor < 0) {
-                throw new InvalidArgumentException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Invalid argument value. '%s' (argument %s) must be a positive number; '%s' given."
-                        ),
-                        "minor",
-                        2,
-                        $minor
-                    )
+                $args = [
+                    'name'     => 'minor',
+                    'pos'      => 1,
+                    'actual'   => $minor,
+                ];
+
+                $msg = nml_msg('Invalid argument value.');
+                $msg .= nml_msg(
+                    ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
+                    $args
                 );
+
+                throw new InvalidArgumentException($msg);
             }
 
             $this->major = $major;
