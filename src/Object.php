@@ -71,7 +71,7 @@ namespace NelsonMartell {
         {
             //$args = null;
             //list($args) = func_get_args();
-            return $this->ToString();
+            return $this->toString();
         }
 
         /**
@@ -82,22 +82,24 @@ namespace NelsonMartell {
          * */
         public function toString()
         {
-            $type = $this->GetType();
+            $type = $this->getType();
 
             if (defined('CODE_ANALYSIS')) {
                 if ($type->Name != 'NelsonMartell\Object') {
-                    trigger_error(
-                        sprintf(
-                            dgettext(
-                                'nml',
-                                'Using default %s method. '.
-                                'You can replace its behavior, overriding it by creating %s::ToString() public method.'
-                            ),
-                            __METHOD__,
-                            $type->Name
-                        ),
-                        E_USER_NOTICE
+                    $args = [
+                        'access'     => 'public',
+                        'base_class' => __CLASS__,
+                        'class'      => $type->Name,
+                        'function'   => __FUNCTION__,
+                    ];
+
+                    $msg = nml_msg('Using default "{base_class}::{function}" ({access}) method.', $args);
+                    $msg .= nml_msg(
+                        ' You can replace (override) its behavior by creating "{class}::{function}" ({access}) method.',
+                        $args
                     );
+
+                    trigger_error($msg, E_USER_NOTICE);
                 }
             }
 
@@ -119,18 +121,26 @@ namespace NelsonMartell {
         {
             if (defined('CODE_ANALYSIS')) {
                 if ($this instanceof IEquatable) {
-                    $type = $this->GetType();
-                    trigger_error(
-                        sprintf(
-                            dgettext(
-                                'nml',
-                                'You implemented IEquatable interface, but using default Object::Equals() method. '.
-                                'You must override it, creating %s::Equals() public method.'
-                            ),
-                            $type->Name
-                        ),
-                        E_USER_NOTICE
+                    $type = $this->getType();
+
+                    $args = [
+                        'access'     => 'public',
+                        'base_class' => __CLASS__,
+                        'class'      => $type->Name,
+                        'function'   => __FUNCTION__,
+                    ];
+
+                    $msg = nml_msg(
+                        'You implemented IEquatable, but using default "{base_class}::{function}" ({access}) method.',
+                        $args
                     );
+
+                    $msg .= nml_msg(
+                        ' You can replace (override) its behavior by creating "{class}::{function}" ({access}) method.',
+                        $args
+                    );
+
+                    trigger_error($msg, E_USER_NOTICE);
                 }
             }
 
