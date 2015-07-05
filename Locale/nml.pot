@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
-"POT-Creation-Date: 2015-07-04 23:19-0430\n"
-"PO-Revision-Date: 2015-07-04 23:20-0430\n"
+"POT-Creation-Date: 2015-07-05 00:10-0430\n"
+"PO-Revision-Date: 2015-07-05 00:10-0430\n"
 "Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -95,11 +95,13 @@ msgstr ""
 msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
 msgstr ""
 
-#: src/Version.php:61 src/Version.php:80
+#: src/Version.php:61 src/Version.php:80 src/VersionComponent.php:67
+#: src/VersionComponent.php:122
 msgid "Invalid argument type."
 msgstr ""
 
-#: src/Version.php:63 src/Version.php:82
+#: src/Version.php:63 src/Version.php:82 src/VersionComponent.php:69
+#: src/VersionComponent.php:124
 msgid ""
 " \"{name}\" (position {pos}) must to be an instance of \"{expected}\"; "
 "\"{actual}\" given."
@@ -109,11 +111,12 @@ msgstr ""
 msgid " Convert value or use the \"{class}::parse\" (static) method."
 msgstr ""
 
-#: src/Version.php:97 src/Version.php:113
+#: src/Version.php:97 src/Version.php:113 src/VersionComponent.php:47
+#: src/VersionComponent.php:103
 msgid "Invalid argument value."
 msgstr ""
 
-#: src/Version.php:99 src/Version.php:115
+#: src/Version.php:99 src/Version.php:115 src/VersionComponent.php:49
 msgid ""
 " \"{name}\" (position {pos}) must to be a positive number; \"{actual}\" "
 "given."
@@ -127,35 +130,8 @@ msgstr ""
 msgid "Unable to parse. Argument passed has an invalid format: \"{0}\"."
 msgstr ""
 
-#: src/VersionComponent.php:45
-#, php-format
-msgid ""
-"Invalid argument value. \"%s\" (argument %s) must be positive; \"%s\" given."
-msgstr ""
-
-#: src/VersionComponent.php:60
-#, php-format
-msgid ""
-"Invalid argument type. \"%s\" must be NULL when \"%s\" is NULL; \"%s\" given."
-msgstr ""
-
-#: src/VersionComponent.php:73
-#, php-format
-msgid ""
-"Invalid argument type. \"%s\" (argument %s) must be an integer or NULL; \"%s"
-"\" given."
-msgstr ""
-
-#: src/VersionComponent.php:107
-#, php-format
-msgid "Invalid argument value. \"%s\" (argument %s) has invalid chars: \"%s\"."
-msgstr ""
-
-#: src/VersionComponent.php:123
-#, php-format
-msgid ""
-"Invalid argument type. \"%s\" (argument %s) must be an string or NULL; \"%s"
-"\" given."
+#: src/VersionComponent.php:105
+msgid " \"{name}\" (position {pos}) has invalid chars; \"{actual}\" given."
 msgstr ""
 
 #: src/PropertiesHandler.inc:70

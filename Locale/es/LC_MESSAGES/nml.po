@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
-"POT-Creation-Date: 2015-07-04 21:55-0430\n"
-"PO-Revision-Date: 2015-07-04 21:58-0430\n"
+"POT-Creation-Date: 2015-07-05 00:10-0430\n"
+"PO-Revision-Date: 2015-07-05 00:10-0430\n"
 "Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
 "Language-Team:  <nelson6e65-transifex@yahoo.es>\n"
 "Language: es\n"
@@ -96,62 +96,43 @@ msgstr ""
 msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
 msgstr "%1$s ha fallado. Se esperaba: \"%2$s\". Real: \"%3$s\"."
 
-#: src/Version.php:57 src/Version.php:73
-#, php-format
-msgid ""
-"Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' "
-"given. Convert value or use the static method Version::parse."
+#: src/Version.php:61 src/Version.php:80 src/VersionComponent.php:67
+#: src/VersionComponent.php:122
+msgid "Invalid argument type."
 msgstr ""
 
-#: src/Version.php:89 src/Version.php:103
-#, php-format
+#: src/Version.php:63 src/Version.php:82 src/VersionComponent.php:69
+#: src/VersionComponent.php:124
 msgid ""
-"Invalid argument value. '%s' (argument %s) must be a positive number; '%s' "
+" \"{name}\" (position {pos}) must to be an instance of \"{expected}\"; "
+"\"{actual}\" given."
+msgstr ""
+
+#: src/Version.php:66 src/Version.php:85
+msgid " Convert value or use the \"{class}::parse\" (static) method."
+msgstr ""
+
+#: src/Version.php:97 src/Version.php:113 src/VersionComponent.php:47
+#: src/VersionComponent.php:103
+msgid "Invalid argument value."
+msgstr ""
+
+#: src/Version.php:99 src/Version.php:115 src/VersionComponent.php:49
+msgid ""
+" \"{name}\" (position {pos}) must to be a positive number; \"{actual}\" "
 "given."
 msgstr ""
-"Valor inválido de argumento. '%s' (argumento %s) debe ser un número "
-"positivo; '%s' dado."
 
-#: src/Version.php:143
-#, php-format
-msgid "Unable to parse. Argument passed has an invalid format: '%s'."
-msgstr ""
-"No se puede convertir. El argumento que se ha pasado tiene un formato "
-"inválido '%s'."
-
-#: src/VersionComponent.php:45
-#, php-format
-msgid ""
-"Invalid argument value. \"%s\" (argument %s) must be positive; \"%s\" given."
-msgstr ""
-"Valor inválido de argumento. \"%s\" (argumento %s) debe ser positivo; se dio "
-"\"%s\"."
-
-#: src/VersionComponent.php:60
-#, php-format
-msgid ""
-"Invalid argument type. \"%s\" must be NULL when \"%s\" is NULL; \"%s\" given."
+#: src/Version.php:161
+msgid "Unable to parse. Argument passed has an invalid type: \"{0}\"."
 msgstr ""
 
-#: src/VersionComponent.php:73
-#, php-format
-msgid ""
-"Invalid argument type. \"%s\" (argument %s) must be an integer or NULL; \"%s"
-"\" given."
+#: src/Version.php:169
+msgid "Unable to parse. Argument passed has an invalid format: \"{0}\"."
 msgstr ""
 
-#: src/VersionComponent.php:107
-#, php-format
-msgid "Invalid argument value. \"%s\" (argument %s) has invalid chars: \"%s\"."
-msgstr ""
-"Valor inválido de argumento. \"%s\" (argumento %s) tiene caracteres "
-"inválidos: \"%s\"."
-
-#: src/VersionComponent.php:123
-#, php-format
-msgid ""
-"Invalid argument type. \"%s\" (argument %s) must be an string or NULL; \"%s"
-"\" given."
+#: src/VersionComponent.php:105
+msgid " \"{name}\" (position {pos}) has invalid chars; \"{actual}\" given."
 msgstr ""
 
 #: src/PropertiesHandler.inc:70
@@ -185,6 +166,31 @@ msgstr ""
 #: src/PropertiesHandler.inc:218
 msgid "Property \"{class}::{name}\" has not a getter."
 msgstr ""
+
+#~ msgid ""
+#~ "Invalid argument value. '%s' (argument %s) must be a positive number; "
+#~ "'%s' given."
+#~ msgstr ""
+#~ "Valor inválido de argumento. '%s' (argumento %s) debe ser un número "
+#~ "positivo; '%s' dado."
+
+#~ msgid "Unable to parse. Argument passed has an invalid format: '%s'."
+#~ msgstr ""
+#~ "No se puede convertir. El argumento que se ha pasado tiene un formato "
+#~ "inválido '%s'."
+
+#~ msgid ""
+#~ "Invalid argument value. \"%s\" (argument %s) must be positive; \"%s\" "
+#~ "given."
+#~ msgstr ""
+#~ "Valor inválido de argumento. \"%s\" (argumento %s) debe ser positivo; se "
+#~ "dio \"%s\"."
+
+#~ msgid ""
+#~ "Invalid argument value. \"%s\" (argument %s) has invalid chars: \"%s\"."
+#~ msgstr ""
+#~ "Valor inválido de argumento. \"%s\" (argumento %s) tiene caracteres "
+#~ "inválidos: \"%s\"."
 
 #~ msgid ""
 #~ "Using default \"{0}\" method. You can replace its behavior, overriding it "

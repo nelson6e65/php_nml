@@ -38,45 +38,39 @@ namespace NelsonMartell {
             if (is_integer($intValue)) {
                 //Validaciones:
                 if ($this->IntValue < 0) {
-                    throw new InvalidArgumentException(
-                        sprintf(
-                            dgettext(
-                                'nml',
-                                'Invalid argument value. "%s" (argument %s) must be positive; "%s" given.'
-                            ),
-                            '$intValue',
-                            1,
-                            $intValue
-                        )
+                    $args = [
+                        'name'     => 'intValue',
+                        'pos'      => 0,
+                        'actual'   => $intValue,
+                    ];
+
+                    $msg = nml_msg('Invalid argument value.');
+                    $msg .= nml_msg(
+                        ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
+                        $args
                     );
+
+                    throw new InvalidArgumentException($msg);
                 }
             } else {
                 if ($intValue === null) {
-                    if ($stringValue != null) {
-                        throw new InvalidArgumentException(
-                            sprintf(
-                                dgettext(
-                                    'nml',
-                                    'Invalid argument type. "%s" must be NULL when "%s" is NULL; "%s" given.'
-                                ),
-                                '$stringValue',
-                                '$intValue',
-                                $stringValue
-                            )
-                        );
-                    }
+                    // Ignore string value id intValue is null.
+                    $this->stringValue = $stringValue = '';
                 } else {
-                    throw new InvalidArgumentException(
-                        sprintf(
-                            dgettext(
-                                'nml',
-                                'Invalid argument type. "%s" (argument %s) must be an integer or NULL; "%s" given.'
-                            ),
-                            '$intValue',
-                            1,
-                            $intValue
-                        )
+                    $args = [
+                        'name'     => 'intValue',
+                        'pos'      => 0,
+                        'expected' => typeof(0).' or '.typeof(null),
+                        'actual'   => typeof($intValue),
+                    ];
+
+                    $msg = nml_msg('Invalid argument type.');
+                    $msg .= nml_msg(
+                        ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
+                        $args
                     );
+
+                    throw new InvalidArgumentException($msg);
                 }
             } //Only integer or null
 
@@ -100,35 +94,40 @@ namespace NelsonMartell {
                     }
 
                     if (!$correct) {
-                        throw new InvalidArgumentException(
-                            sprintf(
-                                dgettext(
-                                    'nml',
-                                    'Invalid argument value. "%s" (argument %s) has invalid chars: "%s".'
-                                ),
-                                '$stringValue',
-                                2,
-                                $stringValue
-                            )
+                        $args = [
+                            'name'     => 'stringValue',
+                            'pos'      => 1,
+                            'actual'   => $stringValue,
+                        ];
+
+                        $msg = nml_msg('Invalid argument value.');
+                        $msg .= nml_msg(
+                            ' "{name}" (position {pos}) has invalid chars; "{actual}" given.',
+                            $args
                         );
+
+                        throw new InvalidArgumentException($msg);
                     }
 
                 }
             } else {
                 if ($stringValue != null) {
-                    throw new InvalidArgumentException(
-                        sprintf(
-                            dgettext(
-                                'nml',
-                                'Invalid argument type. "%s" (argument %s) must be an string or NULL; "%s" given.'
-                            ),
-                            '$stringValue',
-                            2,
-                            $stringValue
-                        )
+                    $args = [
+                        'name'     => 'stringValue',
+                        'pos'      => 1,
+                        'expected' => typeof('string').' or '.typeof(null),
+                        'actual'   => typeof($stringValue),
+                    ];
+
+                    $msg = nml_msg('Invalid argument type.');
+                    $msg .= nml_msg(
+                        ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
+                        $args
                     );
+
+                    throw new InvalidArgumentException($msg);
                 }
-            } // Only integer or null
+            } // Only string or null
         }
 
         public static function parse($value = null)
