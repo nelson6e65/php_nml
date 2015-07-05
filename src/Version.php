@@ -129,7 +129,7 @@ namespace NelsonMartell {
          * Convierte una cadena a su representación del tipo Version.
          *
          *
-         * @param   string  Cadena a convertir.
+         * @param Version|string|int|float|array Objeto a convertir.
          * @return  Version Objeto convertido desde $value.
          * */
         public static function parse($value)
@@ -138,23 +138,37 @@ namespace NelsonMartell {
                 return $value;
             }
 
-            $version = (string) $value;
+            $version = [];
 
-            $version = explode('.', $version);
+            // Try to convert into an array
+            if (is_integer($value)) {
+                // Integer for major value
+                $version = [$value, 0];
 
+            } elseif (is_float($value)) {
+                // Integer part as major, and decimal part as minor
+                $version = sprintf("%F", $value);
+                $version = explode('.', $version);
+
+            } elseif (is_array($value)) {
+                // Implode first 4 places for major, minor, build and revision respectivally.
+                $version = array_slice($value, 0, 4);
+
+            } elseif (is_string($value)) {
+                $version = explode('.', $value);
+
+            } else {
+                $msg = nml_msg('Unable to parse. Argument passed has an invalid type: "{0}".', typeof($value));
+                throw new InvalidArgumentException($msg);
+            }
+
+            // $value ya debería ser un array.
             $c = count($version);
 
             if ($c > 4 || $c < 2) {
+                $msg = nml_msg('Unable to parse. Argument passed has an invalid format: "{0}".', $value);
                 //var_dump($version);
-                throw new InvalidArgumentException(
-                    sprintf(
-                        dgettext(
-                            'nml',
-                            "Unable to parse. Argument passed has an invalid format: '%s'."
-                        ),
-                        $value
-                    )
-                );
+                throw new InvalidArgumentException($msg);
             }
 
 
@@ -170,8 +184,6 @@ namespace NelsonMartell {
                     $revision = VersionComponent::Parse($version[3]);
                 }
             }
-
-
 
             return new Version($major, $minor, $build, $revision);
         }

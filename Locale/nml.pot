@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
-"POT-Creation-Date: 2015-07-04 21:55-0430\n"
-"PO-Revision-Date: 2015-07-04 21:55-0430\n"
+"POT-Creation-Date: 2015-07-04 23:19-0430\n"
+"PO-Revision-Date: 2015-07-04 23:20-0430\n"
 "Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -95,23 +95,36 @@ msgstr ""
 msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
 msgstr ""
 
-#: src/Version.php:57 src/Version.php:73
-#, php-format
-msgid ""
-"Invalid argument type. '%s' (argument %s) must be an instance of '%s', '%s' "
-"given. Convert value or use the static method Version::parse."
+#: src/Version.php:61 src/Version.php:80
+msgid "Invalid argument type."
 msgstr ""
 
-#: src/Version.php:89 src/Version.php:103
-#, php-format
+#: src/Version.php:63 src/Version.php:82
 msgid ""
-"Invalid argument value. '%s' (argument %s) must be a positive number; '%s' "
+" \"{name}\" (position {pos}) must to be an instance of \"{expected}\"; "
+"\"{actual}\" given."
+msgstr ""
+
+#: src/Version.php:66 src/Version.php:85
+msgid " Convert value or use the \"{class}::parse\" (static) method."
+msgstr ""
+
+#: src/Version.php:97 src/Version.php:113
+msgid "Invalid argument value."
+msgstr ""
+
+#: src/Version.php:99 src/Version.php:115
+msgid ""
+" \"{name}\" (position {pos}) must to be a positive number; \"{actual}\" "
 "given."
 msgstr ""
 
-#: src/Version.php:143
-#, php-format
-msgid "Unable to parse. Argument passed has an invalid format: '%s'."
+#: src/Version.php:161
+msgid "Unable to parse. Argument passed has an invalid type: \"{0}\"."
+msgstr ""
+
+#: src/Version.php:169
+msgid "Unable to parse. Argument passed has an invalid format: \"{0}\"."
 msgstr ""
 
 #: src/VersionComponent.php:45
