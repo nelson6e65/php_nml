@@ -4,7 +4,6 @@
  *
  * Content:
  * - Global functions definition for NML.
- * - Global constant definition:  NML_GETTEXT_DOMAIN
  *
  * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -20,8 +19,6 @@
 
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Type;
-
-define('NML_GETTEXT_DOMAIN', 'nml');
 
 /**
  * Busca un mensaje único traducido en el dominio 'nml'.
