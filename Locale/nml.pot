@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
-"POT-Creation-Date: 2015-07-05 00:10-0430\n"
-"PO-Revision-Date: 2015-07-05 00:10-0430\n"
+"POT-Creation-Date: 2015-07-05 01:20-0430\n"
+"PO-Revision-Date: 2015-07-05 01:21-0430\n"
 "Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -54,17 +54,60 @@ msgid ""
 "{function}\" ({access}) method."
 msgstr ""
 
-#: src/Utilities/Asset.php:53
-msgid "Can not specify $versions argument if $name argument is null."
+#: src/Utilities/Asset.php:59 src/Utilities/Asset.php:90
+#: src/Utilities/Asset.php:119 src/Utilities/Asset.php:182
+#: src/Utilities/Asset.php:313 src/Version.php:97 src/Version.php:113
+#: src/VersionComponent.php:47 src/VersionComponent.php:103
+msgid "Invalid argument value."
 msgstr ""
 
-#: src/Utilities/Asset.php:218
-msgid "Asset has not versions."
+#: src/Utilities/Asset.php:61
+msgid ""
+" \"{name}\" (position {pos}) can not be specified if \"{name2}\" (position "
+"{pos2}) is \"null\"."
 msgstr ""
 
-#: src/Utilities/Asset.php:246
-#, php-format
-msgid "Asset has not version %s."
+#: src/Utilities/Asset.php:92
+msgid ""
+" \"{name}\" (position {pos}) must to be an array of \"{expected}\" elements "
+"(or any parseable into \"{expected}\"); the array given has an invalid "
+"\"{actual}\" element."
+msgstr ""
+
+#: src/Utilities/Asset.php:121
+msgid ""
+" \"{name}\" (position {pos}) must to be an array of \"{expected}\" elements, "
+"an instance of \"{expected}\" or any object parseable into \"{expected}\"; "
+"\"{actual}\" given."
+msgstr ""
+
+#: src/Utilities/Asset.php:164 src/Utilities/Asset.php:302 src/Version.php:61
+#: src/Version.php:80 src/VersionComponent.php:67 src/VersionComponent.php:122
+msgid "Invalid argument type."
+msgstr ""
+
+#: src/Utilities/Asset.php:166
+msgid ""
+" \"{class}::{property}\" must to be an instance of \"{expected}\"; "
+"\"{actual}\" given."
+msgstr ""
+
+#: src/Utilities/Asset.php:184
+msgid " \"{class}::{property}\" value can not be empty or whitespace."
+msgstr ""
+
+#: src/Utilities/Asset.php:275
+msgid "This Asset has not versions."
+msgstr ""
+
+#: src/Utilities/Asset.php:304
+msgid ""
+" \"{name}\" (position {pos}) must to be an instance of \"{expected}\" (or "
+"compatible); \"{actual}\" given."
+msgstr ""
+
+#: src/Utilities/Asset.php:314
+msgid " Asset has not the version \"{version}\"."
 msgstr ""
 
 #: src/Utilities/UnitTesting/Assert.php:89
@@ -95,11 +138,6 @@ msgstr ""
 msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
 msgstr ""
 
-#: src/Version.php:61 src/Version.php:80 src/VersionComponent.php:67
-#: src/VersionComponent.php:122
-msgid "Invalid argument type."
-msgstr ""
-
 #: src/Version.php:63 src/Version.php:82 src/VersionComponent.php:69
 #: src/VersionComponent.php:124
 msgid ""
@@ -109,11 +147,6 @@ msgstr ""
 
 #: src/Version.php:66 src/Version.php:85
 msgid " Convert value or use the \"{class}::parse\" (static) method."
-msgstr ""
-
-#: src/Version.php:97 src/Version.php:113 src/VersionComponent.php:47
-#: src/VersionComponent.php:103
-msgid "Invalid argument value."
 msgstr ""
 
 #: src/Version.php:99 src/Version.php:115 src/VersionComponent.php:49

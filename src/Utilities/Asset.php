@@ -49,9 +49,20 @@ namespace NelsonMartell\Utilities {
             }
 
             if ($this->Name == '' && $versions != null) {
-                throw new InvalidArgumentException(
-                    dgettext('nml', 'Can not specify $versions argument if $name argument is null.')
+                $args = [
+                    'name'     => 'versions',
+                    'pos'      => 1,
+                    'name2'    => 'name',
+                    'pos2'     => 0,
+                ];
+
+                $msg = nml_msg('Invalid argument value.');
+                $msg .= nml_msg(
+                    ' "{name}" (position {pos}) can not be specified if "{name2}" (position {pos2}) is "null".',
+                    $args
                 );
+
+                throw new InvalidArgumentException($msg);
             }
 
             if ($versions == null) {
@@ -67,14 +78,23 @@ namespace NelsonMartell\Utilities {
                         $v = $version;
                         if (!($v instanceof Version)) {
                             try {
-                                $v = Version::Parse($version);
+                                $v = Version::parse($version);
                             } catch (InvalidArgumentException $e) {
-                                throw new InvalidArgumentException(
-                                    '$versions argument must be an array of Version objects '.
-                                    'or any objects parseable into Version.',
-                                    0,
-                                    $e
+                                $args = [
+                                    'name'     => 'versions',
+                                    'pos'      => 1,
+                                    'expected' => typeof(new Version(1, 0))->Name,
+                                    'actual'   => typeof($version)->Name,
+                                ];
+
+                                $msg = nml_msg('Invalid argument value.');
+                                $msg .= nml_msg(
+                                    ' "{name}" (position {pos}) must to be an array of "{expected}" elements (or any'.
+                                    ' parseable into "{expected}"); the array given has an invalid "{actual}" element.',
+                                    $args
                                 );
+
+                                throw new InvalidArgumentException($msg, 0, $e);
                             }
                         }
 
@@ -87,14 +107,23 @@ namespace NelsonMartell\Utilities {
             } else {
                 // Trata de convertir $versions en un objeto Versión
                 try {
-                    $v = Version::Parse($versions);
+                    $v = Version::parse($versions);
                 } catch (InvalidArgumentException $e) {
-                    throw new InvalidArgumentException(
-                        '$versions argument must be an array of Version objects (or empty), a Version object '.
-                        'or any object parseable into Version.',
-                        0,
-                        $e
+                    $args = [
+                        'name'     => 'versions',
+                        'pos'      => 1,
+                        'expected' => typeof(new Version(1, 0))->Name,
+                        'actual'   => typeof($versions)->Name,
+                    ];
+
+                    $msg = nml_msg('Invalid argument value.');
+                    $msg .= nml_msg(
+                        ' "{name}" (position {pos}) must to be an array of "{expected}" elements, an instance of'.
+                        ' "{expected}" or any object parseable into "{expected}"; "{actual}" given.',
+                        $args
                     );
+
+                    throw new InvalidArgumentException($msg, 0, $e);
                 }
 
                 $this->versions = array($v);
@@ -124,11 +153,39 @@ namespace NelsonMartell\Utilities {
         public function setName($value)
         {
             if (!is_string($value)) {
-                throw new InvalidArgumentException('$value argument must be string.');
+                $args = [
+                    'class'    => $this->getType()->Name,
+                    'property' => 'Name',
+                    'pos'      => 0,
+                    'expected' => 'string',
+                    'actual'   => typeof($value)->Name,
+                ];
+
+                $msg = nml_msg('Invalid argument type.');
+                $msg .= nml_msg(
+                    ' "{class}::{property}" must to be an instance of "{expected}"; "{actual}" given.',
+                    $args
+                );
+
+                throw new InvalidArgumentException($msg);
             }
 
             if (str_word_count($value) == 0) {
-                throw new InvalidArgumentException('$value argument can not be an empty or whitespace string.');
+                $args = [
+                    'class'    => $this->getType()->Name,
+                    'property' => 'Name',
+                    'pos'      => 0,
+                    'expected' => 'string',
+                    'actual'   => typeof($value)->Name,
+                ];
+
+                $msg = nml_msg('Invalid argument value.');
+                $msg .= nml_msg(
+                    ' "{class}::{property}" value can not be empty or whitespace.',
+                    $args
+                );
+
+                throw new InvalidArgumentException($msg);
             }
 
             $this->name = trim($value);
@@ -215,7 +272,7 @@ namespace NelsonMartell\Utilities {
             $c = count($this->Versions);
 
             if ($c == 0) {
-                throw new LogicException(dgettext('nml', 'Asset has not versions.'));
+                throw new LogicException(nml_msg('This Asset has not versions.'));
             }
             $v = $version;
 
@@ -233,17 +290,30 @@ namespace NelsonMartell\Utilities {
                 }
             } else {
                 try {
-                    $v = Version::Parse($version);
+                    $v = Version::parse($version);
                 } catch (InvalidArgumentException $e) {
-                    throw new InvalidArgumentException(
-                        '$version argument must be an Version object or any object parseable into Version.',
-                        0,
-                        $e
+                    $args = [
+                        'name'     => 'version',
+                        'pos'      => 0,
+                        'expected' => typeof(new Version(1, 0))->Name,
+                        'actual'   => typeof($version),
+                    ];
+
+                    $msg = nml_msg('Invalid argument type.');
+                    $msg .= nml_msg(
+                        ' "{name}" (position {pos}) must to be an instance of "{expected}" (or compatible);'.
+                        ' "{actual}" given.',
+                        $args
                     );
+
+                    throw new InvalidArgumentException($msg);
                 }
 
                 if (array_search($v, $this->Versions) === false) {
-                    throw new InvalidArgumentException(sprintf(dgettext('nml', 'Asset has not version %s.'), $v));
+                    $msg = nml_msg('Invalid argument value.');
+                    $msg .= nml_msg(' Asset has not the version "{version}".', ['version' => $v]);
+
+                    throw new InvalidArgumentException($msg);
                 }
             }
 
