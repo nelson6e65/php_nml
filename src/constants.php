@@ -3,7 +3,7 @@
  * PHP: Nelson Martell Library file
  *
  * Content:
- * - Global constant definition:  NML_GETTEXT_DOMAIN
+ * - Global constants definitions.
  *
  * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -17,4 +17,32 @@
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+/**
+ * Gettext domain for NML messages.
+ * Only for internal usage.
+ *
+ * @constant string
+ * @since v0.4.5
+ */
 define('NML_GETTEXT_DOMAIN', 'nml');
+
+
+/**
+ * Corrent 'stable' version of `PHP: Nelson Martell Library`.
+ * Can be parsed into a `NelsonMartell\Version` object. ;)
+ *
+ * @constant string
+ * @since v0.4.4
+ */
+define('NML_VERSION', '0.4.6');
+
+
+// #############################################################################
+// If `CODE_ANALYSIS` constant is defined, some NML functions/methods will throw
+// notices, warnings and recommendations about its usage. This is useful in
+// order to debugging your code.
+// Is unactive by default. IT MUST be defined in your bootstrap app code.
+//
+// define('CODE_ANALYSIS', true);
+//
+// #############################################################################

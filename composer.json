@@ -33,7 +33,6 @@
 		"files": [
 			"src/constants.php",
 			"src/functions.php",
-			"src/nml.php",
 			"config/bootstrap.php",
 		]
 	},
