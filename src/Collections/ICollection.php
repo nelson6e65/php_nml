@@ -24,58 +24,62 @@ namespace NelsonMartell\Collections {
     /**
      * Define métodos para manipular colecciones de objetos.
      *
-     *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     interface ICollection extends Iterator
     {
 
+
         /**
          * Obtiene el número de elementos incluidos en la colección.
-         * Si extiende la clase NelsonMartell.Object, debe definirse la propiedad 'public $Count'.
+         * Si extiende la clase NelsonMartell.Object, puede accederse desde la
+         * propiedad `Count`.
          *
-         *
-         * @see     NelsonMartell\Object
-         * @return  integer
+         * @return integer
+         * @see    NelsonMartell\Object
          * */
         public function getCount();
+
 
         /**
          * Agrega un elemento a la colección.
          *
+         * @param mixed $item Objeto que se va a agregar.
          *
-         * @param   mixed $item Objeto que se va a agregar.
-         * @return  void
+         * @return void
          * */
         public function add($item);
 
+
         /**
          * Quita todos los elementos de la colección.
+         * La propiedad Count se debe establecer en 0 y deben liberarse las
+         * referencias a otros objetos desde los elementos de la colección.
          *
-         *
-         * La propiedad Count se debe establecer en 0 y deben liberarse las referencias a otros
-         * objetos desde los elementos de la colección.
-         *
-         * @return  void
+         * @return void
          * */
         public function clear();
 
+
         /**
-         * Determina si la colección contiene un valor específico.
+         * Determina si la colección contiene al elemento especificado.
          *
+         * @param mixed $item Objeto que se va a buscar.
          *
-         * @param   mixed $item Objeto que se va a buscar.
-         * @return  boolean true si $item se encuentra; en caso contrario, false.
+         * @return boolean `true` si $item se encuentra; en caso contrario, `false`.
          * */
         public function contains($item);
 
+
         /**
-         * Quita la primera aparición de un objeto específico de la colección.
+         * Quita, si existe, la primera aparición de un objeto específico de la
+         * colección.
          *
+         * @param mixed $item Objeto que se va a quitar.
          *
-         * @param   $item Objeto que se va a quitar.
-         * @return  boolean True si $item se ha quitado correctamente; en caso contrario, False.
-         *   Este método también devuelve false si no se encontró $item.
+         * @return boolean `true` si el elemento se ha quitado correctamente; en
+         *   caso contrario, `false`. Este método también devuelve `false` si no
+         *   se encontró.
          * */
         public function remove($item);
     }

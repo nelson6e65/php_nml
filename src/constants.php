@@ -22,7 +22,7 @@
  * Only for internal usage.
  *
  * @constant string
- * @since v0.4.5
+ * @since    v0.4.5
  */
 define('NML_GETTEXT_DOMAIN', 'nml');
 
@@ -32,7 +32,7 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  * Can be parsed into a `NelsonMartell\Version` object. ;)
  *
  * @constant string
- * @since v0.4.4
+ * @since    v0.4.4
  */
 define('NML_VERSION', '0.4.6');
 

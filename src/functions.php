@@ -24,13 +24,13 @@ use NelsonMartell\Type;
  * Busca un mensaje único traducido en el dominio 'nml'.
  * El mensaje puede contener cadenas de formato.
  *
+ * @param string      $message Mensaje con formato que se va a buscar.
+ * @param array|mixed $args    Un objeto, una lista de objetos o múltiples
+ *   argumentos que se van a incluir en las cadenas de formato del mensaje.
  *
- * @param  string  $message  Mensaje con formato que se va a buscar.
- * @param  array|mixed  $args  Un objeto, una lista de objetos o múltiples argumentos que se van a
- *     incluir en las cadenas de formato del mensaje.
- * @return  string
- * @see  dgettext
- * @see  String::format
+ * @return string
+ * @see    dgettext
+ * @see    String::format
  * */
 function nml_msg($message, $args = null)
 {
@@ -48,14 +48,17 @@ function nml_msg($message, $args = null)
  * Busca un mensaje único, en singular y plural, traducido en el dominio 'nml'.
  * El mensaje puede contener cadenas de formato.
  *
- * @param  string  $singular  Mensaje con formato que se va a buscar cuando $n es uno (1).
- * @param  string  $plural  Mensaje con formato que se va a buscar cuando $n es distinto a (1).
- * @param  integer  $n  Cantidad
- * @param  array|mixed  $args  Un objeto, una lista de objetos o múltiples argumentos que se van a
- *     incluir en las cadenas de formato del mensaje.
- * @return  string
- * @see  dngettext
- * @see  String::format
+ * @param string      $singular Mensaje con formato que se va a buscar cuando $n
+ *   es uno (1).
+ * @param string      $plural   Mensaje con formato que se va a buscar cuando $n
+ *   es distinto a (1).
+ * @param integer     $n        Cantidad
+ * @param array|mixed $args     Un objeto, una lista de objetos o múltiples
+ *   argumentos que se van a incluir en las cadenas de formato del mensaje.
+ *
+ * @return string
+ * @see    dngettext
+ * @see    String::format
  * */
 function nml_nmsg($singular, $plural, $n, $args = null)
 {
@@ -73,10 +76,10 @@ if (!function_exists('typeof')) {
      * Obtiene el tipo del objeto especificado.
      * Es un alias para el constructor de la clase Type.
      *
+     * @param mixed $obj Objeto al cual se le extraerá su tipo.
      *
-     * @param   mixed  $obj Objeto al cual se le extraerá su tipo.
-     * @return  Type
-     * @see  Type::__construct
+     * @return Type
+     * @see    Type::__construct
      * */
     function typeof($obj)
     {

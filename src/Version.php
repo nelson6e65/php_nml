@@ -26,23 +26,22 @@ namespace NelsonMartell {
      * siendo obligatorios el primer y segundo componente.
      * No se puede heredar esta clase.
      *
-     *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     final class Version extends Object implements IEquatable, IComparable
     {
 
         /**
-         * Crea una nueva instancia con los números principal, secundario, de compilación (opcional)
-         * y revisión (opcional).
-         * Para comprobar si la versión es válida, usar el método IsValid.
+         * Crea una nueva instancia con los números principal, secundario, de
+         * compilación (opcional) y revisión (opcional).
+         * Para comprobar si la versión es válida, usar el método isValid.
          *
+         * @param int                              $major    Componente principal
+         * @param int                              $minor    Componente secundario
+         * @param int|string|VersionComponent|null $build    Componente de compilación
+         * @param int|string|VersionComponent|null $revision Componente de revisión
          *
-         * @param  int  $major  Componente principal
-         * @param  int  $minor  Componente secundario
-         * @param  int|string|VersionComponent|NULL  $build  Componente de compilación
-         * @param  int|string|VersionComponent|NULL  $revision  Componente de revisión
-         * @throw  InvalidArgumentException
+         * @throws InvalidArgumentException
          * */
         public function __construct($major, $minor, $build = null, $revision = null)
         {
@@ -128,9 +127,9 @@ namespace NelsonMartell {
         /**
          * Convierte una cadena a su representación del tipo Version.
          *
+         * @param Version|string|int|float|array $value Objeto a convertir.
          *
-         * @param Version|string|int|float|array Objeto a convertir.
-         * @return  Version Objeto convertido desde $value.
+         * @return Version Objeto convertido desde $value.
          * */
         public static function parse($value)
         {
@@ -189,15 +188,21 @@ namespace NelsonMartell {
         }
 
         /**
-         * Obtiene el valor del componente principal del número de versión del objeto actual.
-         * Ésta propiedad es de sólo lectura.
+         * Obtiene el valor del componente principal del número de versión del
+         * objeto actual.
+         * Esta propiedad es de sólo lectura.
          *
-         *
-         * @var  int Componente principal del número de versión
+         * @var int Componente principal del número de versión.
          * */
         public $Major;
         private $major;
 
+        /**
+         * Getter for Major property.
+         *
+         * @return integer
+         * @see    Version::Major.
+         */
         public function getMajor()
         {
             return $this->major;
@@ -205,45 +210,63 @@ namespace NelsonMartell {
 
 
         /**
-         * Obtiene el valor del componente secundario del número de versión del objeto actual.
-         * Ésta propiedad es de sólo lectura.
+         * Obtiene el valor del componente secundario del número de versión del
+         * objeto actual.
+         * Esta propiedad es de sólo lectura.
          *
-         *
-         * @var  int Componente secundario del número de versión
+         * @var int Componente secundario del número de versión.
          * */
         public $Minor;
         private $minor;
 
+        /**
+         * Getter for minor property.
+         *
+         * @return integer
+         * @see    Version::Minor.
+         */
         public function getMinor()
         {
             return $this->minor;
         }
 
         /**
-         * Obtiene el valor del componente de compilación del número de versión del objeto actual.
-         * Ésta propiedad es de sólo lectura.
+         * Obtiene el valor del componente de compilación del número de versión
+         * del objeto actual.
+         * Esta propiedad es de sólo lectura.
          *
-         *
-         * @var  VersionComponent  Componente de compilación del número de versión
+         * @var VersionComponent Componente de compilación del número de versión.
          * */
         public $Build;
         private $build;
 
+        /**
+         * Getter for Build property.
+         *
+         * @return VersionComponent
+         * @see    Version::Build
+         */
         public function getBuild()
         {
             return $this->build;
         }
 
         /**
-         * Obtiene el valor del componente de revisión del número de versión del objeto actual.
-         * Ésta propiedad es de sólo lectura.
+         * Obtiene el valor del componente de revisión del número de versión del
+         * objeto actual.
+         * Esta propiedad es de sólo lectura.
          *
-         *
-         * @var  VersionComponent  Componente de revisión del número de versión
+         * @var VersionComponent Componente de revisión del número de versión.
          * */
         public $Revision;
         private $revision;
 
+        /**
+         * Getter for Revision property.
+         *
+         * @return VersionComponent
+         * @see    Version::Revision
+         */
         public function getRevision()
         {
             return $this->revision;
@@ -252,14 +275,15 @@ namespace NelsonMartell {
 
         /**
          * Convierte la instancia actual en su representación en cadena.
-         * Por defecto, si no están definidos los componentes de compilación y revisión, no se
-         * incluyen en la salida.
-         * Use el método IsValid si quiere determinar si la versión es válida antes de devolver esta cadena.
+         * Por defecto, si no están definidos los componentes de compilación y
+         * revisión, no se incluyen en la salida.
+         * Use el método isValid si quiere determinar si la versión es válida
+         * antes de devolver esta cadena.
          *
-         *
-         * @return  string  Representación de la versión en forma de cadena: 'major.minor[.build[.revision]]'
-         * @see  VersionComponent::IsNull
-         * @see  Version::IsValid
+         * @return string Representación de la versión en forma de cadena:
+         *   'major.minor[.build[.revision]]'
+         * @see    VersionComponent::isNull
+         * @see    Version::isValid
          * */
         public function toString()
         {
@@ -291,7 +315,7 @@ namespace NelsonMartell {
          * 6. Build está definido y tiene la cadena, pero Revision no está definido.
          * 7. Revision posee cadena, pero Build no.
          *
-         * @return  boolean  Un valor que indica si la instancia actual es válida.
+         * @return boolean Un valor que indica si la instancia actual es válida.
          * */
         public function isValid()
         {
@@ -334,9 +358,10 @@ namespace NelsonMartell {
         /**
          * Determina si el objeto $other especificado es igual a la instancia actual.
          *
+         * @param Version $other El otro objeto a comparar.
          *
-         * @param Version $other
-         * @return  bool True si $other es igual esta instancia
+         * @return bool `true` si $other es igual esta instancia; caso contrario,
+         *   `false`.
          * */
         public function equals($other)
         {
@@ -357,11 +382,12 @@ namespace NelsonMartell {
         #region IComparable
 
         /**
-         * Determina la posición relativa del objeto especificado con respecto a esta instancia.
+         * Determina la posición relativa del objeto especificado con respecto a
+         * esta instancia.
          *
+         * @param Version $other El otro objeto Version a comparar.
          *
-         * @param   Version  $other
-         * @return  integer  0, si es igual; >0, si es mayor; <0, si es menor.
+         * @return integer `0`, si es igual; >0, si es mayor; <0, si es menor.
          * */
         public function compareTo($other)
         {

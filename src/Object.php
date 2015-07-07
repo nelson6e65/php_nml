@@ -49,7 +49,7 @@ namespace NelsonMartell {
      *     unset($this->Nombre);
      *
      *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     class Object
     {
@@ -61,11 +61,11 @@ namespace NelsonMartell {
 
         /**
          * Convierte esta instancia en su representación de cadena.
-         * Para modificar el funcionamiento de esta función, debe reemplazarse la función
-         * ObjectClass::ToString()
+         * Para modificar el funcionamiento de esta función, debe reemplazarse
+         * la función ObjectClass::toString()
          *
-         *
-         * @return  string
+         * @return string
+         * @see    Object::toString
          * */
         final public function __toString()
         {
@@ -77,8 +77,7 @@ namespace NelsonMartell {
         /**
          * Convierte la instancia actual en su representación de cadena.
          *
-         *
-         * @return  string
+         * @return string
          * */
         public function toString()
         {
@@ -109,8 +108,7 @@ namespace NelsonMartell {
         /**
          * Obtiene el tipo del objeto actual.
          *
-         *
-         * @return  Type
+         * @return Type
          * */
         final public function getType()
         {
@@ -148,13 +146,16 @@ namespace NelsonMartell {
         }
 
         /**
-         * Determina la posición relativa del objeto de la derecha con respecto al de la izquierda.
-         * Puede usarse como segundo argumento en la función de ordenamiento de arrays 'usort'.
+         * Determina la posición relativa del objeto de la derecha con respecto
+         * al de la izquierda.
+         * Puede usarse como segundo argumento en la función de ordenamiento de
+         * arrays 'usort'.
          *
+         * @param mixed $left  Objeto de la izquierda
+         * @param mixed $right Objeto de la derecha
          *
-         * @param   mixed  $left   Objeto de la izquierda
-         * @param   mixed  $right  Objeto de la derecha
-         * @return  integer  0, si ambos son iguales; >0, si $right es mayor a $left; <0, si $left es mayor a $right.
+         * @return integer `0`, si ambos son iguales; `>0`, si $right es mayor a
+         *   $left; `<0`, si $left es mayor a $right.
          * */
         public static function compare($left, $right)
         {
@@ -166,7 +167,7 @@ namespace NelsonMartell {
                 if ($right instanceof IComparable) {
                     $r = $right->CompareTo($left);
                 } else {
-                    //Si no son miembros de IComparable, se usa por defecto:
+                    // Si no son miembros de IComparable, se usa por defecto:
                     if ($left == $right) {
                         $r = 0;
                     } else {

@@ -1,21 +1,21 @@
 <?php
-
-
 /**
  * Custom autoloader for non-composer installations.
- * This function only load classes under 'NelsonMartell' namespace and skips in any other case.
+ * This function only load classes under 'NelsonMartell' namespace and skips in
+ * any other case.
  * If NML class file is not found, throws and exception.
  *
- * Note: If you are using "NelsonMartell" as main namespace in a file that not belongs to NML, you
- * should include it before to load "NML/autoload.php" or, using SPL autoload features, register
- * autoload function for that class(es) using "prepend" argument set to TRUE.
- * Example, if your autoload function is named "no_NML_autoload_function", you can use something
- * like:
+ * Note: If you are using "NelsonMartell" as main namespace in a file that not
+ * belongs to NML, you should include it before to load "NML/autoload.php" or,
+ * using SPL autoload features, register autoload function for that class(es)
+ * using "prepend" argument set to TRUE.
+ * Example, if your autoload function is named "no_NML_autoload_function", you
+ * can use something like:
  * spl_autoload_register("no_NML_autoload_function", true, TRUE).
  *
+ * @param string $class NML class name (full cualified name).
  *
- * @param   string  $class  NML class name (full name).
- * @return  void
+ * @return void
  */
 function autoload_NML($class)
 {
@@ -30,7 +30,8 @@ function autoload_NML($class)
     if ($classArray[0] == 'NelsonMartell') {
         $classArray[0] = 'src';
     } else {
-        return; // Only checks for NelsonMartell namespace.
+        // Only checks for NelsonMartell namespace.
+        return;
     }
 
     $path = sprintf('%s'.$DS.'%s', __DIR__.$DS.'..', implode($DS, $classArray));

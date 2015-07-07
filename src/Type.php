@@ -25,10 +25,10 @@ namespace NelsonMartell {
     use \ReflectionMethod;
 
     /**
-     * Represents a PHP object type, and provides some properties and methods to describe some info
-     * about itself.
+     * Represents a PHP object type, and provides some properties and methods to
+     * describe some info about itself.
      *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     final class Type extends Object
     {
@@ -36,7 +36,7 @@ namespace NelsonMartell {
         /**
          * Gets the type of specified $obj and collect some info about itself.
          *
-         * @param  mixed  $obj  Target object.
+         * @param mixed $obj Target object.
          * */
         public function __construct($obj)
         {
@@ -85,7 +85,7 @@ namespace NelsonMartell {
          * Gets the name of this Type.
          * This property is read-only.
          *
-         * @var  string
+         * @var string
          * */
         public $Name;
         private $name;
@@ -93,7 +93,7 @@ namespace NelsonMartell {
         /**
          * Getter for Type::Name property.
          *
-         * @return  string
+         * @return string
          * */
         public function getName()
         {
@@ -104,7 +104,7 @@ namespace NelsonMartell {
          * Gets the abbreviated name of class, in other words, without the namespace.
          * This property is read-only.
          *
-         * @var  string
+         * @var string
          * */
         public $ShortName;
         private $shortName = null;
@@ -112,8 +112,8 @@ namespace NelsonMartell {
         /**
          * Getter for Type::ShortName property.
          *
-         * @return  string
-         * @see  Type::ShortName
+         * @return string
+         * @see Type::ShortName
          * */
         public function getShortName()
         {
@@ -125,7 +125,7 @@ namespace NelsonMartell {
          * If this Type is not a class, this property is set to `NULL`.
          * This property is read-only.
          *
-         * @var  string|NULL
+         * @var string|NULL
          * */
         public $Namespace;
         private $namespace;
@@ -133,8 +133,8 @@ namespace NelsonMartell {
         /**
          * Getter for Type::Namespace property.
          *
-         * @return  string|NULL
-         * @see  Type::Namespace
+         * @return string|NULL
+         * @see    Type::Namespace
          * */
         public function getNamespace()
         {
@@ -145,8 +145,7 @@ namespace NelsonMartell {
          * Gets the public|protected properties (ReflectionProperty) of this Type.
          * This property is read-only.
          *
-         *
-         * @var  array
+         * @var array
          * */
         public $Vars;
         private $vars = null;
@@ -164,8 +163,7 @@ namespace NelsonMartell {
          * Gets the public|protected methods (ReflectionMethod) of this Type.
          * This property is read-only.
          *
-         *
-         * @var  array
+         * @var array
          * */
         public $Methods;
         private $methods = null;
@@ -180,10 +178,9 @@ namespace NelsonMartell {
         }
 
         /**
-         * Determina si este Type es NULL.
+         * Determina si este Type es `null`.
          *
-         *
-         * @return  boolean True if this type is null; other case, False.
+         * @return boolean `true` if this type is `null`; other case, `false`.
          * */
         public function isNull()
         {
@@ -195,10 +192,9 @@ namespace NelsonMartell {
         }
 
         /**
-         * Determina si este Type NO es NULL.
+         * Determina si este Type NO es `null`.
          *
-         *
-         * @return  boolean True if this type is NOT null; other case, False.
+         * @return boolean `true` if this type is NOT `null`; other case, `false`.
          * */
         public function isNotNull()
         {
@@ -209,8 +205,8 @@ namespace NelsonMartell {
         /**
          * Determina si este Type es una clase personalizada.
          *
-         *
-         * @return  boolean  True, if this Type is a custom class; another case, False.
+         * @return boolean `true`, if this Type is a custom class; another case,
+         *   `false`.
          * */
         public function isCustom()
         {
@@ -231,8 +227,8 @@ namespace NelsonMartell {
         /**
          * Determinate if this type is scalar.
          *
-         * @return  boolean
-         * @see  is_scalar()
+         * @return boolean
+         * @see    is_scalar()
          * */
         public function isScalar()
         {
@@ -256,9 +252,9 @@ namespace NelsonMartell {
         /**
          * Determina si este Type es de tipo valor.
          *
-         *
-         * @return  boolean
-         * @deprecated  Use more precise method: Type::IsScalar, which excludes `array`.
+         * @return     boolean
+         * @deprecated Use more precise method: Type::isScalar, which excludes
+         *   `array`.
          * */
         public function isValueType()
         {
@@ -277,8 +273,7 @@ namespace NelsonMartell {
         /**
          * Determina si este Type es de tipo referencia.
          *
-         *
-         * @return  boolean
+         * @return boolean
          * */
         public function isReferenceType()
         {
@@ -288,14 +283,13 @@ namespace NelsonMartell {
         /**
          * Convierte la instancia actual en su representación en cadena.
          *
-         *
-         * @return  string
+         * @return string
          * */
         public function toString()
         {
             $s = $this->Name;
 
-            if ($this->IsCustom()) {
+            if ($this->isCustom()) {
                 $s = sprintf("object (%s)", $s);
             }
 
@@ -306,8 +300,7 @@ namespace NelsonMartell {
          * Obtiene el tipo del objeto especificado.
          * Es un alias para el constructor de Type.
          *
-         *
-         * @return  Type
+         * @return     Type
          * @deprecated
          * */
         public static function typeof($obj)

@@ -20,11 +20,11 @@
 namespace NelsonMartell {
 
     /**
-     * Representa un elemento mixto, compuesto por un entero y una cadena unidos (en ese orden).
-     * El método ToString obtiene esa cadena compuesta.
+     * Representa un elemento mixto, compuesto por un entero y una cadena unidos
+     * (en ese orden).
+     * El método IntString::toString obtiene esa cadena compuesta.
      *
-     *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     class IntString extends Object implements IEquatable, IComparable
     {
@@ -98,21 +98,21 @@ namespace NelsonMartell {
         }
 
 
-        #region IComparable
-
         /**
-         * Determina la posición relativa de esta instancia con respecto al objeto especificado.
-         * Nota: Cualquier objeto que no sea instancia de IntString se considerará menor.
+         * Determina la posición relativa de esta instancia con respecto al
+         * objeto especificado.
+         * Nota: Cualquier objeto que no sea instancia de IntString se
+         * considerará menor.
          *
+         * @param IntString|mixed $other Objeto con el que se va a comparar.
          *
-         * @param  IntString|mixed  $other  Objeto con el que se va a comparar.
-         * @return  integer  Cero (0), si esta instancia es igual a $other; mayor a cero (>0),
-         *     si es mayor a $other; menor a cero (<0), si es menor.
+         * @return integer Cero (0), si esta instancia es igual a $other; mayor
+         *   a cero (>0), si es mayor a $other; menor a cero (<0), si es menor.
          * */
         public function compareTo($other)
         {
 
-            $r = $this->Equals($other) ? 0 : 9999;
+            $r = $this->equals($other) ? 0 : 9999;
 
             if ($r != 0) {
                 if ($other instanceof IntString) {
@@ -128,7 +128,5 @@ namespace NelsonMartell {
 
             return $r;
         }
-
-        #endregion
     }
 }

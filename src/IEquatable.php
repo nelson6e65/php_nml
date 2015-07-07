@@ -20,9 +20,10 @@
 namespace NelsonMartell {
 
     /**
-     * Provee un método para compara igualdad entre objetos del mismo tipo.
+     * Provee un método para comparar igualdad entre objetos del mismo tipo, o
+     * compatibles.
      *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     interface IEquatable
     {
@@ -30,8 +31,9 @@ namespace NelsonMartell {
         /**
          * Indica si el objeto especificado es igual a la instancia actual.
          *
+         * @param mixed $other Another object to compare equality.
          *
-         * @return  boolean
+         * @return boolean
          * */
         public function equals($other);
     }

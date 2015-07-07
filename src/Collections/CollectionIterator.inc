@@ -23,7 +23,7 @@ namespace NelsonMartell\Collections;
 /**
  * Implementa los métodos de la interfaz Iterator para una colección de objetos.
  *
- * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+ * @author Nelson Martell <nelson6e65-dev@yahoo.es>
  * @since  v0.4.0
  * */
 trait CollectionIterator
@@ -52,7 +52,7 @@ trait CollectionIterator
 
     public function valid()
     {
-        $v = (bool) ($this->GetItem($this->iteratorPosition) != null);
+        $v = (bool) ($this->getItem($this->iteratorPosition) != null);
         return $v;
     }
 

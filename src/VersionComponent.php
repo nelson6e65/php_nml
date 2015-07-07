@@ -25,8 +25,7 @@ namespace NelsonMartell {
      * Representa un componente de un número de Version.
      * Extiende la clase IntString, pero restringe los valores que puede tomar.
      *
-     *
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     class VersionComponent extends IntString implements IEquatable
     {
@@ -150,8 +149,7 @@ namespace NelsonMartell {
         /**
          * Determina si este componente tiene los valores predeterminados (0).
          *
-         *
-         * @return  boolean
+         * @return boolean
          * */
         public function isDefault()
         {
@@ -168,7 +166,7 @@ namespace NelsonMartell {
         /**
          * Getter method for VersionComponent::IntValue property.
          *
-         * @return  integer|NULL
+         * @return integer|NULL
          * */
         public function getIntValue()
         {
@@ -179,8 +177,7 @@ namespace NelsonMartell {
         /**
          * Determina si este componente NO tiene los valores predeterminados.
          *
-         *
-         * @return  boolean
+         * @return boolean
          * */
         public function isNotDefault()
         {
@@ -190,7 +187,7 @@ namespace NelsonMartell {
         /**
          * Determina si esta instancia es nula.
          *
-         * @return  boolean
+         * @return boolean
          * */
         public function isNull()
         {
@@ -204,7 +201,7 @@ namespace NelsonMartell {
         /**
          * Determina si esta instancia NO es nula.
          *
-         * @return  boolean
+         * @return boolean
          * */
         public function isNotNull()
         {

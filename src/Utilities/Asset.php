@@ -24,18 +24,23 @@ namespace NelsonMartell\Utilities {
     use \InvalidArgumentException;
 
     /**
-     * Representa un recurso estático de una página, como elementos js y css, que poseen varias
-     * versiones y están organizadas en subdirectorios, proponiendo una estructura predeterminada.
-     * Contiene métodos y propiedades para obtener las rutas de los directorios y recursos de las
-     * diferentes versiones del framework.
+     * Representa un recurso estático de una página, como elementos js y css
+     * organizados de una manera predeterminada en subdirectorios.
+     * Contiene métodos y propiedades para obtener las rutas de los directorios
+     * y recursos entre sus diferentes versiones.
      *
      * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      * */
     class Asset extends Object
     {
         /**
-         * Crea una nueva instancia de la clase Asset
-         * */
+         * Crea una nueva instancia de la clase Asset.
+         *
+         * @param string|null               $name     Nombre humano del recurso.
+         * @param array|string|Version|null $versions Versión(es) del recurso.
+         * @param string|null               $cdnUri   URL del recurso en un
+         *   servidor CDN.
+         */
         public function __construct($name = null, $versions = null, $cdnUri = null)
         {
             parent::__construct();
@@ -134,13 +139,13 @@ namespace NelsonMartell\Utilities {
 
 
         /**
-         * Obtiene o establece el nombre original del recurso.
-         * A partir de éste se determinará la ruta y el nombre real del archivo (que, por defecto,
-         * será éste mismo pero convertido en minúsculas y reemplazando sus espacios en blanco por
-         * guiones (' ' -> '-')).
+         * Obtiene o establece el nombre original 'humano' del recurso.
+         * A partir de éste se determinará la ruta y el nombre real del archivo
+         * (que, por defecto, será éste mismo pero convertido en minúsculas y
+         * reemplazando sus espacios en blanco por guiones (' ' -> '-')).
          *
-         * @see $ShortName
          * @var string Nombre del recurso
+         * @see Asset::ShortName
          * */
         public $Name;
         private $name;
@@ -194,7 +199,9 @@ namespace NelsonMartell\Utilities {
         }
 
         /**
-         * Obtiene el nombre real del recurso, que representa al nombre real de .
+         * Obtiene el nombre real del recurso, que representa al nombre 'usable'
+         * del recurso.
+         * Esta propiedad es de sólo lectura.
          *
          * @var string Nombre del recurso en su forma generada
          * */
@@ -207,7 +214,8 @@ namespace NelsonMartell\Utilities {
         }
 
         /**
-         * Obtiene la lista de versiones
+         * Obtiene la lista de versiones.
+         * Esta propiedad es de sólo lectura.
          *
          * @var List Lista de versiones del recurso
          * */
@@ -260,11 +268,13 @@ namespace NelsonMartell\Utilities {
         const OLDEST = 'oldest';
 
         /**
-         * Obtiene la ruta del directorio de la versión especificada. Si no se especifica,
-         * se devuelve la versión más reciente.
+         * Obtiene la ruta del directorio de la versión especificada. Si no se
+         * especifica, se devuelve la versión más reciente.
          *
-         * @param  string|Version $version Versión a obtener. También puede tomar los valores 'newest' u 'oldest'
-         *   para representar a la versión más nueva o más vieja, respectivamente.
+         * @param string|Version $version Versión a obtener. También puede
+         *   tomar los valores 'newest' u 'oldest' para representar a la versión
+         *   más nueva o más vieja, respectivamente.
+         *
          * @return string Ruta del directorio de la versión especificada.
          * */
         public function getDirectoryPath($version = self::NEWEST)
@@ -322,12 +332,15 @@ namespace NelsonMartell\Utilities {
 
 
         /**
-         * Obtiene la ruta del recurso de la versión especificada. Si no se especifica, se devuelve la
-         * versión más reciente.
+         * Obtiene la ruta del recurso de la versión especificada. Si no se
+         * especifica, se devuelve la versión más reciente.
          *
-         * @param  string|Version $version Versión a obtener. También puede tomar los valores 'newest' u 'oldest' para
-         *   representar a la versión más nueva o más vieja, respectivamente.
-         * @param  string         $append  Texto que se le anezará a la cadena de salida
+         * @param string|Version $version Versión a obtener. También puede
+         *   tomar los valores 'newest' u 'oldest' para representar a la versión
+         *   más nueva o más vieja, respectivamente.
+         * @param string         $append  Texto que se le anezará a la cadena
+         *   de salida.
+         *
          * @return string Ruta del recurso
          * */
         public function getResourcePath($version = self::NEWEST, $append = '')

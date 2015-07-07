@@ -20,44 +20,49 @@ namespace NelsonMartell\Extensions;
 
 /**
  * Provides extension methods to handle strings.
+ * This class is based on \Cake\Utility\Text of CakePHP(tm) class.
  *
- *
- * @copyright This class is based on Cake\Utility\String of CakePHP(tm) class.
- * @see  Original DOC of String based on: http://book.cakephp.org/3.0/en/core-libraries/string.html
+ * @see \Cake\Utility\Text::insert
+ * @see http://book.cakephp.org/3.0/en/core-libraries/text.html
  * */
 class String extends \Cake\Utility\Text
 {
 
     /**
-     * Replaces format elements in a string with the string representation of an object matching the
-     * list of arguments specified. You can give as many params as you need, or an array with values.
+     * Replaces format elements in a string with the string representation of an
+     * object matching the list of arguments specified. You can give as many
+     * params as you need, or an array with values.
      *
      * ##Usage
-     * Using numbers as placeholders (encloses between `{` and `}`), you can get the matching string
-     * representation of each object given. Use `{0}` for the fist object, `{1}` for the second,
-     *  and so on.
-     * Example: `String::Format('{0} is {1} years old, and have {2} cats.', 'Bob', 65, 101);`
+     * Using numbers as placeholders (encloses between `{` and `}`), you can get
+     * the matching string representation of each object given. Use `{0}` for
+     * the fist object, `{1}` for the second, and so on.
+     * Example:
+     * `String::format('{0} is {1} years old, and have {2} cats.', 'Bob', 65, 101);`
      * Returns: 'Bob is 65 years old, and have 101 cats.'
      *
      * You can also use an array to give objects values.
      * Example: `String::Format('{0} is {1} years old.', ['Bob', 65, 101]);`
      * Returns: 'Bob is 65 years old, and have 101 cats.'
      *
-     * If give an key => value array, each key stands for a placeholder variable name to be replaced
-     * with value key. In this case, order of keys do not matter.
+     * If give an key => value array, each key stands for a placeholder variable
+     * name to be replaced with value key. In this case, order of keys do not
+     * matter.
      * Example:
      * `$arg0 = ['name' => 'Bob', 'n' => 101, 'age' => 65];`
      * `$format = '{name} is {age} years old, and have {n} cats.';`
      * `String::Format($format, $arg0);`
      * Returns: 'Bob is 65 years old, and have 101 cats.'
      *
+     * @param string      $format A string containing variable placeholders.
+     * @param array|mixed $args   Object(s) to be replaced into $format
+     *   placeholders.
      *
-     * @param   string       $format  A string containing variable placeholders.
-     * @param   array|mixed  $args  Object(s) to be replaced into $format placeholders.
-     * @return  string
-     * @todo  Implement php.net/functions.arguments.html#functions.variable-arg-list.new for PHP 5.6+
-     * @todo  Implement formatting, like IFormatProvider or something like that.
-     * @author  Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @return string
+     * @todo   Implement, for php 5.6+:
+     *   php.net/functions.arguments.html#functions.variable-arg-list.new
+     * @todo   Implement formatting, like IFormatProvider or something like that.
+     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
      */
     public static function format($format, $args)
     {
@@ -74,9 +79,10 @@ class String extends \Cake\Utility\Text
     /**
      * Ensures that object given is not null. If is `null`, throws and exception.
      *
-     * @param  mixed $obj Object to validate
+     * @param mixed $obj Object to validate
+     *
+     * @return mixed Same object
      * @throws InvalidArgumentException if object is `null`.
-     * @return mixed         Same object
      */
     public static function ensureIsNotNull($obj)
     {
@@ -91,8 +97,9 @@ class String extends \Cake\Utility\Text
     /**
      * Ensures that object given is an string. Else, thows an exception
      *
-     * @param  mixed $obj Object to validate.
-     * @return string     Same object given, but ensured that is an string.
+     * @param mixed $obj Object to validate.
+     *
+     * @return string Same object given, but ensured that is an string.
      * @throws InvalidArgumentException if object is not an `string`.
      */
     public static function ensureIsString($obj)
@@ -108,8 +115,9 @@ class String extends \Cake\Utility\Text
     /**
      * Ensures that given string is not empty.
      *
-     * @param  string $string String to validate.
-     * @return string         Same string given, but ensured that is not empty.
+     * @param string $string String to validate.
+     *
+     * @return string Same string given, but ensured that is not empty.
      * @throws InvalidArgumentException if string is null or empty.
      */
     public static function ensureIsNotEmpty($string)
@@ -125,8 +133,10 @@ class String extends \Cake\Utility\Text
     /**
      * Ensures that given string is not empty or whitespaces.
      *
-     * @param  string $string String to validate.
-     * @return string          Same string given, but ensured that is not whitespaces.
+     * @param string $string String to validate.
+     *
+     * @return string Same string given, but ensured that is not whitespaces.
+     * @throws InvalidArgumentException if object is not an `string`.
      * @see    trim
      */
     public static function ensureIsNotWhiteSpaces($string)
@@ -142,8 +152,11 @@ class String extends \Cake\Utility\Text
     /**
      * Ensures that an string follows the PHP variables naming convention.
      *
-     * @param  string $string [description]
-     * @return [type]         [description]
+     * @param string $string String to be ensured.
+     *
+     * @return string
+     * @throws InvalidArgumentException if object is not an `string` or do not
+     *   follows the PHP variables naming convention.
      */
     public static function ensureIsValidVarName($string)
     {
