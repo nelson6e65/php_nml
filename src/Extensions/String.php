@@ -141,7 +141,7 @@ class String extends \Cake\Utility\Text
      */
     public static function ensureIsNotWhiteSpaces($string)
     {
-        if (trim(static::ensureIsString($string)) === '') {
+        if (trim(static::ensureIsNotEmpty($string)) === '') {
             $msg = nml_msg('Provided string must not be white spaces.');
             throw new InvalidArgumentException($msg);
         }
