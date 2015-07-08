@@ -1,0 +1,200 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
+"POT-Creation-Date: 2015-07-05 01:20-0430\n"
+"PO-Revision-Date: 2015-07-05 01:21-0430\n"
+"Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: nml_msg;nml_nmsg\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: tests\n"
+
+#: src/Extensions/String.php:84
+msgid "Provided object must not be NULL."
+msgstr ""
+
+#: src/Extensions/String.php:101
+msgid "Provided object must to be an string; \"{0}\" given."
+msgstr ""
+
+#: src/Extensions/String.php:118
+msgid "Provided string must not be empty."
+msgstr ""
+
+#: src/Extensions/String.php:135
+msgid "Provided string must not be white spaces."
+msgstr ""
+
+#: src/Extensions/String.php:153
+msgid ""
+"Provided string do not follows PHP variables naming convention: \"{0}\"."
+msgstr ""
+
+#: src/Object.php:96
+msgid "Using default \"{base_class}::{function}\" ({access}) method."
+msgstr ""
+
+#: src/Object.php:98 src/Object.php:139
+msgid ""
+" You can replace (override) its behavior by creating \"{class}::"
+"{function}\" ({access}) method."
+msgstr ""
+
+#: src/Object.php:134
+msgid ""
+"You implemented IEquatable, but using default \"{base_class}::"
+"{function}\" ({access}) method."
+msgstr ""
+
+#: src/Utilities/Asset.php:59 src/Utilities/Asset.php:90
+#: src/Utilities/Asset.php:119 src/Utilities/Asset.php:182
+#: src/Utilities/Asset.php:313 src/Version.php:97 src/Version.php:113
+#: src/VersionComponent.php:47 src/VersionComponent.php:103
+msgid "Invalid argument value."
+msgstr ""
+
+#: src/Utilities/Asset.php:61
+msgid ""
+" \"{name}\" (position {pos}) can not be specified if \"{name2}\" (position "
+"{pos2}) is \"null\"."
+msgstr ""
+
+#: src/Utilities/Asset.php:92
+msgid ""
+" \"{name}\" (position {pos}) must to be an array of \"{expected}\" elements "
+"(or any parseable into \"{expected}\"); the array given has an invalid "
+"\"{actual}\" element."
+msgstr ""
+
+#: src/Utilities/Asset.php:121
+msgid ""
+" \"{name}\" (position {pos}) must to be an array of \"{expected}\" elements, "
+"an instance of \"{expected}\" or any object parseable into \"{expected}\"; "
+"\"{actual}\" given."
+msgstr ""
+
+#: src/Utilities/Asset.php:164 src/Utilities/Asset.php:302 src/Version.php:61
+#: src/Version.php:80 src/VersionComponent.php:67 src/VersionComponent.php:122
+msgid "Invalid argument type."
+msgstr ""
+
+#: src/Utilities/Asset.php:166
+msgid ""
+" \"{class}::{property}\" must to be an instance of \"{expected}\"; "
+"\"{actual}\" given."
+msgstr ""
+
+#: src/Utilities/Asset.php:184
+msgid " \"{class}::{property}\" value can not be empty or whitespace."
+msgstr ""
+
+#: src/Utilities/Asset.php:275
+msgid "This Asset has not versions."
+msgstr ""
+
+#: src/Utilities/Asset.php:304
+msgid ""
+" \"{name}\" (position {pos}) must to be an instance of \"{expected}\" (or "
+"compatible); \"{actual}\" given."
+msgstr ""
+
+#: src/Utilities/Asset.php:314
+msgid " Asset has not the version \"{version}\"."
+msgstr ""
+
+#: src/Utilities/UnitTesting/Assert.php:89
+#, php-format
+msgid "%5$s failed. Expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
+msgstr ""
+
+#: src/Utilities/UnitTesting/Assert.php:98
+#: src/Utilities/UnitTesting/Assert.php:151
+#: src/Utilities/UnitTesting/Assert.php:220
+#: src/Utilities/UnitTesting/Assert.php:242
+#: src/Utilities/UnitTesting/Assert.php:290
+#: src/Utilities/UnitTesting/Assert.php:312
+#, php-format
+msgid "Message: %s"
+msgstr ""
+
+#: src/Utilities/UnitTesting/Assert.php:142
+#, php-format
+msgid "%5$s failed. Not expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
+msgstr ""
+
+#: src/Utilities/UnitTesting/Assert.php:213
+#: src/Utilities/UnitTesting/Assert.php:235
+#: src/Utilities/UnitTesting/Assert.php:283
+#: src/Utilities/UnitTesting/Assert.php:305
+#, php-format
+msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
+msgstr ""
+
+#: src/Version.php:63 src/Version.php:82 src/VersionComponent.php:69
+#: src/VersionComponent.php:124
+msgid ""
+" \"{name}\" (position {pos}) must to be an instance of \"{expected}\"; "
+"\"{actual}\" given."
+msgstr ""
+
+#: src/Version.php:66 src/Version.php:85
+msgid " Convert value or use the \"{class}::parse\" (static) method."
+msgstr ""
+
+#: src/Version.php:99 src/Version.php:115 src/VersionComponent.php:49
+msgid ""
+" \"{name}\" (position {pos}) must to be a positive number; \"{actual}\" "
+"given."
+msgstr ""
+
+#: src/Version.php:161
+msgid "Unable to parse. Argument passed has an invalid type: \"{0}\"."
+msgstr ""
+
+#: src/Version.php:169
+msgid "Unable to parse. Argument passed has an invalid format: \"{0}\"."
+msgstr ""
+
+#: src/VersionComponent.php:105
+msgid " \"{name}\" (position {pos}) has invalid chars; \"{actual}\" given."
+msgstr ""
+
+#: src/PropertiesHandler.inc:70
+msgid "Unable to get the property value in \"{0}\" class."
+msgstr ""
+
+#: src/PropertiesHandler.inc:96
+msgid "Unable to set the property value in \"{0}\" class."
+msgstr ""
+
+#: src/PropertiesHandler.inc:118
+msgid "Property name is not valid."
+msgstr ""
+
+#: src/PropertiesHandler.inc:128
+msgid "Property \"{class}::{property}\" do not exists."
+msgstr ""
+
+#: src/PropertiesHandler.inc:150
+msgid "Method name is not valid."
+msgstr ""
+
+#: src/PropertiesHandler.inc:160
+msgid "Method \"{class}::{method}\" do not exists."
+msgstr ""
+
+#: src/PropertiesHandler.inc:189
+msgid "Property \"{class}::{name}\" has not a setter."
+msgstr ""
+
+#: src/PropertiesHandler.inc:218
+msgid "Property \"{class}::{name}\" has not a getter."
+msgstr ""

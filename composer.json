@@ -16,6 +16,7 @@
 	"support": {
 		"issues": "https://github.com/nelson6e65/php_nml/issues",
 		"forum": "http://stackoverflow.com/tags/php_nml",
+		"gitter": "https://gitter.im/nelson6e65/php_nml",
 		"source": "https://github.com/nelson6e65/php_nml"
 	},
 	"require": {
@@ -30,8 +31,9 @@
 			"NelsonMartell\\": "src"
 		},
 		"files": [
+			"src/constants.php",
 			"src/functions.php",
-			"src/nml.php"
+			"config/bootstrap.php"
 		]
 	},
 	"autoload-dev": {
