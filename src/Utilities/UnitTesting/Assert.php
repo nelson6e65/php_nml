@@ -19,6 +19,7 @@
 
 namespace NelsonMartell\Utilities\UnitTesting {
 
+    use NelsonMartell\IEquatable;
     use NelsonMartell\Object;
     use \Exception;
 
