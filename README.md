@@ -18,17 +18,18 @@ Provides a set of classes for PHP applications.
 ## Installation
 
 ### As Git submodule
-In your ***vendor*** directory, type:
 
+    cd path/to/your/vendor/directory
     git submodule add https://github.com/nelson6e65/php_nml.git
-	git submodule init
-	git submodule update
+    git submodule init
+    git submodule update
 
 Or you can also clone using ssh auth:
 
+    cd path/to/your/vendor/directory
     git submodule add git@github.com:nelson6e65/php_nml.git
     git submodule init
-	git submodule update
+    git submodule update
 
 This installs NML into your Vendor directory as `php_nml`.
 
@@ -77,6 +78,6 @@ some clases, functions, methods, etc.
 <?php
     //Other configs of your application
     //..
-	define('CODE_ANALYSIS', true);
-	//...
+    define('CODE_ANALYSIS', true);
+    //...
 ```
