@@ -33,7 +33,7 @@
 		"files": [
 			"src/constants.php",
 			"src/functions.php",
-			"config/bootstrap.php",
+			"config/bootstrap.php"
 		]
 	},
 	"autoload-dev": {
