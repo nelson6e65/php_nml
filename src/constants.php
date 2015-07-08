@@ -34,7 +34,7 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  * @constant string
  * @since    v0.4.4
  */
-define('NML_VERSION', '0.4.6');
+define('NML_VERSION', '0.5.0');
 
 
 // #############################################################################
