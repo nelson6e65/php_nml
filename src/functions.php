@@ -30,7 +30,6 @@ use NelsonMartell\Type;
  *
  * @return string
  * @see    dgettext
- * @see    String::format
  * */
 function nml_msg($message, $args = null)
 {
@@ -58,7 +57,6 @@ function nml_msg($message, $args = null)
  *
  * @return string
  * @see    dngettext
- * @see    String::format
  * */
 function nml_nmsg($singular, $plural, $n, $args = null)
 {
@@ -79,7 +77,6 @@ if (!function_exists('typeof')) {
      * @param mixed $obj Objeto al cual se le extraerá su tipo.
      *
      * @return Type
-     * @see    Type::__construct
      * */
     function typeof($obj)
     {
