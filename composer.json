@@ -25,7 +25,8 @@
 		"cakephp/utility": "3.*"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "*"
+		"phpunit/phpunit": "*",
+		"apigen/apigen": "^4.1"
 	},
 	"autoload": {
 		"psr-4": {
