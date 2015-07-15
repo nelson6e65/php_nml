@@ -1,6 +1,8 @@
 # Get ApiGen.phar
 wget http://www.apigen.org/apigen.phar
 
+nml_ver=$(git describe)
+
 # Generate Api in temporal dir: ../tmp/api
 php apigen.phar generate
 
@@ -18,10 +20,13 @@ git remote add origin https://${GH_TOKEN}@github.com/nelson6e65/php_nml.git > /d
 git pull
 git checkout gh-pages
 
-# Bring generated api
-mv -f ../tmp/api api
+# Clean current api (old)
+rm -rf api
+
+# Bring generated api (updated)
+cp -rf ../tmp/api api && rm -rf ../tmp/api
 
 # Push generated files
-git add .
-git commit -m "API updated"
+git add --all .
+git commit -m "API updated ($nml_ver)"
 git push origin gh-pages -q > /dev/null
