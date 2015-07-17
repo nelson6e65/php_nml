@@ -1,5 +1,5 @@
 # PHP: Nelson Martell Library
-[![Travis Build Status](https://img.shields.io/travis/nelson6e65/php_nml/master.svg)](https://travis-ci.org/nelson6e65/php_nml) 
+[![Travis Build Status](https://img.shields.io/travis/nelson6e65/php_nml/master.svg)](https://travis-ci.org/nelson6e65/php_nml)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
 [![Scrutinizer Build Status](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/build.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/build-status/master)
@@ -21,19 +21,28 @@ Provides a set of classes for PHP applications.
 * [CakePHP Utility Classes](https://github.com/cakephp/utility) [3.0.5](https://github.com/cakephp/utility/releases/tag/3.0.5) or grater - Only needed `Cake\Utility\Text` class, that should be loaded. There is a [copy of that class](vendor/Cake/Utility/Text.php) into `vendor` directory to be auto-used if CakePHP Utility Classes is not available.
 
 ## Installation
-Follow this instructions to install **NML** into your `vendor` directory as `nelson6e65/php_nml`.
+Use this instructions to install **NML** into your `vendor` directory as `nelson6e65/php_nml`.
 
-**Note**: This instructions assumes that your current directory is your *project root directory*. Use CD command as you need (`cd path/to/your/project/root`) before to proceed.
+### Before install
+This instructions assumes that your current directory is your *project root directory*. Use CD command as you need (`cd path/to/your/project/root`) before to proceed.
 
-### Via [Composer](https://getcomposer.org/doc/00-intro.md)
+Example: If your project is located at `/home/ltorvalds/github/awesome-php-project`, run:
+
+    cd /home/ltorvalds/github/awesome-php-project
+
+**Note**: You may need to install [Git](http://git-scm.com) or/and [Composer](https://getcomposer.org) in order to run some commands in the next steps.
+
+### Install
+
+#### Via [composer](https://getcomposer.org/doc/00-intro.md)
 Just run this command (your `composer.json` will be updated):
 
     composer require nelson6e65/php_nml
-    
+
 **Note**: Remember to add your `vendor` dependencies to your `.gitignore` file. (See [why](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
 
 
-### Via [git submodule](http://git-scm.com/book/en/v2/Git-Tools-Submodules)
+#### Via [git submodule](http://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
     git submodule add https://github.com/nelson6e65/php_nml.git vendor/nelson6e65/php_nml
     git submodule init
@@ -42,37 +51,55 @@ Just run this command (your `composer.json` will be updated):
 **Note**: You can use ssh (`git@github.com:nelson6e65/php_nml.git`) instead of https.
 
 
-### Manually
-* Download lastest [release](https://github.com/nelson6e65/php_nml/releases).
-* Unzip that download.
-* Rename the resulting folder to `php_nml`.
-* Then move this folder into your `vendor/nelson6e65` directory (create parent folders as needed).
+#### Manually
+- Download the lastest [release](https://github.com/nelson6e65/php_nml/releases).
+- Unzip that download.
+- Rename the resulting folder to `php_nml`.
+- Then move this folder into your `vendor/nelson6e65` directory (create parent folders as needed).
 
 
-## Prepare to use
-After install, you should configure your app to autoload classes.
+### After install
+After you install NML, you should configure your app to autoload classes.
 
-### For composer projects
+#### For composer projects
 You must include the composer autoloader (`vendor/autoload.php`) in your `config.php` or `bootstrap.php` (or whatever file that you perform autoload). In most of modern PHP frameworks this is made automatically.
 
-### For non-composer projects
+#### For non-composer projects
 This library implements an auto-load system even for non-composer installs. You must include the [autoloader](autoload.php) provided (`vendor/nelson6e65/php_nml/autoload.php`).
 
 Example:
+
 ```php
-<?php 
+<?php
     # app/config.php
-    
-    // Other configs of your application...
-    
+    # . . .
+
     require_once(PROJECT_ROOT.'/vendor/nelson6e65/php_nml/autoload.php');
-    
     // Note: 'PROJECT_ROOT' is your root directory (in this case, a PHP constant).
-    
-    // . . .
+
+    # . . .
 ```
 
+
+
+
 **Note:** There is a minimal copy of [CakePHP Utility Classes](https://github.com/cakephp/utility) in `php_nml/vendor/Cake/Utility` directory. `vendor/nelson6e65/php_nml/autoload.php` includes  `vendor/nelson6e65/php_nml/vendor/autoload.php` file to autoloads that class(es) if there is not available.
+
+
+#### Code Analysis
+You can, optionally, define the `CODE_ANALYSIS` constant if you like some notices and warnings to be
+throws while you are coding/debugging. This is useful to watch some recommendations about usage of
+some classes, functions, methods, etc.
+
+```php
+<?php
+    # app/config.php
+    # . . .
+
+    define('CODE_ANALYSIS', true);
+
+    # . . .
+```
 
 
 ## Usage
@@ -90,18 +117,3 @@ echo $nmlVersion.toString();
 ```
 
 For more details about available classes from NML, you can check the [API Documentation](http://nelson6e65.github.io/php_nml/api).
-
-
-### Code Analysis
-You can, optionally, define the `CODE_ANALYSIS` constant if you like some notices and warnings to be
-throws while you are coding/debugging. This is useful to watch some recommendations about usage of
-some clases, functions, methods, etc.
-
-```php
-<?php
-    # app/config.php
-    //Other configs of your application
-    //..
-    define('CODE_ANALYSIS', true);
-    //...
-```
