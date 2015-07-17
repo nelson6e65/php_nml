@@ -11,22 +11,23 @@
 
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-<!-- TOC depth:4 withLinks:1 updateOnSave:1 orderedList:1 -->
+<!-- TOC depth:4 withLinks:1 updateOnSave:0 orderedList:1 -->
 
-1. [PHP: Nelson Martell Library](#php-nelson-martell-library)
-	1. [Description](#description)
-	2. [Requirements](#requirements)
-	3. [Installation](#installation)
-		1. [Before install](#before-install)
-		2. [Install](#install)
-			1. [Via composer](#via-composer)
-			2. [Via git submodule](#via-git-submodule)
-			3. [Manually](#manually)
-		3. [After install](#after-install)
-			1. [For composer projects](#for-composer-projects)
-			2. [For non-composer projects](#for-non-composer-projects)
-			3. [Code Analysis](#code-analysis)
-	4. [Usage](#usage)
+## Table of content
+1. [Description](#description)
+2. [Requirements](#requirements)
+3. [Installation](#installation)
+    1. [Before install](#before-install)
+    2. [Install](#install)
+        1. [Via composer](#via-composer)
+        2. [Via git submodule](#via-git-submodule)
+        3. [Manually](#manually)
+    3. [After install](#after-install)
+        1. [For composer projects](#for-composer-projects)
+        2. [For non-composer projects](#for-non-composer-projects)
+        3. [Code Analysis](#code-analysis)
+4. [Usage](#usage)
+
 <!-- /TOC -->
 
 
