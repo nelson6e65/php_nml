@@ -11,6 +11,25 @@
 
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+<!-- TOC depth:4 withLinks:1 updateOnSave:1 orderedList:1 -->
+
+1. [PHP: Nelson Martell Library](#php-nelson-martell-library)
+	1. [Description](#description)
+	2. [Requirements](#requirements)
+	3. [Installation](#installation)
+		1. [Before install](#before-install)
+		2. [Install](#install)
+			1. [Via composer](#via-composer)
+			2. [Via git submodule](#via-git-submodule)
+			3. [Manually](#manually)
+		3. [After install](#after-install)
+			1. [For composer projects](#for-composer-projects)
+			2. [For non-composer projects](#for-non-composer-projects)
+			3. [Code Analysis](#code-analysis)
+	4. [Usage](#usage)
+<!-- /TOC -->
+
+
 ## Description
 Provides a set of classes for PHP applications.
 
@@ -34,15 +53,16 @@ Example: If your project is located at `/home/ltorvalds/github/awesome-php-proje
 
 ### Install
 
-#### Via [composer](https://getcomposer.org/doc/00-intro.md)
+#### Via composer
 Just run this command (your `composer.json` will be updated):
 
     composer require nelson6e65/php_nml
 
 **Note**: Remember to add your `vendor` dependencies to your `.gitignore` file. (See [why](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
 
+Read more about Composer installs [here](https://getcomposer.org/doc/00-intro.md).
 
-#### Via [git submodule](http://git-scm.com/book/en/v2/Git-Tools-Submodules)
+#### Via git submodule
 
     git submodule add https://github.com/nelson6e65/php_nml.git vendor/nelson6e65/php_nml
     git submodule init
@@ -50,6 +70,7 @@ Just run this command (your `composer.json` will be updated):
 
 **Note**: You can use ssh (`git@github.com:nelson6e65/php_nml.git`) instead of https.
 
+Read more about Git submodules [here](http://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 #### Manually
 - Download the lastest [release](https://github.com/nelson6e65/php_nml/releases).
