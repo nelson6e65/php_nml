@@ -18,69 +18,88 @@ Provides a set of classes for PHP applications.
 
 ## Requirements
 * PHP 5.5 or greater
-* [CakePHP Utility Classes](https://github.com/cakephp/utility) [3.0.5](https://github.com/cakephp/utility/releases/tag/3.0.5) or grater - Only needed `Cake\Utility\Text` class, that should be loaded. There is a copy of that class into `vendor` directory to be auto-used if CakePHP Utility Classes is not available.
+* [CakePHP Utility Classes](https://github.com/cakephp/utility) [3.0.5](https://github.com/cakephp/utility/releases/tag/3.0.5) or grater - Only needed `Cake\Utility\Text` class, that should be loaded. There is a [copy of that class](vendor/Cake/Utility/Text.php) into `vendor` directory to be auto-used if CakePHP Utility Classes is not available.
 
 ## Installation
+Follow this instructions to install **NML** into your `vendor` directory as `nelson6e65/php_nml`.
 
-### As Git submodule
+**Note**: This instructions assumes that your current directory is your *project root directory*. Use CD command as you need (`cd path/to/your/project/root`) before to proceed.
 
-    cd path/to/your/vendor/directory
-    git submodule add https://github.com/nelson6e65/php_nml.git
+### Via [Composer](https://getcomposer.org/doc/00-intro.md)
+Just run this command (your `composer.json` will be updated):
+
+    composer require nelson6e65/php_nml
+    
+**Note**: Remember to add your `vendor` dependencies to your `.gitignore` file. (See [why](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
+
+
+### Via [git submodule](http://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+    git submodule add https://github.com/nelson6e65/php_nml.git vendor/nelson6e65/php_nml
     git submodule init
     git submodule update
 
-Or you can also clone using ssh auth:
+**Note**: You can use ssh (`git@github.com:nelson6e65/php_nml.git`) instead of https.
 
-    cd path/to/your/vendor/directory
-    git submodule add git@github.com:nelson6e65/php_nml.git
-    git submodule init
-    git submodule update
-
-This installs NML into your Vendor directory as `php_nml`.
 
 ### Manually
-* Download NML from  [releases](https://github.com/nelson6e65/php_nml/releases),  master-[tar.gz](https://github.com/nelson6e65/php_nml/tarball/master) or master-[zip](https://github.com/nelson6e65/php_nml/zipball/master).
+* Download lastest [release](https://github.com/nelson6e65/php_nml/releases).
 * Unzip that download.
 * Rename the resulting folder to `php_nml`.
-* Then copy/move this folder into your vendor directory
+* Then move this folder into your `vendor/nelson6e65` directory (create parent folders as needed).
 
-# Usage
-This library implements an auto-load system even for non-composer installs.
 
-First you should import `autoload.php` file from `php_nml` root directory into your app configuration file:
+## Prepare to use
+After install, you should configure your app to autoload classes.
 
+### For composer projects
+You must include the composer autoloader (`vendor/autoload.php`) in your `config.php` or `bootstrap.php` (or whatever file that you perform autoload). In most of modern PHP frameworks this is made automatically.
+
+### For non-composer projects
+This library implements an auto-load system even for non-composer installs. You must include the [autoloader](autoload.php) provided (`vendor/nelson6e65/php_nml/autoload.php`).
+
+Example:
 ```php
-<?php
-    //app/config.php
-    //Other configs of your application...
-    require_once('path/to/your/app/Vendor/php_nml/autoload.php');
-    //...
+<?php 
+    # app/config.php
+    
+    // Other configs of your application...
+    
+    require_once(PROJECT_ROOT.'/vendor/nelson6e65/php_nml/autoload.php');
+    
+    // Note: 'PROJECT_ROOT' is your root directory (in this case, a PHP constant).
+    
+    // . . .
 ```
 
-Then, the library classes will be available to use:
+**Note:** There is a minimal copy of [CakePHP Utility Classes](https://github.com/cakephp/utility) in `php_nml/vendor/Cake/Utility` directory. `vendor/nelson6e65/php_nml/autoload.php` includes  `vendor/nelson6e65/php_nml/vendor/autoload.php` file to autoloads that class(es) if there is not available.
+
+
+## Usage
+After install NML and configure your application, you will be able to use NML classes by importing/aliasing with the [use operator](http://php.net/manual/en/language.namespaces.importing.php):
 
 ```php
 <?php
-//Example of use of Version class:
+//Example of Version usage:
 use NelsonMartell\Version;
 
 $nmlVersion = new Version(0, 3);
 
-echo $nmlVersion.ToString();
+echo $nmlVersion.toString();
 
 ```
 
-**Note:** If you dont' use [CakePHP Utility Classes](https://github.com/cakephp/utility), there is a minimal copy of needed class in `php_nml/vendor/Cake/Utility` directory. This `autoload.php` includes `php_nml/vendor/autoload.php` file to autoloads psr-4 classes from that `vendor`.
-
 For more details about available classes from NML, you can check the [API Documentation](http://nelson6e65.github.io/php_nml/api).
 
-#### Code Analysis
+
+### Code Analysis
 You can, optionally, define the `CODE_ANALYSIS` constant if you like some notices and warnings to be
 throws while you are coding/debugging. This is useful to watch some recommendations about usage of
 some clases, functions, methods, etc.
 
 ```php
 <?php
+    # app/config.php
     //Other configs of your application
     //..
     define('CODE_ANALYSIS', true);
