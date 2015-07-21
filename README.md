@@ -1,4 +1,5 @@
 # PHP: Nelson Martell Library
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Travis Build Status](https://img.shields.io/travis/nelson6e65/php_nml/master.svg)](https://travis-ci.org/nelson6e65/php_nml)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
@@ -7,7 +8,6 @@
 
 [![API Documentation](http://img.shields.io/badge/documentation-API-yellow.svg)](http://nelson6e65.github.io/php_nml/api)
 [![Wiki Documentation](http://img.shields.io/badge/documentation-WIKI-lightgray.svg)](https://github.com/nelson6e65/php_nml/wiki)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -74,7 +74,7 @@ Read more about Composer installs [here](https://getcomposer.org/doc/00-intro.md
 Read more about Git submodules [here](http://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 #### Manually
-- Download the lastest [release](https://github.com/nelson6e65/php_nml/releases).
+- Download the latest [release](https://github.com/nelson6e65/php_nml/releases).
 - Unzip that download.
 - Rename the resulting folder to `php_nml`.
 - Then move this folder into your `vendor/nelson6e65` directory (create parent folders as needed).
