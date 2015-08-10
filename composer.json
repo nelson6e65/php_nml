@@ -1,7 +1,6 @@
 {
 	"name": "nelson6e65/php_nml",
 	"description": "PHP: Nelson Martell Library",
-	"version": "0.5.0",
 	"type": "library",
 	"keywords": ["framework"],
 	"homepage": "http://nelson6e65.github.io/php_nml",
