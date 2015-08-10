@@ -18,7 +18,9 @@
 		"issues": "https://github.com/nelson6e65/php_nml/issues",
 		"forum": "http://stackoverflow.com/tags/php_nml",
 		"gitter": "https://gitter.im/nelson6e65/php_nml",
-		"source": "https://github.com/nelson6e65/php_nml"
+		"source": "https://github.com/nelson6e65/php_nml",
+		"wiki": "https://github.com/nelson6e65/php_nml/wiki",
+		"docs": "http://nelson6e65.github.io/php_nml/api"
 	},
 	"require": {
 		"php": ">=5.5.0",
