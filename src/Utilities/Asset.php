@@ -159,7 +159,7 @@ namespace NelsonMartell\Utilities {
         {
             if (!is_string($value)) {
                 $args = [
-                    'class'    => $this->getType()->Name,
+                    'class'    => typeof($this)->Name,
                     'property' => 'Name',
                     'pos'      => 0,
                     'expected' => 'string',
@@ -177,7 +177,7 @@ namespace NelsonMartell\Utilities {
 
             if (str_word_count($value) == 0) {
                 $args = [
-                    'class'    => $this->getType()->Name,
+                    'class'    => typeof($this)->Name,
                     'property' => 'Name',
                     'pos'      => 0,
                     'expected' => 'string',

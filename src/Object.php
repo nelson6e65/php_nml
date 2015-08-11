@@ -81,7 +81,7 @@ namespace NelsonMartell {
          * */
         public function toString()
         {
-            $type = $this->getType();
+            $type = typeof($this);
 
             if (defined('CODE_ANALYSIS')) {
                 if ($type->Name != 'NelsonMartell\Object') {
@@ -105,21 +105,11 @@ namespace NelsonMartell {
             return '{ '.$type.' }';
         }
 
-        /**
-         * Obtiene el tipo del objeto actual.
-         *
-         * @return Type
-         * */
-        final public function getType()
-        {
-            return typeof($this);
-        }
-
         public function equals($other)
         {
             if (defined('CODE_ANALYSIS')) {
                 if ($this instanceof IEquatable) {
-                    $type = $this->getType();
+                    $type = typeof($this);
 
                     $args = [
                         'access'     => 'public',

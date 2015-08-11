@@ -50,7 +50,7 @@ namespace NelsonMartell {
 
             if (!is_integer($major)) {
                 $args = [
-                    'class'    => $this->getType()->Name,
+                    'class'    => typeof($this)->Name,
                     'name'     => 'major',
                     'pos'      => 0,
                     'expected' => typeof(0),
@@ -69,7 +69,7 @@ namespace NelsonMartell {
 
             if (!is_integer($minor)) {
                 $args = [
-                    'class'    => $this->getType()->Name,
+                    'class'    => typeof($this)->Name,
                     'name'     => 'minor',
                     'pos'      => 1,
                     'expected' => typeof(0),
