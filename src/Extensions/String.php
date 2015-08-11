@@ -18,6 +18,9 @@
  * */
 namespace NelsonMartell\Extensions;
 
+use Cake\Utility\Text;
+use \InvalidArgumentException;
+
 /**
  * Provides extension methods to handle strings.
  * This class is based on \Cake\Utility\Text of CakePHP(tm) class.
@@ -25,7 +28,7 @@ namespace NelsonMartell\Extensions;
  * @see \Cake\Utility\Text::insert
  * @see http://book.cakephp.org/3.0/en/core-libraries/text.html
  * */
-class String extends \Cake\Utility\Text
+class String extends Text
 {
 
     /**
