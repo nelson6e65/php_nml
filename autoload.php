@@ -25,4 +25,4 @@ require_once __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'autoloade
 
 spl_autoload_register('autoload_NML');
 
-require_once('vendor/autoload.php');
+// require_once('vendor/autoload.php');
