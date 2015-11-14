@@ -132,7 +132,7 @@ After install NML and configure your application, you will be able to use NML cl
 //Example of Version usage:
 use NelsonMartell\Version;
 
-$nmlVersion = new Version(0, 3);
+$nmlVersion = new Version(0, 5, 1);
 
 echo $nmlVersion.toString();
 
