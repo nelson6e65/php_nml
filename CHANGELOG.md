@@ -6,7 +6,7 @@
 - Minor fixes in possible errors
 - Coding standards and other minor fixes
 
-See [detailed changelog](https://github.com/nelson6e65/php_nml/compare/v0.5.0...v0.5.0).
+See [detailed changelog](https://github.com/nelson6e65/php_nml/compare/v0.5.0...v0.5.1).
 
 ### Release 0.5.0
 <!-- TODO -->
