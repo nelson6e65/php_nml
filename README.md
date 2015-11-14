@@ -1,11 +1,17 @@
 # PHP: Nelson Martell Library
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Travis Build Status](https://img.shields.io/travis/nelson6e65/php_nml/master.svg)](https://travis-ci.org/nelson6e65/php_nml)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
-[![Scrutinizer Build Status](https://scrutinizer-ci.com/g/nelson6e65/php_nml/badges/build.png?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/build-status/master)
-[![Latest Version](https://img.shields.io/packagist/v/nelson6e65/php_nml.svg)](https://packagist.org/packages/nelson6e65/php_nml)
 
+[![Travis Build Status](https://img.shields.io/travis/nelson6e65/php_nml/master.svg)](https://travis-ci.org/nelson6e65/php_nml)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/nelson6e65/php_nml.svg)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
+[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/nelson6e65/php_nml.svg)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
+[![Scrutinizer Build Status](https://img.shields.io/scrutinizer/build/g/nelson6e65/php_nml.svg?b=master)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/build-status/master)
+
+[![GitHub release](https://img.shields.io/github/tag/nelson6e65/php_nml.svg)](https://github.com/nelson6e65/php_nml/tags)
+[![GitHub commits](https://img.shields.io/github/commits-since/nelson6e65/php_nml/v0.5.1.svg)](https://github.com/nelson6e65/php_nml/compare/v0.5.1...master)
+[![Latest Version](https://img.shields.io/packagist/v/nelson6e65/php_nml.svg?label=stable)](https://packagist.org/packages/nelson6e65/php_nml)
+[![Latest unstable Version](https://img.shields.io/packagist/vpre/nelson6e65/php_nml.svg?label=unstable)](https://packagist.org/packages/nelson6e65/php_nml)
+[![VersionEye](https://img.shields.io/versioneye/d/php/nelson6e65:php_nml.svg)](https://www.versioneye.com/php/nelson6e65:php_nml)
+
+[![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
 [![API Documentation](http://img.shields.io/badge/documentation-API-yellow.svg)](http://nelson6e65.github.io/php_nml/api)
 [![Wiki Documentation](http://img.shields.io/badge/documentation-WIKI-lightgray.svg)](https://github.com/nelson6e65/php_nml/wiki)
 
