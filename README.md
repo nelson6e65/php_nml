@@ -139,9 +139,20 @@ After install NML and configure your application, you will be able to use NML cl
 //Example of Version usage:
 use NelsonMartell\Version;
 
+// Create Version object using constructor:
 $nmlVersion = new Version(0, 5, 1);
 
-echo $nmlVersion.toString();
+// Create Version object parsing from string
+$nmlVersion = Version::parse('0.5.1');
+
+// Explicit to string
+echo $nmlVersion->toString();
+
+// Implicit to string
+echo $nmlVersion;
+?>
+
+<p>Nelson Martell Library, version <?= $nmlVersion ?></p>
 
 ```
 
