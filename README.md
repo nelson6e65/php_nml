@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/nelson6e65/php_nml.png?label=ready&title=Ready)](https://waffle.io/nelson6e65/php_nml)
 # PHP: Nelson Martell Library
 
 [![Travis Build Status](https://img.shields.io/travis/nelson6e65/php_nml/master.svg)](https://travis-ci.org/nelson6e65/php_nml)
