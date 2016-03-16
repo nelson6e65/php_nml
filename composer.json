@@ -36,6 +36,7 @@
 		"files": [
 			"src/constants.php",
 			"src/deprecated_functions.php",
+			"src/functions.php",
 			"config/bootstrap.php"
 		]
 	},

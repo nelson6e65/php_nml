@@ -5,20 +5,21 @@
  * Content:
  * - Global functions definition for NML.
  *
- * Copyright © 2015-2016 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2016 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright 2015-2016 Nelson Martell
+ * @copyright 2016 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.4.5
+ * @since     v0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+namespace NelsonMartell;
+
 use NelsonMartell\Extensions\String;
-use NelsonMartell\Type;
 
 /**
  * Busca un mensaje único traducido en el dominio 'nml'.
@@ -29,16 +30,15 @@ use NelsonMartell\Type;
  *   argumentos que se van a incluir en las cadenas de formato del mensaje.
  *
  * @return string
- * @deprecated since v0.6.0, will be removed in v0.7.0. Use `\NelsonMartell\msg()` instead.
- * @see dgettext()
- * @see \NelsonMartell\msg()
+ * @since v0.6.0
+ * @see \dgettext()
  * */
-function nml_msg($message, $args = null)
+function msg($message, $args = null)
 {
-    $translated = dgettext(NML_GETTEXT_DOMAIN, $message);
+    $translated = \dgettext(NML_GETTEXT_DOMAIN, $message);
 
-    if (func_num_args() > 2) {
-        $args = array_slice(func_get_args(), 1);
+    if (\func_num_args() > 2) {
+        $args = \array_slice(func_get_args(), 1);
     }
 
     return String::format($translated, $args);
@@ -58,34 +58,31 @@ function nml_msg($message, $args = null)
  *   argumentos que se van a incluir en las cadenas de formato del mensaje.
  *
  * @return string
- * @deprecated since v0.6.0, will be removed in v0.7.0. Use `\NelsonMartell\nmsg()` instead.
- * @see dngettext()
- * @see \NelsonMartell\nmsg()
+ * @since v0.6.0
+ * @see \dngettext()
  * */
-function nml_nmsg($singular, $plural, $n, $args = null)
+function nmsg($singular, $plural, $n, $args = null)
 {
-    $translated = dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
+    $translated = \dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
 
-    if (func_num_args() > 4) {
-        $args = array_slice(func_get_args(), 3);
+    if (\func_num_args() > 4) {
+        $args = \array_slice(func_get_args(), 3);
     }
 
     return String::format($translated, $args);
 }
 
-if (!function_exists('typeof')) {
-    /**
-     * Obtiene el tipo del objeto especificado.
-     * Es un alias para el constructor de la clase Type.
-     *
-     * @param mixed $obj Objeto al cual se le extraerá su tipo.
-     *
-     * @return Type
-     * @deprecated since v0.6.0, will be removed in v0.7.0. Use `\NelsonMartell\typeof()` instead.
-     * @see \NelsonMartell\typeof()
-     * */
-    function typeof($obj)
-    {
-        return new Type($obj);
-    }
+
+/**
+ * Obtiene el tipo del objeto especificado.
+ * Es un alias para el constructor de la clase Type.
+ *
+ * @param mixed $obj Objeto al cual se le extraerá su tipo.
+ *
+ * @return Type
+ * @since v0.6.0
+ * */
+function typeof($obj)
+{
+    return new Type($obj);
 }
