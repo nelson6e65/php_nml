@@ -11,6 +11,7 @@
 [![Latest Version](https://img.shields.io/packagist/v/nelson6e65/php_nml.svg?label=stable)](https://packagist.org/packages/nelson6e65/php_nml)
 [![Latest unstable Version](https://img.shields.io/packagist/vpre/nelson6e65/php_nml.svg?label=unstable)](https://packagist.org/packages/nelson6e65/php_nml#dev-master)
 
+[![Stories in Progress](https://badge.waffle.io/nelson6e65/php_nml.svg?label=wip&title=In%20progress)](http://waffle.io/nelson6e65/php_nml)
 
 [![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
 [![API Documentation](http://img.shields.io/badge/documentation-API-yellow.svg)](http://nelson6e65.github.io/php_nml/api)
@@ -212,7 +213,17 @@ use NelsonMartell\Version;
 
 $nmlVersion = new Version(0, 6);
 
-echo $nmlVersion.toString();
+// Create Version object parsing from string
+$nmlVersion = Version::parse('0.5.1');
+
+// Explicit to string
+echo $nmlVersion->toString();
+
+// Implicit to string
+echo $nmlVersion;
+?>
+
+<p>Nelson Martell Library, version <?= $nmlVersion ?></p>
 
 ```
 
