@@ -35,7 +35,7 @@
 		},
 		"files": [
 			"src/constants.php",
-			"src/functions.php",
+			"src/deprecated_functions.php",
 			"config/bootstrap.php"
 		]
 	},
