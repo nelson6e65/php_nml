@@ -29,7 +29,10 @@
         1. [Via composer](#via-composer)
         2. [Via git submodule](#via-git-submodule)
         3. [Manually](#manually)
-    3. [After install](#after-install)
+    3. [Install dependencies](#install-dependencies)
+        1. [For composer installations](#for-composer-installations)
+        2. [For non-composer installations](#for-non-composer-installations)
+    4. [After install](#after-install)
         1. [For composer projects](#for-composer-projects)
         2. [For non-composer projects](#for-non-composer-projects)
         3. [Code Analysis](#code-analysis)
@@ -45,7 +48,7 @@ Provides a set of classes for PHP applications.
 
 ## Requirements
 * PHP 5.5 or greater
-* [CakePHP Utility Classes](https://github.com/cakephp/utility) [3.0.5](https://github.com/cakephp/utility/releases/tag/3.0.5) or grater - Only needed `Cake\Utility\Text` class, that should be loaded. There is a [copy of that class](vendor/Cake/Utility/Text.php) into `vendor` directory to be auto-used if CakePHP Utility Classes is not available.
+* [CakePHP Utility Classes](https://github.com/cakephp/utility) [^3.0.1](https://github.com/cakephp/utility/releases/tag/3.0.1) or grater - Only required the `Cake\Utility\Text` class.
 
 ## Installation
 Use this instructions to install **NML** into your `vendor` directory as `nelson6e65/php_nml`.
@@ -66,6 +69,8 @@ Just run this command (your `composer.json` will be updated):
 
     composer require nelson6e65/php_nml
 
+This installs `php_nml` and dependencies in your `vendor` directory.
+
 **Note**: Remember to add your `vendor` dependencies to your `.gitignore` file. (See [why](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
 
 Read more about Composer installs [here](https://getcomposer.org/doc/00-intro.md).
@@ -78,6 +83,8 @@ Read more about Composer installs [here](https://getcomposer.org/doc/00-intro.md
 
 **Note**: You can use ssh (`git@github.com:nelson6e65/php_nml.git`) instead of https.
 
+> Remember install dependencies manually.
+
 Read more about Git submodules [here](http://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 #### Manually
@@ -85,6 +92,63 @@ Read more about Git submodules [here](http://git-scm.com/book/en/v2/Git-Tools-Su
 - Unzip that download.
 - Rename the resulting folder to `php_nml`.
 - Then move this folder into your `vendor/nelson6e65` directory (create parent folders as needed).
+
+> Remember install dependencies manually.
+
+
+### Install dependencies
+#### For composer installations
+For composer installs, this is made automatically because this library includes it in composer packages requirements. So, **you don't need to take any action**.
+
+#### For non-composer installations
+Instructions are similar to this. You must follow the specific instructions for Cake Utility in https://github.com/cakephp/utility and install latest release (3.0.x).
+
+> For consistence, you should use `vendor/cakephp/utility` directory to install it.
+
+After install, you must to load `Cake\Utility\Text` class, including `Text.php` directly or register an autoloader for that classes.
+
+This is an autoloader example for `Cake\Utility` namespace (if installed in your `vendor` directory as `cakephp/utility`).
+
+```php
+<?php
+// File: vendor/autoload_nml_dependencies.php
+// Cake\Utility location: vendor/cakephp/utility
+
+function autoload_nml_dependencies($class)
+{
+    static $DS = DIRECTORY_SEPARATOR;
+
+    if ($class[0] == '\\') {
+        $class = substr($class, 1);
+    }
+
+    $classArray = explode('\\', $class);
+
+    if ($classArray[0] == 'Cake') {
+        $classArray[0] = 'cakephp';
+        if ($classArray[1] == 'Utility') {
+            $classArray[1] = 'utility';
+        } else {
+            // Is not a 'Cake\Utility' namespace.
+            return;
+        }
+    } else {
+        // Is not a 'Cake' namespace.
+        return;
+    }
+
+    $path = sprintf('%s'.$DS.'%s.php', __DIR__, implode($DS, $classArray));
+
+    if (is_file($path)) {
+        require_once($path);
+    } else {
+        // throw new InvalidArgumentException("Error loading '$class' class. File '$path' is not present.");
+
+    }
+}
+
+spl_autoload_register('autoload_nml_dependencies');
+```
 
 
 ### After install
@@ -109,10 +173,17 @@ Example:
     # . . .
 ```
 
+You need to load dependent classes too. Something like:
 
+```php
+<?php
+    # app/config.php
+    # . . .
 
+    require_once(PROJECT_ROOT.'/vendor/autoload_nml_dependencies.php');
 
-**Note:** There is a minimal copy of [CakePHP Utility Classes](https://github.com/cakephp/utility) in `php_nml/vendor/Cake/Utility` directory. `vendor/nelson6e65/php_nml/autoload.php` includes  `vendor/nelson6e65/php_nml/vendor/autoload.php` file to autoloads that class(es) if there is not available.
+    # . . .
+```
 
 
 #### Code Analysis
@@ -139,7 +210,7 @@ After install NML and configure your application, you will be able to use NML cl
 //Example of Version usage:
 use NelsonMartell\Version;
 
-$nmlVersion = new Version(0, 5, 1);
+$nmlVersion = new Version(0, 6);
 
 echo $nmlVersion.toString();
 
