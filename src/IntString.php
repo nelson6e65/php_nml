@@ -24,7 +24,7 @@ namespace NelsonMartell {
      * (en ese orden).
      * El método IntString::toString obtiene esa cadena compuesta.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     class IntString extends Object implements IEquatable, IComparable
     {

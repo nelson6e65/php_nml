@@ -23,7 +23,7 @@ namespace NelsonMartell {
      * Provee un método para comparar igualdad entre objetos del mismo tipo, o
      * compatibles.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     interface IEquatable
     {

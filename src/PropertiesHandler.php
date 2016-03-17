@@ -30,7 +30,7 @@ namespace NelsonMartell {
      * letra en mayúscula) para que, por ejemplo, los getters queden `getName()`
      * y se accedan $obj->Name.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     trait PropertiesHandler
     {

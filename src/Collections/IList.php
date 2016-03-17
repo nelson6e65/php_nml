@@ -23,7 +23,7 @@ namespace NelsonMartell\Collections {
      * Representa una colección de objetos a los que se puede tener acceso por
      * un índice.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     interface IList extends ICollection
     {

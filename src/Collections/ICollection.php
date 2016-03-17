@@ -24,7 +24,7 @@ namespace NelsonMartell\Collections {
     /**
      * Define métodos para manipular colecciones de objetos.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     interface ICollection extends Iterator
     {

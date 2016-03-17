@@ -23,7 +23,7 @@ namespace NelsonMartell {
      * Provee métodos para comparar posición relativa entre objetos del mismo
      * tipo, o compatibles.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     interface IComparable
     {

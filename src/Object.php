@@ -49,7 +49,7 @@ namespace NelsonMartell {
      *     unset($this->Nombre);
      *
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     class Object
     {

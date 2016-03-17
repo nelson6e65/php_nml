@@ -65,7 +65,7 @@ class String extends Text
      * @todo   Implement, for php 5.6+:
      *   php.net/functions.arguments.html#functions.variable-arg-list.new
      * @todo   Implement formatting, like IFormatProvider or something like that.
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      */
     public static function format($format, $args)
     {

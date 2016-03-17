@@ -29,7 +29,7 @@ namespace NelsonMartell\Utilities {
      * Contiene métodos y propiedades para obtener las rutas de los directorios
      * y recursos entre sus diferentes versiones.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     class Asset extends Object
     {
