@@ -1,13 +1,12 @@
 source:
   - src
 
-destination: ../tmp/api
+destination: build/api
 
 quiet: true
 
 extensions:
   - php
-  - inc
 
 title: "PHP: Nelson Martell Library"
 

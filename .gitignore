@@ -6,5 +6,6 @@
 
 
 vendor/*
+build/*
 
 composer.lock
