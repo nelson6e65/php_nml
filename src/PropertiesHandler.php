@@ -23,23 +23,62 @@ namespace NelsonMartell {
     use \BadMethodCallException;
 
     /**
-     * Permite encapsular propiedades para usar setters y getters automáticamente.
-     * Por defecto, esta funcionalidad viene por defecto en la clase Object.
+     * Enables the class to use properties, by encapsulating class attributes in order to use with auto-setters/getters methods instead of direct access.
      *
-     * Nota: Los nombres de las propiedades deberían estar en CamelCase (primera
-     * letra en mayúscula) para que, por ejemplo, los getters queden `getName()`
-     * y se accedan $obj->Name.
+     * Using this trail will restrict get and set actions for a property if there is not defined in
+     * the class or if there is not a getter or setter method (respectively) for that property.
+     *
+     * So, you MUST (1) create the property in the class and (2) then unset it in the constructor
+     * (*this requirements will change in next releases to be more 'auto-magic'*).
+     *
+     * @example
+     * ```php
+     * <?php
+     * class Nameable {
+     * 		use NelsonMartell\PropertiesHandler;
+     *
+     * 		public function __construct()
+     * 	 	{
+     *    		unset($this->Name);
+     * 	    }
+     *
+     * 		private $_name = ''; // Stores the value.
+     * 		public $Name; // Accesible name for the property.
+     *
+     * 		public function getName()
+     * 		{
+     * 			return ucwords($this->_name);
+     * 		}
+     *
+     * 		public function setName($value)
+     * 		{
+     * 			$this->_name = strtolower($value);
+     * 		}
+     * }
+     *
+     * $obj = new Nameable();
+     * $obj->Name = 'nelson maRtElL';
+     * echo $obj->Name; // 'Nelson Martell'
+     * echo $obj->name; // Throws: BadMethodCallException: Property "Nameable::name" do not exists.
+     *
+     * ?>
+     * ```
+     *
+     * **Note**: You should not define properties wich names only are only different in the first letter
+     * upper/lowercase; it will be used the same getter/setter method. In the last example, if you (in addition)
+     * define the `public $name` and `unset($this->name)` in the constructor, it will be used the same
+     * getter and setter method when you access or set both properties (`->Name` and `->name`).
+     *
+     * ### Limitations
+     * - Only works for public properties (even if you declare getter/setter method as `private` or `protected`).
      *
      * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     trait PropertiesHandler
     {
         /**
-         * Obtiene el valor de una propiedad, usando automáticamente el método
-         * `$getterPrefix + nombre_propiedad` (getter).
-         *
-         * Restringe la obtención de una propiedad no definida dentro de la clase
-         * si no posee su método getter.
+         * Gets the property value using the auto-magic method `$getterPrefix.$name()` (getter),
+         * where `$name` is the name of property and `$getterPrefix` is 'get' by default (but can be customized).
          *
          * @param string $name Property name.
          *
@@ -61,10 +100,8 @@ namespace NelsonMartell {
 
 
         /**
-         * Establece el valor de una propiedad, usando automáticamente el método
-         * `$setterPrefix + nombre_propiedad` (setter).
-         * Restringe la asignación de una propiedad no definida dentro de la clase
-         * si no posee su método setter.
+         * Sets the property value using the auto-magic method `$setterPrefix.$name()` (setter),
+         * where `$name` is the name of property and `$setterPrefix` is 'set' by default (but can be customized).
          *
          * @param string $name  Property name.
          * @param mixed  $value Property value.
@@ -83,7 +120,6 @@ namespace NelsonMartell {
             }
 
             $this->$setter($value);
-
         }
 
 
