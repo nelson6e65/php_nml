@@ -35,21 +35,6 @@ namespace NelsonMartell {
     trait PropertiesHandler
     {
         /**
-         * Prefix for methods witch get properties value.
-         * You can override to use another prefix.
-         * @var string
-         */
-        protected static $getterPrefix = 'get';
-
-        /**
-         * Prefix for methods witch set properties value.
-         * You can override to use another prefix.
-         * @var string
-         */
-        protected static $setterPrefix = 'set';
-
-
-        /**
          * Obtiene el valor de una propiedad, usando automáticamente el método
          * `$getterPrefix + nombre_propiedad` (getter).
          *
@@ -58,9 +43,9 @@ namespace NelsonMartell {
          *
          * @param string $name Property name.
          *
-         * @see    PropertiesHandler::$getterPrefix
          * @return mixed
          * @throws BadMethodCallException If unable to get the property value.
+         * @see PropertiesHandler::getPropertyGetter()
          * */
         public function __get($name)
         {
@@ -84,9 +69,9 @@ namespace NelsonMartell {
          * @param string $name  Property name.
          * @param mixed  $value Property value.
          *
-         * @see    PropertiesHandler::$setterPrefix
          * @return void
          * @throws BadMethodCallException If unable to set property value.
+         * @see PropertiesHandler::getPropertySetter()
          * */
         public function __set($name, $value)
         {
@@ -169,14 +154,15 @@ namespace NelsonMartell {
         /**
          * Ensures that there is a setter for the provided property name.
          *
-         * @param string $name Property name.
+         * @param string $name   Property name.
+         * @param string $prefix Property setter prefix. Default: 'set'.
          *
          * @return string Same property name, after checks that setter exists.
          * @throws BadMethodCallException If property is not writable or do not exists.
          */
-        private function ensurePropertyHasSetter($name)
+        private function ensurePropertyHasSetter($name, $prefix = 'set')
         {
-            $setter = static::$setterPrefix.$this->ensurePropertyExists($name);
+            $setter = $prefix.$this->ensurePropertyExists($name);
 
             try {
                 $setter = $this->ensureMethodExists($setter);
@@ -198,14 +184,15 @@ namespace NelsonMartell {
         /**
          * Ensures that there is a getter for the provided property name.
          *
-         * @param string $name Property name.
+         * @param string $name   Property name.
+         * @param string $prefix Property getter prefix. Default: 'get'.
          *
          * @return string Same property name, after checks that getter exists.
          * @throws BadMethodCallException If property is not readable or do not exists.
          */
-        private function ensurePropertyHasGetter($name)
+        private function ensurePropertyHasGetter($name, $prefix = 'get')
         {
-            $getter = static::$getterPrefix.$this->ensurePropertyExists($name);
+            $getter = $prefix.$this->ensurePropertyExists($name);
 
             try {
                 $getter = $this->ensureMethodExists($getter);
@@ -226,6 +213,7 @@ namespace NelsonMartell {
 
         /**
          * Gets the property setter method name.
+         * You can customize the getter prefix by creating the protected `setterPrefix` attribute in your class.
          *
          * @param string $name Property name.
          *
@@ -234,14 +222,18 @@ namespace NelsonMartell {
          */
         private function getPropertySetter($name)
         {
-            $setter = static::$setterPrefix.$this->ensurePropertyHasSetter($name);
+            $prefix = 'set';
+            if (property_exists($this, 'setterPrefix')) {
+                $prefix = $this->setterPrefix;
+            }
 
-            return $setter;
+            return $prefix.$this->ensurePropertyHasSetter($name, $prefix);
         }
 
 
         /**
          * Gets the property getter method name.
+         * You can customize the getter prefix by creating the protected `getterPrefix` attribute in your class.
          *
          * @param string $name Property name.
          *
@@ -250,9 +242,12 @@ namespace NelsonMartell {
          */
         private function getPropertyGetter($name)
         {
-            $setter = static::$getterPrefix.$this->ensurePropertyHasGetter($name);
+            $prefix = 'get';
+            if (property_exists($this, 'getterPrefix')) {
+                $prefix = $this->getterPrefix;
+            }
 
-            return $setter;
+            return $prefix.$this->ensurePropertyHasGetter($name, $prefix);
         }
     }
 }
