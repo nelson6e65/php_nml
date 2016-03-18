@@ -149,6 +149,7 @@ function autoload_nml_dependencies($class)
 }
 
 spl_autoload_register('autoload_nml_dependencies');
+?>
 ```
 
 
@@ -172,6 +173,7 @@ Example:
     // Note: 'PROJECT_ROOT' is your root directory (in this case, a PHP constant).
 
     # . . .
+?>
 ```
 
 You need to load dependent classes too. Something like:
@@ -184,6 +186,7 @@ You need to load dependent classes too. Something like:
     require_once(PROJECT_ROOT.'/vendor/autoload_nml_dependencies.php');
 
     # . . .
+?>
 ```
 
 
@@ -200,6 +203,7 @@ some classes, functions, methods, etc.
     define('CODE_ANALYSIS', true);
 
     # . . .
+?>
 ```
 
 
