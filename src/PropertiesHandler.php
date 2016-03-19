@@ -23,7 +23,8 @@ namespace NelsonMartell {
     use \BadMethodCallException;
 
     /**
-     * Enables the class to use properties, by encapsulating class attributes in order to use with auto-setters/getters methods instead of direct access.
+     * Enables the class to use properties, by encapsulating class attributes in order to use with
+     * auto-setters/getters methods instead of direct access.
      *
      * Using this trail will restrict get and set actions for a property if there is not defined in
      * the class or if there is not a getter or setter method (respectively) for that property.
@@ -35,25 +36,25 @@ namespace NelsonMartell {
      * ```php
      * <?php
      * class Nameable {
-     * 		use NelsonMartell\PropertiesHandler;
+     *     use NelsonMartell\PropertiesHandler;
      *
-     * 		public function __construct()
-     * 	 	{
-     *    		unset($this->Name);
-     * 	    }
+     *     public function __construct()
+     *     {
+     *         unset($this->Name);
+     *     }
      *
-     * 		private $_name = ''; // Stores the value.
-     * 		public $Name; // Accesible name for the property.
+     *     private $_name = ''; // Stores the value.
+     *     public $Name; // Accesible name for the property.
      *
-     * 		public function getName()
-     * 		{
-     * 			return ucwords($this->_name);
-     * 		}
+     *     public function getName()
+     *     {
+     *         return ucwords($this->_name);
+     *     }
      *
-     * 		public function setName($value)
-     * 		{
-     * 			$this->_name = strtolower($value);
-     * 		}
+     *     public function setName($value)
+     *     {
+     *         $this->_name = strtolower($value);
+     *     }
      * }
      *
      * $obj = new Nameable();
