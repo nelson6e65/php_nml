@@ -18,6 +18,7 @@
  * */
 namespace NelsonMartell\Test\Extensions;
 
+use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
@@ -102,6 +103,33 @@ class StringTest extends TestCase
 
         $expected = 'Mi nombre es {name} y tengo 54 años de edad.';
         $actual = String::format('Mi nombre es {name} y tengo {age} años de edad.', ['age' => 54]);
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testFormatMethodWithArgumentsOfDiferentTypes()
+    {
+        $expected = 'Invalid argument type. "major" (position 0) must to be an instance of "integer"; "string" given.';
+
+        $major = 'Non Number';
+        $args = [
+            'name'     => 'major',
+            'expected' => NML\typeof(0),
+            'pos'      => 0,
+            'actual' => NML\typeof($major),
+        ];
+
+        // Esto produce un error fatal debido a una debilidad en el uso de la función `asort` en el método
+        //  ``Cake\Utility\Text::.insert()``, ya que debería comparar como cadena usando el flag `SORT_STRING`.
+
+        $actual = String::format('Invalid argument type.', null);
+        $actual .= String::format(
+            ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
+            $args
+        );
+
         $this->assertEquals($expected, $actual);
     }
 }
