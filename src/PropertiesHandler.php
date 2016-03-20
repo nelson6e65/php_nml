@@ -21,46 +21,72 @@ namespace NelsonMartell {
 
     use NelsonMartell\Extensions\String;
     use \BadMethodCallException;
+    use \InvalidArgumentException;
 
     /**
-     * Permite encapsular propiedades para usar setters y getters automáticamente.
-     * Por defecto, esta funcionalidad viene por defecto en la clase Object.
+     * Enables the class to use properties, by encapsulating class attributes in order to use with
+     * auto-setters/getters methods instead of direct access.
      *
-     * Nota: Los nombres de las propiedades deberían estar en CamelCase (primera
-     * letra en mayúscula) para que, por ejemplo, los getters queden `getName()`
-     * y se accedan $obj->Name.
+     * Using this trail will restrict get and set actions for a property if there is not defined in
+     * the class or if there is not a getter or setter method (respectively) for that property.
+     *
+     * So, you MUST (1) create the property in the class and (2) then unset it in the constructor
+     * (*this requirements will change in next releases to be more 'auto-magic'*).
+     *
+     * @example
+     * ```php
+     * <?php
+     * class Nameable {
+     *     use NelsonMartell\PropertiesHandler;
+     *
+     *     public function __construct()
+     *     {
+     *         unset($this->Name);
+     *     }
+     *
+     *     private $_name = ''; // Stores the value.
+     *     public $Name; // Accesible name for the property.
+     *
+     *     public function getName()
+     *     {
+     *         return ucwords($this->_name);
+     *     }
+     *
+     *     public function setName($value)
+     *     {
+     *         $this->_name = strtolower($value);
+     *     }
+     * }
+     *
+     * $obj = new Nameable();
+     * $obj->Name = 'nelson maRtElL';
+     * echo $obj->Name; // 'Nelson Martell'
+     * echo $obj->name; // Throws: BadMethodCallException: Property "Nameable::name" do not exists.
+     *
+     * ?>
+     * ```
+     *
+     * **Note**: You should not define properties wich names only are only different in the first letter
+     * upper/lowercase; it will be used the same getter/setter method. In the last example, if you (in addition)
+     * define the `public $name` and `unset($this->name)` in the constructor, it will be used the same
+     * getter and setter method when you access or set both properties (`->Name` and `->name`).
+     *
+     * ### Limitations
+     * - Only works for public properties (even if you declare getter/setter method as `private` or `protected`).
      *
      * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     trait PropertiesHandler
     {
         /**
-         * Prefix for methods witch get properties value.
-         * You can override to use another prefix.
-         * @var string
-         */
-        protected static $getterPrefix = 'get';
-
-        /**
-         * Prefix for methods witch set properties value.
-         * You can override to use another prefix.
-         * @var string
-         */
-        protected static $setterPrefix = 'set';
-
-
-        /**
-         * Obtiene el valor de una propiedad, usando automáticamente el método
-         * `$getterPrefix + nombre_propiedad` (getter).
-         *
-         * Restringe la obtención de una propiedad no definida dentro de la clase
-         * si no posee su método getter.
+         * Gets the property value using the auto-magic method `$getterPrefix.$name()` (getter),
+         * where `$name` is the name of property and `$getterPrefix` is 'get' by default (but can be customized).
          *
          * @param string $name Property name.
          *
-         * @see    PropertiesHandler::$getterPrefix
          * @return mixed
          * @throws BadMethodCallException If unable to get the property value.
+         * @see PropertiesHandler::getPropertyGetter()
          * */
         public function __get($name)
         {
@@ -76,17 +102,15 @@ namespace NelsonMartell {
 
 
         /**
-         * Establece el valor de una propiedad, usando automáticamente el método
-         * `$setterPrefix + nombre_propiedad` (setter).
-         * Restringe la asignación de una propiedad no definida dentro de la clase
-         * si no posee su método setter.
+         * Sets the property value using the auto-magic method `$setterPrefix.$name()` (setter),
+         * where `$name` is the name of property and `$setterPrefix` is 'set' by default (but can be customized).
          *
          * @param string $name  Property name.
          * @param mixed  $value Property value.
          *
-         * @see    PropertiesHandler::$setterPrefix
          * @return void
          * @throws BadMethodCallException If unable to set property value.
+         * @see PropertiesHandler::getPropertySetter()
          * */
         public function __set($name, $value)
         {
@@ -98,7 +122,6 @@ namespace NelsonMartell {
             }
 
             $this->$setter($value);
-
         }
 
 
@@ -169,14 +192,15 @@ namespace NelsonMartell {
         /**
          * Ensures that there is a setter for the provided property name.
          *
-         * @param string $name Property name.
+         * @param string $name   Property name.
+         * @param string $prefix Property setter prefix. Default: 'set'.
          *
          * @return string Same property name, after checks that setter exists.
          * @throws BadMethodCallException If property is not writable or do not exists.
          */
-        private function ensurePropertyHasSetter($name)
+        private function ensurePropertyHasSetter($name, $prefix = 'set')
         {
-            $setter = static::$setterPrefix.$this->ensurePropertyExists($name);
+            $setter = $prefix.$this->ensurePropertyExists($name);
 
             try {
                 $setter = $this->ensureMethodExists($setter);
@@ -198,14 +222,15 @@ namespace NelsonMartell {
         /**
          * Ensures that there is a getter for the provided property name.
          *
-         * @param string $name Property name.
+         * @param string $name   Property name.
+         * @param string $prefix Property getter prefix. Default: 'get'.
          *
          * @return string Same property name, after checks that getter exists.
          * @throws BadMethodCallException If property is not readable or do not exists.
          */
-        private function ensurePropertyHasGetter($name)
+        private function ensurePropertyHasGetter($name, $prefix = 'get')
         {
-            $getter = static::$getterPrefix.$this->ensurePropertyExists($name);
+            $getter = $prefix.$this->ensurePropertyExists($name);
 
             try {
                 $getter = $this->ensureMethodExists($getter);
@@ -226,33 +251,61 @@ namespace NelsonMartell {
 
         /**
          * Gets the property setter method name.
+         * You can customize the getter prefix by creating the protected `setterPrefix` attribute in your class.
          *
          * @param string $name Property name.
          *
          * @return string
-         * @throws BadMethodCallException If property is not valid or has not setter.
+         * @throws BadMethodCallException if property is not valid, has not setter or custom prefix is not
+         *   an ``string`` instance.
          */
         private function getPropertySetter($name)
         {
-            $setter = static::$setterPrefix.$this->ensurePropertyHasSetter($name);
+            $prefix = 'set';
+            if (property_exists($this, 'setterPrefix')) {
+                try {
+                    $prefix = String::ensureIsString($this->setterPrefix);
+                } catch (InvalidArgumentException $e) {
+                    $msg = nml_msg(
+                        'Custom property setter prefix is defined, but its value should be an "string"; "{0}" given.',
+                        [typeof($this->setterPrefix)]
+                    );
 
-            return $setter;
+                    throw new BadMethodCallException($msg, 0, $e);
+                }
+            }
+
+            return $prefix.$this->ensurePropertyHasSetter($name, $prefix);
         }
 
 
         /**
          * Gets the property getter method name.
+         * You can customize the getter prefix by creating the protected `getterPrefix` attribute in your class.
          *
          * @param string $name Property name.
          *
          * @return string
-         * @throws BadMethodCallException If property is not valid or has not getter.
+         * @throws BadMethodCallException if property is not valid, has not getter or custom prefix is not
+         *   an ``string`` instance.
          */
         private function getPropertyGetter($name)
         {
-            $setter = static::$getterPrefix.$this->ensurePropertyHasGetter($name);
+            $prefix = 'get';
+            if (property_exists($this, 'getterPrefix')) {
+                try {
+                    $prefix = String::ensureIsString($this->getterPrefix);
+                } catch (InvalidArgumentException $e) {
+                    $msg = nml_msg(
+                        'Custom property getter prefix is defined, but its value should be an "string"; "{0}" given.',
+                        [typeof($this->getterPrefix)]
+                    );
 
-            return $setter;
+                    throw new BadMethodCallException($msg, 0, $e);
+                }
+            }
+
+            return $prefix.$this->ensurePropertyHasGetter($name, $prefix);
         }
     }
 }
