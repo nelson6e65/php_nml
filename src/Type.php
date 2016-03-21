@@ -177,6 +177,31 @@ namespace NelsonMartell {
             return $this->methods;
         }
 
+        public function hasMethod($name)
+        {
+            if ($this->reflectionObject !== null) {
+                return $this->reflectionObject->hasMethod($name);
+            }
+
+            return false;
+        }
+
+        /**
+         * Determines if instances of this Type can be converted to string.
+         *
+         * @param mixed $obj Object.
+         *
+         * @return bool
+         */
+        public static function canBeString()
+        {
+            if ($this->isScalar() || $this->hasMethod('__toString')) {
+                return true;
+            }
+
+            return false;
+        }
+
         /**
          * Determina si este Type es `null`.
          *

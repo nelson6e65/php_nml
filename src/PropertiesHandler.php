@@ -21,9 +21,11 @@ namespace NelsonMartell {
 
     use NelsonMartell\Extensions\String;
     use \BadMethodCallException;
+    use \InvalidArgumentException;
 
     /**
-     * Enables the class to use properties, by encapsulating class attributes in order to use with auto-setters/getters methods instead of direct access.
+     * Enables the class to use properties, by encapsulating class attributes in order to use with
+     * auto-setters/getters methods instead of direct access.
      *
      * Using this trail will restrict get and set actions for a property if there is not defined in
      * the class or if there is not a getter or setter method (respectively) for that property.
@@ -35,25 +37,25 @@ namespace NelsonMartell {
      * ```php
      * <?php
      * class Nameable {
-     * 		use NelsonMartell\PropertiesHandler;
+     *     use NelsonMartell\PropertiesHandler;
      *
-     * 		public function __construct()
-     * 	 	{
-     *    		unset($this->Name);
-     * 	    }
+     *     public function __construct()
+     *     {
+     *         unset($this->Name);
+     *     }
      *
-     * 		private $_name = ''; // Stores the value.
-     * 		public $Name; // Accesible name for the property.
+     *     private $_name = ''; // Stores the value.
+     *     public $Name; // Accesible name for the property.
      *
-     * 		public function getName()
-     * 		{
-     * 			return ucwords($this->_name);
-     * 		}
+     *     public function getName()
+     *     {
+     *         return ucwords($this->_name);
+     *     }
      *
-     * 		public function setName($value)
-     * 		{
-     * 			$this->_name = strtolower($value);
-     * 		}
+     *     public function setName($value)
+     *     {
+     *         $this->_name = strtolower($value);
+     *     }
      * }
      *
      * $obj = new Nameable();
@@ -254,13 +256,23 @@ namespace NelsonMartell {
          * @param string $name Property name.
          *
          * @return string
-         * @throws BadMethodCallException If property is not valid or has not setter.
+         * @throws BadMethodCallException if property is not valid, has not setter or custom prefix is not
+         *   an ``string`` instance.
          */
         private function getPropertySetter($name)
         {
             $prefix = 'set';
             if (property_exists($this, 'setterPrefix')) {
-                $prefix = $this->setterPrefix;
+                try {
+                    $prefix = String::ensureIsString($this->setterPrefix);
+                } catch (InvalidArgumentException $e) {
+                    $msg = nml_msg(
+                        'Custom property setter prefix is defined, but its value should be an "string"; "{0}" given.',
+                        [typeof($this->setterPrefix)]
+                    );
+
+                    throw new BadMethodCallException($msg, 0, $e);
+                }
             }
 
             return $prefix.$this->ensurePropertyHasSetter($name, $prefix);
@@ -274,13 +286,23 @@ namespace NelsonMartell {
          * @param string $name Property name.
          *
          * @return string
-         * @throws BadMethodCallException If property is not valid or has not getter.
+         * @throws BadMethodCallException if property is not valid, has not getter or custom prefix is not
+         *   an ``string`` instance.
          */
         private function getPropertyGetter($name)
         {
             $prefix = 'get';
             if (property_exists($this, 'getterPrefix')) {
-                $prefix = $this->getterPrefix;
+                try {
+                    $prefix = String::ensureIsString($this->getterPrefix);
+                } catch (InvalidArgumentException $e) {
+                    $msg = nml_msg(
+                        'Custom property getter prefix is defined, but its value should be an "string"; "{0}" given.',
+                        [typeof($this->getterPrefix)]
+                    );
+
+                    throw new BadMethodCallException($msg, 0, $e);
+                }
             }
 
             return $prefix.$this->ensurePropertyHasGetter($name, $prefix);
