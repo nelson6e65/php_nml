@@ -132,4 +132,24 @@ class StringTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @dataProvider nonStringObjectsProvider
+     */
+    public function testDoNotPerformsFormatWithPlaceholdersValuesNotConvertiblesToString($obj)
+    {
+        $format = PHP_EOL.'This test should throws an "{0}" with data: {testErrorData}.'.PHP_EOL;
+
+        $str = String::format($format, [InvalidArgumentException::class, 'testErrorData' => $obj]);
+    }
+
+    public function nonStringObjectsProvider()
+    {
+        return [
+            'stdClass' => [new \stdClass],
+            'int[]'    => [[10, 20, 30, 40]],
+            'string[]' => [['ten', '20', '30', '40']],
+        ];
+    }
 }
