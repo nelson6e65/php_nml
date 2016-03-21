@@ -22,11 +22,11 @@ before_script:
   - composer install --prefer-source --no-interaction --dev
 
 script:
-  - phpunit --coverage-clover=coverage.clover
+  - vendor/bin/phpunit --verbose
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+  - php ocular.phar code-coverage:upload --format=php-clover "build/phpunit/coverage/clover.xml"
 
 env:
   global:
