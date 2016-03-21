@@ -193,7 +193,7 @@ namespace NelsonMartell {
          *
          * @return bool
          */
-        public static function canBeString()
+        public function canBeString()
         {
             if ($this->isScalar() || $this->hasMethod('__toString')) {
                 return true;
