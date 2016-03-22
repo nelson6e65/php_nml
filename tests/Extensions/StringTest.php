@@ -20,6 +20,7 @@ namespace NelsonMartell\Test\Extensions;
 
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;
+use NelsonMartell\Type;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
 
@@ -33,7 +34,7 @@ use \InvalidArgumentException;
  * */
 class StringTest extends TestCase
 {
-    public function testFormatMethodWithSimpleData()
+    public function testPerformsFormatForStringWithIntegerPlaceholders()
     {
         $expected = 'Mi nombre es Juan';
         $actual = String::format('Mi nombre es {0}', ['Juan']);
@@ -45,9 +46,18 @@ class StringTest extends TestCase
         $name = 'Juan';
         $actual = String::format("Mi nombre es {0}", $name);
         $this->assertEquals($expected, $actual);
+
+        $expected = 'Me llamo Nelson y tengo 29 años de edad.';
+        $name = 'Nelson';
+        $age = 29;
+        $actual = String::format('Me llamo {0} y tengo {1} años de edad.', $name, $age);
+        $this->assertEquals($expected, $actual);
+
+        $actual = String::format('Me llamo {0} y tengo {1} años de edad.', [$name, $age]);
+        $this->assertEquals($expected, $actual);
     }
 
-    public function testFormatMethodWithPlaceholdersData()
+    public function testPerformsFormatForStringsWithStringPlaceholders()
     {
         $expected = 'Mi nombre es Juan';
         $actual = String::format('Mi nombre es {name}', ["name" => "Juan"]);
@@ -58,7 +68,7 @@ class StringTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function testFormatMethodWithManyData()
+    public function testPerformsFormatWithManyData()
     {
         $expected = 'Mi nombre es Juan y tengo 61 años de edad.';
         $format   = 'Mi nombre es {name} y tengo {age} años de edad.';
@@ -83,9 +93,9 @@ class StringTest extends TestCase
     }
 
     /**
-     * @depends testFormatMethodWithManyData
+     * @depends testPerformsFormatWithManyData
      */
-    public function testFormatMethodWithNotMatchingData()
+    public function testPerformsFormatIgnoringNotMatchingData()
     {
         $expected = 'Mi nombre es {name} y tengo {age} años de edad.';
         $actual = String::format('Mi nombre es {name} y tengo {age} años de edad.', ['fake_name' => 'Juan']);
@@ -106,10 +116,7 @@ class StringTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @runInSeparateProcess
-     */
-    public function testFormatMethodWithArgumentsOfDiferentTypes()
+    public function testPerformsFormatWithArgumentsOfDifferentTypesConvertiblesToString()
     {
         $expected = 'Invalid argument type. "major" (position 0) must to be an instance of "integer"; "string" given.';
 
@@ -122,7 +129,8 @@ class StringTest extends TestCase
         ];
 
         // Esto produce un error fatal debido a una debilidad en el uso de la función `asort` en el método
-        //  ``Cake\Utility\Text::.insert()``, ya que debería comparar como cadena usando el flag `SORT_STRING`.
+        //  ``Cake\Utility\Text::.insert()``, ya que debería comparar como cadena usando el flag `SORT_STRING`
+        //  pero que se evita convirtiendo los valores a string en el método String::format().
 
         $actual = String::format('Invalid argument type.', null);
         $actual .= String::format(
