@@ -29,104 +29,75 @@ namespace NelsonMartell {
      * */
     class VersionComponent extends IntString implements IEquatable
     {
-
+        /**
+         *
+         *
+         * @param int|null    $intValue
+         * @param string|null $stringValue
+         */
         public function __construct($intValue = null, $stringValue = null)
         {
+            // Validates filters for only null or int/string value types.
             parent::__construct($intValue, $stringValue);
 
-            if (is_integer($intValue)) {
-                //Validaciones:
+            if ($intValue === null) {
+                $this->intValue = $intValue;
+
+                // Ignore string value if intValue is null.
+                $this->stringValue = '';
+            } else {
+                // Validation of values
                 if ($this->IntValue < 0) {
                     $args = [
-                        'name'     => 'intValue',
-                        'pos'      => 0,
+                        'position' => '1st',
                         'actual'   => $intValue,
                     ];
 
                     $msg = nml_msg('Invalid argument value.');
                     $msg .= nml_msg(
-                        ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
+                        ' {position} argument must to be a positive number; "{actual}" given.',
                         $args
                     );
 
                     throw new InvalidArgumentException($msg);
-                }
-            } else {
-                if ($intValue === null) {
-                    // Ignore string value id intValue is null.
-                    $this->stringValue = $stringValue = '';
-                } else {
-                    $args = [
-                        'name'     => 'intValue',
-                        'pos'      => 0,
-                        'expected' => typeof(0).' or '.typeof(null),
-                        'actual'   => typeof($intValue),
-                    ];
+                } // Integer is valid
 
-                    $msg = nml_msg('Invalid argument type.');
-                    $msg .= nml_msg(
-                        ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
-                        $args
-                    );
+                if ($stringValue !== null) {
+                    if ($this->StringValue != '') {
+                        $pattern = '~^([a-z])$~'; // 1 char
 
-                    throw new InvalidArgumentException($msg);
-                }
-            } //Only integer or null
+                        if (strlen($this->StringValue) > 1) {
+                            $start = '~^([a-z]|-)';
+                            $middle = '([a-z]|[0-9]|-)*';
+                            $end = '([a-z]|[0-9])$~';
 
-            if (is_string($stringValue)) {
-                if ($this->StringValue != '') {
-                    $pattern = '~^([a-z])$~'; // 1 char
+                            $pattern = $start.$middle.$end;
+                        }
 
-                    if (strlen($this->StringValue) > 1) {
-                        $start = '~^([a-z]|-)';
-                        $middle = '([a-z]|[0-9]|-)*';
-                        $end = '([a-z]|[0-9])$~';
+                        $correct = (boolean) preg_match($pattern, $this->StringValue);
 
-                        $pattern = $start.$middle.$end;
+                        if ($correct) {
+                            //Último chequeo: que no hayan 2 '-' consecutivos.
+                            $correct = strpos($this->StringValue, '--') == false ? true : false;
+                        }
+
+                        if (!$correct) {
+                            $args = [
+                                'position' => '2nd',
+                                'actual'   => $stringValue,
+                            ];
+
+                            $msg = nml_msg('Invalid argument value.');
+                            $msg .= nml_msg(
+                                ' {position} parameter has invalid chars; "{actual}" given.',
+                                $args
+                            );
+
+                            throw new InvalidArgumentException($msg);
+                        }
                     }
-
-                    $correct = (boolean) preg_match($pattern, $this->StringValue);
-
-                    if ($correct) {
-                        //Último chequeo: que no hayan 2 '-' consecutivos.
-                        $correct = strpos($this->StringValue, '--') == false ? true : false;
-                    }
-
-                    if (!$correct) {
-                        $args = [
-                            'name'     => 'stringValue',
-                            'pos'      => 1,
-                            'actual'   => $stringValue,
-                        ];
-
-                        $msg = nml_msg('Invalid argument value.');
-                        $msg .= nml_msg(
-                            ' "{name}" (position {pos}) has invalid chars; "{actual}" given.',
-                            $args
-                        );
-
-                        throw new InvalidArgumentException($msg);
-                    }
-
-                }
-            } else {
-                if ($stringValue != null) {
-                    $args = [
-                        'name'     => 'stringValue',
-                        'pos'      => 1,
-                        'expected' => typeof('string').' or '.typeof(null),
-                        'actual'   => typeof($stringValue),
-                    ];
-
-                    $msg = nml_msg('Invalid argument type.');
-                    $msg .= nml_msg(
-                        ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
-                        $args
-                    );
-
-                    throw new InvalidArgumentException($msg);
-                }
-            } // Only string or null
+                } // String is valid
+            }
         }
 
         public static function parse($value = null)

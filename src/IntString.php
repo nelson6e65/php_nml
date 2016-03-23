@@ -19,6 +19,9 @@
 
 namespace NelsonMartell {
 
+    use NelsonMartell\Extensions\String;
+    use \InvalidArgumentException;
+
     /**
      * Representa un elemento mixto, compuesto por un entero y una cadena unidos
      * (en ese orden).
@@ -28,31 +31,87 @@ namespace NelsonMartell {
      * */
     class IntString extends Object implements IEquatable, IComparable
     {
-
+        /**
+         * @param integer|null $intValue    Integer part. Default: ``0`` (zero).
+         * @param string|null  $stringValue String part. Default: ``''`` (empty).
+         */
         public function __construct($intValue = 0, $stringValue = '')
         {
             unset($this->IntValue, $this->StringValue);
 
-            if (is_integer($intValue) or $intValue == null) {
-                $this->intValue = $intValue;
-            } else {
-                //Try convert to integer
-                $this->intValue = (integer) $intValue;
+            if (!(is_integer($intValue) || $intValue === null)) {
+                $args = [
+                    'position' => '1st',
+                    'expected' => typeof(0).'" or "'.typeof(null),
+                    'actual'   => typeof($intValue),
+                ];
+
+                $msg = nml_msg('Invalid argument type.');
+                $msg .= nml_msg(
+                    ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
+                    $args
+                );
+
+                throw new InvalidArgumentException($msg);
             }
 
+            if (!typeof($stringValue)->canBeString()) {
+                $args = [
+                    'position' => '2nd',
+                    'expected' => typeof('string').'", "'.typeof(null).'" or "any object convertible to string',
+                    'actual'   => typeof($stringValue),
+                ];
+
+                $msg = nml_msg('Invalid argument type.');
+                $msg .= nml_msg(
+                    ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
+                    $args
+                );
+
+                throw new InvalidArgumentException($msg);
+            }
+
+            $this->intValue = (integer) $intValue;
             $this->stringValue = (string) $stringValue;
         }
 
-        public static function parse($value)
+        /**
+         * Convert the object to an instance of IntString.
+         *
+         * @param string|IntString $obj Object to convert to string.
+         *
+         * @return IntString
+         * @throws InvalidArgumentException if object is not an string or format is invalid.
+         */
+        public static function parse($obj)
         {
-            if ($value instanceof IntString) {
-                return $value;
+            if ($obj instanceof IntString) {
+                return $obj;
             }
 
-            $s = (string) $value;
-            $intValue = (int) $s;
+            if (is_integer($obj)) {
+                return new VersionComponent($obj);
+            }
 
-            $stringValue = explode($intValue, $s, 2);
+            try {
+                $intValue = (integer) String::ensureIsString($obj);
+            } catch (InvalidArgumentException $e) {
+                $args = [
+                    'position' => '1st',
+                    'expected' => 'string", "integer" or "'.IntString::class,
+                    'actual'   => typeof($obj),
+                ];
+
+                $msg = nml_msg('Invalid argument type.');
+                $msg .= nml_msg(
+                    ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
+                    $args
+                );
+
+                throw new InvalidArgumentException($msg, 1, $e);
+            }
+
+            $stringValue = explode($intValue, $obj, 2);
 
             if ($intValue > 0 or $stringValue[1] != '') {
                 $stringValue = $stringValue[1];
@@ -67,12 +126,18 @@ namespace NelsonMartell {
         protected $intValue;
         protected $stringValue;
 
+        /**
+         * @var integer
+         */
         public $IntValue;
         public function getIntValue()
         {
-            return (int) $this->intValue;
+            return $this->intValue;
         }
 
+        /**
+         * @var string
+         */
         public $StringValue;
         public function getStringValue()
         {
