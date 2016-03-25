@@ -55,18 +55,29 @@ trait ExporterPlugin
         } elseif ($type->isCustom()) {
             $str = static::$exporter->shortenedRecursiveExport($obj);
         } else {
-            $str = static::$exporter->export($obj);
-
             if ($type->Name === 'array') {
-                // Remove 'Array' label
-                $str = substr($str, strpos($str, '('));
+                $str = '[';
 
-                // Remove unnecesary spaces
-                $str = str_replace(["\r", "\t", '  '], '', $str);
+                foreach ($obj as $key => $value) {
+                    // Export all items recursively
+                    $str .= String::format('{0} => {1}, ', $key, static::export($value));
+                }
 
-                // Replace '(', ')' and adding ',' separator
-                $str = str_replace(["(\n", "\n)", "\n"], ['[', ']', ', '], $str);
+                $str .= ']';
+                // RTrim comma
+                $str = str_replace(', ]', ']', $str);
 
+                // // Remove 'Array' label
+                // $str = substr($str, strpos($str, '('));
+                //
+                // // Remove unnecesary spaces
+                // $str = str_replace(["\r", "\t", '  '], '', $str);
+                //
+                // // Replace '(', ')' and adding ',' separator
+                // $str = str_replace(["(\n", "\n)", "\n"], ['[', ']', ', '], $str);
+
+            } else {
+                $str = static::$exporter->export($obj);
             }
         }
 
