@@ -20,8 +20,7 @@
 namespace NelsonMartell {
 
     /**
-     * Provee métodos para comparar posición relativa entre objetos del mismo
-     * tipo, o compatibles.
+     * Provee métodos para comparar posición relativa entre objetos.
      *
      * @author Nelson Martell <nelson6e65@gmail.com>
      * */
@@ -29,31 +28,37 @@ namespace NelsonMartell {
     {
 
         /**
-         * Determina la posición relativa del objeto especificado con respecto a
-         * esta instancia.
+         * Determina la posición relativa de esta instancia con respecto al objeto especificado.
          *
-         * @param mixed $other Objeto con el cuál comparar posición relativa.
          *
-         * @return integer Si es igual, `0` (cero); si es mayor, un número
-         *   positivo mayor a `0` (cero); y si es menor, un número negativo.
-         * @see    compare
+         * @param mixed $other Objeto con el cuál se va a comparar posición relativa de esta instancia.
+         *
+         * @return integer|null
+         *   Debe devolver:
+         *   - ``= 0`` si esta instancia se considera equivalente a $other;
+         *   - ``> 0`` si esta instancia se considera mayor a $other;
+         *   - ``< 0`` si esta instancia se considera menor a $other.
+         *   - ``null`` si esta instancia no se puede comparar a $other.
+         *
+         * @see IComparable::compare()
          * */
         public function compareTo($other);
 
         /**
-         * Determina la posición relativa del objeto de la derecha con respecto
-         * al de la izquierda.
-         * Puede usarse como segundo argumento en la función de ordenamiento de
-         * arrays 'usort'.
+         * Determina la posición relativa del objeto de la izquierda con respecto al de la derecha.
+         * Puede usarse como segundo argumento en la función de ordenamiento de arrays ``usort()``.
          *
-         * @param mixed $left  Objeto de la izquierda
-         * @param mixed $right Objeto de la derecha
+         * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
+         * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
          *
-         * @return integer Si son iguales, `0` (cero); si el derecho es el mayor
-         *   al izquierdo, un número positivo mayor a `0` (cero); y, en caso
-         *   contrario, si el izquierdo es el mayor, un número negativo.
-         * @see    usort
-         * @see    IComparable::compareTo
+         * @return integer|null
+         *   Debe devolver:
+         *   - ``= 0`` si $left se considera equivalente a $right;
+         *   - ``> 0`` si $left se considera mayor a $right;
+         *   - ``< 0`` si $left se considera menor a $right.
+         *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
+         * @see \usort()
+         * @see IComparable::compareTo
          * */
         public static function compare($left, $right);
     }
