@@ -51,15 +51,23 @@ trait ExporterPlugin
         $type = NML\typeof($obj);
 
         if ($type->canBeString() && $type->isCustom()) {
-            $str = (string) $obj;
-        } elseif (!$type->canBeString()) {
+            $str = "{$type->Name} { {$obj} }";
+        } elseif ($type->isCustom()) {
             $str = static::$exporter->shortenedRecursiveExport($obj);
-
-            if ($type->Name === 'array') {
-                $str = "array({$str})";
-            }
         } else {
             $str = static::$exporter->export($obj);
+
+            if ($type->Name === 'array') {
+                // Remove 'Array' label
+                $str = substr($str, strpos($str, '('));
+
+                // Remove unnecesary spaces
+                $str = str_replace(["\r", "\t", '  '], '', $str);
+
+                // Replace '(', ')' and adding ',' separator
+                $str = str_replace(["(\n", "\n)", "\n"], ['[', ']', ', '], $str);
+
+            }
         }
 
         return $str;
