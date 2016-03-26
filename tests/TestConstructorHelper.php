@@ -3,7 +3,7 @@
  * PHP: Nelson Martell Library file
  *
  * Content:
- * - Test helper for classes implementing ``NelsonMartell\IComparable`` interface
+ * - Trait definition
  *
  * Copyright © 2016 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -19,24 +19,15 @@
 
 namespace NelsonMartell\Test;
 
-use NelsonMartell as NML;
-use NelsonMartell\Extensions\String;
-use NelsonMartell\IComparable;
-use NelsonMartell\Object;
-use NelsonMartell\Version;
-use NelsonMartell\Test\plugins\ExporterPlugin;
-use \PHPUnit_Framework_TestCase as TestCase;
-use \InvalidArgumentException;
 use \ReflectionClass;
 use \ReflectionException;
 use \BadMethodCallException;
 use \UnexpectedValueException;
 
 /**
+ * Provides test methods and helpers to test class constructors.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
- * @internal
- * @group Criticals
  * */
 trait TestConstructorHelper
 {
@@ -93,7 +84,7 @@ trait TestConstructorHelper
     /**
      * @testdox Informs when error occurs on creating new instances.
      * @dataProvider badConstructorArgumentsProvider
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testConstructorWithBadArguments()
     {
