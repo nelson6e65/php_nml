@@ -110,7 +110,7 @@ namespace NelsonMartell {
                 return new VersionComponent();
             }
 
-            $s = parent::Parse($value);
+            $s = parent::parse($value);
 
             $r = new VersionComponent($s->IntValue, $s->StringValue);
 
@@ -124,8 +124,8 @@ namespace NelsonMartell {
          * */
         public function isDefault()
         {
-            if ($this->IntValue == 0) {
-                if ($this->StringValue == '') {
+            if ($this->IntValue === 0) {
+                if ($this->StringValue === '') {
                     return true;
                 }
             }
@@ -152,7 +152,7 @@ namespace NelsonMartell {
          * */
         public function isNotDefault()
         {
-            return !$this->IsDefault();
+            return !$this->isDefault();
         }
 
         /**
@@ -176,7 +176,57 @@ namespace NelsonMartell {
          * */
         public function isNotNull()
         {
-            return !$this->IsNull();
+            return !$this->isNull();
+        }
+
+        public function equals($other)
+        {
+            if ($other instanceof VersionComponent) {
+                if ($this->IntValue === $other->IntValue) {
+                    if ($this->StringValue === $other->StringValue) {
+                        return true;
+                    }
+                }
+            } else {
+                return parent::equals($other);
+            }
+
+            return false;
+        }
+
+        public function compareTo($other)
+        {
+            if ($other === null) {
+                return 1;
+            } elseif ($this->equals($other)) {
+                return 0;
+            } elseif ($other instanceof VersionComponent) {
+                // null < int
+                if ($this->isNull()) {
+                    $r = -1;
+                } elseif ($other->isNull()) {
+                    $r = 1;
+                } else {
+                    // Here are evaluated as integers
+                    $r = $this->IntValue - $other->IntValue;
+
+                    if ($r === 0) {
+                        $r = strnatcmp($this->StringValue, $other->StringValue);
+                    }
+                }
+            } elseif (is_integer($other) || is_array($other)) {
+                $r = 1;
+            } elseif (is_string($other)) {
+                try {
+                    $r = $this->compareTo(static::parse($other));
+                } catch (InvalidArgumentException $e) {
+                    $r = 1;
+                }
+            } else {
+                $r = null;
+            }
+
+            return $r;
         }
     }
 }

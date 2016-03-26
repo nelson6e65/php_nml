@@ -176,7 +176,6 @@ namespace NelsonMartell {
          * */
         public function compareTo($other)
         {
-
             $r = $this->equals($other) ? 0 : 9999;
 
             if ($r != 0) {
@@ -184,7 +183,7 @@ namespace NelsonMartell {
                     $r = $this->IntValue - $other->IntValue;
 
                     if ($r == 0) {
-                        $r = $this->StringValue < $other->StringValue ? -1 : 1;
+                        $r = strnatcmp($this->StringValue, $other->StringValue);
                     }
                 } else {
                     $r = 1;
