@@ -2,9 +2,18 @@
 <phpunit bootstrap="vendor/autoload.php" colors="auto" addUncoveredFilesFromWhitelist="true">
     <testsuites>
         <testsuite name="PHP: Nelson Martell Library Tests Suite">
+            <file>tests/ObjectTest.php</file>
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+
+    <groups>
+        <exclude>
+            <group>PHP examples</group>
+            <group>Features to be implemented</group>
+            <group>Proposals</group>
+        </exclude>
+    </groups>
 
     <filter>
         <whitelist>
