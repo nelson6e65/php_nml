@@ -39,7 +39,7 @@ class VersionTest extends TestCase
 
     /**
      * @coverage Version::__construct
-     * @depends NelsonMartell\Test\VersionComponentTest::testCreatesNewInstances
+     * @depends NelsonMartell\Test\VersionComponentTest::testConstructor
      * @dataProvider goodConstructorArgumentsProvider
      * @return Version
      */
