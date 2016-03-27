@@ -30,28 +30,41 @@ use \InvalidArgumentException;
 /**
  * Test helper for classes implementing ``NelsonMartell\IComparable`` interface.
  *
+ * Note: Classes using this class MUST use TestConstructorHelper and ExporterPlugin traits too.
+ *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
 trait IComparableTestHelper
 {
     public abstract function getTargetClassInstance(); // use TestConstructorHelper;
     public abstract function getTargetClassName(); // use TestConstructorHelper;
+    public abstract function getTargetClassReflection(); // use TestConstructorHelper;
     public abstract function export($obj); // use plugin/ExporterPlugin;
 
     /**
+     * Datasets for ``testIComparableCompareToMethod(integer|null $expected, IComparable $left, mixed $right)``.
      *
-     * @testdox Implements NelsonMartell\IComparable interface
+     * @return array
      */
-    public function testImplementsIComparableInterface()
-    {
-        $message = 'Do not implements '.IComparable::class.' interface.';
-        $this->assertInstanceOf($this->getTargetClassName(), $this->getTargetClassInstance(), $message);
-        $this->assertInstanceOf(IComparable::class, $this->getTargetClassInstance(), $message);
-    }
+    public abstract function IComparableCompareToMethodArgumentsProvider();
+
+    /**
+     * Datasets for ``testIComparableCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
+     *
+     * @return array
+     */
+    public abstract function IComparableCompareMethodArgumentsProvider();
+
+    /**
+     * Datasets for ``testIComparableCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
+     *
+     * @return array
+     */
+    public abstract function IComparableCompareMethodArraysProvider();
+
 
     /**
      * @testdox Can compare relative position with other objects
-     * @depends testImplementsIComparableInterface
      * @dataProvider IComparableCompareToMethodArgumentsProvider
      */
     public function testIComparableCompareToMethod($expected, IComparable $left, $right)
@@ -93,7 +106,6 @@ trait IComparableTestHelper
 
     /**
      * @testdox Can compare relative position of objects of different type
-     * @depends testImplementsIComparableInterface
      * @dataProvider IComparableCompareMethodArgumentsProvider
      */
     public function testIComparableCompareMethod($expected, $left, $right)
@@ -104,7 +116,7 @@ trait IComparableTestHelper
         $message = String::format(
             '{class}::{method}({left}, {right}); // Returned: {actual}',
             [
-                'class'  => $this->getTargetClassName(),
+                'class'  => $class,
                 'method' => 'compare',
                 'left'   => static::export($left),
                 'right'  => static::export($right),
@@ -139,7 +151,7 @@ trait IComparableTestHelper
      * @testdox Provides comparison function to array sorting
      * @dataProvider IComparableCompareMethodArraysProvider
      */
-    public function testUseIComparableCompareMethodInArraySorting(array $expected)
+    public function testCanUseIComparableCompareMethodInArraySorting(array $expected)
     {
         $actual = $expected;
 
@@ -160,23 +172,19 @@ trait IComparableTestHelper
     }
 
     /**
-     * Datasets for ``testIComparableCompareToMethod(integer|null $expected, IComparable $left, mixed $right)``.
-     *
-     * @return array
+     * @testdox Is compliant with ``NelsonMartell\IComparable`` interface
+     * @depends testIComparableCompareToMethod
+     * @depends testIComparableCompareMethod
+     * @depends testCanUseIComparableCompareMethodInArraySorting
      */
-    public abstract function IComparableCompareToMethodArgumentsProvider();
+    public function testIsCompliantWithIComparableIterface()
+    {
+        $message = String::format(
+            '"{0}" do not implements "{1}" interface.',
+            $this->getTargetClassName(),
+            IComparable::class
+        );
 
-    /**
-     * Datasets for ``testIComparableCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
-     *
-     * @return array
-     */
-    public abstract function IComparableCompareMethodArgumentsProvider();
-
-    /**
-     * Datasets for ``testIComparableCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
-     *
-     * @return array
-     */
-    public abstract function IComparableCompareMethodArraysProvider();
+        $this->assertContains(IComparable::class, $this->getTargetClassReflection()->getInterfaceNames(), $message);
+    }
 }
