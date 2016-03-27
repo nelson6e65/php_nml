@@ -36,6 +36,7 @@ class VersionComponentTest extends TestCase
     use ExporterPlugin;
     use VersionComponentTestProvider;
     use TestConstructorHelper;
+    use IComparableTestHelper;
 
     public function getTargetClassName()
     {
@@ -86,76 +87,5 @@ class VersionComponentTest extends TestCase
             'Tests for "'.VersionComponent::class.'::isNull|isNotNull|isDefault|isNotDefault'.
             '" has not been completed yet.'
         );
-    }
-
-    /**
-     * @coverage VersionComponent::equals
-     * @coverage VersionComponent::compareTo
-     * @dataProvider compareToProvider
-     * @[depends] testConstructor
-     * @[depends] testPerformsConversionFromString
-     */
-    public function testCanCompareWithOtherObjects($expected, VersionComponent $left, $right)
-    {
-        $actual = $left->compareTo($right);
-
-        $message = String::format(
-            '{left}->{method}({right}); // Returned: {actual}',
-            [
-                'class'  => VersionComponent::class,
-                'method' => 'compareTo',
-                'left'   => static::export($left),
-                'right'  => static::export($right),
-                'actual' => static::export($actual)
-            ]
-        );
-
-        if ($expected === 0) {
-            $this->assertEquals(0, $actual, $message);
-        } else {
-            if ($expected === null) {
-                $this->assertNull($actual, $message);
-            } else {
-                $major = $minor = 0;
-
-                if ($expected < 0) {
-                    $minor = $actual;
-                } else {
-                    $major = $actual;
-                }
-
-                $this->assertInternalType('integer', $actual, $message);
-                $this->assertGreaterThan($minor, $major, $message);
-                $this->assertLessThan($major, $minor, $message);
-            }
-        }
-    }
-
-    /**
-     * @coverage VersionComponent::equals
-     * @coverage VersionComponent::compareTo
-     * @coverage Object::compare
-     * @depends testCanCompareWithOtherObjects
-     * @depends NelsonMartell\Test\ObjectTest::testProvidesSortingInArrays
-     * @dataProvider compareProvider
-     */
-    public function testCanBeSortedInArrays(array $expected)
-    {
-        $actual = $expected;
-
-        @shuffle($actual);
-
-        @usort($actual, array(VersionComponent::class, 'compare'));
-
-        $message = String::format(
-            'usort({actual}, array({class}, {method}));',
-            [
-                'class'  => static::export(VersionComponent::class),
-                'method' => static::export('compare'),
-                'actual' => static::export($actual)
-            ]
-        );
-
-        $this->assertEquals($expected, $actual, $message);
     }
 }

@@ -55,13 +55,12 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function compareToProvider()
+    public function IComparableCompareToMethodArgumentsProvider()
     {
         $v = new VersionComponent(1, '-alpha');
         $obj = new \stdClass();
         $obj->intValue = 1;
         $obj->stringValue = '-alpha';
-
 
         $args = [
             'Equals by reference' => [0, $v, $v],
@@ -90,7 +89,22 @@ trait VersionComponentTestProvider
         return $args;
     }
 
-    public function compareProvider()
+
+    public function IComparableCompareMethodArgumentsProvider()
+    {
+        $v = new VersionComponent(1, '-alpha');
+        $obj = new \stdClass();
+        $obj->intValue = 1;
+        $obj->stringValue = '-alpha';
+
+        return [
+            [-1, 'array', $v],
+            [null, $v, $obj],
+            [-1, [], $v],
+        ];
+    }
+
+    public function IComparableCompareMethodArraysProvider()
     {
         return [
             'VersionComponent[]' => [[
