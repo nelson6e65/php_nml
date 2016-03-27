@@ -175,7 +175,12 @@ namespace NelsonMartell {
             if ($left instanceof IComparable) {
                 $r = $left->compareTo($right);
             } elseif ($right instanceof IComparable) {
-                $r = $right->compareTo($left) * (-1); // Invert result
+                $r = $right->compareTo($left);
+
+                if ($r !== null) {
+                    $r *= -1;  // Invert result
+                }
+
             } else {
                 $ltype = typeof($left);
                 $rtype = typeof($right);
@@ -196,6 +201,7 @@ namespace NelsonMartell {
                             break;
 
                         case 'float':
+                        case 'double':
                             $r = (int) ceil($left - $right);
                             break;
 

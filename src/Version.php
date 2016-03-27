@@ -405,9 +405,10 @@ namespace NelsonMartell {
             $r = $this->equals($other) ? 0 : 9999;
 
             if (!($other instanceof Version)) {
-                switch ((typeof($other)->toString())) {
+                switch (typeof($other)->toString()) {
                     case 'integer':
                     case 'float':
+                    case 'double':
                     case 'null':
                     case 'NULL':
                         $r = 1; // Siempre es mayor a cualquier número o null
