@@ -76,12 +76,12 @@ namespace NelsonMartell {
         }
 
         /**
-         * Convert the object to an instance of IntString.
+         * Convert the object to an instance of ``IntString``.
          *
-         * @param string|IntString $obj Object to convert to string.
+         * @param string|IntString $obj Object to convert to ``IntString``.
          *
          * @return IntString
-         * @throws InvalidArgumentException if object is not an string or format is invalid.
+         * @throws InvalidArgumentException if object is not a string or format is invalid.
          */
         public static function parse($obj)
         {
@@ -98,7 +98,7 @@ namespace NelsonMartell {
             } catch (InvalidArgumentException $e) {
                 $args = [
                     'position' => '1st',
-                    'expected' => 'string", "integer" or "'.IntString::class,
+                    'expected' => 'string" or "integer',
                     'actual'   => typeof($obj),
                 ];
 
@@ -111,17 +111,18 @@ namespace NelsonMartell {
                 throw new InvalidArgumentException($msg, 1, $e);
             }
 
-            $stringValue = explode($intValue, $obj, 2);
+            $stringValue = ltrim($obj, "$intValue");
 
-            if ($intValue > 0 or $stringValue[1] != '') {
-                $stringValue = $stringValue[1];
-            } else {
-                $stringValue = $stringValue[0];
+            // Validate that 0 (zero) is not interpreted as '' (empty string)
+            if ($stringValue === $obj) {
+                $msg = nml_msg('Invalid argument value.');
+                $msg .= nml_msg(' "{0}" (string) must to start with an integer.', $obj);
+
+                throw new InvalidArgumentException($msg);
             }
 
             return new IntString($intValue, $stringValue);
         }
-
 
         protected $intValue;
         protected $stringValue;
