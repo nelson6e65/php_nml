@@ -176,4 +176,18 @@ trait VersionTestProvider
             ]],
         ];
     }
+
+    public function IEquatableMethodArgumentsProvider()
+    {
+        return [
+            [true, new Version(1, 2), new Version(1, 2)],
+            [false, new Version(1, 4), new Version(1, 2)],
+            [false, new Version(1, 2, 1), new Version(1, 2, 2)],
+            [false, new Version(1, 2, 1), 123],
+            [false, new Version(1, 2, 1), 2345654675675675673453],
+            [false, new Version(1, 2, 1), '1.2.1'],
+            [false, new Version(1, 2, 1), [1, 2, 1]],
+            [false, new Version(1, 2, 1), new \stdClass],
+        ];
+    }
 }

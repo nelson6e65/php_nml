@@ -38,6 +38,7 @@ class VersionTest extends TestCase
     use VersionTestProvider;
     use TestConstructorHelper;
     use IComparableTestHelper;
+    use IEquatableTestHelper;
     use ExporterPlugin;
 
     public function getTargetClassName()
@@ -93,7 +94,6 @@ class VersionTest extends TestCase
 
     /**
      * @coverage Version::isValid
-     * @depends testCreatesNewInstances
      */
     public function testCanCheckIfVersionIsValid()
     {
