@@ -93,18 +93,29 @@ class VersionTest extends TestCase
     }
 
     /**
+     * @testdox Can check if Version instance is valid
      * @coverage Version::isValid
+     * @dataProvider isValidProvider
      */
-    public function testCanCheckIfVersionIsValid()
+    public function testIsValid($expected, Version $version)
     {
-        $obj = new Version(0, 0, 0, 0);
-        $this->assertFalse($obj->isValid());
+        $actual = $version->isValid();
 
-        $obj = new Version(0, 2, 0, 0);
-        $this->assertTrue($obj->isValid());
-
-        $this->markTestIncomplete(
-            'Tests for "'.Version::class.'::isValid'.'" has not been completed yet.'
+        $message = String::format(
+            '$version->{method}(); // {actual}',
+            [
+                'method' => 'isValid',
+                'obj'    => static::export($version),
+                'actual' => static::export($actual)
+            ]
         );
+
+        $this->assertInternalType('boolean', $actual, $message.' # Should return a boolean #');
+
+        if ($expected === true) {
+            $this->assertTrue($actual, $message);
+        } else {
+            $this->assertFalse($actual, $message);
+        }
     }
 }

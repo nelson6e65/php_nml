@@ -190,4 +190,42 @@ trait VersionTestProvider
             [false, new Version(1, 2, 1), new \stdClass],
         ];
     }
+
+    protected $parseableStrings = [
+        'valid' => [
+            '1.0',
+            '0.2',
+            '2.3.2-3-g726351',
+            '2.3.2.3-2-g726352',
+            '3.0.1',
+            '4.0.2.0',
+            '5.0.0.3-beta',
+            '6.0.0-alpha',
+        ],
+        'invalid' => [
+            '0.0',
+            '1.0..1',
+            '2.0.0-alpha.0',
+            '2.3.2-3-g726353.3',
+            '2.3.2-3-g726356.1-2-gyt4f4',
+            '3.0.1-alpha.1',
+            '4.0.0-alpha.0-beta',
+            '5.0.1-alpha.2-beta',
+        ],
+    ];
+
+    public function isValidProvider()
+    {
+        $args = [];
+
+        foreach ($this->parseableStrings['valid'] as $str) {
+            $args[$str] = [true, Version::parse($str)];
+        }
+
+        foreach ($this->parseableStrings['invalid'] as $str) {
+            $args[$str] = [false, Version::parse($str)];
+        }
+
+        return $args;
+    }
 }
