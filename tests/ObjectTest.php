@@ -38,6 +38,7 @@ class ObjectTest extends TestCase
     use ExporterPlugin;
 
     /**
+     * @testdox Can compare relative position of objects of different type
      * @coverage Object::compare
      * @dataProvider compareToProvider
      */
@@ -113,6 +114,7 @@ class ObjectTest extends TestCase
 
 
     /**
+     * @testdox Provides comparison function to array sorting
      * @dataProvider comparisonObjectsProvider
      */
     public function testProvidesSortingInArrays(array $expected)

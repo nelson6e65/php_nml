@@ -92,7 +92,7 @@ trait IComparableTestHelper
     }
 
     /**
-     * @testdox Can be compared with other objects
+     * @testdox Can compare relative position of objects of different type
      * @depends testImplementsIComparableInterface
      * @dataProvider IComparableCompareMethodArgumentsProvider
      */
@@ -136,7 +136,7 @@ trait IComparableTestHelper
 
 
     /**
-     * @testdox Provides comparison function to array sorting.
+     * @testdox Provides comparison function to array sorting
      * @dataProvider IComparableCompareMethodArraysProvider
      */
     public function testUseIComparableCompareMethodInArraySorting(array $expected)
