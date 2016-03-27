@@ -73,7 +73,7 @@ trait TestConstructorHelper
     }
 
     /**
-     * @testdox Creates new instances.
+     * @testdox Creates new instances
      * @dataProvider goodConstructorArgumentsProvider
      */
     public function testConstructor()
@@ -82,7 +82,7 @@ trait TestConstructorHelper
     }
 
     /**
-     * @testdox Informs when error occurs on creating new instances.
+     * @testdox Informs when error occurs on creating new instances
      * @dataProvider badConstructorArgumentsProvider
      * @expectedException \InvalidArgumentException
      */

@@ -30,7 +30,7 @@ use \InvalidArgumentException;
 /**
  * Test helper for classes implementing ``NelsonMartell\IComparable`` interface.
  *
- * Note: Classes using this class MUST use TestConstructorHelper and ExporterPlugin traits too.
+ * Note: Classes using this trait MUST use TestConstructorHelper and ExporterPlugin traits too.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
@@ -72,9 +72,8 @@ trait IComparableTestHelper
         $actual = $left->compareTo($right);
 
         $message = String::format(
-            '$obj->{method}({right}); // Returned: {actual}. $obj: {left})',
+            '$obj->{method}({right}); // Returned: {actual} ($obj: {left})',
             [
-                'class'  => $this->getTargetClassName(),
                 'method' => 'compareTo',
                 'left'   => static::export($left),
                 'right'  => static::export($right),
