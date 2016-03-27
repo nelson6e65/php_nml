@@ -250,7 +250,7 @@ class VersionTest extends TestCase
      * @coverage Object::compare
      * @depends testCanCompareWithOtherObjects
      * @depends NelsonMartell\Test\ObjectTest::testProvidesSortingInArrays
-     * @dataProvider comparationObjectsProvider
+     * @dataProvider comparisonObjectsProvider
      */
     public function testCanBeSortedInArrays(array $expected)
     {
@@ -272,7 +272,7 @@ class VersionTest extends TestCase
         $this->assertEquals($expected, $actual, $message);
     }
 
-    public function comparationObjectsProvider()
+    public function comparisonObjectsProvider()
     {
         return [
             'Version[]' => [[

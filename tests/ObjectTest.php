@@ -41,7 +41,7 @@ class ObjectTest extends TestCase
      * @coverage Object::compare
      * @dataProvider compareToProvider
      */
-    public function testProvidesObjectComparations($expected, $left, $right)
+    public function testProvidesObjectsComparison($expected, $left, $right)
     {
         $actual = Object::compare($left, $right);
 
@@ -113,7 +113,7 @@ class ObjectTest extends TestCase
 
 
     /**
-     * @dataProvider comparationObjectsProvider
+     * @dataProvider comparisonObjectsProvider
      */
     public function testProvidesSortingInArrays(array $expected)
     {
@@ -126,7 +126,7 @@ class ObjectTest extends TestCase
         $this->assertEquals($expected, $actual, 'usort() failed.');
     }
 
-    public function comparationObjectsProvider()
+    public function comparisonObjectsProvider()
     {
         return [
             'integer[]'           => [[-67, -9, 0, 4, 5, 6]],
