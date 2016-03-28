@@ -48,7 +48,7 @@ class VersionTest extends TestCase
 
     /**
      * @coverage Version::parse
-     * @depends NelsonMartell\Test\VersionComponentTest::testPerformsConversionFromString
+     * @depends NelsonMartell\Test\VersionComponentTest::testParseMethod
      */
     public function testPerformsConversionFromString()
     {
@@ -60,7 +60,6 @@ class VersionTest extends TestCase
 
     /**
      * @coverage Version::parse
-     * @depends testCreatesNewInstances
      * @depends NelsonMartell\Test\VersionComponentTest::testPerformsConversionToString
      */
     public function testPerformsConversionToString()
@@ -77,7 +76,6 @@ class VersionTest extends TestCase
      * @coverage Version::__toString
      * @coverage Version::toString
      * @depends testPerformsConversionToString
-     * @depends NelsonMartell\Test\VersionComponentTest::testPerformsImplicitConversionToString
      */
     public function testPerformsImplicitConversionToString()
     {
