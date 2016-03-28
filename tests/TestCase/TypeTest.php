@@ -23,7 +23,7 @@ use NelsonMartell as NML;
 use NelsonMartell\Type;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\Helpers\TestConstructorHelper;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
@@ -36,7 +36,7 @@ use \InvalidArgumentException;
 class TypeTest extends TestCase
 {
     use TypeTestProvider;
-    use TestConstructorHelper;
+    use ConstructorMethodTester;
     use ExporterPlugin;
 
     public function getTargetClassName()

@@ -23,7 +23,7 @@ use NelsonMartell as NML;
 use NelsonMartell\VersionComponent;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\Helpers\TestConstructorHelper;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
@@ -39,7 +39,7 @@ class VersionComponentTest extends TestCase
 {
     use ExporterPlugin;
     use VersionComponentTestProvider;
-    use TestConstructorHelper;
+    use ConstructorMethodTester;
     use IComparableTester;
     use IEquatableTester;
 

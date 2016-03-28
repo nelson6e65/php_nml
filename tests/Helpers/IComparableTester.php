@@ -30,15 +30,15 @@ use \InvalidArgumentException;
 /**
  * Test helper for classes implementing ``NelsonMartell\IComparable`` interface.
  *
- * Note: Classes using this trait MUST use TestConstructorHelper and ExporterPlugin traits too.
+ * Note: Classes using this trait MUST use ConstructorMethodTester and ExporterPlugin traits too.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
 trait IComparableTester
 {
-    public abstract function getTargetClassInstance(); // use TestConstructorHelper;
-    public abstract function getTargetClassName(); // use TestConstructorHelper;
-    public abstract function getTargetClassReflection(); // use TestConstructorHelper;
+    public abstract function getTargetClassInstance(); // use ConstructorMethodTester;
+    public abstract function getTargetClassName(); // use ConstructorMethodTester;
+    public abstract function getTargetClassReflection(); // use ConstructorMethodTester;
     public abstract function export($obj); // use plugin/ExporterPlugin;
 
     /**

@@ -25,7 +25,7 @@ use NelsonMartell\VersionComponent;
 use NelsonMartell\Object;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\Helpers\TestConstructorHelper;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\DataProviders\VersionTestProvider;
@@ -40,7 +40,7 @@ use \InvalidArgumentException;
 class VersionTest extends TestCase
 {
     use VersionTestProvider;
-    use TestConstructorHelper;
+    use ConstructorMethodTester;
     use IComparableTester;
     use IEquatableTester;
     use ExporterPlugin;

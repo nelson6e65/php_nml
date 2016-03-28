@@ -29,7 +29,7 @@ use \UnexpectedValueException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-trait TestConstructorHelper
+trait ConstructorMethodTester
 {
     /**
      * Gets the name of class target of this test-class.
