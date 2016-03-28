@@ -116,12 +116,68 @@ class VersionComponentTest extends TestCase
      * @coverage VersionComponent::isNotNull
      * @coverage VersionComponent::isDefault
      * @coverage VersionComponent::isNotDefault
+     * @dataProvider nullOrDefaultStatesProvider
      */
-    public function testCanCheckIfVersionComponentIsInDefaultOrNullState()
+    public function testCanCheckIfVersionComponentIsInDefaultOrNullState($expected, VersionComponent $versionComponent)
     {
-        $this->markTestIncomplete(
-            'Tests for "'.VersionComponent::class.'::isNull|isNotNull|isDefault|isNotDefault'.
-            '" has not been completed yet.'
+        static $format = '$versionComponent->{method}(); // {actual}';
+
+        $actuals['isDefault']    = $versionComponent->isDefault();
+        $actuals['isNotDefault'] = $versionComponent->isNotDefault();
+        $actuals['isNull']       = $versionComponent->isNull();
+        $actuals['isNotNull']    = $versionComponent->isNotNull();
+
+        $messages = [];
+
+        foreach ($actuals as $method => $actual) {
+            $messages[$method] = String::format($format, ['method' => $method, 'actual' => static::export($actual)]);
+        }
+
+        foreach ($actuals as $method => $actual) {
+            // Pre-tests for returning type
+            $this->assertInternalType('boolean', $actual, $messages[$method].' # Should return a boolean #');
+        }
+
+        // Pre-tests for different values
+        $this->assertNotEquals(
+            $actuals['isDefault'],
+            $actuals['isNotDefault'],
+            $messages['isDefault'].PHP_EOL.$messages['isNotDefault']
         );
+
+        $this->assertNotEquals(
+            $actuals['isNull'],
+            $actuals['isNotNull'],
+            $messages['isNull'].PHP_EOL.$messages['isNotNull']
+        );
+
+
+        // Test expected
+        if ($expected === 'default') {
+            $this->assertTrue($actuals['isDefault'], $messages['isDefault']);
+
+            // Can't be null AND default
+            $this->assertNotEquals(
+                $actuals['isNull'],
+                $actuals['isDefault'],
+                '#Can\'t be both, DEFAULT and NULL, at the same time'.PHP_EOL.
+                $messages['isDefault'].PHP_EOL.
+                $messages['isNull']
+            );
+        } elseif ($expected === 'null') {
+            $this->assertTrue($actuals['isNull'], $messages['isNull']);
+
+            // Can't be null AND default
+            $this->assertNotEquals(
+                $actuals['isNull'],
+                $actuals['isDefault'],
+                '#Can\'t be both, NULL and DEFAULT, at the same time'.PHP_EOL.
+                $messages['isNull'].PHP_EOL.
+                $messages['isDefault']
+            );
+        } else {
+            $this->assertTrue($actuals['isNotDefault'], $messages['isNotDefault']);
+            $this->assertTrue($actuals['isNotNull'], $messages['isNotNull']);
+        }
     }
 }

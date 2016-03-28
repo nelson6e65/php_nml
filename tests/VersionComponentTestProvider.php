@@ -179,4 +179,20 @@ trait VersionComponentTestProvider
             ['2-rc1-20-g8c5b85c', new VersionComponent(2, "-rc1-20-g8c5b85c")],
         ];
     }
+
+
+    public function nullOrDefaultStatesProvider()
+    {
+        return [
+            ['default', new VersionComponent(0)],
+            ['null', new VersionComponent()],
+            ['null', new VersionComponent(null, '')],
+            ['null', new VersionComponent(null, '  ')],
+            ['null', new VersionComponent(null)],
+            ['null', new VersionComponent(null, null)],
+            ['defined', new VersionComponent(1, 'a')],
+            ['defined', new VersionComponent(1, '-beta')],
+            ['defined', new VersionComponent(2, "-rc1-20-g8c5b85c")],
+        ];
+    }
 }
