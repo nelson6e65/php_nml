@@ -164,4 +164,19 @@ trait VersionComponentTestProvider
             'stdClass'                          => [new \stdClass],
         ];
     }
+
+    public function versionComponentToStringMethodArgumentsProvider()
+    {
+        return [
+            ['0', new VersionComponent(0)],
+            ['', new VersionComponent()],
+            ['', new VersionComponent(null, '')],
+            ['', new VersionComponent(null, '  ')],
+            ['', new VersionComponent(null)],
+            ['', new VersionComponent(null, null)],
+            ['1a', new VersionComponent(1, 'a')],
+            ['1-beta', new VersionComponent(1, '-beta')],
+            ['2-rc1-20-g8c5b85c', new VersionComponent(2, "-rc1-20-g8c5b85c")],
+        ];
+    }
 }
