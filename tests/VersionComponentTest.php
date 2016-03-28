@@ -37,6 +37,7 @@ class VersionComponentTest extends TestCase
     use VersionComponentTestProvider;
     use TestConstructorHelper;
     use IComparableTestHelper;
+    use IEquatableTestHelper;
 
     public function getTargetClassName()
     {

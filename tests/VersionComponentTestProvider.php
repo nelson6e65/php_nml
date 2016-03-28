@@ -165,6 +165,22 @@ trait VersionComponentTestProvider
         ];
     }
 
+    public function IEquatableMethodArgumentsProvider()
+    {
+        return [
+            [true, new VersionComponent(1, '-alpha'), new VersionComponent(1, '-alpha')],
+            [false, new VersionComponent(1, '-beta'), new VersionComponent(1, '-bet')],
+            [false, new VersionComponent(3, '-dev'), new VersionComponent(1, '-dev')],
+            [false, new VersionComponent(), null],
+            [false, new VersionComponent(0), 0],
+            [false, new VersionComponent(2), 2],
+            [false, new VersionComponent(23), 2345654675675675673453],
+            [false, new VersionComponent(0, '-dev'), '0-dev'],
+            [false, new VersionComponent(1, '-alpha'), [1, '-alpha']],
+            [false, new VersionComponent(), new \stdClass],
+        ];
+    }
+
     public function versionComponentToStringMethodArgumentsProvider()
     {
         return [
