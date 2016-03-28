@@ -26,8 +26,8 @@ use NelsonMartell\Object;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\TestConstructorHelper;
-use NelsonMartell\Test\Helpers\IComparableTestHelper;
-use NelsonMartell\Test\Helpers\IEquatableTestHelper;
+use NelsonMartell\Test\Helpers\IComparableTester;
+use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\DataProviders\VersionTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
@@ -41,8 +41,8 @@ class VersionTest extends TestCase
 {
     use VersionTestProvider;
     use TestConstructorHelper;
-    use IComparableTestHelper;
-    use IEquatableTestHelper;
+    use IComparableTester;
+    use IEquatableTester;
     use ExporterPlugin;
 
     public function getTargetClassName()

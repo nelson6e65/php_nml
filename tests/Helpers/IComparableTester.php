@@ -34,7 +34,7 @@ use \InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-trait IComparableTestHelper
+trait IComparableTester
 {
     public abstract function getTargetClassInstance(); // use TestConstructorHelper;
     public abstract function getTargetClassName(); // use TestConstructorHelper;

@@ -32,7 +32,7 @@ use \InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-trait IEquatableTestHelper
+trait IEquatableTester
 {
     public abstract function getTargetClassName(); // use TestConstructorHelper;
     public abstract function getTargetClassReflection(); // use TestConstructorHelper;
