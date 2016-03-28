@@ -100,21 +100,19 @@ namespace NelsonMartell {
             }
         }
 
-        public static function parse($value = null)
+        public static function parse($obj)
         {
-            if ($value instanceof VersionComponent) {
-                return $value;
+            if ($obj instanceof VersionComponent) {
+                return $obj;
+            } else {
+                if ($obj === null || (is_string($obj) && trim($obj) === '')) {
+                    return new VersionComponent();
+                }
             }
 
-            if ($value === null or trim((string) $value) === '') {
-                return new VersionComponent();
-            }
+            $objConverted = parent::parse($obj);
 
-            $s = parent::parse($value);
-
-            $r = new VersionComponent($s->IntValue, $s->StringValue);
-
-            return $r;
+            return new VersionComponent($objConverted->IntValue, $objConverted->StringValue);
         }
 
         /**
