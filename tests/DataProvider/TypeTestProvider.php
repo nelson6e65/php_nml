@@ -17,16 +17,16 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell\Test;
+namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell as NML;
 use NelsonMartell\Object;
 use NelsonMartell\Extensions\String;
-use NelsonMartell\Test\plugins\ExporterPlugin;
+use NelsonMartell\Test\Helpers\ExporterPlugin;
 use \InvalidArgumentException;
 
 /**
- * Data providers for NelsonMartell\Test\TypeTest.
+ * Data providers for NelsonMartell\Test\TestCase\TypeTest.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
@@ -61,7 +61,7 @@ trait TypeTestProvider
             'string'        => ['string', 'str'],
             'array'         => ['array', []],
             'stdClass'      => ['object (stdClass)', new \stdClass],
-            __CLASS__       => ['object (NelsonMartell\Test\TypeTest)', $this],
+            __CLASS__       => ['object (NelsonMartell\Test\TestCase\TypeTest)', $this],
         ];
     }
 

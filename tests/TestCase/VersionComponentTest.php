@@ -17,12 +17,16 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell\Test;
+namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell as NML;
 use NelsonMartell\VersionComponent;
 use NelsonMartell\Extensions\String;
-use NelsonMartell\Test\plugins\ExporterPlugin;
+use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\TestConstructorHelper;
+use NelsonMartell\Test\Helpers\IComparableTestHelper;
+use NelsonMartell\Test\Helpers\IEquatableTestHelper;
+use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
 

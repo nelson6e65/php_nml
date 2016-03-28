@@ -16,7 +16,7 @@
  * @since     v0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
-namespace NelsonMartell\Test\Extensions;
+namespace NelsonMartell\Test\TestCase\Extensions;
 
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;

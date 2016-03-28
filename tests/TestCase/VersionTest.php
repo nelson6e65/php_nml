@@ -17,14 +17,18 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell\Test;
+namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell as NML;
 use NelsonMartell\Version;
 use NelsonMartell\VersionComponent;
 use NelsonMartell\Object;
 use NelsonMartell\Extensions\String;
-use NelsonMartell\Test\plugins\ExporterPlugin;
+use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\TestConstructorHelper;
+use NelsonMartell\Test\Helpers\IComparableTestHelper;
+use NelsonMartell\Test\Helpers\IEquatableTestHelper;
+use NelsonMartell\Test\DataProviders\VersionTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
 
@@ -48,7 +52,7 @@ class VersionTest extends TestCase
 
     /**
      * @coverage Version::parse
-     * @depends NelsonMartell\Test\VersionComponentTest::testParseMethod
+     * @depends NelsonMartell\Test\TestCase\VersionComponentTest::testParseMethod
      */
     public function testPerformsConversionFromString()
     {
@@ -60,7 +64,7 @@ class VersionTest extends TestCase
 
     /**
      * @coverage Version::parse
-     * @depends NelsonMartell\Test\VersionComponentTest::testPerformsConversionToString
+     * @depends NelsonMartell\Test\TestCase\VersionComponentTest::testPerformsConversionToString
      */
     public function testPerformsConversionToString()
     {

@@ -17,7 +17,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell\Test;
+namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell as NML;
 use NelsonMartell\VersionComponent;
