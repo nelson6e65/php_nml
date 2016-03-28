@@ -41,9 +41,9 @@
 		]
 	},
 	"autoload-dev": {
-		"psr-4": {
-			"NelsonMartell\\Test\\": "tests"
-		}
+		"classmap": [
+			"tests"
+		]
 	},
 	"extra": {
         "branch-alias": {
