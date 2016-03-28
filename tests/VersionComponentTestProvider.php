@@ -84,6 +84,16 @@ trait VersionComponentTestProvider
                 $v,
                 $obj
             ],
+            'VersionComponent | null' => [
+                1,
+                $v,
+                null
+            ],
+            'VersionComponent | VersionComponent (null)' => [
+                -1,
+                new VersionComponent(),
+                new VersionComponent(1)
+            ],
         ];
 
         return $args;
