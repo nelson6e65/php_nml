@@ -2,8 +2,10 @@
 <phpunit bootstrap="vendor/autoload.php" colors="auto" addUncoveredFilesFromWhitelist="true">
     <testsuites>
         <testsuite name="PHP: Nelson Martell Library Tests Suite">
-            <file>tests/ObjectTest.php</file>
-            <directory>tests</directory>
+            <file>tests/TestCase/Extensions/StringTest.php</file>
+            <file>tests/TestCase/TypeTest.php</file>
+            <file>tests/TestCase/ObjectTest.php</file>
+            <directory>tests/TestCase</directory>
         </testsuite>
     </testsuites>
 
