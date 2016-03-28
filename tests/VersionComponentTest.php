@@ -44,13 +44,36 @@ class VersionComponentTest extends TestCase
     }
 
     /**
+     * @testdox Performs conversion from compatible objects
      * @coverage VersionComponent::parse
+     * @dataProvider goodVersionComponentParseMethodArgumentsProvider
      */
-    public function testPerformsConversionFromString()
+    public function testParseMethod(VersionComponent $expected, $obj)
     {
-        $this->markTestIncomplete(
-            'Tests for "'.VersionComponent::class.'::parse'.'" has not been completed yet.'
+        $actual = VersionComponent::parse($obj);
+
+        $message = String::format(
+            '{class}::{method}({obj}); // {actual}',
+            [
+                'class'  => VersionComponent::class,
+                'method' => 'isValid',
+                'obj'    => static::export($obj),
+                'actual' => static::export($actual)
+            ]
         );
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @testdox Informs if error occurs on parsing incompatible objects
+     * @coverage VersionComponent::parse
+     * @dataProvider badVersionComponentParseMethodArgumentsProvider
+     * @expectedException \InvalidArgumentException
+     */
+    public function testParseMethodWithInvalidArguments($obj)
+    {
+        $actual = VersionComponent::parse($obj);
     }
 
     /**

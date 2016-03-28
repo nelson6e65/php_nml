@@ -137,4 +137,31 @@ trait VersionComponentTestProvider
             ]],
         ];
     }
+
+    public function goodVersionComponentParseMethodArgumentsProvider()
+    {
+        return [
+            [new VersionComponent(1, 'a0'), '1a0'],
+            [new VersionComponent(2, '-3-g726351'), '2-3-g726351'],
+            [new VersionComponent(3, '-beta'), '3-beta'],
+            [new VersionComponent(0, '-alpha'), '0-alpha'],
+            [new VersionComponent(0, '-beta2'), '0-beta2'],
+            'string | empty'        => [new VersionComponent(), '      '], // Maybe should throw exception?
+            'string | only spaces'  => [new VersionComponent(), ''], // Maybe should throw exception?
+            'null'                  => [new VersionComponent(), null], // Maybe should throw exception?
+            'integer'               => [new VersionComponent(7), 7],
+            'VersionComponent'      => [new VersionComponent(999), new VersionComponent(999)],
+        ];
+    }
+
+    public function badVersionComponentParseMethodArgumentsProvider()
+    {
+        return [
+            'string | consecutive "-"'          => ['1a--0'],
+            'string | invalid char: ó'          => ['1-erróneo'],
+            'string | not starting in number'   => ['beta0'],
+            'integer | < 0'                     => [-13],
+            'stdClass'                          => [new \stdClass],
+        ];
+    }
 }
