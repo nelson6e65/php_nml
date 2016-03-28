@@ -113,9 +113,7 @@ trait VersionTestProvider
         return $args;
     }
 
-
-
-    public function IComparableCompareMethodArgumentsProvider()
+    public function compareMethodArgumentsProvider()
     {
         $v = new Version(1, 0, 9);
         $obj = new \stdClass();
@@ -135,7 +133,7 @@ trait VersionTestProvider
         return $args;
     }
 
-    public function IComparableCompareMethodArraysProvider()
+    public function compareMethodArraysProvider()
     {
         return [
             'Version[]' => [[

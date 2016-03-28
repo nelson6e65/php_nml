@@ -51,7 +51,7 @@ namespace NelsonMartell {
      *
      * @author Nelson Martell <nelson6e65@gmail.com>
      * */
-    class Object
+    class Object implements IComparer
     {
         use PropertiesHandler;
 

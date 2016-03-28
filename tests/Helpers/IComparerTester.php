@@ -21,7 +21,7 @@ namespace NelsonMartell\Test\Helpers;
 
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;
-use NelsonMartell\IComparable;
+use NelsonMartell\IComparer;
 use NelsonMartell\Object;
 use NelsonMartell\Version;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
@@ -34,32 +34,41 @@ use \InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-trait IComparableTester
+trait IComparerTester
 {
-    public abstract function getTargetClassInstance(); // use ConstructorMethodTester;
     public abstract function getTargetClassName(); // use ConstructorMethodTester;
     public abstract function getTargetClassReflection(); // use ConstructorMethodTester;
     public abstract function export($obj); // use plugin/ExporterPlugin;
 
     /**
-     * Datasets for ``testIComparableCompareToMethod(integer|null $expected, IComparable $left, mixed $right)``.
+     * Datasets for ``testCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
      *
      * @return array
      */
-    public abstract function IComparableCompareToMethodArgumentsProvider();
+    public abstract function compareMethodArgumentsProvider();
 
     /**
-     * @testdox Can compare relative position with other objects
-     * @dataProvider IComparableCompareToMethodArgumentsProvider
+     * Datasets for ``testCanUseCompareMethodInArraySorting(integer|null $expected, mixed $left, mixed $right)``.
+     *
+     * @return array
      */
-    public function testIComparableCompareToMethod($expected, IComparable $left, $right)
+    public abstract function compareMethodArraysProvider();
+
+
+    /**
+     * @testdox Can compare relative position of objects of different type
+     * @dataProvider compareMethodArgumentsProvider
+     */
+    public function testCompareMethod($expected, $left, $right)
     {
-        $actual = $left->compareTo($right);
+        $class = $this->getTargetClassName();
+        $actual = $class::compare($left, $right);
 
         $message = String::format(
-            '$obj->{method}({right}); // Returned: {actual} ($obj: {left})',
+            '{class}::{method}({left}, {right}); // Returned: {actual}',
             [
-                'method' => 'compareTo',
+                'class'  => $class,
+                'method' => 'compare',
                 'left'   => static::export($left),
                 'right'  => static::export($right),
                 'actual' => static::export($actual)
@@ -88,18 +97,43 @@ trait IComparableTester
         }
     }
 
+
     /**
-     * @testdox Is compliant with ``NelsonMartell\IComparable`` interface
-     * @depends testIComparableCompareToMethod
+     * @testdox Provides comparison function to array sorting
+     * @dataProvider compareMethodArraysProvider
      */
-    public function testIsCompliantWithIComparableIterface()
+    public function testCanUseCompareMethodInArraySorting(array $expected)
+    {
+        $actual = $expected;
+
+        @shuffle($actual);
+
+        $message = String::format(
+            'usort({actual}, [{class}, {method}]);',
+            [
+                'class'  => $this->getTargetClassName(),
+                'method' => 'compare',
+                'actual' => static::export($actual)
+            ]
+        );
+
+        @usort($actual, [$this->getTargetClassName(), 'compare']);
+
+        $this->assertEquals($expected, $actual, $message);
+    }
+
+    /**
+     * @testdox Is compliant with ``NelsonMartell\IComparer`` interface
+     * @depends testCanUseCompareMethodInArraySorting
+     */
+    public function testIsCompliantWithIComparerIterface()
     {
         $message = String::format(
             '"{0}" do not implements "{1}" interface.',
             $this->getTargetClassName(),
-            IComparable::class
+            IComparer::class
         );
 
-        $this->assertContains(IComparable::class, $this->getTargetClassReflection()->getInterfaceNames(), $message);
+        $this->assertContains(IComparer::class, $this->getTargetClassReflection()->getInterfaceNames(), $message);
     }
 }

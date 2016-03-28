@@ -100,7 +100,7 @@ trait VersionComponentTestProvider
     }
 
 
-    public function IComparableCompareMethodArgumentsProvider()
+    public function compareMethodArgumentsProvider()
     {
         $v = new VersionComponent(1, '-alpha');
         $obj = new \stdClass();
@@ -114,7 +114,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function IComparableCompareMethodArraysProvider()
+    public function compareMethodArraysProvider()
     {
         return [
             'VersionComponent[]' => [[

@@ -25,6 +25,7 @@ use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IComparableTester;
+use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
@@ -41,6 +42,7 @@ class VersionComponentTest extends TestCase
     use VersionComponentTestProvider;
     use ConstructorMethodTester;
     use IComparableTester;
+    use IComparerTester;
     use IEquatableTester;
 
     public function getTargetClassName()
