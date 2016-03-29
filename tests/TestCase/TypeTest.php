@@ -26,6 +26,7 @@ use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
+use SebastianBergmann\Exporter\Exporter;
 use \InvalidArgumentException;
 
 /**
@@ -37,7 +38,13 @@ class TypeTest extends TestCase
 {
     use TypeTestProvider;
     use ConstructorMethodTester;
-    use ExporterPlugin;
+
+    public $exporter = null;
+
+    public function setUp()
+    {
+        $this->exporter = new Exporter();
+    }
 
     public function getTargetClassName()
     {
@@ -45,15 +52,35 @@ class TypeTest extends TestCase
     }
 
     /**
-     * @testdox Informs when error occurs on creating new instances
-     * @dataprovider badConstructorArgumentsProvider
+     * Overrides default tests, due to this class constructor do not throws argument exceptions.
+     * So, using any type should be pass.
+     *
+     * @testdox Do not throws error on creating new instances
+     * @dataProvider badConstructorArgumentsProvider
+     * @group Criticals
      */
-    public function testConstructorWithBadArguments()
+    public function testConstructorWithBadArguments($obj)
     {
-        $this->markTestSkipped(String::format(
-            '"{0}" class do not throws intentional exceptions in constructor.',
-            Type::class
-        ));
+        $actual = null;
+        $message = String::format(
+            '$type = new {class}({obj});',
+            [
+                'class'   => Type::class,
+                'obj'     => $this->exporter->shortenedExport($obj),
+            ]
+        );
+
+        try {
+            $actual = new Type($obj);
+        } catch (\Exception $e) {
+            $actual = $e;
+            $message .= String::format(
+                ' // # Constructor should not throws exceptions. Error: {0}',
+                $this->exporter->export($e->getMessage())
+            );
+        }
+
+        $this->assertInstanceOf(Type::class, $actual, $message);
     }
 
     /**

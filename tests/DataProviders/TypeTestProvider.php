@@ -65,8 +65,12 @@ trait TypeTestProvider
         ];
     }
 
+    /**
+     * This class constructor do not throws argument exceptions, so, using any type should be pass.
+     * @return array
+     */
     public function badConstructorArgumentsProvider()
     {
-        return [[]];
+        return $this->goodConstructorArgumentsProvider();
     }
 }
