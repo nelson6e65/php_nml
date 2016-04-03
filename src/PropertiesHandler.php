@@ -32,6 +32,8 @@ namespace NelsonMartell {
      *
      * So, you MUST (1) create the property in the class and (2) then unset it in the constructor
      * (*this requirements will change in next releases to be more 'auto-magic'*).
+     * You can, also, expose read-only attributes to be public by creating only a getter method and declare
+     * visibility of attribute as private.
      *
      * @example
      * ```php
@@ -41,11 +43,11 @@ namespace NelsonMartell {
      *
      *     public function __construct()
      *     {
-     *         unset($this->Name);
+     *         unset($this->Name); // (2)
      *     }
      *
-     *     private $_name = ''; // Stores the value.
-     *     public $Name; // Accesible name for the property.
+     *     private $_name = ''; // Attribute: Stores the value.
+     *     public $Name; // (1) Property: Accesible name for the property.
      *
      *     public function getName()
      *     {
@@ -61,18 +63,27 @@ namespace NelsonMartell {
      * $obj = new Nameable();
      * $obj->Name = 'nelson maRtElL';
      * echo $obj->Name; // 'Nelson Martell'
-     * echo $obj->name; // Throws: BadMethodCallException: Property "Nameable::name" do not exists.
+     * echo $obj->name; // Throws: InvalidArgumentException: "name" property do not exists in "Nameable" class.
      *
      * ?>
      * ```
      *
-     * **Note**: You should not define properties wich names only are only different in the first letter
-     * upper/lowercase; it will be used the same getter/setter method. In the last example, if you (in addition)
-     * define the `public $name` and `unset($this->name)` in the constructor, it will be used the same
-     * getter and setter method when you access or set both properties (`->Name` and `->name`).
-     *
-     * ### Limitations
-     * - Only works for public properties (even if you declare getter/setter method as `private` or `protected`).
+     * ## Notes:
+     * - You should not define properties wich names only are only different in the first letter upper/lowercase;
+     *   it will be used the same getter/setter method (since in PHP methods are case-insensitive). In the last
+     *   example, if you (in addition) define the `public $name` and `unset($this->name)` in the constructor, it will
+     *   be used the same getter and setter method when you access or set both properties (`->Name` and `->name`).
+     * - Only works for public properties (even if you declare visibility of getter/setter methods as `private`
+     *   or `protected`); this only will avoid the direct use of method (``$obj->getName(); // ERROR``), but property
+     *   value still will be available in child classes and main (``$value = $this->name; // No error``).
+     * - Getter and Setter methods SHOULD NOT be declared as ``private`` in child classes if parent already
+     *   uses this trait.
+     * - Custom prefixes ability (by implementing ``ICustomPrefixedPropertiesContainer``) is not posible for
+     *   multiple prefixes in multiples child classes by overriding ``ICustomPrefixedPropertiesContainer`` methods.
+     *   If you extends a class that already implements it, if you override any methor to return another prefix,
+     *   parent class properties may be unaccesible (know bug).
+     * - Avoid the use of custom prefixes and use the standard 'get'/'set' instead. If you need to, maybe you
+     *   could try to rename methods instead first.
      *
      * @author Nelson Martell <nelson6e65@gmail.com>
      * */
@@ -91,10 +102,13 @@ namespace NelsonMartell {
         public function __get($name)
         {
             try {
-                $getter = $this->getPropertyGetter($name);
-            } catch (BadMethodCallException $error) {
-                $msg = nml_msg('Unable to get the property value in "{0}" class.', typeof($this)->Name);
+                $getter = static::getPropertyGetter($name);
+            } catch (InvalidArgumentException $error) {
+                $msg = nml_msg('Unable to get the property value in "{0}" class.', get_class($this));
                 throw new BadMethodCallException($msg, 31, $error);
+            } catch (BadMethodCallException $error) {
+                $msg = nml_msg('Unable to get the property value in "{0}" class.', get_class($this));
+                throw new BadMethodCallException($msg, 32, $error);
             }
 
             return $this->$getter();
@@ -115,10 +129,13 @@ namespace NelsonMartell {
         public function __set($name, $value)
         {
             try {
-                $setter = $this->getPropertySetter($name);
-            } catch (BadMethodCallException $error) {
-                $msg = nml_msg('Unable to set the property value in "{0}" class.', typeof($this)->Name);
+                $setter = static::getPropertySetter($name);
+            } catch (InvalidArgumentException $error) {
+                $msg = nml_msg('Unable to set the property value in "{0}" class.', get_class($this));
                 throw new BadMethodCallException($msg, 41, $error);
+            } catch (BadMethodCallException $error) {
+                $msg = nml_msg('Unable to set the property value in "{0}" class.', get_class($this));
+                throw new BadMethodCallException($msg, 42, $error);
             }
 
             $this->$setter($value);
@@ -131,26 +148,36 @@ namespace NelsonMartell {
          * @param string $name Property name.
          *
          * @return string Same property name, but validated.
-         * @throws BadMethodCallException If property do not exists or name is invalid.
+         * @throws InvalidArgumentException If property name is not valid (10) or do not exists (11).
          */
-        private function ensurePropertyExists($name)
+        protected static function ensurePropertyExists($name)
         {
+            $args = [
+                'class'    => get_called_class(),
+            ];
+
             try {
-                $pName = String::ensureIsValidVarName($name);
+                $args['property'] = String::ensureIsValidVarName($name);
             } catch (InvalidArgumentException $error) {
                 $msg = nml_msg('Property name is not valid.');
-                throw new BadMethodCallException($msg, 10, $error);
+                throw new InvalidArgumentException($msg, 10, $error);
             }
 
-            if (property_exists($this, $name) === false) {
-                $args = [
-                         'class'    => typeof($this)->Name,
-                         'property' => $name,
-                        ];
+            if (!property_exists($args['class'], $args['property'])) {
+                // Check in parent classes for private property
+                $current = $args['class'];
+                $exists = false;
+                while ($current = get_parent_class($current) and !$exists) {
+                    $exists = property_exists($current, $args['property']);
+                }
 
-                $msg = nml_msg('Property "{class}::{property}" do not exists.', $args);
-
-                throw new BadMethodCallException($msg, 11);
+                if (!$exists) {
+                    $msg = nml_msg(
+                        '"{property}" property do not exists in "{class}" class or parent classes.',
+                        $args
+                    );
+                    throw new InvalidArgumentException($msg, 11);
+                }
             }
 
             return $name;
@@ -163,86 +190,25 @@ namespace NelsonMartell {
          * @param string $name Method name.
          *
          * @return string Same method name, but validated.
-         * @throws BadMethodCallException If method name is invalid or do not exists.
+         * @throws InvalidArgumentException If method name is not valid (20) or do not exists (21).
          */
-        private function ensureMethodExists($name)
+        protected static function ensureMethodExists($name)
         {
+            $args = [
+                'class'  => get_called_class(),
+            ];
+
             try {
-                $mName = String::ensureIsValidVarName($name);
+                $args['method'] = String::ensureIsValidVarName($name);
             } catch (InvalidArgumentException $error) {
                 $msg = nml_msg('Method name is not valid.');
-                throw new BadMethodCallException($msg, 20, $error);
+                throw new InvalidArgumentException($msg, 20, $error);
             }
 
-            if (method_exists($this, $name) === false) {
-                $args = [
-                         'class'  => typeof($this)->Name,
-                         'method' => $name,
-                        ];
+            if (method_exists($args['class'], $args['method']) === false) {
+                $msg = nml_msg('"{class}::{method}" do not exists.', $args);
 
-                $msg = nml_msg('Method "{class}::{method}" do not exists.', $args);
-
-                throw new BadMethodCallException($msg, 21);
-            }
-
-            return $name;
-        }
-
-
-        /**
-         * Ensures that there is a setter for the provided property name.
-         *
-         * @param string $name   Property name.
-         * @param string $prefix Property setter prefix. Default: 'set'.
-         *
-         * @return string Same property name, after checks that setter exists.
-         * @throws BadMethodCallException If property is not writable or do not exists.
-         */
-        private function ensurePropertyHasSetter($name, $prefix = 'set')
-        {
-            $setter = $prefix.$this->ensurePropertyExists($name);
-
-            try {
-                $setter = $this->ensureMethodExists($setter);
-            } catch (BadMethodCallException $error) {
-                $args = [
-                         'class' => typeof($this)->Name,
-                         'name'  => $name,
-                        ];
-
-                $msg = nml_msg('Property "{class}::{name}" has not a setter.', $args);
-
-                throw new BadMethodCallException($msg, 40, $error);
-            }
-
-            return $name;
-        }
-
-
-        /**
-         * Ensures that there is a getter for the provided property name.
-         *
-         * @param string $name   Property name.
-         * @param string $prefix Property getter prefix. Default: 'get'.
-         *
-         * @return string Same property name, after checks that getter exists.
-         * @throws BadMethodCallException If property is not readable or do not exists.
-         */
-        private function ensurePropertyHasGetter($name, $prefix = 'get')
-        {
-            $getter = $prefix.$this->ensurePropertyExists($name);
-
-            try {
-                $getter = $this->ensureMethodExists($getter);
-            } catch (BadMethodCallException $error) {
-                $args = [
-                         'class' => typeof($this)->Name,
-                         'name'  => $name,
-                        ];
-
-                $msg = nml_msg('Property "{class}::{name}" has not a getter.', $args);
-
-                throw new BadMethodCallException($msg, 30, $error);
+                throw new InvalidArgumentException($msg, 21);
             }
 
             return $name;
@@ -251,61 +217,109 @@ namespace NelsonMartell {
 
         /**
          * Gets the property setter method name.
-         * You can customize the getter prefix by creating the protected `setterPrefix` attribute in your class.
+         * You can customize the setter prefix by implementing ``ICustomPrefixedPropertiesContainer`` interface.
          *
          * @param string $name Property name.
          *
          * @return string
-         * @throws BadMethodCallException if property is not valid, has not setter or custom prefix is not
-         *   an ``string`` instance.
+         * @throws InvalidArgumentException If property is not valid or has not setter.
+         * @throws BadMethodCallException If custom prefix is not an ``string`` instance.
+         * @see ICustomPrefixedPropertiesContainer::getCustomSetterPrefix()
          */
-        private function getPropertySetter($name)
+        protected static function getPropertySetter($name)
         {
-            $prefix = 'set';
-            if (property_exists($this, 'setterPrefix')) {
-                try {
-                    $prefix = String::ensureIsString($this->setterPrefix);
-                } catch (InvalidArgumentException $e) {
-                    $msg = nml_msg(
-                        'Custom property setter prefix is defined, but its value should be an "string"; "{0}" given.',
-                        [typeof($this->setterPrefix)]
-                    );
+            $args   = [
+                'class' => get_called_class(),
+            ];
 
-                    throw new BadMethodCallException($msg, 0, $e);
+            $prefix = 'set';
+
+            $args['name'] = static::ensurePropertyExists($name, $args['class']);
+
+            try {
+                $setter = static::ensureMethodExists($prefix.$args['name']);
+            } catch (InvalidArgumentException $error) {
+                $msg = nml_msg('"{name}" property has not a setter method in "{class}".', $args);
+
+                if (is_subclass_of($args['class'], ICustomPrefixedPropertiesContainer::class)) {
+                    // If not available standard setter, check if custom available
+                    try {
+                        $prefix = String::ensureIsString(static::getCustomSetterPrefix());
+                    } catch (InvalidArgumentException $e) {
+                        $msg = nml_msg(
+                            '"{class}::getCustomSetterPrefix" method must to return an string.',
+                            $args['class']
+                        );
+
+                        throw new BadMethodCallException($msg, 31, $e);
+                    }
+
+                    try {
+                        $setter = static::ensureMethodExists($prefix.$args['name']);
+                    } catch (InvalidArgumentException $e) {
+                        throw new InvalidArgumentException($msg, 32, $e);
+                    }
+                } else {
+                    // Error for non custom prefixes
+                    throw new InvalidArgumentException($msg, 30, $error);
                 }
             }
 
-            return $prefix.$this->ensurePropertyHasSetter($name, $prefix);
+            return $setter;
         }
 
 
         /**
          * Gets the property getter method name.
-         * You can customize the getter prefix by creating the protected `getterPrefix` attribute in your class.
+         * You can customize the getter prefix by implementing ``ICustomPrefixedPropertiesContainer`` interface.
          *
          * @param string $name Property name.
          *
          * @return string
-         * @throws BadMethodCallException if property is not valid, has not getter or custom prefix is not
-         *   an ``string`` instance.
+         * @throws InvalidArgumentException If property is not valid or has not getter.
+         * @throws BadMethodCallException If custom prefix is not an ``string`` instance.
+         * @see ICustomPrefixedPropertiesContainer::getCustomGetterPrefix()
          */
-        private function getPropertyGetter($name)
+        protected static function getPropertyGetter($name)
         {
-            $prefix = 'get';
-            if (property_exists($this, 'getterPrefix')) {
-                try {
-                    $prefix = String::ensureIsString($this->getterPrefix);
-                } catch (InvalidArgumentException $e) {
-                    $msg = nml_msg(
-                        'Custom property getter prefix is defined, but its value should be an "string"; "{0}" given.',
-                        [typeof($this->getterPrefix)]
-                    );
+            $args   = [
+                'class' => get_called_class(),
+            ];
 
-                    throw new BadMethodCallException($msg, 0, $e);
+            $prefix = 'get';
+
+            $args['name'] = static::ensurePropertyExists($name, $args['class']);
+
+            try {
+                $getter = static::ensureMethodExists($prefix.$args['name']);
+            } catch (InvalidArgumentException $error) {
+                $msg = nml_msg('"{name}" property has not a getter method in "{class}".', $args);
+
+                if (is_subclass_of($args['class'], ICustomPrefixedPropertiesContainer::class)) {
+                    // If not available standard getter, check if custom available
+                    try {
+                        $prefix = String::ensureIsString(static::getCustomGetterPrefix());
+                    } catch (InvalidArgumentException $e) {
+                        $msg = nml_msg(
+                            '"{class}::getCustomGetterPrefix" method must to return an string.',
+                            $args['class']
+                        );
+
+                        throw new BadMethodCallException($msg, 31, $e);
+                    }
+
+                    try {
+                        $getter = static::ensureMethodExists($prefix.$args['name']);
+                    } catch (InvalidArgumentException $e) {
+                        throw new InvalidArgumentException($msg, 32, $e);
+                    }
+                } else {
+                    // Error for non custom prefixes
+                    throw new InvalidArgumentException($msg, 30, $error);
                 }
             }
 
-            return $prefix.$this->ensurePropertyHasGetter($name, $prefix);
+            return $getter;
         }
     }
 }

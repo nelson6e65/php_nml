@@ -25,6 +25,8 @@ use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
 use NelsonMartell\Test\DataProviders\ExampleClass\B;
+use NelsonMartell\Test\DataProviders\ExampleClass\C;
+use NelsonMartell\Test\DataProviders\ExampleClass\D;
 use \InvalidArgumentException;
 
 /**
@@ -41,6 +43,11 @@ trait PropertiesHandlerTestProvider
             'Get property accesible via a wrapper'        => [-1, new A(), 'property1'],
             'Get property accesible using attribute name' => [-2, new A(), 'attribute2'],
             'Get property accesible from parent only'     => [-4, new B(), 'property4'],
+            'Custom prefix: Own attribute directly'       => [(-5 * 2), new C, 'attribute5'],
+            'Custom prefix: Own property directly'        => [-6, new C, 'property6'],
+            'Custom prefix: Own property directly2'        => [-9, new D, 'property9'],
+            'Custom prefix: Parent property'              => [-1, new D, 'property1'],
+            'Custom prefix: Parent property (using default prefix)' => [-3, new C, 'property3'],
         ];
     }
 
@@ -50,8 +57,9 @@ trait PropertiesHandlerTestProvider
     public function setAccesiblePropertiesProvider()
     {
         return [
-            'Public read-write property: Set attribute with setter'            => [300, new A(), 'property3', 3],
-            'Set parent attribute accesible from parent (write-only property)' => [null, new B(), 'property2', 2],
+            'Public read-write property: Set attribute with setter'            => [(3 * 100), new A, 'property3', 3],
+            'Set parent attribute accesible from parent (write-only property)' => [null, new B, 'property2', 2],
+            'Custom prefix: Own property'                                      => [(6 * 99), new C, 'property6', 6],
         ];
     }
 
@@ -65,6 +73,10 @@ trait PropertiesHandlerTestProvider
             'Set read-only attribute'              => [new A(), 'attribute4', 4],
             'Set write-only property'              => [new A(), 'property2', 2],
             'Set unaccesible property from parent' => [new B(), 'property1', 1],
+            'Existent, but wrong prefixes'         => [new B(), 'property7'],
+            'Existent, but wrong prefixes'         => [new B(), 'property7', 7],
+            'Double definition of custom getter prefix: D::C' => [new D, 'property6'],
+            'Double definition of custom setter prefix: D::C' => [new D, 'property6', 6],
         ];
     }
 }
