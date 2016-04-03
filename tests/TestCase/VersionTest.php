@@ -67,33 +67,36 @@ class VersionTest extends TestCase
     /**
      * @coverage Version::parse
      * @depends NelsonMartell\Test\TestCase\VersionComponentTest::testPerformsConversionToString
+     * @dataProvider toStringMethodProvider
      */
-    public function testPerformsConversionToString()
+    public function testPerformsConversionToString($expected, Version $version)
     {
-        $obj = new Version(0, 6, 0);
-        $this->assertEquals('0.6.0', $obj->toString());
+        $actual = $version->toString();
 
-        $this->markTestIncomplete(
-            'Tests for "'.Version::class.'::toString|__toString'.'" has not been completed yet.'
+        $message = String::format(
+            '$version->{method}(); // {actual}',
+            [
+                'method' => 'toString',
+                'actual' => static::export($actual)
+            ]
         );
+
+        $this->assertInternalType('string', $actual, $message.' # Should return a string #');
+        $this->assertEquals($expected, $actual, $message);
     }
 
     /**
      * @coverage Version::__toString
      * @coverage Version::toString
      * @depends testPerformsConversionToString
+     * @dataProvider toStringMethodProvider
      */
-    public function testPerformsImplicitConversionToString()
+    public function testPerformsImplicitConversionToString($str, Version $obj)
     {
-        $obj = new Version(0, 6, 0);
-        $this->assertEquals('v0.6.0', 'v'.$obj);
+        $expected = "<Version>$str</Version>";
+        $actual   = "<Version>$obj</Version>";
 
-        $obj = new Version(0, 6, 0, 0);
-        $this->assertEquals('v0.6.0.0', 'v'.$obj);
-
-        $this->markTestIncomplete(
-            'Tests for "'.Version::class.'::__toString'.'" has not been completed yet.'
-        );
+        $this->assertEquals($expected, $actual);
     }
 
     /**

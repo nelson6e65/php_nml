@@ -226,4 +226,19 @@ trait VersionTestProvider
 
         return $args;
     }
+
+    public function toStringMethodProvider()
+    {
+        return [
+            ['1.0', new Version(1, 0)],
+            ['0.2', new Version(0, 2)],
+            ['2.3.2-3-g726351', new Version(2, 3, '2-3-g726351')],
+            ['2.3.2.3-2-g726352', new Version(2, 3, 2, '3-2-g726352')],
+            ['3.0.1', new Version(3, 0, 1)],
+            ['4.0.2.0', new Version(4, 0, 2, 0)],
+            ['5.0.0.3-beta', new Version(5, 0, 0, '3-beta')],
+            ['6.0.0-alpha', new Version(6, 0, '0-alpha')],
+        ];
+
+    }
 }
