@@ -20,12 +20,14 @@
 namespace NelsonMartell {
 
     /**
-     * Mark a class as implementing PropertiesHandler trait.
+     * Mark a class as implementing strict properties only.
+     *
+     * All classes using ``PropertiesHandler`` trait should be marked with this interface.
      *
      * @author Nelson Martell <nelson6e65@gmail.com>
      * @see PropertiesHandler
      * */
-    interface IPropertiesContainer
+    interface IStrictPropertiesContainer
     {
     }
 }

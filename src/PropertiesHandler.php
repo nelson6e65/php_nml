@@ -38,7 +38,7 @@ namespace NelsonMartell {
      * @example
      * ```php
      * <?php
-     * class Nameable {
+     * class Nameable implements NelsonMartell\IStrictPropertiesContainer {
      *     use NelsonMartell\PropertiesHandler;
      *
      *     public function __construct()

@@ -30,7 +30,7 @@ namespace NelsonMartell {
      * @author Nelson Martell <nelson6e65@gmail.com>
      * @see PropertiesHandler
      * */
-    interface ICustomPrefixedPropertiesContainer extends IPropertiesContainer
+    interface ICustomPrefixedPropertiesContainer extends IStrictPropertiesContainer
     {
         /**
          * Gets the custom prefix for getters methods.
