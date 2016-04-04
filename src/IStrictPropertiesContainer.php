@@ -29,5 +29,21 @@ namespace NelsonMartell {
      * */
     interface IStrictPropertiesContainer
     {
+        /**
+         * Gets the value of specified property.
+         *
+         * @param string $name Property name.
+         *
+         * @return mixed Property value.
+         */
+        public function __get($name);
+
+        /**
+         * Sets the value of specified property.
+         *
+         * @param string $name  Property name.
+         * @param mixed  $value Property value.
+         */
+        public function __set($name, $value);
     }
 }
