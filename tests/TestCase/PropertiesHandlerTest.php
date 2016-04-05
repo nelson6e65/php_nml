@@ -22,8 +22,6 @@ namespace NelsonMartell\Test\TestCase;
 use NelsonMartell as NML;
 use NelsonMartell\Type;
 use NelsonMartell\Extensions\String;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\DataProviders\PropertiesHandlerTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
@@ -37,7 +35,6 @@ use \BadMethodCallException;
 class PropertiesHandlerTest extends TestCase
 {
     use PropertiesHandlerTestProvider;
-    use ExporterPlugin;
 
     /**
      * @testdox Uses getters and setters methods in order to access and set values to class properties

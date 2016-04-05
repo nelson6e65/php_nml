@@ -37,6 +37,8 @@ use \InvalidArgumentException;
  * */
 trait PropertiesHandlerTestProvider
 {
+    use ExporterPlugin;
+
     public function getAccesiblePropertiesProvider()
     {
         return [

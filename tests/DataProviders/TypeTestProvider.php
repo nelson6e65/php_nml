@@ -24,6 +24,8 @@ use NelsonMartell\Object;
 use NelsonMartell\Type;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\IStrictPropertiesContainerTester;
 use \InvalidArgumentException;
 
 /**
@@ -34,6 +36,8 @@ use \InvalidArgumentException;
  * */
 trait TypeTestProvider
 {
+    use ConstructorMethodTester;
+    use IStrictPropertiesContainerTester;
 
     /**
      * Provides valid arguments for constructor.
@@ -86,7 +90,7 @@ trait TypeTestProvider
         $obj = new Type($this);
 
         return [
-            [$obj, 'Name', __CLASS__],
+            [$obj, 'name', __CLASS__],
             [$obj, 'ShortName', 'TypeTest'],
             [$obj, 'Namespace', 'NelsonMartell\Test\TestCase', ],
         ];

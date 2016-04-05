@@ -22,6 +22,11 @@ namespace NelsonMartell\Test\DataProviders;
 use NelsonMartell as NML;
 use NelsonMartell\VersionComponent;
 use NelsonMartell\Extensions\String;
+use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\IComparableTester;
+use NelsonMartell\Test\Helpers\IComparerTester;
+use NelsonMartell\Test\Helpers\IEquatableTester;
 use \InvalidArgumentException;
 
 /**
@@ -32,6 +37,12 @@ use \InvalidArgumentException;
  * */
 trait VersionComponentTestProvider
 {
+    use ExporterPlugin;
+    use ConstructorMethodTester;
+    use IComparableTester;
+    use IComparerTester;
+    use IEquatableTester;
+
     public function goodConstructorArgumentsProvider()
     {
         return [

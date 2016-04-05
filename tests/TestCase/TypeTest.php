@@ -22,9 +22,6 @@ namespace NelsonMartell\Test\TestCase;
 use NelsonMartell as NML;
 use NelsonMartell\Type;
 use NelsonMartell\Extensions\String;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\Helpers\ConstructorMethodTester;
-use NelsonMartell\Test\Helpers\IStrictPropertiesContainerTester;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use SebastianBergmann\Exporter\Exporter;
@@ -38,9 +35,6 @@ use \InvalidArgumentException;
 class TypeTest extends TestCase
 {
     use TypeTestProvider;
-    use ConstructorMethodTester;
-    use IStrictPropertiesContainerTester;
-
 
     public $exporter = null;
 
