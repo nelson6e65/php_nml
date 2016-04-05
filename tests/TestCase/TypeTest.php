@@ -24,6 +24,7 @@ use NelsonMartell\Type;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\IStrictPropertiesContainerTester;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use SebastianBergmann\Exporter\Exporter;
@@ -38,6 +39,8 @@ class TypeTest extends TestCase
 {
     use TypeTestProvider;
     use ConstructorMethodTester;
+    use IStrictPropertiesContainerTester;
+
 
     public $exporter = null;
 
@@ -96,41 +99,11 @@ class TypeTest extends TestCase
         $this->assertInternalType('string', $actual);
         $this->assertEquals($expected, $actual);
 
-        $actual   = "Implicit converted: $actual";
-        $expected = "Implicit converted: $expected";
+        $actual   = "<Type>$actual</Type>";
+        $expected = "<Type>$expected</Type>";
         $this->assertEquals($expected, $actual);
-
     }
 
-    /**
-     * @coverage Type::getName
-     */
-    public function testCanGetNameOfType()
-    {
-        $this->markTestIncomplete(
-            'Tests for "'.Type::class.'::getName'.'" has not been completed yet.'
-        );
-    }
-
-    /**
-     * @coverage Type::getShortName
-     */
-    public function testCanGetShortNameOfType()
-    {
-        $this->markTestIncomplete(
-            'Tests for "'.Type::class.'::getShortName'.'" has not been completed yet.'
-        );
-    }
-
-    /**
-     * @coverage Type::getNamespace
-     */
-    public function testCanGetNamespaceOfType()
-    {
-        $this->markTestIncomplete(
-            'Tests for "'.Type::class.'::getNamespace'.'" has not been completed yet.'
-        );
-    }
 
     /**
      * @coverage Type::hasMethod

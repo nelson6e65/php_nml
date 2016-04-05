@@ -21,6 +21,7 @@ namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell as NML;
 use NelsonMartell\Object;
+use NelsonMartell\Type;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use \InvalidArgumentException;
@@ -73,4 +74,43 @@ trait TypeTestProvider
     {
         return $this->goodConstructorArgumentsProvider();
     }
+
+
+    #GROUP: IStrictPropertiesContainerTester
+
+    /**
+     * @return array
+     */
+    public function readonlyPropertiesProvider()
+    {
+        $obj = new Type($this);
+
+        return [
+            [$obj, 'Name', __CLASS__],
+            [$obj, 'ShortName', 'TypeTest'],
+            [$obj, 'Namespace', 'NelsonMartell\Test\TestCase', ],
+        ];
+    }
+
+    public function writeonlyPropertiesProvider()
+    {
+        return null;
+    }
+
+    public function readwritePropertiesProvider()
+    {
+        return null;
+    }
+
+    public function unaccesiblePropertiesProvider()
+    {
+        return null;
+    }
+
+    public function objectInstanceProvider()
+    {
+        return [[new Type($this)]];
+    }
+
+    #ENDGROUP
 }
