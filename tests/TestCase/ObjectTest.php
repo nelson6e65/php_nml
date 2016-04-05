@@ -21,11 +21,11 @@ namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;
+use NelsonMartell\Test\DataProviders\ObjectTestProvider;
 use NelsonMartell\Object;
-use NelsonMartell\Version;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
+use \Exception;
 
 /**
  *
@@ -35,104 +35,35 @@ use \InvalidArgumentException;
  * */
 class ObjectTest extends TestCase
 {
-    use ExporterPlugin;
+    use ObjectTestProvider;
 
     /**
-     * @testdox Can compare relative position of objects of different type
-     * @coverage Object::compare
-     * @dataProvider compareToProvider
+     * Overrides default tests, due to this class constructor do not throws argument exceptions.
+     * So, using any type should be pass.
+     *
+     * @testdox Do not throws error on creating new instances, due to all arguments passed are ignored
+     * @group Criticals
      */
-    public function testProvidesObjectsComparison($expected, $left, $right)
+    public function testConstructorWithBadArguments()
     {
-        $actual = Object::compare($left, $right);
-
+        $actual = null;
         $message = String::format(
-            '{class}::{method}({left}, {right}); // Returned: {actual}',
+            '$object = new {class}();',
             [
-                'class'  => Object::class,
-                'method' => 'compare',
-                'left'   => static::export($left),
-                'right'  => static::export($right),
-                'actual' => static::export($actual)
+                'class' => Object::class,
             ]
         );
 
-        if ($expected === 0) {
-            $this->assertEquals(0, $actual, $message);
-        } else {
-            if ($expected === null) {
-                $this->assertNull($actual, $message);
-            } else {
-                $major = $minor = 0;
-
-                if ($expected < 0) {
-                    $minor = $actual;
-                } else {
-                    $major = $actual;
-                }
-
-                $this->assertInternalType('integer', $actual, $message);
-                $this->assertGreaterThan($minor, $major, $message);
-                $this->assertLessThan($major, $minor, $message);
-            }
+        try {
+            $actual = new Object();
+        } catch (Exception $e) {
+            $actual = $e;
+            $message .= String::format(
+                ' // # Constructor should not throws exceptions. Error: {0}',
+                $this->exporter->export($e->getMessage())
+            );
         }
-    }
 
-    public function compareToProvider()
-    {
-        $v = new Version(1, 0, 9);
-        $obj = new \stdClass();
-        $obj->major = 1;
-        $obj->minor = 0;
-        $obj->build = 9;
-        $obj->revision = null;
-
-        $args = [
-            'integers: same value, +-'      => [1, 5, -5],
-            'integers: same value, -+'      => [-1, -5, 5],
-            'integers: same value, --'      => [0, -5, -5],
-            'integers: same value, ++'      => [0, 5, 5],
-            'integers: different value, +-' => [1, 90, -8],
-            'integers: different value, -+' => [-1, -8, 90],
-            'integers: different value, --' => [1, -8, -90],
-            'integers: different value, ++' => [-1, 8, 90],
-            'strings: same'                 => [0, 'world', 'world'],
-            'strings: leading space, <'     => [-1, 'world', 'world '],
-            'strings: leading space, >'     => [1, 'world ', 'world'],
-            'strings: different chars, >'   => [1, 'hola', 'hello'],
-            'strings: different chars, <'   => [-1, 'hello', 'hola'],
-            'arrays: same'                  => [0, ['one' => 'world'], ['one' => 'world']],
-            'arrays: different count, >'    => [1, ['hola', 'mundo'], ['hello']],
-            'arrays: different count, <'    => [-1, ['hello'], ['hola', 'mundo']],
-            'array > array (values)'        => [1, ['hola', 'mundo'], ['hello', 'world']],
-            'array < array (values)'        => [-1, ['hello', 'world'], ['hola', 'mundo']],
-            'array < array (keys)'          => [-1, ['hola', 'mundo'], ['one' => 'hello', 'two' => 'world']],
-        ];
-
-        return $args;
-    }
-
-
-    /**
-     * @testdox Provides comparison function to array sorting
-     * @dataProvider comparisonObjectsProvider
-     */
-    public function testProvidesSortingInArrays(array $expected)
-    {
-        $actual = $expected;
-
-        @shuffle($actual);
-
-        @usort($actual, array(Object::class, 'compare'));
-
-        $this->assertEquals($expected, $actual, 'usort() failed.');
-    }
-
-    public function comparisonObjectsProvider()
-    {
-        return [
-            'integer[]'           => [[-67, -9, 0, 4, 5, 6]],
-            'string[]'            => [['a', 'b', 'c', 'd', 'z', 'z1']],
-        ];
+        $this->assertInstanceOf(Object::class, $actual, $message);
     }
 }
