@@ -163,7 +163,7 @@ trait IStrictPropertiesContainerTester
      * @dataProvider unaccesiblePropertiesProvider
      * @expectedException BadMethodCallException
      */
-    public function testUnacessiblePropertiesThrowsCatchableError(
+    public function testUnaccessiblePropertiesThrowsCatchableError(
         IStrictPropertiesContainer $obj = null,
         $property = null,
         $value = null
