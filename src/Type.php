@@ -302,7 +302,7 @@ namespace NelsonMartell {
          * */
         public function isReferenceType()
         {
-            return !IsValueType();
+            return !$this->isValueType();
         }
 
         /**
