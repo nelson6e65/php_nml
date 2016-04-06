@@ -22,34 +22,11 @@ namespace NelsonMartell {
     use \BadMethodCallException;
 
     /**
-     * Clase base de objetos, para encapsular propiedades y otros métodos básicos.
-     *
-     *
-     * @example  Para usar los getter y setter de los atributos como propiedades, el atributo debe
-     * ser privado y su nombre tipo cammel, iniciando con $_, y su propiedad para get/set debe
-     * iniciar en Mayúscula, sin '_'. Ejemplo:
-     *
-     * private $_nombre = ''; //Atributo
-     * public $Nombre; //Propiedad para acceder a $_nombre
-     *
-     * Luego, las respectivas funciones siguiendo el formato "get_" o "set_", seguido del nombre de
-     * la propiedad.
-     *
-     * public function getNombre() {
-     *         return $this->_nombre;
-     * }
-     *
-     * public function setNombre(string $value) {
-     *         // Validaciones
-     *         $this->_nombre = $value;
-     * }
-     *
-     * Además, para habilitar esta funcionalidad de propiedades, el constructor debe la siguiente
-     * línea:
-     *     unset($this->Nombre);
+     * Base class that encapsulates strict properties and other basic features.
      *
      *
      * @author Nelson Martell <nelson6e65@gmail.com>
+     * @see    PropertiesHandler
      * */
     class Object implements IComparer, IStrictPropertiesContainer
     {
@@ -163,7 +140,7 @@ namespace NelsonMartell {
          *   - ``> 0`` if $left is considered greater than $other;
          *   - ``< 0`` if $left is considered less than $other;
          *   - ``null`` if $left can't be compared to $other .
-         * @see IComparable::compare()
+         * @see IComparer::compare()
          * @see IComparable::compareTo()
          * @see \strnatcmp()
          * @see \usort()
