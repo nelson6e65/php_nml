@@ -19,13 +19,8 @@
 
 namespace NelsonMartell\Test\Helpers;
 
-use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\IComparable;
-use NelsonMartell\Object;
-use NelsonMartell\Version;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
-use \InvalidArgumentException;
 
 /**
  * Test helper for classes implementing ``NelsonMartell\IComparable`` interface.

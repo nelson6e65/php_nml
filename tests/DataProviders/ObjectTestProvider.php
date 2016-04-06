@@ -19,14 +19,10 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell as NML;
 use NelsonMartell\Object;
-use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IComparerTester;
-use \PHPUnit_Framework_TestCase as TestCase;
-use \InvalidArgumentException;
 
 /**
  *

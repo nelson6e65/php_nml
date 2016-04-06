@@ -19,14 +19,7 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell as NML;
-use NelsonMartell\Object;
-use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\DataProviders\ExampleClass\A;
-use NelsonMartell\Test\DataProviders\ExampleClass\B;
-use NelsonMartell\Test\DataProviders\ExampleClass\C;
-use NelsonMartell\Test\DataProviders\ExampleClass\D;
 use \InvalidArgumentException;
 
 /**
@@ -41,15 +34,19 @@ trait PropertiesHandlerTestProvider
 
     public function getAccesiblePropertiesProvider()
     {
+        $a = new ExampleCLass\A;
+        $b = new ExampleCLass\B;
+        $c = new ExampleCLass\C;
+        $d = new ExampleCLass\D;
         return [
-            'Get property accesible via a wrapper'        => [-1, new A(), 'property1'],
-            'Get property accesible using attribute name' => [-2, new A(), 'attribute2'],
-            'Get property accesible from parent only'     => [-4, new B(), 'property4'],
-            'Custom prefix: Own attribute directly'       => [(-5 * 2), new C, 'attribute5'],
-            'Custom prefix: Own property directly'        => [-6, new C, 'property6'],
-            'Custom prefix: Own property directly2'        => [-9, new D, 'property9'],
-            'Custom prefix: Parent property'              => [-1, new D, 'property1'],
-            'Custom prefix: Parent property (using default prefix)' => [-3, new C, 'property3'],
+            'Get property accesible via a wrapper'        => [-1, $a, 'property1'],
+            'Get property accesible using attribute name' => [-2, $a, 'attribute2'],
+            'Get property accesible from parent only'     => [-4, $b, 'property4'],
+            'Custom prefix: Own attribute directly'       => [(-5 * 2), $c, 'attribute5'],
+            'Custom prefix: Own property directly'        => [-6, $c, 'property6'],
+            'Custom prefix: Own property directly2'        => [-9, $d, 'property9'],
+            'Custom prefix: Parent property'              => [-1, $d, 'property1'],
+            'Custom prefix: Parent property (using default prefix)' => [-3, $c, 'property3'],
         ];
     }
 
@@ -58,27 +55,37 @@ trait PropertiesHandlerTestProvider
      */
     public function setAccesiblePropertiesProvider()
     {
+        $a = new ExampleCLass\A;
+        $b = new ExampleCLass\B;
+        $c = new ExampleCLass\C;
+        $d = new ExampleCLass\D;
+
         return [
-            'Public read-write property: Set attribute with setter'            => [(3 * 100), new A, 'property3', 3],
-            'Set parent attribute accesible from parent (write-only property)' => [null, new B, 'property2', 2],
-            'Custom prefix: Own property'                                      => [(6 * 99), new C, 'property6', 6],
+            'Public read-write property: Set attribute with setter'            => [(3 * 100), $a, 'property3', 3],
+            'Set parent attribute accesible from parent (write-only property)' => [null, $b, 'property2', 2],
+            'Custom prefix: Own property'                                      => [(6 * 99), $c, 'property6', 6],
         ];
     }
 
     public function unaccesiblePropertiesProvider()
     {
+        $a = new ExampleCLass\A;
+        $b = new ExampleCLass\B;
+        $c = new ExampleCLass\C;
+        $d = new ExampleCLass\D;
+
         return [
-            'Get inexistent property in base'      => [new A(), 'property4'],
-            'Get inexistent property in child'     => [new B(), 'property5'],
-            'Set inexistent property'              => [new A(), 'property6', 6],
-            'Set read-only property'               => [new B(), 'property4', 4],
-            'Set read-only attribute'              => [new A(), 'attribute4', 4],
-            'Set write-only property'              => [new A(), 'property2', 2],
-            'Set unaccesible property from parent' => [new B(), 'property1', 1],
-            'Existent, but wrong prefixes'         => [new B(), 'property7'],
-            'Existent, but wrong prefixes'         => [new B(), 'property7', 7],
-            'Double definition of custom getter prefix: D::C' => [new D, 'property6'],
-            'Double definition of custom setter prefix: D::C' => [new D, 'property6', 6],
+            'Get inexistent property in base'      => [$a, 'property4'],
+            'Get inexistent property in child'     => [$b, 'property5'],
+            'Set inexistent property'              => [$a, 'property6', 6],
+            'Set read-only property'               => [$b, 'property4', 4],
+            'Set read-only attribute'              => [$a, 'attribute4', 4],
+            'Set write-only property'              => [$a, 'property2', 2],
+            'Set unaccesible property from parent' => [$b, 'property1', 1],
+            'Existent, but wrong prefixes'         => [$b, 'property7'],
+            'Existent, but wrong prefixes'         => [$b, 'property7', 7],
+            'Double definition of custom getter prefix: D::C' => [$d, 'property6'],
+            'Double definition of custom setter prefix: D::C' => [$d, 'property6', 6],
         ];
     }
 }

@@ -19,10 +19,7 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell as NML;
-use NelsonMartell\Object;
 use NelsonMartell\Type;
-use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IStrictPropertiesContainerTester;

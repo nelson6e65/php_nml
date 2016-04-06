@@ -19,13 +19,8 @@
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
-use NelsonMartell as NML;
-use NelsonMartell\Object;
-use NelsonMartell\Extensions\String;
 use NelsonMartell\PropertiesHandler;
 use NelsonMartell\ICustomPrefixedPropertiesContainer;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
-use \InvalidArgumentException;
 
 class C extends B implements ICustomPrefixedPropertiesContainer
 {

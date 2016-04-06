@@ -19,13 +19,6 @@
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
-use NelsonMartell as NML;
-use NelsonMartell\Object;
-use NelsonMartell\Extensions\String;
-use NelsonMartell\PropertiesHandler;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
-use \InvalidArgumentException;
-
 class B extends A
 {
     public function __construct()

@@ -20,12 +20,9 @@
 namespace NelsonMartell\Test\Helpers;
 
 use Cake\Utility\Inflector;
-use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\IStrictPropertiesContainer;
-use NelsonMartell\Object;
 use SebastianBergmann\Exporter\Exporter;
-use \InvalidArgumentException;
 
 /**
  * Test helper for classes implementing ``NelsonMartell\IStrictPropertiesContainer`` interface and
@@ -82,7 +79,7 @@ trait IStrictPropertiesContainerTester
     /**
      * @depends testReadonlyPropertiesAreReadables
      * @dataProvider readonlyPropertiesProvider
-     * @expectedException BadMethodCallException
+     * @expectedException \BadMethodCallException
      */
     public function testReadonlyPropertiesAreNotWritables(
         IStrictPropertiesContainer $obj = null,
@@ -110,7 +107,7 @@ trait IStrictPropertiesContainerTester
     /**
      * @depends testWriteonlyPropertiesAreWritables
      * @dataProvider writeonlyPropertiesProvider
-     * @expectedException BadMethodCallException
+     * @expectedException \BadMethodCallException
      */
     public function testWriteonlyPropertiesAreNotReadables(
         IStrictPropertiesContainer $obj = null,
@@ -161,7 +158,7 @@ trait IStrictPropertiesContainerTester
 
     /**
      * @dataProvider unaccesiblePropertiesProvider
-     * @expectedException BadMethodCallException
+     * @expectedException \BadMethodCallException
      */
     public function testUnaccessiblePropertiesThrowsCatchableError(
         IStrictPropertiesContainer $obj = null,
@@ -183,7 +180,7 @@ trait IStrictPropertiesContainerTester
 
     /**
      * @dataProvider objectInstanceProvider
-     * @expectedException BadMethodCallException
+     * @expectedException \BadMethodCallException
      */
     public function testIsUnableToCreateDirectAttributesOutsideOfClassDefinition(IStrictPropertiesContainer $obj)
     {

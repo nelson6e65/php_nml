@@ -22,8 +22,6 @@ namespace NelsonMartell\Test\Helpers;
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\IEquatable;
-use NelsonMartell\Object;
-use \InvalidArgumentException;
 
 /**
  * Test helper for classes implementing ``NelsonMartell\IEquatable`` interface.
