@@ -20,7 +20,6 @@
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell as NML;
-use NelsonMartell\Version;
 use NelsonMartell\Object;
 use NelsonMartell\Extensions\String;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
@@ -63,12 +62,9 @@ trait ObjectTestProvider
     # IComparerTester
     public function compareMethodArgumentsProvider()
     {
-        $v = new Version(1, 0, 9);
         $obj = new \stdClass();
-        $obj->major = 1;
-        $obj->minor = 0;
-        $obj->build = 9;
-        $obj->revision = null;
+        $obj->one = 1;
+        $obj->nine = 9;
 
         $args = [
             'integers: same value, +-'      => [1, 5, -5],
@@ -90,6 +86,8 @@ trait ObjectTestProvider
             'array > array (values)'        => [1, ['hola', 'mundo'], ['hello', 'world']],
             'array < array (values)'        => [-1, ['hello', 'world'], ['hola', 'mundo']],
             'array < array (keys)'          => [-1, ['hola', 'mundo'], ['one' => 'hello', 'two' => 'world']],
+            'stdClass = stdClass'           => [0, $obj, $obj],
+            'stdClass (empty) < stdClass'   => [-1, new \stdClass, $obj],
         ];
 
         return $args;
