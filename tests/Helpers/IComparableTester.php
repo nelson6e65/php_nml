@@ -34,7 +34,7 @@ trait IComparableTester
     public abstract function getTargetClassInstance(); // use ConstructorMethodTester;
     public abstract function getTargetClassName(); // use ConstructorMethodTester;
     public abstract function getTargetClassReflection(); // use ConstructorMethodTester;
-    public abstract function export($obj); // use plugin/ExporterPlugin;
+    public abstract function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
 
     /**
      * Datasets for ``testIComparableCompareToMethod(integer|null $expected, IComparable $left, mixed $right)``.

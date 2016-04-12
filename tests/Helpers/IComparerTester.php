@@ -33,7 +33,7 @@ trait IComparerTester
 {
     public abstract function getTargetClassName(); // use ConstructorMethodTester;
     public abstract function getTargetClassReflection(); // use ConstructorMethodTester;
-    public abstract function export($obj); // use plugin/ExporterPlugin;
+    public abstract function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
 
     /**
      * Datasets for ``testCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
