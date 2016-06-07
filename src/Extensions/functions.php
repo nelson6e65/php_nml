@@ -17,7 +17,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell\Collections;
+namespace NelsonMartell\Extensions;
 
 /**
  * @see \NelsonMartell\msg()
