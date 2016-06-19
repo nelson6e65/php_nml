@@ -19,7 +19,7 @@
 
 namespace NelsonMartell {
 
-    use NelsonMartell\Extensions\String;
+    use NelsonMartell\Extensions\String as Text;
     use \BadMethodCallException;
     use \InvalidArgumentException;
 
@@ -136,7 +136,7 @@ namespace NelsonMartell {
         private function ensurePropertyExists($name)
         {
             try {
-                $pName = String::ensureIsValidVarName($name);
+                $pName = Text::ensureIsValidVarName($name);
             } catch (InvalidArgumentException $error) {
                 $msg = nml_msg('Property name is not valid.');
                 throw new BadMethodCallException($msg, 10, $error);
@@ -168,7 +168,7 @@ namespace NelsonMartell {
         private function ensureMethodExists($name)
         {
             try {
-                $mName = String::ensureIsValidVarName($name);
+                $mName = Text::ensureIsValidVarName($name);
             } catch (InvalidArgumentException $error) {
                 $msg = nml_msg('Method name is not valid.');
                 throw new BadMethodCallException($msg, 20, $error);
@@ -264,7 +264,7 @@ namespace NelsonMartell {
             $prefix = 'set';
             if (property_exists($this, 'setterPrefix')) {
                 try {
-                    $prefix = String::ensureIsString($this->setterPrefix);
+                    $prefix = Text::ensureIsString($this->setterPrefix);
                 } catch (InvalidArgumentException $e) {
                     $msg = nml_msg(
                         'Custom property setter prefix is defined, but its value should be an "string"; "{0}" given.',
@@ -294,7 +294,7 @@ namespace NelsonMartell {
             $prefix = 'get';
             if (property_exists($this, 'getterPrefix')) {
                 try {
-                    $prefix = String::ensureIsString($this->getterPrefix);
+                    $prefix = Text::ensureIsString($this->getterPrefix);
                 } catch (InvalidArgumentException $e) {
                     $msg = nml_msg(
                         'Custom property getter prefix is defined, but its value should be an "string"; "{0}" given.',

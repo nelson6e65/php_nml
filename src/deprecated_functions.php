@@ -17,12 +17,12 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\String as Text;
 use NelsonMartell\Type;
 
 /**
  * Busca un mensaje único traducido en el dominio 'nml'.
- * El mensaje puede contener cadenas de formato.
+ * El mensaje puede contener cadenas de formato.``
  *
  * @param string      $message Mensaje con formato que se va a buscar.
  * @param array|mixed $args    Un objeto, una lista de objetos o múltiples
@@ -41,7 +41,7 @@ function nml_msg($message, $args = null)
         $args = array_slice(func_get_args(), 1);
     }
 
-    return String::format($translated, $args);
+    return Text::format($translated, $args);
 }
 
 
@@ -70,7 +70,7 @@ function nml_nmsg($singular, $plural, $n, $args = null)
         $args = array_slice(func_get_args(), 3);
     }
 
-    return String::format($translated, $args);
+    return Text::format($translated, $args);
 }
 
 if (!function_exists('typeof')) {

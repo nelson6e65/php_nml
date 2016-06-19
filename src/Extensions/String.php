@@ -18,7 +18,7 @@
  * */
 namespace NelsonMartell\Extensions;
 
-use Cake\Utility\Text;
+use Cake\Utility\Text as TextBase;
 use \InvalidArgumentException;
 
 /**
@@ -28,7 +28,7 @@ use \InvalidArgumentException;
  * @see \Cake\Utility\Text::insert
  * @see http://book.cakephp.org/3.0/en/core-libraries/text.html
  * */
-class String extends Text
+class String extends TextBase
 {
 
     /**

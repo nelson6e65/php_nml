@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\String as Text;
 
 /**
  * Busca un mensaje único traducido en el dominio 'nml'.
@@ -41,7 +41,7 @@ function msg($message, $args = null)
         $args = \array_slice(func_get_args(), 1);
     }
 
-    return String::format($translated, $args);
+    return Text::format($translated, $args);
 }
 
 
@@ -69,7 +69,7 @@ function nmsg($singular, $plural, $n, $args = null)
         $args = \array_slice(func_get_args(), 3);
     }
 
-    return String::format($translated, $args);
+    return Text::format($translated, $args);
 }
 
 
