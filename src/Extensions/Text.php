@@ -13,7 +13,7 @@
  *
  * @copyright 2015-2016 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.4.1
+ * @since     v0.7.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 namespace NelsonMartell\Extensions;
@@ -27,10 +27,8 @@ use \InvalidArgumentException;
  *
  * @see \Cake\Utility\Text::insert
  * @see http://book.cakephp.org/3.0/en/core-libraries/text.html
- * @deprecated since v0.7.0 (due to PHP 7 conflicts), will be removed in v0.8.0.
- *   Use `\NelsonMartell\Extensions\Text` instead.
  * */
-class String extends TextBase
+class Text extends TextBase
 {
 
     /**

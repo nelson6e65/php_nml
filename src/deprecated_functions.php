@@ -17,7 +17,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-use NelsonMartell\Extensions\String as Text;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Type;
 
 /**

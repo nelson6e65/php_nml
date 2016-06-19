@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use NelsonMartell\Extensions\String as Text;
+use NelsonMartell\Extensions\Text;
 
 /**
  * Busca un mensaje único traducido en el dominio 'nml'.

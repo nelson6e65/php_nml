@@ -19,7 +19,7 @@
 
 namespace NelsonMartell {
 
-    use NelsonMartell\Extensions\String as Text;
+    use NelsonMartell\Extensions\Text;
     use \BadMethodCallException;
     use \InvalidArgumentException;
 
