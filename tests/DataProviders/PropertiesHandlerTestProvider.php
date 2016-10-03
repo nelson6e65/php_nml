@@ -34,10 +34,10 @@ trait PropertiesHandlerTestProvider
 
     public function getAccesiblePropertiesProvider()
     {
-        $a = new ExampleCLass\A;
-        $b = new ExampleCLass\B;
-        $c = new ExampleCLass\C;
-        $d = new ExampleCLass\D;
+        $a = new ExampleClass\A;
+        $b = new ExampleClass\B;
+        $c = new ExampleClass\C;
+        $d = new ExampleClass\D;
         return [
             'Get property accesible via a wrapper'        => [-1, $a, 'property1'],
             'Get property accesible using attribute name' => [-2, $a, 'attribute2'],
@@ -55,10 +55,10 @@ trait PropertiesHandlerTestProvider
      */
     public function setAccesiblePropertiesProvider()
     {
-        $a = new ExampleCLass\A;
-        $b = new ExampleCLass\B;
-        $c = new ExampleCLass\C;
-        $d = new ExampleCLass\D;
+        $a = new ExampleClass\A;
+        $b = new ExampleClass\B;
+        $c = new ExampleClass\C;
+        $d = new ExampleClass\D;
 
         return [
             'Public read-write property: Set attribute with setter'            => [(3 * 100), $a, 'property3', 3],
@@ -69,10 +69,10 @@ trait PropertiesHandlerTestProvider
 
     public function unaccesiblePropertiesProvider()
     {
-        $a = new ExampleCLass\A;
-        $b = new ExampleCLass\B;
-        $c = new ExampleCLass\C;
-        $d = new ExampleCLass\D;
+        $a = new ExampleClass\A;
+        $b = new ExampleClass\B;
+        $c = new ExampleClass\C;
+        $d = new ExampleClass\D;
 
         return [
             'Get inexistent property in base'      => [$a, 'property4'],
