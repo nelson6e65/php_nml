@@ -195,7 +195,7 @@ namespace NelsonMartell {
          */
         public function canBeString()
         {
-            if ($this->isScalar() || $this->hasMethod('__toString')) {
+            if ($this->isNull() || $this->isScalar() || $this->hasMethod('__toString')) {
                 return true;
             }
 
@@ -302,7 +302,7 @@ namespace NelsonMartell {
          * */
         public function isReferenceType()
         {
-            return !IsValueType();
+            return !$this->isValueType();
         }
 
         /**
