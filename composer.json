@@ -23,7 +23,8 @@
 	},
 	"require": {
 		"php": ">=5.5.0",
-		"cakephp/utility": "^3.0.1"
+		"cakephp/utility": "^3.0.1",
+		"squizlabs/php_codesniffer": "^2.7"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "*",

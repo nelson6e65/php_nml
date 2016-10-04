@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="PHP: Nelson Martell Library">
+  <description>The coding standard configuration for «PHP: Nelson Martell Library» package.</description>
+
+  <rule ref="PSR2"/>
+
+  <!-- <config name="show_progress" value="1"/>
+  <config name="encoding" value="utf-8"/> -->
+
+
+  <!-- <file>.</file> -->
+  <!-- <file>./src</file> -->
+  <!-- <file>./config</file> -->
+
+  <exclude-pattern type="relative">^.git/*</exclude-pattern>
+  <exclude-pattern type="relative">^build/*</exclude-pattern>
+  <exclude-pattern type="relative">^Locale/*</exclude-pattern>
+  <!-- <exclude-pattern type="relative">^tests/*</exclude-pattern> -->
+  <exclude-pattern type="relative">^vendor/*</exclude-pattern>
+  <exclude-pattern>*ExampleClass*</exclude-pattern>
+
+  <!-- <arg name="colors"/> -->
+  <arg name="extensions" value="php"/>
+  <arg name="encoding" value="utf-8"/>
+  <!-- <arg value="sp"/> -->
+  <!-- <arg name="report" value="full"/> -->
+  <!-- <arg name="report-width" value="auto"/> -->
+  <!-- <arg name="report-gitblame" value="phpcs.report.gitblame.txt"/> -->
+  <!-- <arg name="report-xml" value="phpcs.report.xml"/> -->
+  <!-- <arg name="generator" value="Markdown"/> -->
+
+</ruleset>
