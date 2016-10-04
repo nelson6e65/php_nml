@@ -18,25 +18,15 @@
 
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-<!-- TOC depth:4 withLinks:1 updateOnSave:0 orderedList:1 -->
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:0 orderedList:1 -->
 
 ## Table of content
+
 1. [Description](#description)
 2. [Requirements](#requirements)
 3. [Installation](#installation)
-    1. [Before install](#before-install)
-    2. [Install](#install)
-        1. [Via composer](#via-composer)
-        2. [Via git submodule](#via-git-submodule)
-        3. [Manually](#manually)
-    3. [Install dependencies](#install-dependencies)
-        1. [For composer installations](#for-composer-installations)
-        2. [For non-composer installations](#for-non-composer-installations)
-    4. [After install](#after-install)
-        1. [For composer projects](#for-composer-projects)
-        2. [For non-composer projects](#for-non-composer-projects)
-        3. [Code Analysis](#code-analysis)
 4. [Usage](#usage)
+    1. [Code Analysis](#code-analysis)
 
 <!-- /TOC -->
 
@@ -65,23 +55,6 @@ Read more about Composer installs [here](https://getcomposer.org/doc/00-intro.md
 **Note**: Remember to add your `vendor` dependencies to your `.gitignore` file. (See [why](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
 
 
-#### Code Analysis
-You can, optionally, define the `CODE_ANALYSIS` constant if you like some notices and warnings to be
-throws while you are coding/debugging. This is useful to watch some recommendations about usage of
-some classes, functions, methods, etc.
-
-```php
-<?php
-    # app/config.php
-    # . . .
-
-    define('CODE_ANALYSIS', true);
-
-    # . . .
-?>
-```
-
-
 ## Usage
 After install NML and configure your application, you will be able to use NML classes by importing/aliasing with the [use operator](http://php.net/manual/en/language.namespaces.importing.php):
 
@@ -107,3 +80,19 @@ echo $nmlVersion;
 ```
 
 For more details about available classes from NML, you can check the [API Documentation](http://nelson6e65.github.io/php_nml/api).
+
+
+### Code Analysis
+You can, optionally, define the `CODE_ANALYSIS` constant if you like some notices and warnings to be throws while you are coding/debugging. This is useful to watch some recommendations about usage of
+some classes, functions, methods, etc.
+
+```php
+<?php
+    # app/config.php
+    # . . .
+
+    define('CODE_ANALYSIS', true);
+
+    # . . .
+?>
+```
