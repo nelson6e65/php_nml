@@ -242,6 +242,5 @@ trait VersionTestProvider
             ['5.0.0.3-beta', new Version(5, 0, 0, '3-beta')],
             ['6.0.0-alpha', new Version(6, 0, '0-alpha')],
         ];
-
     }
 }

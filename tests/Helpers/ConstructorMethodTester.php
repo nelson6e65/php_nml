@@ -50,7 +50,6 @@ trait ConstructorMethodTester
                 }
 
                 $this->targetClassReflection = new ReflectionClass($this->getTargetClassName());
-
             } catch (ReflectionException $e) {
                 throw new BadMethodCallException('``getTargetClassName()`` is not returning a valid class name.');
             }

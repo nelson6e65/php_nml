@@ -108,7 +108,6 @@ namespace NelsonMartell\Utilities {
                         $i += 1;
                     }
                 }
-
             } else {
                 // Trata de convertir $versions en un objeto Versión
                 try {

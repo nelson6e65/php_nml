@@ -157,7 +157,6 @@ namespace NelsonMartell {
                 if ($r !== null) {
                     $r *= -1;  // Invert result
                 }
-
             } else {
                 $ltype = typeof($left);
                 $rtype = typeof($right);

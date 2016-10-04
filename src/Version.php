@@ -143,19 +143,15 @@ namespace NelsonMartell {
             if (is_integer($value)) {
                 // Integer for major value
                 $version = [$value, 0];
-
             } elseif (is_float($value)) {
                 // Integer part as major, and decimal part as minor
                 $version = sprintf("%F", $value);
                 $version = explode('.', $version);
-
             } elseif (is_array($value)) {
                 // Implode first 4 places for major, minor, build and revision respectivally.
                 $version = array_slice($value, 0, 4);
-
             } elseif (is_string($value)) {
                 $version = explode('.', $value);
-
             } else {
                 $msg = nml_msg('Unable to parse. Argument passed has an invalid type: "{0}".', typeof($value));
                 throw new InvalidArgumentException($msg);
