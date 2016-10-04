@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true">
+<phpunit bootstrap="vendor/autoload.php" colors="auto" addUncoveredFilesFromWhitelist="true">
     <testsuites>
-        <testsuite name="PHP: Nelson Martell Lybrary Tests Suite">
-            <directory>./tests/</directory>
+        <testsuite name="PHP: Nelson Martell Library Tests Suite">
+            <file>tests/TestCase/Extensions/StringTest.php</file>
+            <file>tests/TestCase/TypeTest.php</file>
+            <file>tests/TestCase/ObjectTest.php</file>
+            <directory>tests/TestCase</directory>
         </testsuite>
     </testsuites>
+
+    <groups>
+        <exclude>
+            <group>PHP examples</group>
+            <group>Features to be implemented</group>
+            <group>Proposals</group>
+        </exclude>
+    </groups>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+            <file>vendor/cakephp/utility/Text.php</file>
+            <file>config/bootstrap.php</file>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <!-- <log type="coverage-clover" target="build/output/code-coverage/clover.xml"/> -->
+        <!-- <log type="coverage-html" target="build/output/code-coverage" lowUpperBound="25" highLowerBound="75"/> -->
+        <!-- <log type="coverage-php" target="build/output/code-coverage/serialized.php"/> -->
+        <!-- <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/> -->
+        <log type="testdox-html" target="build/output/testdox/index.html"/>
+        <log type="testdox-text" target="build/output/testdox/tests.txt"/>
+    </logging>
 </phpunit>

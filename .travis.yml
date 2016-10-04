@@ -22,11 +22,11 @@ before_script:
   - composer install --prefer-source --no-interaction --dev
 
 script:
-  - phpunit --coverage-clover=coverage.clover
+  - vendor/bin/phpunit --verbose --coverage-clover="build/output/code-coverage/clover.xml"
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+  - php ocular.phar code-coverage:upload --format=php-clover "build/output/code-coverage/clover.xml"
 
 env:
   global:
@@ -34,3 +34,12 @@ env:
 
 after_success:
   - if  [ $TRAVIS_PHP_VERSION = '5.6' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh generate-api.sh; fi
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/919796e5e6af0283d419
+    on_success: always
+    on_failure: always
+    on_start: always
+

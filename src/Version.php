@@ -143,19 +143,15 @@ namespace NelsonMartell {
             if (is_integer($value)) {
                 // Integer for major value
                 $version = [$value, 0];
-
             } elseif (is_float($value)) {
                 // Integer part as major, and decimal part as minor
                 $version = sprintf("%F", $value);
                 $version = explode('.', $version);
-
             } elseif (is_array($value)) {
                 // Implode first 4 places for major, minor, build and revision respectivally.
                 $version = array_slice($value, 0, 4);
-
             } elseif (is_string($value)) {
                 $version = explode('.', $value);
-
             } else {
                 $msg = nml_msg('Unable to parse. Argument passed has an invalid type: "{0}".', typeof($value));
                 throw new InvalidArgumentException($msg);
@@ -367,8 +363,8 @@ namespace NelsonMartell {
         {
             if ($other instanceof Version) {
                 if ($this->Major == $other->Major && $this->Minor == $other->Minor) {
-                    if ($this->Build->Equals($other->Build)) {
-                        if ($this->Revision->Equals($other->Revision)) {
+                    if ($this->Build->equals($other->Build)) {
+                        if ($this->Revision->equals($other->Revision)) {
                             return true;
                         }
                     }
@@ -382,17 +378,57 @@ namespace NelsonMartell {
         #region IComparable
 
         /**
-         * Determina la posición relativa del objeto especificado con respecto a
-         * esta instancia.
+         * Determina la posición relativa de esta instancia con respecto al objeto especificado.
          *
-         * @param Version $other El otro objeto Version a comparar.
+         * For types different than ``Version``:
+         * - ``integer`` and ``null`` are always < 0;
+         * - ``string`` and ``array`` are parsed and then evaluated (if is not parseable, always > 0);
+         * - other types are always > 0
          *
-         * @return integer `0`, si es igual; >0, si es mayor; <0, si es menor.
+         * @param Version|int|string|mixed $other
+         *   The other object to compare with.
+         *
+         * @return integer|null
+         *   Returns:
+         *   - ``= 0`` if this instance is considered equivalent to $other;
+         *   - ``> 0`` si esta instancia se considera mayor a $other;
+         *   - ``< 0`` si esta instancia se considera menor a $other.
+         *   - ``null`` if this instance can't be compared against $other .
+         * @see Object::compare()
          * */
         public function compareTo($other)
         {
+            $r = $this->equals($other) ? 0 : 9999;
 
-            $r = $this->Equals($other) ? 0 : 9999;
+            if (!($other instanceof Version)) {
+                switch (typeof($other)->toString()) {
+                    case 'integer':
+                    case 'float':
+                    case 'double':
+                    case 'null':
+                    case 'NULL':
+                        $r = 1; // Siempre es mayor a cualquier número o null
+                        break;
+
+                    case 'string':
+                    case 'array':
+                        // Se tratan de convertir las cadenas y arrays
+                        try {
+                            $tmp = Version::parse($other);
+                            $r = $this->compareTo($tmp);
+                        } catch (InvalidArgumentException $e) {
+                            // Siempre es mayor a strings o arrays que no se puedan convertir
+                            $r = 1;
+                        }
+                        break;
+
+                    default:
+                        // No se puede determinar comparando a otros objetos.
+                        $r = null;
+                }
+
+                return $r;
+            }
 
             if ($r != 0) {
                 $r = $this->Major - $other->Major;
@@ -401,10 +437,10 @@ namespace NelsonMartell {
                     $r = $this->Minor - $other->Minor;
 
                     if ($r == 0) {
-                        $r = $this->Build->CompareTo($other->Build);
+                        $r = $this->Build->compareTo($other->Build);
 
                         if ($r == 0) {
-                            $r = $this->Revision->CompareTo($other->Revision);
+                            $r = $this->Revision->compareTo($other->Revision);
                         }
                     }
                 }

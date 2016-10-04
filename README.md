@@ -7,11 +7,10 @@
 [![VersionEye](https://img.shields.io/versioneye/d/php/nelson6e65:php_nml.svg)](https://www.versioneye.com/php/nelson6e65:php_nml#dependencies)
 
 [![GitHub release](https://img.shields.io/github/tag/nelson6e65/php_nml.svg)](https://github.com/nelson6e65/php_nml/tags)
-[![GitHub commits](https://img.shields.io/github/commits-since/nelson6e65/php_nml/v0.5.1.svg)](https://github.com/nelson6e65/php_nml/compare/v0.5.1...master)
 [![Latest Version](https://img.shields.io/packagist/v/nelson6e65/php_nml.svg?label=stable)](https://packagist.org/packages/nelson6e65/php_nml)
 [![Latest unstable Version](https://img.shields.io/packagist/vpre/nelson6e65/php_nml.svg?label=unstable)](https://packagist.org/packages/nelson6e65/php_nml#dev-master)
-
-[![Stories in Progress](https://badge.waffle.io/nelson6e65/php_nml.svg?label=wip&title=In%20progress)](http://waffle.io/nelson6e65/php_nml)
+[![Waffle.io](https://img.shields.io/waffle/label/nelson6e65/php_nml/wip.svg?label=Work%20in%20progress)](http://waffle.io/nelson6e65/php_nml)
+[![GitHub commits](https://img.shields.io/github/commits-since/nelson6e65/php_nml/v0.5.1.svg)](https://github.com/nelson6e65/php_nml/compare/v0.5.1...master)
 
 [![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
 [![API Documentation](http://img.shields.io/badge/documentation-API-yellow.svg)](http://nelson6e65.github.io/php_nml/api)
@@ -149,6 +148,7 @@ function autoload_nml_dependencies($class)
 }
 
 spl_autoload_register('autoload_nml_dependencies');
+?>
 ```
 
 
@@ -172,6 +172,7 @@ Example:
     // Note: 'PROJECT_ROOT' is your root directory (in this case, a PHP constant).
 
     # . . .
+?>
 ```
 
 You need to load dependent classes too. Something like:
@@ -184,6 +185,7 @@ You need to load dependent classes too. Something like:
     require_once(PROJECT_ROOT.'/vendor/autoload_nml_dependencies.php');
 
     # . . .
+?>
 ```
 
 
@@ -200,6 +202,7 @@ some classes, functions, methods, etc.
     define('CODE_ANALYSIS', true);
 
     # . . .
+?>
 ```
 
 
