@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Generate API after download composer dev-requirements
 nml_ver=$(git describe)
 
