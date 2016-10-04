@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell\Utilities]  Asset
  *
- * Copyright © 2014-2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2014-2016 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright 2014-2015 Nelson Martell
+ * @copyright 2014-2016 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
  * @since     v0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -29,7 +29,7 @@ namespace NelsonMartell\Utilities {
      * Contiene métodos y propiedades para obtener las rutas de los directorios
      * y recursos entre sus diferentes versiones.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     class Asset extends Object
     {
@@ -108,7 +108,6 @@ namespace NelsonMartell\Utilities {
                         $i += 1;
                     }
                 }
-
             } else {
                 // Trata de convertir $versions en un objeto Versión
                 try {

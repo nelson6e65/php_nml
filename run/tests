@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+clear
+if [[ $1 ]]; then
+    vendor/bin/phpunit --colors --verbose --filter "$1"
+else
+    vendor/bin/phpunit --colors --verbose
+fi

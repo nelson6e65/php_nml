@@ -5,13 +5,13 @@
  * Content:
  * - Class definition:  [NelsonMartell\Extensions]  String
  *
- * Copyright © 2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2015-2016 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright 2015 Nelson Martell
+ * @copyright 2015-2016 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
  * @since     v0.4.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -57,15 +57,16 @@ class String extends Text
      * `String::Format($format, $arg0);`
      * Returns: 'Bob is 65 years old, and have 101 cats.'
      *
-     * @param string      $format A string containing variable placeholders.
-     * @param array|mixed $args   Object(s) to be replaced into $format
+     * @param string               $format An string containing variable placeholders to be replaced.
+     * @param string[]|array|mixed $args   Object(s) to be replaced into $format.
      *   placeholders.
      *
      * @return string
+     * @throws InvalidArgumentException if $format is not an string or placeholder values are not string-convertibles.
      * @todo   Implement, for php 5.6+:
      *   php.net/functions.arguments.html#functions.variable-arg-list.new
      * @todo   Implement formatting, like IFormatProvider or something like that.
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      */
     public static function format($format, $args)
     {
@@ -74,7 +75,24 @@ class String extends Text
             'after'   => '}',
         ];
 
-        $data = func_num_args() === 2 ? (array) $args : array_slice(func_get_args(), 1);
+        $originalData = func_num_args() === 2 ? (array) $args : array_slice(func_get_args(), 1);
+
+        $data = [];
+        // Sanitize values to be convertibles into strings
+        foreach ($originalData as $placeholder => $value) {
+            $valueType = typeof($value);
+
+            if ($valueType->canBeString() === false) {
+                $msg = 'Value for "{{0}}" placeholder must to be a string or object convertible to string;'.
+                       '"{1}" type given.';
+                throw new InvalidArgumentException(nml_msg($msg, $placeholder, $valueType));
+            }
+
+            // This is to work-arround a bug in use of ``asort()`` function in ``Text::insert`` (at v3.2.5)
+            // without SORT_STRING flag... by forcing value to be string.
+            settype($value, 'string');
+            $data[$placeholder] = $value;
+        }
 
         return static::insert($format, $data, $options);
     }

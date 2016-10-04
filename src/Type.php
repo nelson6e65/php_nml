@@ -28,7 +28,7 @@ namespace NelsonMartell {
      * Represents a PHP object type, and provides some properties and methods to
      * describe some info about itself.
      *
-     * @author Nelson Martell <nelson6e65-dev@yahoo.es>
+     * @author Nelson Martell <nelson6e65@gmail.com>
      * */
     final class Type extends Object
     {
@@ -177,6 +177,31 @@ namespace NelsonMartell {
             return $this->methods;
         }
 
+        public function hasMethod($name)
+        {
+            if ($this->reflectionObject !== null) {
+                return $this->reflectionObject->hasMethod($name);
+            }
+
+            return false;
+        }
+
+        /**
+         * Determines if instances of this Type can be converted to string.
+         *
+         * @param mixed $obj Object.
+         *
+         * @return bool
+         */
+        public function canBeString()
+        {
+            if ($this->isNull() || $this->isScalar() || $this->hasMethod('__toString')) {
+                return true;
+            }
+
+            return false;
+        }
+
         /**
          * Determina si este Type es `null`.
          *
@@ -277,7 +302,7 @@ namespace NelsonMartell {
          * */
         public function isReferenceType()
         {
-            return !IsValueType();
+            return !$this->isValueType();
         }
 
         /**
