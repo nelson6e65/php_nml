@@ -66,7 +66,7 @@ use NelsonMartell\Version;
 $nmlVersion = new Version(0, 6);
 
 // Create Version object parsing from string
-$nmlVersion = Version::parse('0.5.1');
+$nmlVersion = Version::parse('0.6.0');
 
 // Explicit to string
 echo $nmlVersion->toString();
