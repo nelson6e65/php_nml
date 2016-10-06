@@ -17,53 +17,52 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell\Collections {
+namespace NelsonMartell\Collections;
+
+/**
+ * Representa una colección de objetos a los que se puede tener acceso por
+ * un índice.
+ *
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * */
+interface IList extends ICollection
+{
+
 
     /**
-     * Representa una colección de objetos a los que se puede tener acceso por
-     * un índice.
+     * Determina el índice de un elemento específico de la lista.
+     * Si un objeto aparece varias veces en la lista, el método indexOf
+     * siempre devolverá la primera instancia encontrada.
      *
-     * @author Nelson Martell <nelson6e65@gmail.com>
+     * @param mixed $item Objeto que se va a buscar.
+     *
+     * @return integer Índice de $item si se encuentra en la lista; en caso
+     *   contrario, -1.
      * */
-    interface IList extends ICollection
-    {
+    public function indexOf($item);
 
 
-        /**
-         * Determina el índice de un elemento específico de la lista.
-         * Si un objeto aparece varias veces en la lista, el método indexOf
-         * siempre devolverá la primera instancia encontrada.
-         *
-         * @param mixed $item Objeto que se va a buscar.
-         *
-         * @return integer Índice de $item si se encuentra en la lista; en caso
-         *   contrario, -1.
-         * */
-        public function indexOf($item);
+    /**
+     * Inserta un elemento en la lista, en el índice especificado.
+     *
+     * @param integer $index Índice de base cero en el que debe insertarse
+     *   $item.
+     * @param mixed   $item  Objeto que se va a insertar.
+     *
+     * @return void
+     * */
+    public function insert($index, $item);
 
 
-        /**
-         * Inserta un elemento en la lista, en el índice especificado.
-         *
-         * @param integer $index Índice de base cero en el que debe insertarse
-         *   $item.
-         * @param mixed   $item  Objeto que se va a insertar.
-         *
-         * @return void
-         * */
-        public function insert($index, $item);
-
-
-        /**
-         * Quita el elemento del índice especificado.
-         *
-         * @param integer $index Índice de base cero del elemento que se va a
-         *   quitar.
-         *
-         * @return boolean `true` si el elemento se ha quitado correctamente; en
-         *   caso contrario, `false`. Este método también devuelve `false` si no
-         *   se encontró.
-         * */
-        public function removeAt($index);
-    }
+    /**
+     * Quita el elemento del índice especificado.
+     *
+     * @param integer $index Índice de base cero del elemento que se va a
+     *   quitar.
+     *
+     * @return boolean `true` si el elemento se ha quitado correctamente; en
+     *   caso contrario, `false`. Este método también devuelve `false` si no
+     *   se encontró.
+     * */
+    public function removeAt($index);
 }

@@ -17,63 +17,52 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell {
+namespace NelsonMartell;
 
-    use \InvalidArgumentException;
+use \InvalidArgumentException;
 
+/**
+ * Representa un componente de un número de Version.
+ * Extiende la clase IntString, pero restringe los valores que puede tomar.
+ *
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * */
+class VersionComponent extends IntString implements IEquatable
+{
     /**
-     * Representa un componente de un número de Version.
-     * Extiende la clase IntString, pero restringe los valores que puede tomar.
      *
-     * @author Nelson Martell <nelson6e65@gmail.com>
-     * */
-    class VersionComponent extends IntString implements IEquatable
+     *
+     * @param int|null    $intValue
+     * @param string|null $stringValue
+     */
+    public function __construct($intValue = null, $stringValue = null)
     {
+        // Validates filters for only null or int/string value types.
+        parent::__construct($intValue, $stringValue);
 
-        public function __construct($intValue = null, $stringValue = null)
-        {
-            parent::__construct($intValue, $stringValue);
+        if ($intValue === null) {
+            $this->intValue = $intValue;
 
-            if (is_integer($intValue)) {
-                //Validaciones:
-                if ($this->IntValue < 0) {
-                    $args = [
-                        'name'     => 'intValue',
-                        'pos'      => 0,
-                        'actual'   => $intValue,
-                    ];
+            // Ignore string value if intValue is null.
+            $this->stringValue = '';
+        } else {
+            // Validation of values
+            if ($this->IntValue < 0) {
+                $args = [
+                    'position' => '1st',
+                    'actual'   => $intValue,
+                ];
 
-                    $msg = nml_msg('Invalid argument value.');
-                    $msg .= nml_msg(
-                        ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
-                        $args
-                    );
+                $msg = nml_msg('Invalid argument value.');
+                $msg .= nml_msg(
+                    ' {position} argument must to be a positive number; "{actual}" given.',
+                    $args
+                );
 
-                    throw new InvalidArgumentException($msg);
-                }
-            } else {
-                if ($intValue === null) {
-                    // Ignore string value id intValue is null.
-                    $this->stringValue = $stringValue = '';
-                } else {
-                    $args = [
-                        'name'     => 'intValue',
-                        'pos'      => 0,
-                        'expected' => typeof(0).' or '.typeof(null),
-                        'actual'   => typeof($intValue),
-                    ];
+                throw new InvalidArgumentException($msg);
+            } // Integer is valid
 
-                    $msg = nml_msg('Invalid argument type.');
-                    $msg .= nml_msg(
-                        ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
-                        $args
-                    );
-
-                    throw new InvalidArgumentException($msg);
-                }
-            } //Only integer or null
-
-            if (is_string($stringValue)) {
+            if ($stringValue !== null) {
                 if ($this->StringValue != '') {
                     $pattern = '~^([a-z])$~'; // 1 char
 
@@ -94,118 +83,147 @@ namespace NelsonMartell {
 
                     if (!$correct) {
                         $args = [
-                            'name'     => 'stringValue',
-                            'pos'      => 1,
+                            'position' => '2nd',
                             'actual'   => $stringValue,
                         ];
 
                         $msg = nml_msg('Invalid argument value.');
                         $msg .= nml_msg(
-                            ' "{name}" (position {pos}) has invalid chars; "{actual}" given.',
+                            ' {position} parameter has invalid chars; "{actual}" given.',
                             $args
                         );
 
                         throw new InvalidArgumentException($msg);
                     }
-
                 }
-            } else {
-                if ($stringValue != null) {
-                    $args = [
-                        'name'     => 'stringValue',
-                        'pos'      => 1,
-                        'expected' => typeof('string').' or '.typeof(null),
-                        'actual'   => typeof($stringValue),
-                    ];
-
-                    $msg = nml_msg('Invalid argument type.');
-                    $msg .= nml_msg(
-                        ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
-                        $args
-                    );
-
-                    throw new InvalidArgumentException($msg);
-                }
-            } // Only string or null
+            } // String is valid
         }
+    }
 
-        public static function parse($value = null)
-        {
-            if ($value instanceof VersionComponent) {
-                return $value;
-            }
-
-            if ($value === null or trim((string) $value) === '') {
+    public static function parse($obj)
+    {
+        if ($obj instanceof VersionComponent) {
+            return $obj;
+        } else {
+            if ($obj === null || (is_string($obj) && trim($obj) === '')) {
                 return new VersionComponent();
             }
-
-            $s = parent::Parse($value);
-
-            $r = new VersionComponent($s->IntValue, $s->StringValue);
-
-            return $r;
         }
 
-        /**
-         * Determina si este componente tiene los valores predeterminados (0).
-         *
-         * @return boolean
-         * */
-        public function isDefault()
-        {
-            if ($this->IntValue == 0) {
-                if ($this->StringValue == '') {
+        $objConverted = parent::parse($obj);
+
+        return new VersionComponent($objConverted->IntValue, $objConverted->StringValue);
+    }
+
+    /**
+     * Determina si este componente tiene los valores predeterminados (0).
+     *
+     * @return boolean
+     * */
+    public function isDefault()
+    {
+        if ($this->IntValue === 0) {
+            if ($this->StringValue === '') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Getter method for VersionComponent::IntValue property.
+     *
+     * @return integer|NULL
+     * */
+    public function getIntValue()
+    {
+        return $this->intValue;
+    }
+
+
+    /**
+     * Determina si este componente NO tiene los valores predeterminados.
+     *
+     * @return boolean
+     * */
+    public function isNotDefault()
+    {
+        return !$this->isDefault();
+    }
+
+    /**
+     * Determina si esta instancia es nula.
+     *
+     * @return boolean
+     * */
+    public function isNull()
+    {
+        if ($this->IntValue === null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Determina si esta instancia NO es nula.
+     *
+     * @return boolean
+     * */
+    public function isNotNull()
+    {
+        return !$this->isNull();
+    }
+
+    public function equals($other)
+    {
+        if ($other instanceof VersionComponent) {
+            if ($this->IntValue === $other->IntValue) {
+                if ($this->StringValue === $other->StringValue) {
                     return true;
                 }
             }
-
-            return false;
+        } else {
+            return parent::equals($other);
         }
 
+        return false;
+    }
 
-        /**
-         * Getter method for VersionComponent::IntValue property.
-         *
-         * @return integer|NULL
-         * */
-        public function getIntValue()
-        {
-            return $this->intValue;
-        }
+    public function compareTo($other)
+    {
+        if ($other === null) {
+            return 1;
+        } elseif ($this->equals($other)) {
+            return 0;
+        } elseif ($other instanceof VersionComponent) {
+            // null < int
+            if ($this->isNull()) {
+                $r = -1;
+            } elseif ($other->isNull()) {
+                $r = 1;
+            } else {
+                // Here are evaluated as integers
+                $r = $this->IntValue - $other->IntValue;
 
-
-        /**
-         * Determina si este componente NO tiene los valores predeterminados.
-         *
-         * @return boolean
-         * */
-        public function isNotDefault()
-        {
-            return !$this->IsDefault();
-        }
-
-        /**
-         * Determina si esta instancia es nula.
-         *
-         * @return boolean
-         * */
-        public function isNull()
-        {
-            if ($this->IntValue === null) {
-                return true;
+                if ($r === 0) {
+                    $r = strnatcmp($this->StringValue, $other->StringValue);
+                }
             }
-
-            return false;
+        } elseif (is_integer($other) || is_array($other)) {
+            $r = 1;
+        } elseif (is_string($other)) {
+            try {
+                $r = $this->compareTo(static::parse($other));
+            } catch (InvalidArgumentException $e) {
+                $r = 1;
+            }
+        } else {
+            $r = null;
         }
 
-        /**
-         * Determina si esta instancia NO es nula.
-         *
-         * @return boolean
-         * */
-        public function isNotNull()
-        {
-            return !$this->IsNull();
-        }
+        return $r;
     }
 }
