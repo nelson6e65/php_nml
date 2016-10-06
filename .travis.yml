@@ -32,7 +32,7 @@ env:
     secure: RO+k9Qi8TPElUGRsO9L7OfT5qiYG6xf5YHs3vlQQ6BD73RI5Mt09nS+kWfRwfF+P9gn7Y9KeSXdWLQO04vfVA4wqypSjaTiHMowNjyBPYUeK+wABCaHJZjgwsN+z8TSMd8smJyOIGkUPSDE/ZMPCddAQFs5YA6nQG1jFX2nizss=
 
 after_success:
-  - if  [ $TRAVIS_PHP_VERSION = '5.6' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then sh generate-api.sh; fi
+  - if  [ $TRAVIS_PHP_VERSION = '5.6' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then script/travis-ci/deploy-documentation; fi
 
 notifications:
   webhooks:
