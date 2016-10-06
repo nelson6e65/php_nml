@@ -38,7 +38,7 @@ Release notes for *PHP: Nelson Martell Library*.
     - ``IComparableTester``
     - ``IPropertiesContainerTester``
 - :up: Configure Travis CI for testing and API documentation generation.
-- :new: Utility scripts (read [`scripts/README.md`](scripts/README.md) file:
+- :new: Utility scripts (read [`script/README.md`](script/README.md) file:
 - :art: Other minor code and documentation improvements.
 
 
