@@ -28,13 +28,13 @@ define('NML_GETTEXT_DOMAIN', 'nml');
 
 
 /**
- * Current 'stable' version of `PHP: Nelson Martell Library`.
+ * Current version of `PHP: Nelson Martell Library` using.
  * Can be parsed into a `NelsonMartell\Version` object. ;)
  *
  * @constant string
  * @since    v0.4.4
  */
-define('NML_VERSION', '0.5.1');
+define('NML_VERSION', '0.6.0');
 
 
 // #############################################################################

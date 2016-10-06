@@ -1,7 +1,7 @@
 ## CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
-### Release 0.6.0
+### Release 0.6.0 (2016-10-06)
 
 #### Installation changes
 - :fire: Removed dependencies copy. Now you must install dependencies manually if not using `composer`.
