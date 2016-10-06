@@ -189,7 +189,6 @@ final class Type extends Object
     /**
      * Determines if instances of this Type can be converted to string.
      *
-     * @param mixed $obj Object.
      *
      * @return bool
      */
