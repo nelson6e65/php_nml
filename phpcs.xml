@@ -13,7 +13,7 @@
   <!-- <file>./config</file> -->
 
   <exclude-pattern type="relative">^.git/*</exclude-pattern>
-  <exclude-pattern type="relative">^build/*</exclude-pattern>
+  <exclude-pattern type="relative">^output/*</exclude-pattern>
   <exclude-pattern type="relative">^Locale/*</exclude-pattern>
   <!-- <exclude-pattern type="relative">^tests/*</exclude-pattern> -->
   <exclude-pattern type="relative">^vendor/*</exclude-pattern>

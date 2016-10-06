@@ -26,11 +26,11 @@
     </filter>
 
     <logging>
-        <!-- <log type="coverage-clover" target="build/output/code-coverage/clover.xml"/> -->
-        <!-- <log type="coverage-html" target="build/output/code-coverage" lowUpperBound="25" highLowerBound="75"/> -->
-        <!-- <log type="coverage-php" target="build/output/code-coverage/serialized.php"/> -->
+        <!-- <log type="coverage-clover" target="output/code-coverage/clover.xml"/> -->
+        <!-- <log type="coverage-html" target="output/code-coverage" lowUpperBound="25" highLowerBound="75"/> -->
+        <!-- <log type="coverage-php" target="output/code-coverage/serialized.php"/> -->
         <!-- <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/> -->
-        <log type="testdox-html" target="build/output/testdox/index.html"/>
-        <log type="testdox-text" target="build/output/testdox/tests.txt"/>
+        <log type="testdox-html" target="output/testdox/index.html"/>
+        <log type="testdox-text" target="output/testdox/tests.txt"/>
     </logging>
 </phpunit>

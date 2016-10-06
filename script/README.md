@@ -11,9 +11,9 @@
 
 - `script/autofix-code`: Runs coding standard auto-fixes (PHP: Code Sniffer).
 
-- `script/build-code-coverage`: Runs tests and build code coverage reports (XML and HTML formats) in `build/output` directory.
+- `script/build-code-coverage`: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
 
-- `script/build-api`: Generates API documentation in `build/api` directory using ApiGen.
+- `script/build-api`: Generates API documentation in `output/api/` directory using ApiGen.
 
 
 

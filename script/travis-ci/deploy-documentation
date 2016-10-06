@@ -3,7 +3,7 @@
 # Generate API after download composer dev-requirements
 nml_ver=$(git describe)
 
-# Generate Api in: build/api
+# Generate Api in: output/api
 vendor/bin/apigen generate
 
 # Set identity
@@ -18,7 +18,7 @@ git checkout -b apigen travis/gh-pages
 rm -rf api
 
 # Bring generated (new) api directory
-cp -rf build/api api && rm -rf build/api
+cp -rf output/api api && rm -rf output/api
 
 # Push generated files
 git add --all .
