@@ -38,13 +38,8 @@ Release notes for *PHP: Nelson Martell Library*.
     - ``IComparableTester``
     - ``IPropertiesContainerTester``
 - :up: Configure Travis CI for testing and API documentation generation.
-- :new: Utility commands (bash):
-  - ``run/tests [<filter>]``: Runs tests (with optional filter).
-  - ``run/checks``: Runs coding standards checks.
-  - ``run/auto-fixer``: Runs coding standard auto-fixes (PHP: Code Sniffer).
-  - ``build/code-coverage``: Runs tests and build code coverage reports (XML and HTML formats).
+- :new: Utility scripts (read [`scripts/README.md`](scripts/README.md) file:
 - :art: Other minor code and documentation improvements.
-- :new: Scripts to run :
 
 
 See [changes since v0.5.1](https://github.com/nelson6e65/php_nml/compare/v0.5.1...v0.6.0) for more detailed info.
