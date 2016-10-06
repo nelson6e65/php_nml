@@ -17,70 +17,69 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell\Collections {
+namespace NelsonMartell\Collections;
 
-    use \Iterator;
+use \Iterator;
+
+/**
+ * Define métodos para manipular colecciones de objetos.
+ *
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * */
+interface ICollection extends Iterator
+{
+
 
     /**
-     * Define métodos para manipular colecciones de objetos.
+     * Obtiene el número de elementos incluidos en la colección.
+     * Si extiende la clase NelsonMartell.Object, puede accederse desde la
+     * propiedad `Count`.
      *
-     * @author Nelson Martell <nelson6e65@gmail.com>
+     * @return integer
+     * @see    NelsonMartell\Object
      * */
-    interface ICollection extends Iterator
-    {
+    public function getCount();
 
 
-        /**
-         * Obtiene el número de elementos incluidos en la colección.
-         * Si extiende la clase NelsonMartell.Object, puede accederse desde la
-         * propiedad `Count`.
-         *
-         * @return integer
-         * @see    NelsonMartell\Object
-         * */
-        public function getCount();
+    /**
+     * Agrega un elemento a la colección.
+     *
+     * @param mixed $item Objeto que se va a agregar.
+     *
+     * @return void
+     * */
+    public function add($item);
 
 
-        /**
-         * Agrega un elemento a la colección.
-         *
-         * @param mixed $item Objeto que se va a agregar.
-         *
-         * @return void
-         * */
-        public function add($item);
+    /**
+     * Quita todos los elementos de la colección.
+     * La propiedad Count se debe establecer en 0 y deben liberarse las
+     * referencias a otros objetos desde los elementos de la colección.
+     *
+     * @return void
+     * */
+    public function clear();
 
 
-        /**
-         * Quita todos los elementos de la colección.
-         * La propiedad Count se debe establecer en 0 y deben liberarse las
-         * referencias a otros objetos desde los elementos de la colección.
-         *
-         * @return void
-         * */
-        public function clear();
+    /**
+     * Determina si la colección contiene al elemento especificado.
+     *
+     * @param mixed $item Objeto que se va a buscar.
+     *
+     * @return boolean `true` si $item se encuentra; en caso contrario, `false`.
+     * */
+    public function contains($item);
 
 
-        /**
-         * Determina si la colección contiene al elemento especificado.
-         *
-         * @param mixed $item Objeto que se va a buscar.
-         *
-         * @return boolean `true` si $item se encuentra; en caso contrario, `false`.
-         * */
-        public function contains($item);
-
-
-        /**
-         * Quita, si existe, la primera aparición de un objeto específico de la
-         * colección.
-         *
-         * @param mixed $item Objeto que se va a quitar.
-         *
-         * @return boolean `true` si el elemento se ha quitado correctamente; en
-         *   caso contrario, `false`. Este método también devuelve `false` si no
-         *   se encontró.
-         * */
-        public function remove($item);
-    }
+    /**
+     * Quita, si existe, la primera aparición de un objeto específico de la
+     * colección.
+     *
+     * @param mixed $item Objeto que se va a quitar.
+     *
+     * @return boolean `true` si el elemento se ha quitado correctamente; en
+     *   caso contrario, `false`. Este método también devuelve `false` si no
+     *   se encontró.
+     * */
+    public function remove($item);
 }

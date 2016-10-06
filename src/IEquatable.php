@@ -17,24 +17,23 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell {
+namespace NelsonMartell;
+
+/**
+ * Provee un método para comparar igualdad entre objetos del mismo tipo, o
+ * compatibles.
+ *
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * */
+interface IEquatable
+{
 
     /**
-     * Provee un método para comparar igualdad entre objetos del mismo tipo, o
-     * compatibles.
+     * Indica si el objeto especificado es igual a la instancia actual.
      *
-     * @author Nelson Martell <nelson6e65@gmail.com>
+     * @param mixed $other Another object to compare equality.
+     *
+     * @return boolean
      * */
-    interface IEquatable
-    {
-
-        /**
-         * Indica si el objeto especificado es igual a la instancia actual.
-         *
-         * @param mixed $other Another object to compare equality.
-         *
-         * @return boolean
-         * */
-        public function equals($other);
-    }
+    public function equals($other);
 }

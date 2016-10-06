@@ -17,49 +17,48 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell {
+namespace NelsonMartell;
+
+/**
+ * Provee métodos para comparar posición relativa de instancia.
+ *
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * */
+interface IComparable
+{
 
     /**
-     * Provee métodos para comparar posición relativa de instancia.
+     * Determina la posición relativa de esta instancia con respecto al objeto especificado.
      *
-     * @author Nelson Martell <nelson6e65@gmail.com>
+     *
+     * @param mixed $other Objeto con el cuál se va a comparar posición relativa de esta instancia.
+     *
+     * @return integer|null
+     *   Debe devolver:
+     *   - ``= 0`` si esta instancia se considera equivalente a $other;
+     *   - ``> 0`` si esta instancia se considera mayor a $other;
+     *   - ``< 0`` si esta instancia se considera menor a $other.
+     *   - ``null`` si esta instancia no se puede comparar a $other.
+     *
+     * @see IComparer::compare()
      * */
-    interface IComparable
-    {
+    public function compareTo($other);
 
-        /**
-         * Determina la posición relativa de esta instancia con respecto al objeto especificado.
-         *
-         *
-         * @param mixed $other Objeto con el cuál se va a comparar posición relativa de esta instancia.
-         *
-         * @return integer|null
-         *   Debe devolver:
-         *   - ``= 0`` si esta instancia se considera equivalente a $other;
-         *   - ``> 0`` si esta instancia se considera mayor a $other;
-         *   - ``< 0`` si esta instancia se considera menor a $other.
-         *   - ``null`` si esta instancia no se puede comparar a $other.
-         *
-         * @see IComparer::compare()
-         * */
-        public function compareTo($other);
-
-        /**
-         * Determina la posición relativa del objeto de la izquierda con respecto al de la derecha.
-         * Puede usarse como segundo argumento en la función de ordenamiento de arrays ``usort()``.
-         *
-         * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
-         * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
-         *
-         * @return integer|null
-         *   Debe devolver:
-         *   - ``= 0`` si $left se considera equivalente a $right;
-         *   - ``> 0`` si $left se considera mayor a $right;
-         *   - ``< 0`` si $left se considera menor a $right.
-         *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
-         * @see IComparer::compare()
-         * @deprecated since v0.6.0; implement ``NelsonMartell\IComparer`` instead.
-         * */
-        public static function compare($left, $right);
-    }
+    /**
+     * Determina la posición relativa del objeto de la izquierda con respecto al de la derecha.
+     * Puede usarse como segundo argumento en la función de ordenamiento de arrays ``usort()``.
+     *
+     * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
+     * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
+     *
+     * @return integer|null
+     *   Debe devolver:
+     *   - ``= 0`` si $left se considera equivalente a $right;
+     *   - ``> 0`` si $left se considera mayor a $right;
+     *   - ``< 0`` si $left se considera menor a $right.
+     *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
+     * @see IComparer::compare()
+     * @deprecated since v0.6.0; implement ``NelsonMartell\IComparer`` instead.
+     * */
+    public static function compare($left, $right);
 }

@@ -17,33 +17,32 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell {
+namespace NelsonMartell;
 
+/**
+ * Provee métodos para comparar posición relativa entre objetos.
+ *
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * @see IComparable
+ * */
+interface IComparer
+{
     /**
-     * Provee métodos para comparar posición relativa entre objetos.
+     * Compara dos objetos y devuelve un valor que indica si uno es menor, igual o mayor que el otro.
      *
-     * @author Nelson Martell <nelson6e65@gmail.com>
-     * @see IComparable
+     * Puede usarse como segundo argumento en la función de ordenamiento de arrays ``usort()``.
+     *
+     * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
+     * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
+     *
+     * @return integer|null
+     *   Debe devolver:
+     *   - ``= 0`` si $left se considera equivalente a $right;
+     *   - ``> 0`` si $left se considera mayor a $right;
+     *   - ``< 0`` si $left se considera menor a $right.
+     *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
+     * @see \usort()
+     * @see IComparable::compareTo
      * */
-    interface IComparer
-    {
-        /**
-         * Compara dos objetos y devuelve un valor que indica si uno es menor, igual o mayor que el otro.
-         *
-         * Puede usarse como segundo argumento en la función de ordenamiento de arrays ``usort()``.
-         *
-         * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
-         * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
-         *
-         * @return integer|null
-         *   Debe devolver:
-         *   - ``= 0`` si $left se considera equivalente a $right;
-         *   - ``> 0`` si $left se considera mayor a $right;
-         *   - ``< 0`` si $left se considera menor a $right.
-         *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
-         * @see \usort()
-         * @see IComparable::compareTo
-         * */
-        public static function compare($left, $right);
-    }
+    public static function compare($left, $right);
 }

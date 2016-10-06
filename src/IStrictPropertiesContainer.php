@@ -17,33 +17,32 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-namespace NelsonMartell {
+namespace NelsonMartell;
+
+/**
+ * Mark a class as implementing strict properties only.
+ *
+ * All classes using ``PropertiesHandler`` trait should be marked with this interface.
+ *
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * @see PropertiesHandler
+ * */
+interface IStrictPropertiesContainer
+{
+    /**
+     * Gets the value of specified property.
+     *
+     * @param string $name Property name.
+     *
+     * @return mixed Property value.
+     */
+    public function __get($name);
 
     /**
-     * Mark a class as implementing strict properties only.
+     * Sets the value of specified property.
      *
-     * All classes using ``PropertiesHandler`` trait should be marked with this interface.
-     *
-     * @author Nelson Martell <nelson6e65@gmail.com>
-     * @see PropertiesHandler
-     * */
-    interface IStrictPropertiesContainer
-    {
-        /**
-         * Gets the value of specified property.
-         *
-         * @param string $name Property name.
-         *
-         * @return mixed Property value.
-         */
-        public function __get($name);
-
-        /**
-         * Sets the value of specified property.
-         *
-         * @param string $name  Property name.
-         * @param mixed  $value Property value.
-         */
-        public function __set($name, $value);
-    }
+     * @param string $name  Property name.
+     * @param mixed  $value Property value.
+     */
+    public function __set($name, $value);
 }
