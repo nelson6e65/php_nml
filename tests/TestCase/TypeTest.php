@@ -112,12 +112,17 @@ class TypeTest extends TestCase
     /**
      * @coverage Type::isNUll
      * @coverage Type::isNotNUll
+     * @dataProvider goodConstructorArgumentsProvider
      */
-    public function testCanCheckIfTypeIsNull()
+    public function testCanCheckIfTypeIsNull($obj)
     {
-        $this->markTestIncomplete(
-            'Tests for "'.Type::class.'::isNUll|isNotNUll'.'" has not been completed yet.'
-        );
+        if (is_null($obj)) {
+            $actual = (new Type($obj))->isNull();
+        } else {
+            $actual = (new Type($obj))->isNotNull();
+        }
+
+        $this->assertTrue($actual);
     }
 
     /**
