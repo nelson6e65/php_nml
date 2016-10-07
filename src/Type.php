@@ -265,22 +265,15 @@ final class Type extends Object
     /**
      * Determina si este Type es de tipo valor.
      *
-     * @return     boolean
-     * @deprecated Use more precise method: Type::isScalar, which excludes
-     *   `array`.
+     * @return boolean
      * */
     public function isValueType()
     {
-        switch ($this->Name) {
-            case 'string':
-            case 'integer':
-            case 'double':
-            case 'boolean':
-            case 'array':
-                return true;
-            default:
-                return false;
+        if ($this->isScalar() || $this->Name === 'array') {
+            return true;
         }
+
+        return false;
     }
 
     /**
