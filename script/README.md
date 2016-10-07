@@ -19,4 +19,6 @@
 
 ## Deployment scripts
 
+- `script/deploy/documentation`: Generates documentation and publish it in `gh-pages` brach.
+
 - `script/travis-ci/deploy-documentation`: Generates documentation and publish it in `gh-pages` brach. **Note:** _This script is used by [Travis-CI](travis-ci.org) to publish documentation and should not be run in local development_.

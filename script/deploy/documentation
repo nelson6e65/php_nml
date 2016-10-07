@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Generate API after download composer dev-requirements
+NML_VERSION=$(git describe)
+
+# Generate Api in: output/api
+script/build-api
+
+git checkout gh-pages
+
+# Clean current (old) api directory
+rm -rf api
+
+# Bring generated (new) api directory
+cp -rf output/api/ api && rm -rf output/api
+
+# Push generated files
+git add --all api/
+git commit -m ":arrow_up: Documentation (API ${NML_VERSION})."
+git push --quiet
+
+git checkout master
