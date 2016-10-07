@@ -13,7 +13,9 @@ git config --global user.name "Travis"
 # Checkout to GitHub pages to update API
 git remote add travis https://${GH_TOKEN}@github.com/nelson6e65/php_nml.git > /dev/null
 
-git checkout -b "api-${nml_ver}" travis/gh-pages
+git branch "api-${nml_ver}" travis/gh-pages
+
+git checkout "api-${nml_ver}"
 
 # Clean current (old) api directory
 rm -rf api
