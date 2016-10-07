@@ -121,13 +121,17 @@ class TypeTest extends TestCase
     }
 
     /**
-     * @coverage Type::isCustom
+     * @dataProvider goodConstructorArgumentsProvider
      */
-    public function testCanCheckIfTypeIsCustom()
+    public function testCanCheckIfTypeIsCustom($obj)
     {
-        $this->markTestIncomplete(
-            'Tests for "'.Type::class.'::isCustom'.'" has not been completed yet.'
-        );
+        $actual = (new Type($obj))->isCustom();
+
+        if (gettype($obj) == 'object') {
+            $this->assertTrue($actual);
+        } else {
+            $this->assertFalse($actual);
+        }
     }
 
     /**

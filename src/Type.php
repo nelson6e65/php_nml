@@ -222,7 +222,7 @@ final class Type extends Object
      * */
     public function isNotNull()
     {
-        return !$this->IsNull();
+        return !$this->isNull();
     }
 
 
@@ -234,18 +234,7 @@ final class Type extends Object
      * */
     public function isCustom()
     {
-        switch ($this->Name) {
-            case 'boolean':
-            case 'integer':
-            case 'double':
-            case 'string':
-            case 'array':
-            case 'NULL':
-            case 'null':
-                return false;
-            default:
-                return true;
-        }
+        return !$this->isValueType() && $this->isNotNull();
     }
 
     /**
@@ -325,7 +314,7 @@ final class Type extends Object
      * Es un alias para el constructor de Type.
      *
      * @return     Type
-     * @deprecated
+     * @deprecated since 5.0.1 and will be removed in 0.7.0. Use constructor instead.
      * */
     public static function typeof($obj)
     {
