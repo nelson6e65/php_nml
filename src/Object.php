@@ -28,7 +28,7 @@ use \BadMethodCallException;
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @see    PropertiesHandler
  * */
-class Object implements IComparer, IStrictPropertiesContainer
+class Object implements IComparer, IStrictPropertiesContainer, IConvertibleToString
 {
     use PropertiesHandler;
 
