@@ -31,9 +31,11 @@
 
 
 ## Description
-Provides a set of classes for PHP applications.
+
+Provides a set of auxiliary classes to help in your PHP applications development.
 
 **Note**: This is an unstable repository in development and should be treated as an ***alpha***.
+
 
 ## Requirements
 
