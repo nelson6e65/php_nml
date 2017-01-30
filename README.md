@@ -92,3 +92,11 @@ echo $nmlVersion;
 <p>Nelson Martell Library, version <?= $nmlVersion ?></p>
 
 ```
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2014-2017 Nelson Martell
+
+Read the [`LICENSE` file](LICENSE) for details.
