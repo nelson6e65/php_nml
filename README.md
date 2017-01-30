@@ -25,8 +25,7 @@
 1. [Description](#description)
 2. [Requirements](#requirements)
 3. [Installation](#installation)
-4. [Usage](#usage)
-    1. [Code Analysis](#code-analysis)
+4. [Available classes](#available-classes)
 
 <!-- /TOC -->
 
@@ -37,30 +36,43 @@ Provides a set of classes for PHP applications.
 **Note**: This is an unstable repository in development and should be treated as an ***alpha***.
 
 ## Requirements
-* PHP 5.5 or greater
-* [CakePHP Utility Classes](https://github.com/cakephp/utility) [^3.0.1](https://github.com/cakephp/utility/releases/tag/3.0.1) or grater - Only required the `Cake\Utility\Text` class (this is installed by Composer autotically).
+
+In order to install, use and update this package you only will need:
+
+* PHP 5.5+.
+* [Composer](https://getcomposer.org) (preferably ).
+
+> The following instructions will assume you have `composer` [globally installed](https://getcomposer.org/doc/00-intro.md#globally).
 
 
 ## Installation
-Use this instructions to install **NML** into your `vendor` directory as `nelson6e65/php_nml`.
 
-> You will need [Composer](https://getcomposer.org) install and update NML and dependecies. For other alternative instructions, read [alternative instructions](https://github.com/nelson6e65/php_nml/wiki/Alternative-installation-methods).
+First, ***require and install the package in your project***:
 
-- Move to your project root directory. Example: `cd /var/www/html/my-awesome-php-project`.
-- Run `composer require nelson6e65/php_nml`. This installs `php_nml` and dependencies in your `vendor` directory (your `composer.json` will be updated).
-- Configure your app to autoload classes by including the composer autoloader (`vendor/autoload.php`) in your `config.php` or `bootstrap.php` (or whatever file that performs your autoloads). In most of modern PHP frameworks this is made automatically.
+```sh
+# In your project root directory:
+composer require nelson6e65/php_nml
+```
 
-Read more about Composer installs [here](https://getcomposer.org/doc/00-intro.md).
+> Remember to add your `vendor` directory in your `.gitignore` file ([Why?](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
 
-**Note**: Remember to add your `vendor` dependencies to your `.gitignore` file. (See [why](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
+Second, if not already done, ***configure your app to autoload classes with Composer*** by including its autoloader (`vendor/autoload.php`) in your `config.php`, `bootstrap.php` or whatever file that performs your initialization. In most of modern PHP frameworks this is made automatically.
+
+Done! You are able to use NML classes now! You only need to import classes under `NelsonMartell` namespace by using the [`use` operator](http://php.net/manual/en/language.namespaces.importing.php).
+
+> **Note**: If you don't like/want to use Composer to install this library, read [**the alternative instructions**](https://github.com/nelson6e65/php_nml/wiki/Alternative-installation-methods).
 
 
-## Usage
-After install NML and configure your application, you will be able to use NML classes by importing/aliasing with the [use operator](http://php.net/manual/en/language.namespaces.importing.php):
+## Available classes
+
+Check available classes in the **:memo: [API Documentation](http://nelson6e65.github.io/php_nml/api)**.
+
+**Usage example**
 
 ```php
 <?php
-//Example of Version usage:
+// Example of Version class usage.
+
 use NelsonMartell\Version;
 
 $nmlVersion = new Version(0, 6);
@@ -77,22 +89,4 @@ echo $nmlVersion;
 
 <p>Nelson Martell Library, version <?= $nmlVersion ?></p>
 
-```
-
-For more details about available classes from NML, you can check the [API Documentation](http://nelson6e65.github.io/php_nml/api).
-
-
-### Code Analysis
-You can, optionally, define the `CODE_ANALYSIS` constant if you like some notices and warnings to be throws while you are coding/debugging. This is useful to watch some recommendations about usage of
-some classes, functions, methods, etc.
-
-```php
-<?php
-    # app/config.php
-    # . . .
-
-    define('CODE_ANALYSIS', true);
-
-    # . . .
-?>
 ```
