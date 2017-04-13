@@ -42,7 +42,7 @@ Provides a set of auxiliary classes to help in your PHP applications development
 In order to install, use and update this package you only will need:
 
 * PHP 5.5+.
-* [Composer](https://getcomposer.org) (preferably ).
+* [Composer](https://getcomposer.org).
 
 > The following instructions will assume you have `composer` [globally installed](https://getcomposer.org/doc/00-intro.md#globally).
 
@@ -62,12 +62,12 @@ Second, if not already done, ***configure your app to autoload classes with Comp
 
 Done! You are able to use NML classes now! You only need to import classes under `NelsonMartell` namespace by using the [`use` operator](http://php.net/manual/en/language.namespaces.importing.php).
 
-> **Note**: If you don't like/want to use Composer to install this library, read [**the alternative instructions**](https://github.com/nelson6e65/php_nml/wiki/Alternative-installation-methods).
+> **Note**: If you don't like/want to use Composer to install this library, read the [**Alternative installation methods**](https://github.com/nelson6e65/php_nml/wiki/Alternative-installation-methods) in the [![Wiki Documentation](http://img.shields.io/badge/documentation-WIKI-lightgray.svg)](https://github.com/nelson6e65/php_nml/wiki).
 
 
 ## Available classes
 
-Check available classes in the **:memo: [API Documentation](http://nelson6e65.github.io/php_nml/api)**.
+Check available classes in the [![API Documentation](http://img.shields.io/badge/documentation-API-yellow.svg)](http://nelson6e65.github.io/php_nml/api).
 
 **Usage example**
 
@@ -95,7 +95,7 @@ echo $nmlVersion;
 
 ## License
 
-The MIT License (MIT)
+[![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
 
 Copyright (c) 2014-2017 Nelson Martell
 
