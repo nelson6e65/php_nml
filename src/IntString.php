@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use \InvalidArgumentException;
 
 /**
@@ -32,7 +32,7 @@ use \InvalidArgumentException;
 class IntString extends Object implements IEquatable, IComparable
 {
     /**
-     * @param integer|null $intValue    Integer part. Default: ``0`` (zero).
+     * @param int|null     $intValue    Integer part. Default: ``0`` (zero).
      * @param string|null  $stringValue String part. Default: ``''`` (empty).
      */
     public function __construct($intValue = 0, $stringValue = '')
@@ -46,8 +46,8 @@ class IntString extends Object implements IEquatable, IComparable
                 'actual'   => typeof($intValue),
             ];
 
-            $msg = nml_msg('Invalid argument type.');
-            $msg .= nml_msg(
+            $msg = msg('Invalid argument type.');
+            $msg .= msg(
                 ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
                 $args
             );
@@ -62,8 +62,8 @@ class IntString extends Object implements IEquatable, IComparable
                 'actual'   => typeof($stringValue),
             ];
 
-            $msg = nml_msg('Invalid argument type.');
-            $msg .= nml_msg(
+            $msg = msg('Invalid argument type.');
+            $msg .= msg(
                 ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
                 $args
             );
@@ -94,7 +94,7 @@ class IntString extends Object implements IEquatable, IComparable
         }
 
         try {
-            $intValue = (integer) String::ensureIsString($obj);
+            $intValue = (integer) Text::ensureIsString($obj);
         } catch (InvalidArgumentException $e) {
             $args = [
                 'position' => '1st',
@@ -102,8 +102,8 @@ class IntString extends Object implements IEquatable, IComparable
                 'actual'   => typeof($obj),
             ];
 
-            $msg = nml_msg('Invalid argument type.');
-            $msg .= nml_msg(
+            $msg = msg('Invalid argument type.');
+            $msg .= msg(
                 ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
                 $args
             );
@@ -115,8 +115,8 @@ class IntString extends Object implements IEquatable, IComparable
 
         // Validate that 0 (zero) is not interpreted as '' (empty string)
         if ($stringValue === $obj) {
-            $msg = nml_msg('Invalid argument value.');
-            $msg .= nml_msg(' "{0}" (string) must to start with an integer.', $obj);
+            $msg = msg('Invalid argument value.');
+            $msg .= msg(' "{0}" (string) must to start with an integer.', $obj);
 
             throw new InvalidArgumentException($msg);
         }
@@ -128,7 +128,7 @@ class IntString extends Object implements IEquatable, IComparable
     protected $stringValue;
 
     /**
-     * @var integer
+     * @var int
      */
     public $IntValue;
     public function getIntValue()
@@ -172,7 +172,7 @@ class IntString extends Object implements IEquatable, IComparable
      *
      * @param IntString|mixed $other Objeto con el que se va a comparar.
      *
-     * @return integer Cero (0), si esta instancia es igual a $other; mayor
+     * @return int Cero (0), si esta instancia es igual a $other; mayor
      *   a cero (>0), si es mayor a $other; menor a cero (<0), si es menor.
      * */
     public function compareTo($other)

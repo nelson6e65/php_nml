@@ -2,6 +2,10 @@
 Release notes for *PHP: Nelson Martell Library*.
 
 
+### Release 0.7.0 (WIP)
+
+
+
 ### Release 0.6.1 (2017-05-01)
 
 - Minor improvements in sources and documentation info.

@@ -36,15 +36,7 @@
 		},
 		"files": [
 			"src/constants.php",
-
-			"src/deprecated_functions.php",
 			"src/functions.php",
-
-			"src/Collections/functions.php",
-			"src/Extensions/functions.php",
-			"src/Utilities/functions.php",
-			"src/Utilities/UnitTesting/functions.php",
-
 			"config/bootstrap.php"
 		]
 	},
@@ -55,7 +47,7 @@
 	},
 	"extra": {
         "branch-alias": {
-            "dev-master": "v0.6.x-dev"
+            "dev-master": "v0.7.x-dev"
         }
     }
 }

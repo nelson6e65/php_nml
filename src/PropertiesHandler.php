@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use \BadMethodCallException;
 use \InvalidArgumentException;
 
@@ -104,10 +104,10 @@ trait PropertiesHandler
         try {
             $getter = static::getPropertyGetter($name);
         } catch (InvalidArgumentException $error) {
-            $msg = nml_msg('Unable to get the property value in "{0}" class.', get_class($this));
+            $msg = msg('Unable to get the property value in "{0}" class.', get_class($this));
             throw new BadMethodCallException($msg, 31, $error);
         } catch (BadMethodCallException $error) {
-            $msg = nml_msg('Unable to get the property value in "{0}" class.', get_class($this));
+            $msg = msg('Unable to get the property value in "{0}" class.', get_class($this));
             throw new BadMethodCallException($msg, 32, $error);
         }
 
@@ -131,10 +131,10 @@ trait PropertiesHandler
         try {
             $setter = static::getPropertySetter($name);
         } catch (InvalidArgumentException $error) {
-            $msg = nml_msg('Unable to set the property value in "{0}" class.', get_class($this));
+            $msg = msg('Unable to set the property value in "{0}" class.', get_class($this));
             throw new BadMethodCallException($msg, 41, $error);
         } catch (BadMethodCallException $error) {
-            $msg = nml_msg('Unable to set the property value in "{0}" class.', get_class($this));
+            $msg = msg('Unable to set the property value in "{0}" class.', get_class($this));
             throw new BadMethodCallException($msg, 42, $error);
         }
 
@@ -157,9 +157,9 @@ trait PropertiesHandler
         ];
 
         try {
-            $args['property'] = String::ensureIsValidVarName($name);
+            $args['property'] = Text::ensureIsValidVarName($name);
         } catch (InvalidArgumentException $error) {
-            $msg = nml_msg('Property name is not valid.');
+            $msg = msg('Property name is not valid.');
             throw new InvalidArgumentException($msg, 10, $error);
         }
 
@@ -172,7 +172,7 @@ trait PropertiesHandler
             }
 
             if (!$exists) {
-                $msg = nml_msg(
+                $msg = msg(
                     '"{property}" property do not exists in "{class}" class or parent classes.',
                     $args
                 );
@@ -199,14 +199,14 @@ trait PropertiesHandler
         ];
 
         try {
-            $args['method'] = String::ensureIsValidVarName($name);
+            $args['method'] = Text::ensureIsValidVarName($name);
         } catch (InvalidArgumentException $error) {
-            $msg = nml_msg('Method name is not valid.');
+            $msg = msg('Method name is not valid.');
             throw new InvalidArgumentException($msg, 20, $error);
         }
 
         if (method_exists($args['class'], $args['method']) === false) {
-            $msg = nml_msg('"{class}::{method}" do not exists.', $args);
+            $msg = msg('"{class}::{method}" do not exists.', $args);
 
             throw new InvalidArgumentException($msg, 21);
         }
@@ -239,14 +239,14 @@ trait PropertiesHandler
         try {
             $setter = static::ensureMethodExists($prefix.$args['name']);
         } catch (InvalidArgumentException $error) {
-            $msg = nml_msg('"{name}" property has not a setter method in "{class}".', $args);
+            $msg = msg('"{name}" property has not a setter method in "{class}".', $args);
 
             if (is_subclass_of($args['class'], ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard setter, check if custom available
                 try {
-                    $prefix = String::ensureIsString(static::getCustomSetterPrefix());
+                    $prefix = Text::ensureIsString(static::getCustomSetterPrefix());
                 } catch (InvalidArgumentException $e) {
-                    $msg = nml_msg(
+                    $msg = msg(
                         '"{class}::getCustomSetterPrefix" method must to return an string.',
                         $args['class']
                     );
@@ -293,14 +293,14 @@ trait PropertiesHandler
         try {
             $getter = static::ensureMethodExists($prefix.$args['name']);
         } catch (InvalidArgumentException $error) {
-            $msg = nml_msg('"{name}" property has not a getter method in "{class}".', $args);
+            $msg = msg('"{name}" property has not a getter method in "{class}".', $args);
 
             if (is_subclass_of($args['class'], ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard getter, check if custom available
                 try {
-                    $prefix = String::ensureIsString(static::getCustomGetterPrefix());
+                    $prefix = Text::ensureIsString(static::getCustomGetterPrefix());
                 } catch (InvalidArgumentException $e) {
-                    $msg = nml_msg(
+                    $msg = msg(
                         '"{class}::getCustomGetterPrefix" method must to return an string.',
                         $args['class']
                     );

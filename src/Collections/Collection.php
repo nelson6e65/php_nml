@@ -20,7 +20,7 @@
 
 namespace NelsonMartell\Collections;
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Object;
 
 /**
@@ -171,7 +171,7 @@ class Collection extends Object implements ICollection
      * @param string $format String format (optional). By default, `r`.
      *
      * @return string
-     * @see    String::format
+     * @see    Text::format
      * */
     public function toString($format = 'r')
     {
@@ -211,7 +211,7 @@ class Collection extends Object implements ICollection
         ];
 
 
-        $s = String::Format($str, $placeHoldersValues);
+        $s = Text::format($str, $placeHoldersValues);
 
         return $s;
     }

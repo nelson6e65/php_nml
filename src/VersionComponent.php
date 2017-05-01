@@ -53,8 +53,8 @@ class VersionComponent extends IntString implements IEquatable
                     'actual'   => $intValue,
                 ];
 
-                $msg = nml_msg('Invalid argument value.');
-                $msg .= nml_msg(
+                $msg = msg('Invalid argument value.');
+                $msg .= msg(
                     ' {position} argument must to be a positive number; "{actual}" given.',
                     $args
                 );
@@ -87,8 +87,8 @@ class VersionComponent extends IntString implements IEquatable
                             'actual'   => $stringValue,
                         ];
 
-                        $msg = nml_msg('Invalid argument value.');
-                        $msg .= nml_msg(
+                        $msg = msg('Invalid argument value.');
+                        $msg .= msg(
                             ' {position} parameter has invalid chars; "{actual}" given.',
                             $args
                         );

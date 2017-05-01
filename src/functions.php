@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 
 /**
  * Busca un mensaje único traducido en el dominio 'nml'.
@@ -41,7 +41,7 @@ function msg($message, $args = null)
         $args = \array_slice(func_get_args(), 1);
     }
 
-    return String::format($translated, $args);
+    return Text::format($translated, $args);
 }
 
 
@@ -53,7 +53,7 @@ function msg($message, $args = null)
  *   es uno (1).
  * @param string      $plural   Mensaje con formato que se va a buscar cuando $n
  *   es distinto a (1).
- * @param integer     $n        Cantidad
+ * @param int         $n        Cantidad
  * @param array|mixed $args     Un objeto, una lista de objetos o múltiples
  *   argumentos que se van a incluir en las cadenas de formato del mensaje.
  *
@@ -69,7 +69,7 @@ function nmsg($singular, $plural, $n, $args = null)
         $args = \array_slice(func_get_args(), 3);
     }
 
-    return String::format($translated, $args);
+    return Text::format($translated, $args);
 }
 
 

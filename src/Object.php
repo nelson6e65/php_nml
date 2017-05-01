@@ -69,8 +69,8 @@ class Object implements IComparer, IStrictPropertiesContainer, IConvertibleToStr
                     'function'   => __FUNCTION__,
                 ];
 
-                $msg = nml_msg('Using default "{base_class}::{function}" ({access}) method.', $args);
-                $msg .= nml_msg(
+                $msg = msg('Using default "{base_class}::{function}" ({access}) method.', $args);
+                $msg .= msg(
                     ' You can replace (override) its behavior by creating "{class}::{function}" ({access}) method.',
                     $args
                 );
@@ -95,12 +95,12 @@ class Object implements IComparer, IStrictPropertiesContainer, IConvertibleToStr
                     'function'   => __FUNCTION__,
                 ];
 
-                $msg = nml_msg(
+                $msg = msg(
                     'You implemented IEquatable, but using default "{base_class}::{function}" ({access}) method.',
                     $args
                 );
 
-                $msg .= nml_msg(
+                $msg .= msg(
                     ' You can replace (override) its behavior by creating "{class}::{function}" ({access}) method.',
                     $args
                 );
