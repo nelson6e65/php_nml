@@ -20,7 +20,7 @@
 namespace NelsonMartell\Test\Helpers;
 
 use NelsonMartell as NML;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use SebastianBergmann\Exporter\Exporter;
 use \InvalidArgumentException;
 
@@ -85,15 +85,15 @@ trait ExporterPlugin
                             continue;
                         }
 
-                        $search      = String::format($format, $key, $sVal);
-                        $replacement = String::format($format, $key, static::export($value, $depth - 1, $short));
+                        $search      = Text::format($format, $key, $sVal);
+                        $replacement = Text::format($format, $key, static::export($value, $depth - 1, $short));
 
                         $content = str_replace($search, $replacement, $content);
                     }
                 }
             }
 
-            $str = String::format('{0}({1})', $className, $content);
+            $str = Text::format('{0}({1})', $className, $content);
             $str = str_replace(',  }', ' }', $str);
         } elseif (is_array($obj)) {
             if ($depth <= 0) {
@@ -102,9 +102,9 @@ trait ExporterPlugin
                 $str = '';
                 foreach ($obj as $key => $value) {
                     // Export all items recursively
-                    $str .= String::format('{0} => {1}, ', $key, static::export($value, $depth - 1, $short));
+                    $str .= Text::format('{0} => {1}, ', $key, static::export($value, $depth - 1, $short));
                 }
-                $str = String::format('[ {0} ]', $str);
+                $str = Text::format('[ {0} ]', $str);
                 $str = str_replace(',  ]', ' ]', $str);
             }
         } else {

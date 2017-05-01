@@ -20,7 +20,7 @@
 namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell as NML;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\ObjectTestProvider;
 use NelsonMartell\Object;
 use \PHPUnit_Framework_TestCase as TestCase;
@@ -47,7 +47,7 @@ class ObjectTest extends TestCase
     public function testConstructorWithBadArguments()
     {
         $actual = null;
-        $message = String::format(
+        $message = Text::format(
             '$object = new {class}();',
             [
                 'class' => Object::class,
@@ -58,7 +58,7 @@ class ObjectTest extends TestCase
             $actual = new Object();
         } catch (Exception $e) {
             $actual = $e;
-            $message .= String::format(
+            $message .= Text::format(
                 ' // # Constructor should not throws exceptions. Error: {0}',
                 $this->exporter->export($e->getMessage())
             );

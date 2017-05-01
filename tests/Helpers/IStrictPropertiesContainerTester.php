@@ -20,7 +20,7 @@
 namespace NelsonMartell\Test\Helpers;
 
 use Cake\Utility\Inflector;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\IStrictPropertiesContainer;
 use SebastianBergmann\Exporter\Exporter;
 
@@ -64,7 +64,7 @@ trait IStrictPropertiesContainerTester
 
         $actual = $obj->$property;
 
-        $message = String::format(
+        $message = Text::format(
             '$actual = ${var}->{property}; // {actual}',
             [
                 'var'      => $var,
@@ -143,7 +143,7 @@ trait IStrictPropertiesContainerTester
 
         $actual = $obj->$property;
 
-        $message = String::format(
+        $message = Text::format(
             '${var}->{property} = {value}; $actual = ${var}->{property}; // {actual}',
             [
                 'var'      => $var,

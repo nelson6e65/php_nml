@@ -21,7 +21,7 @@ namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell as NML;
 use NelsonMartell\Type;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\PropertiesHandlerTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;

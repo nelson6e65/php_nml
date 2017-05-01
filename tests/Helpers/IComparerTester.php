@@ -19,7 +19,7 @@
 
 namespace NelsonMartell\Test\Helpers;
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\IComparer;
 
 /**
@@ -59,7 +59,7 @@ trait IComparerTester
         $class = $this->getTargetClassName();
         $actual = $class::compare($left, $right);
 
-        $message = String::format(
+        $message = Text::format(
             '{class}::{method}({left}, {right}); // Returned: {actual}',
             [
                 'class'  => $class,
@@ -103,7 +103,7 @@ trait IComparerTester
 
         @shuffle($actual);
 
-        $message = String::format(
+        $message = Text::format(
             'usort({actual}, [{class}, {method}]);',
             [
                 'class'  => $this->getTargetClassName(),
@@ -123,7 +123,7 @@ trait IComparerTester
      */
     public function testIsCompliantWithIComparerIterface()
     {
-        $message = String::format(
+        $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
             $this->getTargetClassName(),
             IComparer::class

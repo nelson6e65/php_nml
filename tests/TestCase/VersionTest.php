@@ -23,7 +23,7 @@ use NelsonMartell as NML;
 use NelsonMartell\Version;
 use NelsonMartell\VersionComponent;
 use NelsonMartell\Object;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\VersionTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
@@ -63,7 +63,7 @@ class VersionTest extends TestCase
     {
         $actual = $version->toString();
 
-        $message = String::format(
+        $message = Text::format(
             '$version->{method}(); // {actual}',
             [
                 'method' => 'toString',
@@ -98,7 +98,7 @@ class VersionTest extends TestCase
     {
         $actual = $version->isValid();
 
-        $message = String::format(
+        $message = Text::format(
             '$version->{method}(); // {actual}',
             [
                 'method' => 'isValid',

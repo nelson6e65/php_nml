@@ -19,7 +19,7 @@
 
 namespace NelsonMartell\Test\Helpers;
 
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\IComparable;
 
 /**
@@ -51,7 +51,7 @@ trait IComparableTester
     {
         $actual = $left->compareTo($right);
 
-        $message = String::format(
+        $message = Text::format(
             '$obj->{method}({right}); // Returned: {actual} ($obj: {left})',
             [
                 'method' => 'compareTo',
@@ -89,7 +89,7 @@ trait IComparableTester
      */
     public function testIsCompliantWithIComparableIterface()
     {
-        $message = String::format(
+        $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
             $this->getTargetClassName(),
             IComparable::class

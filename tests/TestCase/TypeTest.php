@@ -19,9 +19,8 @@
 
 namespace NelsonMartell\Test\TestCase;
 
-use NelsonMartell as NML;
 use NelsonMartell\Type;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use SebastianBergmann\Exporter\Exporter;
@@ -59,7 +58,7 @@ class TypeTest extends TestCase
     public function testConstructorWithBadArguments($obj)
     {
         $actual = null;
-        $message = String::format(
+        $message = Text::format(
             '$type = new {class}({obj});',
             [
                 'class'   => Type::class,
@@ -71,7 +70,7 @@ class TypeTest extends TestCase
             $actual = new Type($obj);
         } catch (\Exception $e) {
             $actual = $e;
-            $message .= String::format(
+            $message .= Text::format(
                 ' // # Constructor should not throws exceptions. Error: {0}',
                 $this->exporter->export($e->getMessage())
             );

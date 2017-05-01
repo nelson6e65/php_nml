@@ -41,11 +41,11 @@ class Text extends TextBase
      * the matching string representation of each object given. Use `{0}` for
      * the fist object, `{1}` for the second, and so on.
      * Example:
-     * `String::format('{0} is {1} years old, and have {2} cats.', 'Bob', 65, 101);`
+     * `Text::format('{0} is {1} years old, and have {2} cats.', 'Bob', 65, 101);`
      * Returns: 'Bob is 65 years old, and have 101 cats.'
      *
      * You can also use an array to give objects values.
-     * Example: `String::Format('{0} is {1} years old.', ['Bob', 65, 101]);`
+     * Example: `Text::Format('{0} is {1} years old.', ['Bob', 65, 101]);`
      * Returns: 'Bob is 65 years old, and have 101 cats.'
      *
      * If give an key => value array, each key stands for a placeholder variable
@@ -54,7 +54,7 @@ class Text extends TextBase
      * Example:
      * `$arg0 = ['name' => 'Bob', 'n' => 101, 'age' => 65];`
      * `$format = '{name} is {age} years old, and have {n} cats.';`
-     * `String::Format($format, $arg0);`
+     * `Text::Format($format, $arg0);`
      * Returns: 'Bob is 65 years old, and have 101 cats.'
      *
      * @param string               $format An string containing variable placeholders to be replaced.

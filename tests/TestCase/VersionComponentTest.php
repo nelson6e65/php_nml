@@ -21,7 +21,7 @@ namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell as NML;
 use NelsonMartell\VersionComponent;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
 use \PHPUnit_Framework_TestCase as TestCase;
 use \InvalidArgumentException;
@@ -49,7 +49,7 @@ class VersionComponentTest extends TestCase
     {
         $actual = VersionComponent::parse($obj);
 
-        $message = String::format(
+        $message = Text::format(
             '{class}::{method}({obj}); // {actual}',
             [
                 'class'  => VersionComponent::class,
@@ -82,7 +82,7 @@ class VersionComponentTest extends TestCase
     {
         $actual = $versionComponent->toString();
 
-        $message = String::format(
+        $message = Text::format(
             '$versionComponent->{method}(); // {actual}',
             [
                 'method' => 'toString',
@@ -127,7 +127,7 @@ class VersionComponentTest extends TestCase
         $messages = [];
 
         foreach ($actuals as $method => $actual) {
-            $messages[$method] = String::format($format, ['method' => $method, 'actual' => static::export($actual)]);
+            $messages[$method] = Text::format($format, ['method' => $method, 'actual' => static::export($actual)]);
         }
 
         foreach ($actuals as $method => $actual) {

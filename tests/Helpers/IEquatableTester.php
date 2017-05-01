@@ -20,7 +20,7 @@
 namespace NelsonMartell\Test\Helpers;
 
 use NelsonMartell as NML;
-use NelsonMartell\Extensions\String;
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\IEquatable;
 
 /**
@@ -52,7 +52,7 @@ trait IEquatableTester
     {
         $actual = $left->equals($right);
 
-        $message = String::format(
+        $message = Text::format(
             '$obj->{method}({right}); // Returned: {actual} ($obj: {left})',
             [
                 'method' => 'equals',
@@ -65,7 +65,7 @@ trait IEquatableTester
         $this->assertInternalType('boolean', $actual, $message);
 
         if (!is_bool($expected)) {
-            throw new InvalidArgumentException(String::format(
+            throw new InvalidArgumentException(Text::format(
                 '1st argument of data provider should be of "boolean" type, "{0}" given.',
                 NML\typeof($expected)
             ));
@@ -82,7 +82,7 @@ trait IEquatableTester
      */
     public function testIsCompliantWithIEquatableIterface()
     {
-        $message = String::format(
+        $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
             $this->getTargetClassName(),
             IEquatable::class
