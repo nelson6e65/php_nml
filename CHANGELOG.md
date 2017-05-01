@@ -1,6 +1,9 @@
 ## CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
+### Release 0.7.0 (2017-05-xx)
+
+
 ### Release 0.6.0 (2016-10-06)
 
 #### Installation changes
