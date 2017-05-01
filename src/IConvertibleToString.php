@@ -13,36 +13,31 @@
  *
  * @copyright 2016-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     v0.6.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
 namespace NelsonMartell;
 
 /**
- * Mark a class as implementing strict properties only.
- *
- * All classes using ``PropertiesHandler`` trait should be marked with this interface.
+ * Provides methods to convert objets into string representations.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
- * @see PropertiesHandler
+ * @since  v0.6.1
  * */
-interface IStrictPropertiesContainer
+interface IConvertibleToString
 {
     /**
-     * Gets the value of specified property.
+     * Gets the string representation of this instance.
      *
-     * @param string $name Property name.
-     *
-     * @return mixed Property value.
+     * @return string
      */
-    public function __get($name);
+    public function toString();
 
     /**
-     * Sets the value of specified property.
+     * Gets the implicit string representation of this instance.
      *
-     * @param string $name  Property name.
-     * @param mixed  $value Property value.
+     * @return string
      */
-    public function __set($name, $value);
+    public function __toString();
 }

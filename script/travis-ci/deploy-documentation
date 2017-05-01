@@ -4,7 +4,7 @@
 nml_ver=$(git describe)
 
 # Generate Api in: output/api
-vendor/bin/apigen generate
+script/build-api
 
 # Set identity
 git config --global user.email "travis@travis-ci.org"
@@ -12,15 +12,18 @@ git config --global user.name "Travis"
 
 # Checkout to GitHub pages to update API
 git remote add travis https://${GH_TOKEN}@github.com/nelson6e65/php_nml.git > /dev/null
-git checkout -b apigen travis/gh-pages
+
+git branch "api-${nml_ver}" travis/gh-pages
+
+git checkout "api-${nml_ver}"
 
 # Clean current (old) api directory
 rm -rf api
 
 # Bring generated (new) api directory
-cp -rf output/api api && rm -rf output/api
+cp -rf output/api/ api && rm -rf output/api
 
 # Push generated files
-git add --all .
-git commit -m "ApiGen: API updated ($nml_ver)."
+git add --all api/
+git commit -m ":arrow_up: Documentation (API ${nml_ver})."
 git push --quiet > /dev/null

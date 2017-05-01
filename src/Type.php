@@ -189,7 +189,6 @@ final class Type extends Object
     /**
      * Determines if instances of this Type can be converted to string.
      *
-     * @param mixed $obj Object.
      *
      * @return bool
      */
@@ -223,7 +222,7 @@ final class Type extends Object
      * */
     public function isNotNull()
     {
-        return !$this->IsNull();
+        return !$this->isNull();
     }
 
 
@@ -235,18 +234,7 @@ final class Type extends Object
      * */
     public function isCustom()
     {
-        switch ($this->Name) {
-            case 'boolean':
-            case 'integer':
-            case 'double':
-            case 'string':
-            case 'array':
-            case 'NULL':
-            case 'null':
-                return false;
-            default:
-                return true;
-        }
+        return !$this->isValueType() && $this->isNotNull();
     }
 
     /**
@@ -277,22 +265,15 @@ final class Type extends Object
     /**
      * Determina si este Type es de tipo valor.
      *
-     * @return     boolean
-     * @deprecated Use more precise method: Type::isScalar, which excludes
-     *   `array`.
+     * @return boolean
      * */
     public function isValueType()
     {
-        switch ($this->Name) {
-            case 'string':
-            case 'integer':
-            case 'double':
-            case 'boolean':
-            case 'array':
-                return true;
-            default:
-                return false;
+        if ($this->isScalar() || $this->Name === 'array') {
+            return true;
         }
+
+        return false;
     }
 
     /**
@@ -326,7 +307,7 @@ final class Type extends Object
      * Es un alias para el constructor de Type.
      *
      * @return     Type
-     * @deprecated
+     * @deprecated since 5.0.1 and will be removed in 0.7.0. Use constructor instead.
      * */
     public static function typeof($obj)
     {
