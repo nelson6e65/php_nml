@@ -1,6 +1,21 @@
 ## CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
+
+### Release 0.6.1 (2017-05-01)
+
+- Minor improvements in sources and documentation info.
+- Improvements in README instruccions.
+- API deployment changes:
+  - :fire: Deploy API documentation in local instead of TravisCI auto-generation.
+  - :memo: Improve API deployment script.
+- :new: Interfaces:
+  - `IConvertibleToString`.
+  - `IConvertibleToJson`.
+
+See [changes since v0.6.0](https://github.com/nelson6e65/php_nml/compare/v0.6.0...v0.6.1) for more detailed info.
+
+
 ### Release 0.6.0 (2016-10-06)
 
 #### Installation changes
