@@ -140,11 +140,14 @@ class TypeTest extends TestCase
 
     /**
      * @coverage Type::canBeString
+     * @dataProvider goodConstructorArgumentsProvider
      */
-    public function testCanCheckIfTypeCanBeConvertedToString()
+    public function testCanCheckIfTypeCanBeConvertedToString($obj, $expected)
     {
-        $this->markTestIncomplete(
-            'Tests for "'.Type::class.'::canBeString'.'" has not been completed yet.'
-        );
+        $type = new Type($obj);
+
+        $actual = $type->canBeString();
+
+        $this->assertEquals($expected, $actual);
     }
 }

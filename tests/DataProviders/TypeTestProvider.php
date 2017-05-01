@@ -20,10 +20,9 @@
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\Type;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IStrictPropertiesContainerTester;
-use \InvalidArgumentException;
+use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\TypeTest.
@@ -44,13 +43,14 @@ trait TypeTestProvider
     public function goodConstructorArgumentsProvider()
     {
         return [
-            'NULL'        => [null],
-            'integer'     => [1],
-            'double'      => [1.9999],
-            'string'      => ['str'],
-            'array'       => [[]],
-            'stdClass'    => [new \stdClass],
-            __CLASS__     => [$this],
+            'NULL'        => [null, true],
+            'integer'     => [1, true],
+            'double'      => [1.9999, true],
+            'string'      => ['str', true],
+            ToString::class => [new ToString(), true],
+            'array'       => [[], false],
+            'stdClass'    => [new \stdClass, false],
+            __CLASS__     => [$this, false],
         ];
     }
 
@@ -75,7 +75,6 @@ trait TypeTestProvider
     {
         return $this->goodConstructorArgumentsProvider();
     }
-
 
     #GROUP: IStrictPropertiesContainerTester
 
