@@ -23,7 +23,7 @@ use NelsonMartell as NML;
 use NelsonMartell\Type;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\PropertiesHandlerTestProvider;
-use \PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 use \BadMethodCallException;
 

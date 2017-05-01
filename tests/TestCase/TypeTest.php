@@ -22,9 +22,8 @@ namespace NelsonMartell\Test\TestCase;
 use NelsonMartell\Type;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
-use \PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter;
-use \InvalidArgumentException;
 
 /**
  *

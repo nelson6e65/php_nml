@@ -21,7 +21,7 @@ namespace NelsonMartell\Test\TestCase\Extensions;
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Type;
-use \PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 
 /**

@@ -23,7 +23,7 @@ use NelsonMartell as NML;
 use NelsonMartell\VersionComponent;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
-use \PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 
 /**

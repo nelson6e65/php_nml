@@ -25,7 +25,7 @@ use NelsonMartell\VersionComponent;
 use NelsonMartell\Object;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\VersionTestProvider;
-use \PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 
 /**
