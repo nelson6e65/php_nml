@@ -82,14 +82,14 @@ class Text extends TextBase
         foreach ($originalData as $placeholder => $value) {
             if (!is_string($placeholder) && !is_integer($placeholder)) {
                 $msg = 'Placeholder must to be a of string or integer type; "{1}" type given.';
-                throw new InvalidArgumentException(nml_msg($msg, typeof($placeholder)));
+                throw new InvalidArgumentException(\NelsonMartell\msg($msg, \NelsonMartell\typeof($placeholder)));
             }
 
-            $valueType = typeof($value);
+            $valueType = \NelsonMartell\typeof($value);
 
             if ($valueType->canBeString() === false) {
                 $msg = 'Value for "{{0}}" placeholder must to be a string or object convertible to string; "{1}" type given.';
-                throw new InvalidArgumentException(nml_msg($msg, $placeholder, $valueType));
+                throw new InvalidArgumentException(\NelsonMartell\msg($msg, $placeholder, $valueType));
             }
 
             // This is to work-arround a bug in use of ``asort()`` function in ``Text::insert`` (at v3.2.5)
@@ -112,7 +112,7 @@ class Text extends TextBase
     public static function ensureIsNotNull($obj)
     {
         if (is_null($obj)) {
-            $msg = nml_msg('Provided object must not be NULL.');
+            $msg = \NelsonMartell\msg('Provided object must not be NULL.');
             throw new InvalidArgumentException($msg);
         }
 
@@ -130,7 +130,7 @@ class Text extends TextBase
     public static function ensureIsString($obj)
     {
         if (!is_string(static::ensureIsNotNull($obj))) {
-            $msg = nml_msg('Provided object must to be an string; "{0}" given.', typeof($obj));
+            $msg = \NelsonMartell\msg('Provided object must to be an string; "{0}" given.', \NelsonMartell\typeof($obj));
             throw new InvalidArgumentException($msg);
         }
 
@@ -148,7 +148,7 @@ class Text extends TextBase
     public static function ensureIsNotEmpty($string)
     {
         if (static::ensureIsString($string) === '') {
-            $msg = nml_msg('Provided string must not be empty.');
+            $msg = \NelsonMartell\msg('Provided string must not be empty.');
             throw new InvalidArgumentException($msg);
         }
 
@@ -167,7 +167,7 @@ class Text extends TextBase
     public static function ensureIsNotWhiteSpaces($string)
     {
         if (trim(static::ensureIsNotEmpty($string)) === '') {
-            $msg = nml_msg('Provided string must not be white spaces.');
+            $msg = \NelsonMartell\msg('Provided string must not be white spaces.');
             throw new InvalidArgumentException($msg);
         }
 
@@ -188,7 +188,7 @@ class Text extends TextBase
         $pattern = '/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/';
 
         if (!preg_match($pattern, static::ensureIsString($string))) {
-            $msg = nml_msg('Provided string do not follows PHP variables naming convention: "{0}".', $string);
+            $msg = \NelsonMartell\msg('Provided string do not follows PHP variables naming convention: "{0}".', $string);
             throw new InvalidArgumentException($msg);
         }
 

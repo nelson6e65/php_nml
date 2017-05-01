@@ -36,15 +36,7 @@
 		},
 		"files": [
 			"src/constants.php",
-
-			"src/deprecated_functions.php",
 			"src/functions.php",
-
-			"src/Collections/functions.php",
-			"src/Extensions/functions.php",
-			"src/Utilities/functions.php",
-			"src/Utilities/UnitTesting/functions.php",
-
 			"config/bootstrap.php"
 		]
 	},

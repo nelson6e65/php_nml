@@ -61,8 +61,8 @@ class Asset extends Object
                 'pos2'     => 0,
             ];
 
-            $msg = nml_msg('Invalid argument value.');
-            $msg .= nml_msg(
+            $msg = \NelsonMartell\msg('Invalid argument value.');
+            $msg .= \NelsonMartell\msg(
                 ' "{name}" (position {pos}) can not be specified if "{name2}" (position {pos2}) is "null".',
                 $args
             );
@@ -88,12 +88,12 @@ class Asset extends Object
                             $args = [
                                 'name'     => 'versions',
                                 'pos'      => 1,
-                                'expected' => typeof(new Version(1, 0))->Name,
-                                'actual'   => typeof($version)->Name,
+                                'expected' => \NelsonMartell\typeof(new Version(1, 0))->Name,
+                                'actual'   => \NelsonMartell\typeof($version)->Name,
                             ];
 
-                            $msg = nml_msg('Invalid argument value.');
-                            $msg .= nml_msg(
+                            $msg = \NelsonMartell\msg('Invalid argument value.');
+                            $msg .= \NelsonMartell\msg(
                                 ' "{name}" (position {pos}) must to be an array of "{expected}" elements (or any'.
                                 ' parseable into "{expected}"); the array given has an invalid "{actual}" element.',
                                 $args
@@ -116,12 +116,12 @@ class Asset extends Object
                 $args = [
                     'name'     => 'versions',
                     'pos'      => 1,
-                    'expected' => typeof(new Version(1, 0))->Name,
-                    'actual'   => typeof($versions)->Name,
+                    'expected' => \NelsonMartell\typeof(new Version(1, 0))->Name,
+                    'actual'   => \NelsonMartell\typeof($versions)->Name,
                 ];
 
-                $msg = nml_msg('Invalid argument value.');
-                $msg .= nml_msg(
+                $msg = \NelsonMartell\msg('Invalid argument value.');
+                $msg .= \NelsonMartell\msg(
                     ' "{name}" (position {pos}) must to be an array of "{expected}" elements, an instance of'.
                     ' "{expected}" or any object parseable into "{expected}"; "{actual}" given.',
                     $args
@@ -158,15 +158,15 @@ class Asset extends Object
     {
         if (!is_string($value)) {
             $args = [
-                'class'    => typeof($this)->Name,
+                'class'    => \NelsonMartell\typeof($this)->Name,
                 'property' => 'Name',
                 'pos'      => 0,
                 'expected' => 'string',
-                'actual'   => typeof($value)->Name,
+                'actual'   => \NelsonMartell\typeof($value)->Name,
             ];
 
-            $msg = nml_msg('Invalid argument type.');
-            $msg .= nml_msg(
+            $msg = \NelsonMartell\msg('Invalid argument type.');
+            $msg .= \NelsonMartell\msg(
                 ' "{class}::{property}" must to be an instance of "{expected}"; "{actual}" given.',
                 $args
             );
@@ -176,15 +176,15 @@ class Asset extends Object
 
         if (str_word_count($value) == 0) {
             $args = [
-                'class'    => typeof($this)->Name,
+                'class'    => \NelsonMartell\typeof($this)->Name,
                 'property' => 'Name',
                 'pos'      => 0,
                 'expected' => 'string',
-                'actual'   => typeof($value)->Name,
+                'actual'   => \NelsonMartell\typeof($value)->Name,
             ];
 
-            $msg = nml_msg('Invalid argument value.');
-            $msg .= nml_msg(
+            $msg = \NelsonMartell\msg('Invalid argument value.');
+            $msg .= \NelsonMartell\msg(
                 ' "{class}::{property}" value can not be empty or whitespace.',
                 $args
             );
@@ -281,7 +281,7 @@ class Asset extends Object
         $c = count($this->Versions);
 
         if ($c == 0) {
-            throw new LogicException(nml_msg('This Asset has not versions.'));
+            throw new LogicException(\NelsonMartell\msg('This Asset has not versions.'));
         }
         $v = $version;
 
@@ -304,12 +304,12 @@ class Asset extends Object
                 $args = [
                     'name'     => 'version',
                     'pos'      => 0,
-                    'expected' => typeof(new Version(1, 0))->Name,
-                    'actual'   => typeof($version),
+                    'expected' => \NelsonMartell\typeof(new Version(1, 0))->Name,
+                    'actual'   => \NelsonMartell\typeof($version),
                 ];
 
-                $msg = nml_msg('Invalid argument type.');
-                $msg .= nml_msg(
+                $msg = \NelsonMartell\msg('Invalid argument type.');
+                $msg .= \NelsonMartell\msg(
                     ' "{name}" (position {pos}) must to be an instance of "{expected}" (or compatible);'.
                     ' "{actual}" given.',
                     $args
@@ -319,8 +319,8 @@ class Asset extends Object
             }
 
             if (array_search($v, $this->Versions) === false) {
-                $msg = nml_msg('Invalid argument value.');
-                $msg .= nml_msg(' Asset has not the version "{version}".', ['version' => $v]);
+                $msg = \NelsonMartell\msg('Invalid argument value.');
+                $msg .= \NelsonMartell\msg(' Asset has not the version "{version}".', ['version' => $v]);
 
                 throw new InvalidArgumentException($msg);
             }

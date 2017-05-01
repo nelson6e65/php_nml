@@ -57,12 +57,12 @@ final class Version extends Object implements IEquatable, IComparable
                 'actual'   => typeof($major),
             ];
 
-            $msg = nml_msg('Invalid argument type.');
-            $msg .= nml_msg(
+            $msg = msg('Invalid argument type.');
+            $msg .= msg(
                 ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
                 $args
             );
-            $msg .= nml_msg(' Convert value or use the "{class}::parse" (static) method.', $args);
+            $msg .= msg(' Convert value or use the "{class}::parse" (static) method.', $args);
 
             throw new InvalidArgumentException($msg);
         }
@@ -76,12 +76,12 @@ final class Version extends Object implements IEquatable, IComparable
                 'actual'   => typeof($minor),
             ];
 
-            $msg = nml_msg('Invalid argument type.');
-            $msg .= nml_msg(
+            $msg = msg('Invalid argument type.');
+            $msg .= msg(
                 ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
                 $args
             );
-            $msg .= nml_msg(' Convert value or use the "{class}::parse" (static) method.', $args);
+            $msg .= msg(' Convert value or use the "{class}::parse" (static) method.', $args);
 
             throw new InvalidArgumentException($msg);
         }
@@ -93,8 +93,8 @@ final class Version extends Object implements IEquatable, IComparable
                 'actual'   => $major,
             ];
 
-            $msg = nml_msg('Invalid argument value.');
-            $msg .= nml_msg(
+            $msg = msg('Invalid argument value.');
+            $msg .= msg(
                 ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
                 $args
             );
@@ -109,8 +109,8 @@ final class Version extends Object implements IEquatable, IComparable
                 'actual'   => $minor,
             ];
 
-            $msg = nml_msg('Invalid argument value.');
-            $msg .= nml_msg(
+            $msg = msg('Invalid argument value.');
+            $msg .= msg(
                 ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
                 $args
             );
@@ -153,7 +153,7 @@ final class Version extends Object implements IEquatable, IComparable
         } elseif (is_string($value)) {
             $version = explode('.', $value);
         } else {
-            $msg = nml_msg('Unable to parse. Argument passed has an invalid type: "{0}".', typeof($value));
+            $msg = msg('Unable to parse. Argument passed has an invalid type: "{0}".', typeof($value));
             throw new InvalidArgumentException($msg);
         }
 
@@ -161,7 +161,7 @@ final class Version extends Object implements IEquatable, IComparable
         $c = count($version);
 
         if ($c > 4 || $c < 2) {
-            $msg = nml_msg('Unable to parse. Argument passed has an invalid format: "{0}".', $value);
+            $msg = msg('Unable to parse. Argument passed has an invalid format: "{0}".', $value);
             //var_dump($version);
             throw new InvalidArgumentException($msg);
         }
