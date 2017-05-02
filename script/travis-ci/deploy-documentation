@@ -3,27 +3,68 @@
 # Generate API after download composer dev-requirements
 nml_ver=$(git describe)
 
+# Install ApiGen
+composer global require apigen/apigen:5.0.0@dev
+
+if [[ $? -ne 0 ]]; then
+    echo 'Error! Unable to install ApiGen!'
+    exit 1
+fi
+
 # Generate Api in: output/api
 script/build-api
 
+if [[ $? -ne 0 ]]; then
+    echo 'Error! Unable to build documentation!'
+    exit 2
+fi
+
 # Set identity
-git config --global user.email "travis@travis-ci.org"
-git config --global user.name "Travis"
+git config --global user.email "nelson6e65@gmail.com"
+git config --global user.name "Travis CI"
+
+# Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
+ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
+ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
+ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
+ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in deploy_key.enc -out deploy_key -d
+chmod 600 deploy_key
+eval `ssh-agent -s`
+ssh-add deploy_key
+
+if [[ $? -ne 0 ]]; then
+    echo 'Error! Unable to install Deploy Key!'
+    exit 5
+fi
 
 # Checkout to GitHub pages to update API
-git remote add travis https://${GH_TOKEN}@github.com/nelson6e65/php_nml.git > /dev/null
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 
-git branch "api-${nml_ver}" travis/gh-pages
+git remote add travis "${SSH_REPO}"
 
-git checkout "api-${nml_ver}"
+if [[ $? -ne 0 ]]; then
+    echo 'Error! Unable to add SSH remote!'
+    exit 3
+fi
 
-# Clean current (old) api directory
-rm -rf api
+git branch "api-${nml_ver}" travis/gh-pages && git checkout "api-${nml_ver}"
 
-# Bring generated (new) api directory
-cp -rf output/api/ api && rm -rf output/api
+if [[ $? -ne 0 ]]; then
+    echo 'Error! Unable to checkout branch!'
+    exit 4
+fi
+
+# Clean current (old) api directoryand bring generated (new) api directory
+rm -rf api && cp -rf output/api/ api && rm -rf output/api
 
 # Push generated files
-git add --all api/
-git commit -m ":arrow_up: Documentation (API ${nml_ver})."
-git push --quiet > /dev/null
+if git diff --quiet; then
+    echo "No changes to the output on this push; exiting."
+    exit 0
+fi
+
+git add --all api/ && git commit -m ":arrow_up: Documentation (API ${nml_ver})."
+
+git push

@@ -48,5 +48,7 @@
         "branch-alias": {
             "dev-master": "v0.7.x-dev"
         }
-    }
+    },
+	"minimum-stability": "dev",
+	"prefer-dist": true
 }

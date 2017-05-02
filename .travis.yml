@@ -5,15 +5,15 @@ php:
   - 7.0
   - 7.1
 
-# allow_failures: Allow this build to fail under the specified environments.
-# fast_finish: If your build fails do not continue trying to build, just stop.
 matrix:
   allow_failures:
-    - php: 5.5
-    - php: hhvm
+    - php: 7.1
   fast_finish: false
 
-# Commands to be run before your environment runs.
+env:
+  global:
+  - ENCRYPTION_LABEL: "7dec5f5b26df"
+
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
@@ -24,6 +24,9 @@ script:
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover "output/code-coverage/clover.xml"
+
+after_success:
+  - if  [ $TRAVIS_PHP_VERSION = '7.1' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then script/travis-ci/deploy-documentation; fi
 
 notifications:
   webhooks:
