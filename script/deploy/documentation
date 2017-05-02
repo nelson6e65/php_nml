@@ -6,7 +6,17 @@ NML_VERSION=$(git describe)
 # Generate Api in: output/api
 script/build-api
 
+if [[ $? -ne 0 ]]; then
+    echo 'Error! Unable to build documentation!'
+    exit 1
+fi
+
 git checkout gh-pages
+
+if [[ $? -ne 0 ]]; then
+    echo 'Error! Unable to checkout branch!'
+    exit 2
+fi
 
 # Clean current (old) api directory
 rm -rf api
