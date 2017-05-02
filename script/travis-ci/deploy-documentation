@@ -4,7 +4,7 @@
 nml_ver=$(git describe)
 
 # Install ApiGen
-composer global require apigen/apigen:5.0.0@dev
+composer global require apigen/apigen:^5.0@dev
 
 if [[ $? -ne 0 ]]; then
     echo 'Error! Unable to install ApiGen!'
