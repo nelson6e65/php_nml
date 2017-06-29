@@ -2,4 +2,4 @@
 
 COMPOSER_HOME=$(composer --global config home)
 
-$COMPOSER_HOME/vendor/bin/apigen generate --quiet && echo 'Generating API documentation finished!'
+vendor/bin/apigen generate --quiet && echo 'Generating API documentation finished!'
