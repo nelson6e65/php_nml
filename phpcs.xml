@@ -19,7 +19,7 @@
   <exclude-pattern type="relative">^vendor/*</exclude-pattern>
   <exclude-pattern>*ExampleClass*</exclude-pattern>
 
-  <!-- <arg name="colors"/> -->
+  <arg name="colors"/>
   <arg name="extensions" value="php"/>
   <arg name="encoding" value="utf-8"/>
   <!-- <arg value="sp"/> -->
