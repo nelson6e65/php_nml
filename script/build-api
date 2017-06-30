@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
-COMPOSER_HOME=$(composer --global config home)
-
-vendor/bin/apigen generate --quiet && echo 'Generating API documentation finished!'
+vendor/bin/apigen generate src --destination output/api --quiet && echo 'Generating API documentation finished!'
