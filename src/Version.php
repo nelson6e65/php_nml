@@ -219,7 +219,7 @@ final class Version extends Object implements IEquatable, IComparable
      * Getter for minor property.
      *
      * @return int
-     * @see    Version::$minor.
+     * @see    Version::$minor
      */
     public function getMinor()
     {
