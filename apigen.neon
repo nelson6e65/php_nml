@@ -23,36 +23,6 @@ parameters:
 
   googleAnalytics: UA-58599811-1
 
+  # Transifex Live JavasCript Settings: 'api_key' value.
+  # See: http://docs.transifex.com/live/api/#setting-up-transifex-live-javascript-code
   transifexLive: cb51c6bb678c4ac4b348ff35244284ed
-
-
-source:
-  - src
-
-destination: output/api
-
-quiet: true
-
-extensions:
-  - php
-
-title: "PHP: Nelson Martell Library"
-
-php: false
-
-internal: yes
-
-deprecated: true
-
-todo: true
-
-googleAnalytics: UA-58599811-1
-
-templateTheme: bootstrap
-
-# templateConfig: /home/nmartell/projects/ThemeBootstrap/src/config.neon
-
-# TODO:
-# Transifex Live JavasCript Settings: 'api_key' value.
-# See: http://docs.transifex.com/live/api/#setting-up-transifex-live-javascript-code
-# transifexLive: cb51c6bb678c4ac4b348ff35244284ed
