@@ -171,7 +171,7 @@ class Collection extends Object implements ICollection
      * @param string $format String format (optional). By default, `r`.
      *
      * @return string
-     * @see    Text::format
+     * @see    Text::format()
      * */
     public function toString($format = 'r')
     {
@@ -257,7 +257,7 @@ class Collection extends Object implements ICollection
      * reemplazar más bien el método protegido `Collection::clearItems`.
      *
      * @return void
-     * @see    Collection::clearItems
+     * @see    Collection::clearItems()
      * */
     public function clear()
     {

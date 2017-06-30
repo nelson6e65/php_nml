@@ -27,7 +27,7 @@ use \InvalidArgumentException;
 /**
  * Test case for `NelsonMartell\Extensions\String` class.
  *
- * @see    String
+ * @see    Text
  * @author Nelson Martell <nelson6e65@gmail.com>
  *
  * @internal

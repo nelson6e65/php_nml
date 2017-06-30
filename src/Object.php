@@ -42,7 +42,7 @@ class Object implements IComparer, IStrictPropertiesContainer, IConvertibleToStr
      * la función ObjectClass::toString()
      *
      * @return string
-     * @see    Object::toString
+     * @see    Object::toString()
      * */
     final public function __toString()
     {

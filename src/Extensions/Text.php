@@ -165,7 +165,7 @@ class Text extends TextBase
      *
      * @return string Same string given, but ensured that is not whitespaces.
      * @throws InvalidArgumentException if object is not an `string`.
-     * @see    trim
+     * @see    \trim()
      */
     public static function ensureIsNotWhiteSpaces($string)
     {

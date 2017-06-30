@@ -42,7 +42,7 @@ interface IComparer
      *   - ``< 0`` si $left se considera menor a $right.
      *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
      * @see \usort()
-     * @see IComparable::compareTo
+     * @see IComparable::compareTo()
      * */
     public static function compare($left, $right);
 }

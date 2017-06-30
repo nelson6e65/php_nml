@@ -196,8 +196,8 @@ final class Version extends Object implements IEquatable, IComparable
     /**
      * Getter for Major property.
      *
-     * @return integer
-     * @see    Version::Major.
+     * @return int
+     * @see    Version::$major
      */
     public function getMajor()
     {
@@ -218,8 +218,8 @@ final class Version extends Object implements IEquatable, IComparable
     /**
      * Getter for minor property.
      *
-     * @return integer
-     * @see    Version::Minor.
+     * @return int
+     * @see    Version::$minor.
      */
     public function getMinor()
     {
@@ -240,7 +240,7 @@ final class Version extends Object implements IEquatable, IComparable
      * Getter for Build property.
      *
      * @return VersionComponent
-     * @see    Version::Build
+     * @see    Version::$build
      */
     public function getBuild()
     {
@@ -261,7 +261,7 @@ final class Version extends Object implements IEquatable, IComparable
      * Getter for Revision property.
      *
      * @return VersionComponent
-     * @see    Version::Revision
+     * @see    Version::$revision
      */
     public function getRevision()
     {
@@ -278,8 +278,8 @@ final class Version extends Object implements IEquatable, IComparable
      *
      * @return string Representación de la versión en forma de cadena:
      *   'major.minor[.build[.revision]]'
-     * @see    VersionComponent::isNull
-     * @see    Version::isValid
+     * @see    VersionComponent::isNull()
+     * @see    Version::isValid()
      * */
     public function toString()
     {

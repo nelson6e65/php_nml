@@ -113,7 +113,7 @@ final class Type extends Object
      * Getter for Type::ShortName property.
      *
      * @return string
-     * @see Type::ShortName
+     * @see Type::$shortName
      * */
     public function getShortName()
     {

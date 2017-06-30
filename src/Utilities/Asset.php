@@ -147,7 +147,7 @@ class Asset extends Object
      * reemplazando sus espacios en blanco por guiones (' ' -> '-')).
      *
      * @var string Nombre del recurso
-     * @see Asset::ShortName
+     * @see Asset::$shortName
      * */
     public $Name;
     private $name;
