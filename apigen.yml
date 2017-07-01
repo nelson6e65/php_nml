@@ -1,8 +1,5 @@
 
 parameters:
-  source:
-    - src
-
   destination: "output/api"
 
   visibilityLevels:
@@ -18,8 +15,6 @@ parameters:
   baseUrl: "https://nelson6e65.github.io/php_nml/api/"
 
   overwrite: false
-
-  themeDirectory: "vendor/apigen/apigen/packages/ThemeDefault/src"
 
   googleAnalytics: UA-58599811-1
 
