@@ -430,16 +430,16 @@ final class Version extends Object implements IEquatable, IComparable
             return $r;
         }
 
-        if ($r != 0) {
+        if ($r !== 0) {
             $r = $this->Major - $other->Major;
 
-            if ($r == 0) {
+            if ($r === 0) {
                 $r = $this->Minor - $other->Minor;
 
-                if ($r == 0) {
+                if ($r === 0) {
                     $r = $this->Build->compareTo($other->Build);
 
-                    if ($r == 0) {
+                    if ($r === 0) {
                         $r = $this->Revision->compareTo($other->Revision);
                     }
                 }
