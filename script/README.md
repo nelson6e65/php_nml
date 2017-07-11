@@ -5,7 +5,7 @@
 
 ## Development scripts
 
-- `script/test-code [<filter>]`: Runs unit-testing tests with PHPUnit. Where `<filters>` is a string to filter tests to be run.
+- `composer test-code`: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
 
 - `script/analize-code`: Runs coding standards checks.
 

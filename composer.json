@@ -44,6 +44,11 @@
 			"NelsonMartell\\Test\\": "tests"
 		}
 	},
+    "scripts": {
+        "test-code": [
+			"phpunit --color=always"
+		]
+    },
 	"extra": {
         "branch-alias": {
             "dev-master": "v0.7.x-dev"
