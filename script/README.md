@@ -5,13 +5,16 @@
 
 ## Development scripts
 
-- `composer test-code`: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
+- **`composer test-code`**: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
 
 - `script/analize-code`: Runs coding standards checks.
 
 - `script/autofix-code`: Runs coding standard auto-fixes (PHP: Code Sniffer).
 
-- `script/build-code-coverage`: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
+- **`composer build`**: Run this sub-scripts:
+  1. **`composer build-code-coverage`**: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
+    - For XML format only (`output/code-coverage/clover.xml`): **`composer build-code-coverage-clover`** or **`composer build-code-coverage-xml`** (alias).
+    - For HTML format only: **`composer build-code-coverage-html`**.
 
 - `script/build-api`: Generates API documentation in `output/api/` directory using ApiGen.
 
