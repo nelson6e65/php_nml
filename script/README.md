@@ -7,9 +7,11 @@
 
 - **`composer test-code`**: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
 
-- `script/analize-code`: Runs coding standards checks.
+- **`composer analize-code`**: Runs coding standards checks (PHP: Code Sniffer).
 
-- `script/autofix-code`: Runs coding standard auto-fixes (PHP: Code Sniffer).
+- **`composer autofix-code`**: Runs coding standard auto-fixes (PHP: Code Sniffer).
+
+- **`composer check-all`**: Runs coding standard analisis (PHP: Code Sniffer) + tests (PHPUnit).
 
 - **`composer build`**: Run this sub-scripts:
   1. **`composer build-code-coverage`**: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
