@@ -27,7 +27,7 @@ after_script:
   - php ocular.phar code-coverage:upload --format=php-clover "output/code-coverage/clover.xml"
 
 after_success:
-  - if  [ $TRAVIS_PHP_VERSION = '7.1' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then script/travis-ci/deploy-documentation; fi
+  - if  [ $TRAVIS_PHP_VERSION = '7.1' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then .travis/deploy-documentation; fi
 
 notifications:
   webhooks:
