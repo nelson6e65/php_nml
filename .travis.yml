@@ -6,8 +6,6 @@ php:
   - 7.1
 
 matrix:
-  allow_failures:
-    - php: 7.1
   fast_finish: false
 
 env:
