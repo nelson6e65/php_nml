@@ -5,15 +5,20 @@
 
 ## Development scripts
 
-- `script/test-code [<filter>]`: Runs unit-testing tests with PHPUnit. Where `<filters>` is a string to filter tests to be run.
+- **`composer test-code`**: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
 
-- `script/analize-code`: Runs coding standards checks.
+- **`composer analize-code`**: Runs coding standards checks (PHP: Code Sniffer).
 
-- `script/autofix-code`: Runs coding standard auto-fixes (PHP: Code Sniffer).
+- **`composer autofix-code`**: Runs coding standard auto-fixes (PHP: Code Sniffer).
 
-- `script/build-code-coverage`: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
+- **`composer check-all`**: Runs coding standard analisis (PHP: Code Sniffer) + tests (PHPUnit).
 
-- `script/build-api`: Generates API documentation in `output/api/` directory using ApiGen.
+- **`composer build`**: Run this sub-scripts:
+  1. **`composer build-code-coverage`**: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
+    - For XML format only (`output/code-coverage/clover.xml`): **`composer build-code-coverage-clover`** or **`composer build-code-coverage-xml`** (alias).
+    - For HTML format only: **`composer build-code-coverage-html`**.
+
+- **`composer build-api`**: Generates API documentation in `output/api/` directory using [ApiGen](https://github.com/ApiGen/ApiGen).
 
 
 

@@ -19,7 +19,8 @@ before_script:
   - composer install --no-interaction --dev
 
 script:
-  - vendor/bin/phpunit --verbose --coverage-clover="output/code-coverage/clover.xml"
+  - composer build-code-coverage-clover
+  - composer analize-code
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-vendor/bin/phpunit --colors --verbose --coverage-clover="output/code-coverage/clover.xml" --coverage-html="output/code-coverage"

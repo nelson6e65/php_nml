@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-vendor/bin/apigen generate src --destination output/api --quiet && echo 'Generating API documentation finished!'
