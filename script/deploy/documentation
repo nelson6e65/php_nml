@@ -4,7 +4,7 @@
 NML_VERSION=$(git describe)
 
 # Generate Api in: output/api
-script/build-api
+composer build-api
 
 if [[ $? -ne 0 ]]; then
     echo 'Error! Unable to build documentation!'

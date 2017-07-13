@@ -72,7 +72,10 @@
 		],
         "build-code-coverage-html": [
 			"phpunit --color=always --coverage-html=\"output/code-coverage\""
-		]
+		],
+        "build-api": [
+            "apigen generate src --destination output/api --ansi --no-interaction"
+        ]
     },
 	"extra": {
         "branch-alias": {

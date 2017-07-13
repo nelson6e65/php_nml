@@ -18,7 +18,7 @@
     - For XML format only (`output/code-coverage/clover.xml`): **`composer build-code-coverage-clover`** or **`composer build-code-coverage-xml`** (alias).
     - For HTML format only: **`composer build-code-coverage-html`**.
 
-- `script/build-api`: Generates API documentation in `output/api/` directory using ApiGen.
+- **`composer build-api`**: Generates API documentation in `output/api/` directory using [ApiGen](https://github.com/ApiGen/ApiGen).
 
 
 
