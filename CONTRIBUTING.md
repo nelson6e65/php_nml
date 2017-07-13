@@ -1,9 +1,11 @@
-# Scripts helpers for PHP: Nelson Martell Library
+# Contributing guidelines for PHP: Nelson Martell Library
+
+## Scripts helpers
 
 > **Note:** This scripts should be run from root php_nml directory (where `composer.json` is).
 
 
-## Development scripts
+### Development scripts
 
 - **`composer test-code`**: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
 
@@ -22,7 +24,7 @@
 
 
 
-## Deployment scripts
+### Deployment scripts
 
 - `script/deploy/documentation`: Generates documentation and publish it in `gh-pages` brach.
 
