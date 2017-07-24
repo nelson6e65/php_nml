@@ -5,12 +5,29 @@ php:
   - 7.0
   - 7.1
 
-matrix:
-  fast_finish: false
-
 env:
   global:
-  - ENCRYPTION_LABEL: "7dec5f5b26df"
+    - ENCRYPTION_LABEL="7dec5f5b26df"
+    - BUILD_API=false
+
+matrix:
+  fast_finish: false
+  include:
+    - php: 7.1
+      env:
+        - BUILD_API=true
+
+before_install:
+  # Setup Git
+  - git config --global user.email "deploy@travis-ci.org"
+  - git config --global user.name "Travis CI Bot"
+
+  # Setup Composer
+  - composer global config minimum-stability dev
+  - composer global config prefer-stable true
+
+install:
+  - composer require apigen/apigen:dev-master
 
 before_script:
   - composer self-update
@@ -25,7 +42,8 @@ after_script:
   - php ocular.phar code-coverage:upload --format=php-clover "output/code-coverage/clover.xml"
 
 after_success:
-  - if  [ $TRAVIS_PHP_VERSION = '7.1' ] && [ $TRAVIS_BRANCH = 'master' ] && [ $TRAVIS_PULL_REQUEST = 'false' ]; then .travis/deploy-documentation; fi
+  - if [[ $BUILD_API == 'true' ]]; then composer build-api; fi
+  - if [[ $BUILD_API == 'true' ]]; then .travis/deploy-documentation; fi
 
 notifications:
   webhooks:
