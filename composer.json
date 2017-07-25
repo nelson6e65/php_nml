@@ -44,46 +44,45 @@
 			"NelsonMartell\\Test\\": "tests"
 		}
 	},
-    "scripts": {
+	"scripts": {
 		"check-all": [
 			"@test-code",
 			"@analize-code"
 		],
-        "analize-code": [
+		"analize-code": [
 			"phpcs . -p --runtime-set ignore_warnings_on_exit 1"
 		],
-        "autofix-code": [
+		"autofix-code": [
 			"phpcbf . -p"
 		],
-        "test-code": [
+		"test-code": [
 			"phpunit --color=always"
 		],
 		"build": [
-            "@build-code-coverage",
-            "@build-api"
+			"@build-code-coverage",
+			"@build-api"
 		],
-        "build-code-coverage": [
+		"build-code-coverage": [
 			"phpunit --color=always --coverage-clover=\"output/code-coverage/clover.xml\" --coverage-html=\"output/code-coverage\""
 		],
-        "build-code-coverage-xml": [
+		"build-code-coverage-xml": [
 			"@build-code-coverage-clover"
 		],
-        "build-code-coverage-clover": [
+		"build-code-coverage-clover": [
 			"phpunit --color=always --coverage-clover=\"output/code-coverage/clover.xml\""
 		],
-        "build-code-coverage-html": [
+		"build-code-coverage-html": [
 			"phpunit --color=always --coverage-html=\"output/code-coverage\""
 		],
-        "build-api": [
-            "apigen generate src --destination output/api --ansi --no-interaction"
-        ]
-    },
+		"build-api": [
+			"apigen generate src --destination output/api --ansi --no-interaction"
+		]
+	},
 	"extra": {
-        "branch-alias": {
-            "dev-master": "v0.7.x-dev"
-        }
-    },
+		"branch-alias": {
+			"dev-master": "v0.7.x-dev"
+		}
+	},
 	"minimum-stability": "dev",
-	"prefer-dist": true,
 	"prefer-stable": true
 }
