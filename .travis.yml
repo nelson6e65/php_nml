@@ -36,12 +36,8 @@ before_script:
 
 script:
   - composer analize-code
-  - composer build-code-coverage-clover
+  - composer test-code
   - if [[ $BUILD_API == 'true' ]]; then composer build-api; fi
-
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover "output/code-coverage/clover.xml"
 
 after_success:
   - if [[ $BUILD_API == 'true' ]]; then .travis/deploy-documentation; fi
