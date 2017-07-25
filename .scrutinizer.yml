@@ -3,10 +3,10 @@ build:
     php:
       version: 7.1
 
-tests:
-  override:
-    -
-      command: 'build-code-coverage-clover'
-      coverage:
-        file: 'output/code-coverage/clover.xml'
-        format: 'clover'
+  tests:
+    override:
+      -
+        command: 'build-code-coverage-clover'
+        coverage:
+          file: 'output/code-coverage/clover.xml'
+          format: 'clover'
