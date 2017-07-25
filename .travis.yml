@@ -15,8 +15,7 @@ matrix:
   fast_finish: false
   include:
     - php: 7.1
-      env:
-        - BUILD_API=true
+      env: BUILD_API=true
   allow_failures:
     - php: 7.1
       env: BUILD_API=true
