@@ -29,12 +29,10 @@ before_install:
   - composer global config minimum-stability dev
   - composer global config prefer-stable true
 
-install:
-  - if [[ $BUILD_API == 'true' ]]; then composer require apigen/apigen:dev-master; fi
-
 before_script:
   - composer self-update
   - composer install --no-interaction --dev
+  - if [[ $BUILD_API == 'true' ]]; then composer require apigen/apigen:dev-master; fi
 
 script:
   - composer analize-code
