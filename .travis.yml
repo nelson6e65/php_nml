@@ -27,7 +27,7 @@ before_install:
   - composer global config prefer-stable true
 
 install:
-  - composer require apigen/apigen:dev-master
+  - if [[ $BUILD_API == 'true' ]]; then composer require apigen/apigen:dev-master; fi
 
 before_script:
   - composer self-update
