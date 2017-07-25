@@ -59,7 +59,8 @@
 			"phpunit --color=always"
 		],
 		"build": [
-			"@build-code-coverage"
+            "@build-code-coverage",
+            "@build-api"
 		],
         "build-code-coverage": [
 			"phpunit --color=always --coverage-clover=\"output/code-coverage/clover.xml\" --coverage-html=\"output/code-coverage\""

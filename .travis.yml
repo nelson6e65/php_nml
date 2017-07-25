@@ -34,8 +34,8 @@ before_script:
   - composer install --no-interaction --dev
 
 script:
-  - composer build-code-coverage-clover
   - composer analize-code
+  - composer build-code-coverage-clover
   - if [[ $BUILD_API == 'true' ]]; then composer build-api; fi
 
 after_script:
