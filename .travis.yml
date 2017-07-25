@@ -16,6 +16,8 @@ matrix:
     - php: 7.1
       env:
         - BUILD_API=true
+  allow_failures:
+    - env: BUILD_API=true
 
 before_install:
   # Setup Git
