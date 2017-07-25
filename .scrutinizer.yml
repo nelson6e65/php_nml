@@ -6,7 +6,7 @@ build:
   tests:
     override:
       -
-        command: 'build-code-coverage-clover'
+        command: 'composer build-code-coverage-clover'
         coverage:
           file: 'output/code-coverage/clover.xml'
           format: 'clover'
