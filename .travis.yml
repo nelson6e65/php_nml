@@ -8,6 +8,7 @@ php:
 env:
   global:
     - ENCRYPTION_LABEL="7dec5f5b26df"
+  matrix:
     - BUILD_API=false
 
 matrix:
