@@ -20,8 +20,8 @@
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\Object;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
 
 /**

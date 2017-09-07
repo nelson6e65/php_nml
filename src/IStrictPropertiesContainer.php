@@ -43,6 +43,7 @@ interface IStrictPropertiesContainer
      *
      * @param string $name  Property name.
      * @param mixed  $value Property value.
+     * @return void
      */
     public function __set($name, $value);
 }

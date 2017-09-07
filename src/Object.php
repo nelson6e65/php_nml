@@ -155,7 +155,7 @@ class Object implements IComparer, IStrictPropertiesContainer, IConvertibleToStr
             $r = $right->compareTo($left);
 
             if ($r !== null) {
-                $r *= -1;  // Invert result
+                $r *= -1; // Invert result
             }
         } else {
             $ltype = typeof($left);

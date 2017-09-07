@@ -19,9 +19,9 @@
 
 namespace NelsonMartell\Test\TestCase;
 
-use NelsonMartell\Type;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
+use NelsonMartell\Type;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter;
 

@@ -20,7 +20,6 @@ namespace NelsonMartell\Test\TestCase\Extensions;
 
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\Text;
-use NelsonMartell\Type;
 use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 
@@ -88,7 +87,7 @@ class StringTest extends TestCase
             $format .= "{{$i}}, ";
         }
         $format .= '{8} y {9}.';
-        $actual   = Text::format($format, range(1, 10));
+        $actual = Text::format($format, range(1, 10));
         $this->assertEquals($expected, $actual);
     }
 

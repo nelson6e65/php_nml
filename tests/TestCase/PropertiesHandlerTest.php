@@ -19,9 +19,6 @@
 
 namespace NelsonMartell\Test\TestCase;
 
-use NelsonMartell as NML;
-use NelsonMartell\Type;
-use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\PropertiesHandlerTestProvider;
 use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;

@@ -177,6 +177,9 @@ final class Type extends Object
         return $this->methods;
     }
 
+    /**
+     * @param string $name
+     */
     public function hasMethod($name)
     {
         if ($this->reflectionObject !== null) {

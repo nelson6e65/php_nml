@@ -19,7 +19,6 @@
 
 namespace NelsonMartell\Test\Helpers;
 
-use NelsonMartell as NML;
 use NelsonMartell\Extensions\Text;
 use SebastianBergmann\Exporter\Exporter;
 use \InvalidArgumentException;
