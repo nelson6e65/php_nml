@@ -32,7 +32,7 @@ use \InvalidArgumentException;
 class IntString extends Object implements IEquatable, IComparable
 {
     /**
-     * @param int|null     $intValue    Integer part. Default: ``0`` (zero).
+     * @param integer     $intValue    Integer part. Default: ``0`` (zero).
      * @param string|null  $stringValue String part. Default: ``''`` (empty).
      */
     public function __construct($intValue = 0, $stringValue = '')
