@@ -1,9 +1,42 @@
 ## CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
-
 ### Release 0.7.0 (WIP)
 
+#### :star: Important changes
+
+This release is mainly intended to provide PHP 7 compatibility:
+
+- :fire: Rename class _`NelsonMartell\Extensions\String`_ to **`NelsonMartell\Extensions\Text`**, but still available in PHP 5.6 as alias.
+- :fire: Drop support for PHP 5.5 or less. It still compatible with PHP 5.6.
+- :fire: Remove deprecated code in v0.6.
+- :fire: Remove global functions. Are only available under `NelsonMartell` namespace now. Example:
+- :bug: Correct minor issues.
+
+#### :notebook: Development changes
+
+There are some improvements for development:
+
+- :arrow_up: Use **PHPUnit** 5.7 and update tests.
+- :arrow_up: Use **PHP Code Sniffer** 3.0.
+- :arrow_up: Prepare code to use **ApiGen** 5.0 (removed as dependency).
+- :up: Update some internal scripts and other moved to the composer.json.
+- :new: Add utility scripts to the composer.json (check the [CONTRIBUTING](CONTRIBUTING.md) file for more details):
+  - `composer test-code`
+  - `composer analize-code`
+  - `composer autofix-code`
+  - `composer check-all`
+  - `composer build`:
+    - `composer build-code-coverage`:
+      - `composer build-code-coverage-clover`
+      - `composer build-code-coverage-xml`
+      - `composer build-code-coverage-html`
+    - `composer build-api`
+- :new: Add [CONTRIBUTING](CONTRIBUTING.md) file.
+
+#### More changes
+
+See [changes since v0.6.1](https://github.com/nelson6e65/php_nml/compare/v0.6.1...master?w=1) for more detailed info.
 
 
 ### Release 0.6.1 (2017-05-01)
