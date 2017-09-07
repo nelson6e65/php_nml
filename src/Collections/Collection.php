@@ -22,6 +22,7 @@ namespace NelsonMartell\Collections;
 
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Object;
+use function NelsonMartell\typeof;
 
 /**
  * Clase base de una colección de objetos, que provee una implementación
@@ -199,7 +200,7 @@ class Collection extends Object implements ICollection
                 $str = $format;
         }
 
-        $t = $this->GetType();
+        $t = typeof($this);
 
         $items = implode(', ', $this->items);
 
