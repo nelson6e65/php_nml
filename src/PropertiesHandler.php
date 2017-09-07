@@ -228,7 +228,7 @@ trait PropertiesHandler
      */
     protected static function getPropertySetter($name)
     {
-        $args   = [
+        $args = [
             'class' => get_called_class(),
         ];
 
@@ -282,7 +282,7 @@ trait PropertiesHandler
      */
     protected static function getPropertyGetter($name)
     {
-        $args   = [
+        $args = [
             'class' => get_called_class(),
         ];
 

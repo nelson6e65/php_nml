@@ -96,7 +96,7 @@ final class Assert
             );
 
             if ($msg) {
-                $error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
+                $error .= ' '.sprintf(dgettext('nml', 'Message: %s'), $msg);
             }
 
             trigger_error($error, E_USER_WARNING);
@@ -149,7 +149,7 @@ final class Assert
             );
 
             if ($msg) {
-                $error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
+                $error .= ' '.sprintf(dgettext('nml', 'Message: %s'), $msg);
             }
 
             trigger_error($error, E_USER_WARNING);
@@ -218,7 +218,7 @@ final class Assert
                     );
 
                     if ($msg) {
-                        $error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
+                        $error .= ' '.sprintf(dgettext('nml', 'Message: %s'), $msg);
                     }
 
                     trigger_error($error, E_USER_WARNING);
@@ -240,7 +240,7 @@ final class Assert
             );
 
             if ($msg) {
-                $error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
+                $error .= ' '.sprintf(dgettext('nml', 'Message: %s'), $msg);
             }
 
             trigger_error($error, E_USER_WARNING);
@@ -288,7 +288,7 @@ final class Assert
                     );
 
                     if ($msg) {
-                        $error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
+                        $error .= ' '.sprintf(dgettext('nml', 'Message: %s'), $msg);
                     }
 
                     trigger_error($error, E_USER_WARNING);
@@ -310,7 +310,7 @@ final class Assert
             );
 
             if ($msg) {
-                $error .= ' ' . sprintf(dgettext('nml', 'Message: %s'), $msg);
+                $error .= ' '.sprintf(dgettext('nml', 'Message: %s'), $msg);
             }
 
             trigger_error($error, E_USER_WARNING);

@@ -19,10 +19,9 @@
 
 namespace NelsonMartell\Test\TestCase;
 
-use NelsonMartell as NML;
-use NelsonMartell\VersionComponent;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
+use NelsonMartell\VersionComponent;
 use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 

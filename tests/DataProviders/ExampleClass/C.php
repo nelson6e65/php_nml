@@ -19,7 +19,6 @@
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
-use NelsonMartell\PropertiesHandler;
 use NelsonMartell\ICustomPrefixedPropertiesContainer;
 
 class C extends B implements ICustomPrefixedPropertiesContainer
