@@ -104,15 +104,10 @@ class Text extends TextBase
         $data = [];
         // Sanitize values to be convertibles into strings
         foreach ($originalData as $placeholder => $value) {
-            if (!is_string($placeholder) && !is_integer($placeholder)) {
-                $msg = 'Placeholder must to be a of string or integer type; "{1}" type given.';
-                throw new InvalidArgumentException(msg($msg, typeof($placeholder)));
-            }
-
             $valueType = typeof($value);
 
             if ($valueType->canBeString() === false) {
-                $msg = 'Value for "{{0}}" placeholder must to be a string or object convertible to string; "{1}" type given.';
+                $msg = 'Value for "{{0}}" placeholder is not convertible to string; "{1}" type given.';
                 throw new InvalidArgumentException(msg($msg, $placeholder, $valueType));
             }
 
