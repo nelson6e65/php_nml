@@ -26,22 +26,23 @@ use NelsonMartell\Extensions\Text;
  * El mensaje puede contener cadenas de formato.
  *
  * @param string      $message Mensaje con formato que se va a buscar.
- * @param array|mixed $args    Un objeto, una lista de objetos o múltiples
- *   argumentos que se van a incluir en las cadenas de formato del mensaje.
+ * @param array|mixed $args    Lista de objetos que se van a incluir en las cadenas de formato del mensaje.
  *
  * @return string
  * @since v0.6.0
  * @see \dgettext()
  * */
-function msg($message, $args = null)
+function msg($message, ...$args)
 {
     $translated = \dgettext(NML_GETTEXT_DOMAIN, $message);
 
-    if (\func_num_args() > 2) {
-        $args = \array_slice(func_get_args(), 1);
+    $data = $args;
+
+    if (count($args) === 1 && is_array($args[0])) {
+        $data = $args[0];
     }
 
-    return Text::format($translated, $args);
+    return Text::format($translated, $data);
 }
 
 
@@ -54,22 +55,23 @@ function msg($message, $args = null)
  * @param string      $plural   Mensaje con formato que se va a buscar cuando $n
  *   es distinto a (1).
  * @param int         $n        Cantidad
- * @param array|mixed $args     Un objeto, una lista de objetos o múltiples
- *   argumentos que se van a incluir en las cadenas de formato del mensaje.
+ * @param array|mixed $args     Lista de objetos que se van a incluir en las cadenas de formato del mensaje.
  *
  * @return string
  * @since v0.6.0
  * @see \dngettext()
  * */
-function nmsg($singular, $plural, $n, $args = null)
+function nmsg($singular, $plural, $n, ...$args)
 {
     $translated = \dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
 
-    if (\func_num_args() > 4) {
-        $args = \array_slice(func_get_args(), 3);
+    $data = $args;
+
+    if (count($args) === 1 && is_array($args[0])) {
+        $data = $args[0];
     }
 
-    return Text::format($translated, $args);
+    return Text::format($translated, $data);
 }
 
 

@@ -42,43 +42,64 @@ class Text extends TextBase
      * ##Usage
      * Using numbers as placeholders (encloses between `{` and `}`), you can get
      * the matching string representation of each object given. Use `{0}` for
-     * the fist object, `{1}` for the second, and so on.
-     * Example:
-     * `Text::format('{0} is {1} years old, and have {2} cats.', 'Bob', 65, 101);`
-     * Returns: 'Bob is 65 years old, and have 101 cats.'
+     * the fist object, `{1}` for the second, and so on:
      *
-     * You can also use an array to give objects values.
-     * Example: `Text::Format('{0} is {1} years old.', ['Bob', 65, 101]);`
-     * Returns: 'Bob is 65 years old, and have 101 cats.'
+     * ```php
+     * $format = '{0} is {1} years old, and have {2} cats.';
+     * echo Text::format($format, 'Bob', 65, 101); // 'Bob is 65 years old, and have 101 cats.'
+     * ```
      *
-     * If give an key => value array, each key stands for a placeholder variable
-     * name to be replaced with value key. In this case, order of keys do not
-     * matter.
-     * Example:
-     * `$arg0 = ['name' => 'Bob', 'n' => 101, 'age' => 65];`
-     * `$format = '{name} is {age} years old, and have {n} cats.';`
-     * `Text::Format($format, $arg0);`
-     * Returns: 'Bob is 65 years old, and have 101 cats.'
+     * You can also use an array to give objects values:
      *
-     * @param string               $format An string containing variable placeholders to be replaced.
-     * @param string[]|array|mixed $args   Object(s) to be replaced into $format.
-     *   placeholders.
+     * ```php
+     * $format = '{0} is {1} years old, and have {2} cats.';
+     * $data   = ['Bob', 65, 101];
+     * echo Text::format($format, $data); // 'Bob is 65 years old, and have 101 cats.'
+     * ```
+     *
+     * This is specially useful to be able to use non-numeric placeholders (named placeholders):
+     *
+     * ```php
+     * $format = '{name} is {age} years old, and have {n} cats.';
+     * $data = ['name' => 'Bob', 'n' => 101, 'age' => 65];
+     * echo Text::format($format, $data); // 'Bob is 65 years old, and have 101 cats.'
+     * ```
+     *
+     * For numeric placeholders, yo can convert the array into a list of arguments.
+     *
+     * ```php
+     * $format = '{0} is {1} years old, and have {2} cats.';
+     * $data   = ['Bob', 65, 101];
+     * echo Text::format($format, ...$data); // 'Bob is 65 years old, and have 101 cats.'
+     * ```
+     *
+     * > Note: If objects are not convertible to string, it will throws and catchable exception
+     * (`InvalidArgumentException`).
+     *
+     * @param string      $format An string containing variable placeholders to be replaced. If you provide name
+     *   placeholders, you must pass the target array as
+     * @param array|mixed $args   Object(s) to be replaced into $format placeholders.
+     *   You can provide one item only of type array for named placeholders replacement. For numeric placeholders, you
+     *   can still pass the array or convert it into arguments by using the '...' syntax instead.
      *
      * @return string
      * @throws InvalidArgumentException if $format is not an string or placeholder values are not string-convertibles.
-     * @todo   Implement, for php 5.6+:
-     *   php.net/functions.arguments.html#functions.variable-arg-list.new
      * @todo   Implement formatting, like IFormatProvider or something like that.
      * @author Nelson Martell <nelson6e65@gmail.com>
      */
-    public static function format($format, $args)
+    public static function format($format, ...$args)
     {
         static $options = [
             'before'  => '{',
             'after'   => '}',
         ];
 
-        $originalData = func_num_args() === 2 ? (array) $args : array_slice(func_get_args(), 1);
+        $originalData = $args;
+
+        // Make it compatible with named placeholders along numeric ones if passed only 1 array as argument
+        if (count($args) === 1 && is_array($args[0])) {
+            $originalData = $args[0];
+        }
 
         $data = [];
         // Sanitize values to be convertibles into strings
