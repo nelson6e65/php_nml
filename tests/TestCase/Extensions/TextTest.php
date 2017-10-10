@@ -32,7 +32,7 @@ use function NelsonMartell\typeof;
  *
  * @internal
  * */
-class StringTest extends TestCase
+class TextTest extends TestCase
 {
     /**
      * @dataProvider validPositionalArgsListProvider
