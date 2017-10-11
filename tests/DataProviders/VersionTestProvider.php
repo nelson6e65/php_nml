@@ -20,11 +20,14 @@
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\Version;
+use NelsonMartell\VersionComponent;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
+use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 
 /**
  *
@@ -38,6 +41,8 @@ trait VersionTestProvider
     use IComparableTester;
     use IComparerTester;
     use IEquatableTester;
+    use ImplementsIStrictPropertiesContainer;
+    use HasReadOnlyProperties;
 
     /**
      * Provides invalid arguments for constructor.
@@ -83,6 +88,24 @@ trait VersionTestProvider
             'Zero (minor)'                       => [0, 0], // is invalid, but can be created
             'Zero (build)'                       => [0, 0, 0], // is invalid, but can be created
             'Zero (revision)'                    => [0, 0, 0, 0], // is invalid, but can be created
+        ];
+    }
+
+
+    public function objectInstanceProvider()
+    {
+        return [[new Version(0, 7, '0-beta')]];
+    }
+
+    public function readOnlyPropertiesProvider()
+    {
+        $obj = new Version(0, 7, '0-beta');
+
+        return [
+            [$obj, 'major', 0],
+            [$obj, 'minor', 7],
+            [$obj, 'build', new VersionComponent(0, '-beta')],
+            [$obj, 'revision', new VersionComponent(null)],
         ];
     }
 
