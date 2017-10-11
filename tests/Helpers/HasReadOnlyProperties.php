@@ -23,6 +23,7 @@ use Cake\Utility\Inflector;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\IStrictPropertiesContainer;
 use SebastianBergmann\Exporter\Exporter;
+use BadMethodCallException;
 
 /**
  * Split of ImplementsIStrictPropertiesContainer, for classes implementing any write-only property.
@@ -52,6 +53,23 @@ trait HasReadOnlyProperties
         $property,
         $expected
     ) {
+        $exception = false;
+
+        try {
+            $actual = $obj->$property;
+        } catch (BadMethodCallException $e) {
+            $exception = $e;
+        }
+
+        $message = Text::format(
+            'Property `{1}` it should be accessible, but on trying to access it does throws an exception: "{2}".',
+            get_class($obj),
+            $property,
+            $exception === false ?: $exception->getMessage()
+        );
+
+        $this->assertNotInstanceOf(BadMethodCallException::class, $exception, $message);
+
         $exporter = new Exporter();
 
         $var = get_class($obj);
@@ -59,8 +77,6 @@ trait HasReadOnlyProperties
             $var,
             strrpos($var, '\\') === false ? 0 : strrpos($var, '\\') + 1
         ));
-
-        $actual = $obj->$property;
 
         $message = Text::format(
             '$actual = ${var}->{property}; // {actual}',
