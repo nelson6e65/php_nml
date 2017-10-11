@@ -21,7 +21,8 @@ namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\Type;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
-use NelsonMartell\Test\Helpers\IStrictPropertiesContainerTester;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 
 /**
@@ -33,7 +34,8 @@ use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 trait TypeTestProvider
 {
     use ConstructorMethodTester;
-    use IStrictPropertiesContainerTester;
+    use ImplementsIStrictPropertiesContainer;
+    use HasReadOnlyProperties;
 
     /**
      * Provides valid arguments for constructor.
@@ -76,7 +78,6 @@ trait TypeTestProvider
         return $this->goodConstructorArgumentsProvider();
     }
 
-    #GROUP: IStrictPropertiesContainerTester
 
     /**
      * @return array
@@ -92,25 +93,8 @@ trait TypeTestProvider
         ];
     }
 
-    public function writeonlyPropertiesProvider()
-    {
-        return null;
-    }
-
-    public function readwritePropertiesProvider()
-    {
-        return null;
-    }
-
-    public function unaccesiblePropertiesProvider()
-    {
-        return null;
-    }
-
     public function objectInstanceProvider()
     {
         return [[new Type($this)]];
     }
-
-    #ENDGROUP
 }
