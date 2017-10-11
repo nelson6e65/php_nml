@@ -25,6 +25,8 @@ use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
+use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 
 /**
  * Data providers for NelsonMartell\Test\VersionComponent.
@@ -39,6 +41,8 @@ trait VersionComponentTestProvider
     use IComparableTester;
     use IComparerTester;
     use IEquatableTester;
+    use ImplementsIStrictPropertiesContainer;
+    use HasReadOnlyProperties;
 
     public function goodConstructorArgumentsProvider()
     {
@@ -60,6 +64,21 @@ trait VersionComponentTestProvider
             'Invalid type (float) for string part'  => [0, 23.912],
             'Invalid type (object) for string part'  => [0, new \stdClass],
             'Invalid type (array) for string part'  => [0, ['no']],
+        ];
+    }
+
+    public function objectInstanceProvider()
+    {
+        return [[new VersionComponent(1, '-beta')]];
+    }
+
+    public function readOnlyPropertiesProvider()
+    {
+        $obj = new VersionComponent(1, '-beta');
+
+        return [
+            [$obj, 'intValue', 1],
+            [$obj, 'stringValue', '-beta'],
         ];
     }
 
