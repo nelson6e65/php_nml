@@ -20,6 +20,7 @@
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
 use NelsonMartell\PropertiesHandler;
+use NelsonMartell\IStrictPropertiesContainer;
 
 /**
  * Example class to be used in PropertiesHandler test.
@@ -29,7 +30,7 @@ use NelsonMartell\PropertiesHandler;
  * 'property': using getter or setter;
  * 'attribute': direct access
  */
-class A
+class A implements IStrictPropertiesContainer
 {
     use PropertiesHandler;
 

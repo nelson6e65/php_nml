@@ -21,10 +21,9 @@ namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell\Test\DataProviders\PropertiesHandlerTestProvider;
 use PHPUnit\Framework\TestCase;
-use \InvalidArgumentException;
-use \BadMethodCallException;
 
 /**
+ * Tests for PropertiesHandler trait using test classes.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
@@ -32,56 +31,4 @@ use \BadMethodCallException;
 class PropertiesHandlerTest extends TestCase
 {
     use PropertiesHandlerTestProvider;
-
-    /**
-     * @testdox Uses getters and setters methods in order to access and set values to class properties
-     * @dataProvider getAccesiblePropertiesProvider
-     */
-    public function testGetAccesibleProperties($expected, $obj, $propertyName)
-    {
-        $actual = $obj->$propertyName;
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * @testdox Can set properties with setters.
-     * @param mixed|null $expected
-     * @param mixed      $obj
-     * @param string     $propertyName
-     * @param mixed      $value
-     *
-     * @return void
-     * @dataProvider setAccesiblePropertiesProvider
-     */
-    public function testSetAccesibleProperties($expected, $obj, $propertyName, $value = null)
-    {
-        $actual = null;
-        if ($expected === null) {
-            // Check not throws any error
-            $obj->$propertyName = $value;
-        } else {
-            $obj->$propertyName = $value;
-            $actual = $obj->$propertyName;
-        }
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * @testdox Informs when trying to access inexistent or inaccesible properties (catchable exception)
-     * @expectedException BadMethodCallException
-     * @dataProvider unaccesiblePropertiesProvider
-     */
-    public function testUnaccesibleProperties($obj, $propertyName, $value = null)
-    {
-        $actual = null;
-
-        if ($value === null) {
-            $tmp = $obj->$propertyName;
-        } else {
-            $obj->$propertyName = $value;
-        }
-
-        $this->assertNull($actual);
-    }
 }

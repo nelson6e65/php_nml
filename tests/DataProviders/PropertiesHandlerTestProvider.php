@@ -20,6 +20,11 @@
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
+use NelsonMartell\Test\Helpers\HasWriteOnlyProperties;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\HasReadWriteProperties;
+use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use \InvalidArgumentException;
 
 /**
@@ -31,29 +36,29 @@ use \InvalidArgumentException;
 trait PropertiesHandlerTestProvider
 {
     use ExporterPlugin;
+    use ImplementsIStrictPropertiesContainer;
+    use HasUnaccesibleProperties;
+    use HasWriteOnlyProperties;
+    use HasReadWriteProperties;
+    use HasReadOnlyProperties;
 
-    public function getAccesiblePropertiesProvider()
+    public function objectInstanceProvider()
     {
         $a = new ExampleClass\A;
         $b = new ExampleClass\B;
         $c = new ExampleClass\C;
         $d = new ExampleClass\D;
+
         return [
-            'Get property accesible via a wrapper'        => [-1, $a, 'property1'],
-            'Get property accesible using attribute name' => [-2, $a, 'attribute2'],
-            'Get property accesible from parent only'     => [-4, $b, 'property4'],
-            'Custom prefix: Own attribute directly'       => [(-5 * 2), $c, 'attribute5'],
-            'Custom prefix: Own property directly'        => [-6, $c, 'property6'],
-            'Custom prefix: Own property directly2'        => [-9, $d, 'property9'],
-            'Custom prefix: Parent property'              => [-1, $d, 'property1'],
-            'Custom prefix: Parent property (using default prefix)' => [-3, $c, 'property3'],
+            [$a],
+            [$b],
+            [$c],
+            [$d],
         ];
     }
 
-    /**
-     * testSetAccesibleProperties
-     */
-    public function setAccesiblePropertiesProvider()
+
+    public function writeonlyPropertiesProvider()
     {
         $a = new ExampleClass\A;
         $b = new ExampleClass\B;
@@ -61,9 +66,37 @@ trait PropertiesHandlerTestProvider
         $d = new ExampleClass\D;
 
         return [
-            'Public read-write property: Set attribute with setter'            => [(3 * 100), $a, 'property3', 3],
-            'Set parent attribute accesible from parent (write-only property)' => [null, $b, 'property2', 2],
-            'Custom prefix: Own property'                                      => [(6 * 99), $c, 'property6', 6],
+            'Set parent attribute accesible from parent (write-only property)' => [$b, 'property2', 2],
+        ];
+    }
+
+    public function readwritePropertiesProvider()
+    {
+        $a = new ExampleClass\A;
+        $c = new ExampleClass\C;
+        $d = new ExampleClass\D;
+
+        return [
+            'Set attribute with setter'                                     => [$a, 'property3', 3, (3 * 100)],
+            'Custom prefix (parent using default): Own property directly'   => [$c, 'property6', 6, (6 * 99)],
+            'Custom prefix (parent using custom): Own property directly'    => [$d, 'property9', -9, -(9 * 10)],
+            'Custom prefix (parent using default)): Parent property '       => [$c, 'property3', -3, -(3 * 100)],
+        ];
+    }
+
+
+    public function readonlyPropertiesProvider()
+    {
+        $a = new ExampleClass\A;
+        $b = new ExampleClass\B;
+        $c = new ExampleClass\C;
+        $d = new ExampleClass\D;
+        return [
+            'Get property accesible via a wrapper'                  => [$a, 'property1', -1],
+            'Get property accesible using attribute name'           => [$a, 'attribute2', -2],
+            'Get property accesible from parent only'               => [$b, 'property4', -4],
+            'Custom prefix: Own attribute directly'                 => [$c, 'attribute5', (-5 * 2)],
+            'Custom prefix: Parent property'                        => [$d, 'property1', -1],
         ];
     }
 
