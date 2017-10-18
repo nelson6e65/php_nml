@@ -53,22 +53,18 @@ trait HasReadOnlyProperties
         $property,
         $expected
     ) {
-        $exception = false;
-
         try {
             $actual = $obj->$property;
         } catch (BadMethodCallException $e) {
-            $exception = $e;
+            $message = Text::format(
+                'Property `{1}` it should be accessible, but does it throws an exception: "{2}".',
+                get_class($obj),
+                $property,
+                $e->getMessage()
+            );
+
+            $this->fail($message);
         }
-
-        $message = Text::format(
-            'Property `{1}` it should be accessible, but on trying to access it does throws an exception: "{2}".',
-            get_class($obj),
-            $property,
-            $exception === false ?: $exception->getMessage()
-        );
-
-        $this->assertNotInstanceOf(BadMethodCallException::class, $exception, $message);
 
         $exporter = new Exporter();
 
