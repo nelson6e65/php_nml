@@ -241,7 +241,7 @@ class Collection extends Object implements ICollection
     /**
      * Agrega un nuevo elemento al final de la colección.
      * Nota para herederos: Para cambiar el comportamiento de este método,
-     * reemplazar más bien el método protegido 'InsertItem'.
+     * reemplazar más bien el método protegido 'insertItem'.
      *
      * @param mixed $item Elemento que se va a agregar a la colección.
      *
@@ -249,7 +249,7 @@ class Collection extends Object implements ICollection
      * */
     public function add($item)
     {
-        $this->InsertItem($this->Count, $item);
+        $this->insertItem($this->Count, $item);
     }
 
     /**
@@ -297,7 +297,7 @@ class Collection extends Object implements ICollection
     {
         for ($i = 0; $i < $this->Count; $i++) {
             if ($this->items[$i] === $item) {
-                $this->RemoveItem($i);
+                $this->removeItem($i);
             }
         }
 

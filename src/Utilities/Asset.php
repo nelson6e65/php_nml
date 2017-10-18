@@ -348,7 +348,7 @@ class Asset extends Object
     public function getResourcePath($version = self::NEWEST, $append = '')
     {
 
-        $r = sprintf('%s%s%s', $this->GetDirectoryPath($version), $this->ShortName, $append);
+        $r = sprintf('%s%s%s', $this->getDirectoryPath($version), $this->ShortName, $append);
 
         return $r;
     }

@@ -39,7 +39,7 @@ final class Assert
         }
 
         if ($expected instanceof Object || $expected instanceof IEquatable) {
-            if ($expected->Equals($actual)) {
+            if ($expected->equals($actual)) {
                 return true;
             }
         } else {
@@ -57,14 +57,15 @@ final class Assert
      * advertencia.
      *
      *
-     * @param   string $msg Custom message to append on assert failed.
-     * @param boolean $expected
-     * @return  boolean true si son iguales; false, en caso contrario.
+     * @param bool   $expected
+     * @param string $msg Custom message to append on assert failed.
+     *
+     * @return bool true si son iguales; false, en caso contrario.
      * */
     public static function areEqual($expected, $actual, $msg = '')
     {
 
-        $equals = self::Equals($expected, $actual);
+        $equals = self::equals($expected, $actual);
 
         if (!$equals) {
             $a_string = $actual;
@@ -117,7 +118,7 @@ final class Assert
      * */
     public static function areNotEqual($notExpected, $actual, $msg = '')
     {
-        $not_equals = !self::Equals($notExpected, $actual);
+        $not_equals = !self::equals($notExpected, $actual);
 
         if (!$not_equals) {
             $a_string = $actual;
@@ -200,14 +201,14 @@ final class Assert
             $actual = typeof($e);
         }
 
-        if ($actual->IsNotNull()) {
+        if ($actual->isNotNull()) {
             // Se lanzó la excepción...
-            if ($expected->IsNull()) {
+            if ($expected->isNull()) {
                 // ...pero no se especificó el tipo de excepción, es decir, puede ser cualquiera
                 $equals = true;
             } else {
                 // ...pero debe comprobarse si son del mismo tipo:
-                $equals = self::Equals($expected, $actual);
+                $equals = self::equals($expected, $actual);
 
                 if (!$equals) {
                     $error = sprintf(
@@ -228,7 +229,7 @@ final class Assert
             // No se lanzó la excepción
             $actual = "No exception";
 
-            if ($expected->IsNull()) {
+            if ($expected->isNull()) {
                 $expected = "Any exception";
             }
 
@@ -270,14 +271,14 @@ final class Assert
             $actual = typeof($e);
         }
 
-        if ($actual->IsNotNull()) {
+        if ($actual->isNotNull()) {
             // Se lanzó la excepción...
-            if ($expected->IsNull()) {
+            if ($expected->isNull()) {
                 // ...pero no se especificó el tipo de excepción, es decir, puede ser cualquiera
                 $equals = true;
             } else {
                 // ...pero debe comprobarse si son del mismo tipo:
-                $equals = self::Equals($expected, $actual);
+                $equals = self::equals($expected, $actual);
 
                 if (!$equals) {
                     $error = sprintf(
@@ -298,7 +299,7 @@ final class Assert
             // No se lanzó la excepción
             $actual = "No exception";
 
-            if ($expected->IsNull()) {
+            if ($expected->isNull()) {
                 $expected = "Any exception";
             }
 

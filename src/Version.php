@@ -120,8 +120,8 @@ final class Version extends Object implements IEquatable, IComparable
 
         $this->major = $major;
         $this->minor = $minor;
-        $this->build = VersionComponent::Parse($build);
-        $this->revision = VersionComponent::Parse($revision);
+        $this->build = VersionComponent::parse($build);
+        $this->revision = VersionComponent::parse($revision);
     }
 
     /**
@@ -286,11 +286,11 @@ final class Version extends Object implements IEquatable, IComparable
         $s[0] = $this->Major;
         $s[1] = $this->Minor;
 
-        if ($this->Revision->IsNotNull()) {
+        if ($this->Revision->isNotNull()) {
             $s[2] = $this->Build;
             $s[3] = $this->Revision;
         } else {
-            if ($this->Build->IsNotNull()) {
+            if ($this->Build->isNotNull()) {
                 $s[2] = $this->Build;
             }
         }
@@ -320,10 +320,10 @@ final class Version extends Object implements IEquatable, IComparable
 
         // Validación de Build y Revision:
         if ($r) {
-            $r = ($this->Build->IsNull() and $this->Revision->IsNull()); // #2
+            $r = ($this->Build->isNull() and $this->Revision->isNull()); // #2
 
             if (!$r) {
-                if ($this->Build->IsNotNull() and $this->Revision->IsNotNull()) {
+                if ($this->Build->isNotNull() and $this->Revision->isNotNull()) {
                     // Si ambos están definidos...
 
                     $r = (bool) ($this->Build->StringValue == ''); //#5
@@ -334,7 +334,7 @@ final class Version extends Object implements IEquatable, IComparable
 
                         if (!$r) {
                             if ($this->Build->StringValue != '') {
-                                $r = $this->Revision->IsNull(); #6
+                                $r = $this->Revision->isNull(); #6
                             }
 
                             if ($this->Revision->StringValue != '') {
@@ -343,7 +343,7 @@ final class Version extends Object implements IEquatable, IComparable
                         }
                     }
                 } else {
-                    $r = ($this->Build->IsNotNull() and $this->Revision->IsNull()); //#3
+                    $r = ($this->Build->isNotNull() and $this->Revision->isNull()); //#3
                 }
             }
         }
