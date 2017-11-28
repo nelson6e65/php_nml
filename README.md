@@ -41,7 +41,7 @@ Provides a set of auxiliary classes to help in your PHP applications development
 
 In order to install, use and update this package you only will need:
 
-* PHP 5.5+.
+* ![PHP 5.6](http://img.shields.io/badge/PHP-5.6-yellow.svg) ![PHP 7.0](http://img.shields.io/badge/PHP-7.0-yellow.svg) ![PHP 7.1](http://img.shields.io/badge/PHP-7.1-green.svg) ![PHP 7.2](http://img.shields.io/badge/PHP-7.2-yellow.svg)
 * [Composer](https://getcomposer.org).
 
 > The following instructions will assume you have `composer` [globally installed](https://getcomposer.org/doc/00-intro.md#globally).
