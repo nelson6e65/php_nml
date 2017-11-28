@@ -36,7 +36,7 @@ interface ICollection extends Iterator
      * propiedad `Count`.
      *
      * @return integer
-     * @see    NelsonMartell\Object
+     * @see    NelsonMartell\StrictObject
      * */
     public function getCount();
 

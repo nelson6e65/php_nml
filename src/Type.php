@@ -30,7 +30,7 @@ use \ReflectionMethod;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-final class Type extends Object
+final class Type extends StrictObject
 {
 
     /**

@@ -20,7 +20,7 @@
 namespace NelsonMartell\Utilities\UnitTesting;
 
 use NelsonMartell\IEquatable;
-use NelsonMartell\Object;
+use NelsonMartell\StrictObject;
 use \Exception;
 
 /**
@@ -38,7 +38,7 @@ final class Assert
             return true;
         }
 
-        if ($expected instanceof Object || $expected instanceof IEquatable) {
+        if ($expected instanceof StrictObject || $expected instanceof IEquatable) {
             if ($expected->equals($actual)) {
                 return true;
             }

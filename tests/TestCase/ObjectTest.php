@@ -3,7 +3,7 @@
  * PHP: Nelson Martell Library file
  *
  * Content:
- * - Test case for: [NelsonMartell] Object
+ * - Test case for: [NelsonMartell] StrictObject
  *
  * Copyright © 2016-2017 Nelson Martell (http://nelson6e65.github.io)
  *
@@ -22,7 +22,7 @@ namespace NelsonMartell\Test\TestCase;
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\ObjectTestProvider;
-use NelsonMartell\Object;
+use NelsonMartell\StrictObject;
 use PHPUnit\Framework\TestCase;
 use \InvalidArgumentException;
 use \Exception;
@@ -50,12 +50,12 @@ class ObjectTest extends TestCase
         $message = Text::format(
             '$object = new {class}();',
             [
-                'class' => Object::class,
+                'class' => StrictObject::class,
             ]
         );
 
         try {
-            $actual = new Object();
+            $actual = new StrictObject();
         } catch (Exception $e) {
             $actual = $e;
             $message .= Text::format(
@@ -64,6 +64,6 @@ class ObjectTest extends TestCase
             );
         }
 
-        $this->assertInstanceOf(Object::class, $actual, $message);
+        $this->assertInstanceOf(StrictObject::class, $actual, $message);
     }
 }

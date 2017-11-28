@@ -21,7 +21,7 @@
 namespace NelsonMartell\Collections;
 
 use NelsonMartell\Extensions\Text;
-use NelsonMartell\Object;
+use NelsonMartell\StrictObject;
 use function NelsonMartell\typeof;
 
 /**
@@ -30,7 +30,7 @@ use function NelsonMartell\typeof;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-class Collection extends Object implements ICollection
+class Collection extends StrictObject implements ICollection
 {
     // Implementación de la interfaz Iterator.
     use CollectionIterator;
