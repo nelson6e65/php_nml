@@ -20,5 +20,5 @@
 use NelsonMartell\StrictObject;
 
 if (PHP_VERSION_ID < 72000) {
-    class_alias(StrictObject::class, 'NelsonMartell\StrictObject');
+    class_alias(StrictObject::class, 'NelsonMartell\Object');
 }
