@@ -29,7 +29,7 @@ use \InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-class IntString extends Object implements IEquatable, IComparable
+class IntString extends StrictObject implements IEquatable, IComparable
 {
     /**
      * @param integer      $intValue    Integer part. Default: ``0`` (zero).

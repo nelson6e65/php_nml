@@ -28,7 +28,7 @@ use \InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-final class Version extends Object implements IEquatable, IComparable
+final class Version extends StrictObject implements IEquatable, IComparable
 {
 
     /**
@@ -394,7 +394,7 @@ final class Version extends Object implements IEquatable, IComparable
      *   - ``> 0`` si esta instancia se considera mayor a $other;
      *   - ``< 0`` si esta instancia se considera menor a $other.
      *   - ``null`` if this instance can't be compared against $other .
-     * @see Object::compare()
+     * @see StrictObject::compare()
      * */
     public function compareTo($other)
     {

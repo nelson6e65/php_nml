@@ -20,7 +20,7 @@
 namespace NelsonMartell\Utilities;
 
 use InvalidArgumentException;
-use NelsonMartell\Object;
+use NelsonMartell\StrictObject;
 use NelsonMartell\Version;
 
 use function NelsonMartell\msg;
@@ -34,7 +34,7 @@ use function NelsonMartell\typeof;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * */
-class Asset extends Object
+class Asset extends StrictObject
 {
     /**
      * Crea una nueva instancia de la clase Asset.

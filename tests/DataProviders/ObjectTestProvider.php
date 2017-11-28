@@ -19,7 +19,7 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell\Object;
+use NelsonMartell\StrictObject;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
@@ -39,7 +39,7 @@ trait ObjectTestProvider
 
     public function getTargetClassName()
     {
-        return Object::class;
+        return StrictObject::class;
     }
 
     public function goodConstructorArgumentsProvider()
