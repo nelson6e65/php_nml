@@ -33,7 +33,7 @@ use \Exception;
  * @internal
  * @group Criticals
  * */
-class ObjectTest extends TestCase
+class StrictObjectTest extends TestCase
 {
     use ObjectTestProvider;
 

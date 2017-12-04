@@ -4,8 +4,11 @@
         <testsuite name="PHP: Nelson Martell Library Tests Suite">
             <file>tests/TestCase/Extensions/TextTest.php</file>
             <file>tests/TestCase/TypeTest.php</file>
-            <file>tests/TestCase/ObjectTest.php</file>
+            <file>tests/TestCase/StrictObjectTest.php</file>
             <directory>tests/TestCase</directory>
+
+            <!-- Aliases for compatibility with another PHP < 7.2 -->
+            <directory phpVersion="7.2"  phpVersionOperator="&lt;">tests/TestCaseL72</directory>
         </testsuite>
     </testsuites>
 
