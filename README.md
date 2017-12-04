@@ -77,10 +77,10 @@ Check available classes in the [![API Documentation](http://img.shields.io/badge
 
 use NelsonMartell\Version;
 
-$nmlVersion = new Version(0, 6);
+$nmlVersion = new Version(0, 7);
 
 // Create Version object parsing from string
-$nmlVersion = Version::parse('0.6.0');
+$nmlVersion = Version::parse(NML_VERSION);
 
 // Explicit to string
 echo $nmlVersion->toString();
@@ -92,6 +92,9 @@ echo $nmlVersion;
 <p>Nelson Martell Library, version <?= $nmlVersion ?></p>
 
 ```
+
+> Note: API documentation is not updated for `0.7.0` release due to problems with the API Generation Tool (ApiGen), but will be solved soon, maybe for `v0.7.1`.
+
 
 ## License
 

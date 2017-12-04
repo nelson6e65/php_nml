@@ -1,7 +1,7 @@
 ## CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
-### Release 0.7.0 (WIP)
+### Release 0.7.0
 
 #### :star: Important changes
 
@@ -9,7 +9,7 @@ This release is mainly intended to provide PHP 7 compatibility:
 
 - :fire: Rename class _`NelsonMartell\Extensions\String`_ to **`NelsonMartell\Extensions\Text`**, but still available in PHP 5.6 as alias.
 - :fire: Rename class _`NelsonMartell\Object`_ to **`NelsonMartell\StrictObject`**, but still available in PHP < 7.2 as alias.
-- :fire: Drop support for PHP 5.5 or less. It still compatible with PHP 5.6.
+- :fire: Drop support for PHP < 5.6.
 - :fire: Remove deprecated code in v0.6.
 - :fire: Remove global functions. Are only available under `NelsonMartell` namespace now.
 - :bug: Correct minor issues.
@@ -34,6 +34,8 @@ There are some improvements for development:
       - `composer build-code-coverage-html`
     - `composer build-api`
 - :new: Add [CONTRIBUTING](CONTRIBUTING.md) file.
+
+> **NOTE**: API Documentation not updated to this release due to conflict in API generation tool.
 
 #### More changes
 
