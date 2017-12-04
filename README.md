@@ -10,7 +10,7 @@
 [![Latest Version](https://img.shields.io/packagist/v/nelson6e65/php_nml.svg?label=stable)](https://packagist.org/packages/nelson6e65/php_nml)
 [![Latest unstable Version](https://img.shields.io/packagist/vpre/nelson6e65/php_nml.svg?label=unstable)](https://packagist.org/packages/nelson6e65/php_nml#dev-master)
 [![Waffle.io](https://img.shields.io/waffle/label/nelson6e65/php_nml/wip.svg?label=Work%20in%20progress)](http://waffle.io/nelson6e65/php_nml)
-[![GitHub commits](https://img.shields.io/github/commits-since/nelson6e65/php_nml/v0.6.1.svg)](https://github.com/nelson6e65/php_nml/compare/v0.6.1...master)
+[![GitHub commits](https://img.shields.io/github/commits-since/nelson6e65/php_nml/v0.7.0.svg)](https://github.com/nelson6e65/php_nml/compare/v0.7.0...master)
 
 [![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
 [![API Documentation](http://img.shields.io/badge/documentation-API-yellow.svg)](http://nelson6e65.github.io/php_nml/api)
@@ -77,7 +77,7 @@ Check available classes in the [![API Documentation](http://img.shields.io/badge
 
 use NelsonMartell\Version;
 
-$nmlVersion = new Version(0, 7);
+$nmlVersion = new Version(0, 7, '1-dev');
 
 // Create Version object parsing from string
 $nmlVersion = Version::parse(NML_VERSION);
