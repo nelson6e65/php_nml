@@ -1,202 +1,231 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PHP: Nelson Martell Library 1.0\n"
-"POT-Creation-Date: 2015-07-05 01:20-0430\n"
-"PO-Revision-Date: 2015-07-05 01:21-0430\n"
-"Last-Translator: Nelson Martell <nelson6e65-transifex@yahoo.es>\n"
-"Language-Team:  <nelson6e65-transifex@yahoo.es>\n"
+"POT-Creation-Date: 2017-12-03 23:00-0400\n"
+"PO-Revision-Date: 2017-12-03 23:02-0400\n"
+"Last-Translator: Nelson Martell <nelson6e65@gmail.com>\n"
+"Language-Team: <nelson6e65-transifex@yahoo.es>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ../../../src\n"
 "X-Poedit-SearchPath-1: ../../..\n"
 
-#: src/Extensions/String.php:84
+#: src/Extensions/Text.php:134
 msgid "Provided object must not be NULL."
 msgstr ""
 
-#: src/Extensions/String.php:101
+#: src/Extensions/Text.php:152
 msgid "Provided object must to be an string; \"{0}\" given."
 msgstr ""
 
-#: src/Extensions/String.php:118
+#: src/Extensions/Text.php:170
 msgid "Provided string must not be empty."
 msgstr ""
 
-#: src/Extensions/String.php:135
+#: src/Extensions/Text.php:189
 msgid "Provided string must not be white spaces."
 msgstr ""
 
-#: src/Extensions/String.php:153
+#: src/Extensions/Text.php:210
 msgid ""
 "Provided string do not follows PHP variables naming convention: \"{0}\"."
 msgstr ""
 
-#: src/Object.php:96
+#: src/IntString.php:49 src/IntString.php:65 src/IntString.php:105
+#: src/Utilities/Asset.php:171 src/Utilities/Asset.php:314 src/Version.php:60
+#: src/Version.php:79
+msgid "Invalid argument type."
+msgstr ""
+
+#: src/IntString.php:51 src/IntString.php:67 src/IntString.php:107
+msgid ""
+" {position} parameter must to be an instance of \"{expected}\"; \"{actual}\" "
+"given."
+msgstr ""
+
+#: src/IntString.php:118 src/Utilities/Asset.php:67 src/Utilities/Asset.php:98
+#: src/Utilities/Asset.php:126 src/Utilities/Asset.php:189
+#: src/Utilities/Asset.php:325 src/Version.php:96 src/Version.php:112
+#: src/VersionComponent.php:56 src/VersionComponent.php:90
+msgid "Invalid argument value."
+msgstr ""
+
+#: src/IntString.php:119
+msgid " \"{0}\" (string) must to start with an integer."
+msgstr ""
+
+#: src/PropertiesHandler.php:107 src/PropertiesHandler.php:110
+msgid "Unable to get the property value in \"{0}\" class."
+msgstr ""
+
+#: src/PropertiesHandler.php:134 src/PropertiesHandler.php:137
+msgid "Unable to set the property value in \"{0}\" class."
+msgstr ""
+
+#: src/PropertiesHandler.php:162
+msgid "Property name is not valid."
+msgstr ""
+
+#: src/PropertiesHandler.php:176
+msgid ""
+"\"{property}\" property do not exists in \"{class}\" class or parent classes."
+msgstr ""
+
+#: src/PropertiesHandler.php:204
+msgid "Method name is not valid."
+msgstr ""
+
+#: src/PropertiesHandler.php:209
+msgid "\"{class}::{method}\" do not exists."
+msgstr ""
+
+#: src/PropertiesHandler.php:242
+msgid "\"{name}\" property has not a setter method in \"{class}\"."
+msgstr ""
+
+#: src/PropertiesHandler.php:250
+msgid "\"{class}::getCustomSetterPrefix\" method must to return an string."
+msgstr ""
+
+#: src/PropertiesHandler.php:296
+msgid "\"{name}\" property has not a getter method in \"{class}\"."
+msgstr ""
+
+#: src/PropertiesHandler.php:304
+msgid "\"{class}::getCustomGetterPrefix\" method must to return an string."
+msgstr ""
+
+#: src/StrictObject.php:72
 msgid "Using default \"{base_class}::{function}\" ({access}) method."
 msgstr ""
 
-#: src/Object.php:98 src/Object.php:139
+#: src/StrictObject.php:74 src/StrictObject.php:104
 msgid ""
 " You can replace (override) its behavior by creating \"{class}::"
 "{function}\" ({access}) method."
 msgstr ""
 
-#: src/Object.php:134
+#: src/StrictObject.php:99
 msgid ""
 "You implemented IEquatable, but using default \"{base_class}::"
 "{function}\" ({access}) method."
 msgstr ""
 
-#: src/Utilities/Asset.php:59 src/Utilities/Asset.php:90
-#: src/Utilities/Asset.php:119 src/Utilities/Asset.php:182
-#: src/Utilities/Asset.php:313 src/Version.php:97 src/Version.php:113
-#: src/VersionComponent.php:47 src/VersionComponent.php:103
-msgid "Invalid argument value."
-msgstr ""
-
-#: src/Utilities/Asset.php:61
+#: src/Utilities/Asset.php:69
 msgid ""
 " \"{name}\" (position {pos}) can not be specified if \"{name2}\" (position "
 "{pos2}) is \"null\"."
 msgstr ""
 
-#: src/Utilities/Asset.php:92
+#: src/Utilities/Asset.php:100
 msgid ""
 " \"{name}\" (position {pos}) must to be an array of \"{expected}\" elements "
 "(or any parseable into \"{expected}\"); the array given has an invalid "
 "\"{actual}\" element."
 msgstr ""
 
-#: src/Utilities/Asset.php:121
+#: src/Utilities/Asset.php:128
 msgid ""
 " \"{name}\" (position {pos}) must to be an array of \"{expected}\" elements, "
 "an instance of \"{expected}\" or any object parseable into \"{expected}\"; "
 "\"{actual}\" given."
 msgstr ""
 
-#: src/Utilities/Asset.php:164 src/Utilities/Asset.php:302 src/Version.php:61
-#: src/Version.php:80 src/VersionComponent.php:67 src/VersionComponent.php:122
-msgid "Invalid argument type."
-msgstr ""
-
-#: src/Utilities/Asset.php:166
+#: src/Utilities/Asset.php:173
 msgid ""
 " \"{class}::{property}\" must to be an instance of \"{expected}\"; "
 "\"{actual}\" given."
 msgstr ""
 
-#: src/Utilities/Asset.php:184
+#: src/Utilities/Asset.php:191
 msgid " \"{class}::{property}\" value can not be empty or whitespace."
 msgstr ""
 
-#: src/Utilities/Asset.php:275
+#: src/Utilities/Asset.php:287
 msgid "This Asset has not versions."
 msgstr ""
 
-#: src/Utilities/Asset.php:304
+#: src/Utilities/Asset.php:316
 msgid ""
 " \"{name}\" (position {pos}) must to be an instance of \"{expected}\" (or "
 "compatible); \"{actual}\" given."
 msgstr ""
 
-#: src/Utilities/Asset.php:314
+#: src/Utilities/Asset.php:326
 msgid " Asset has not the version \"{version}\"."
 msgstr ""
 
-#: src/Utilities/UnitTesting/Assert.php:89
+#: src/Utilities/UnitTesting/Assert.php:91
 #, php-format
 msgid "%5$s failed. Expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
 msgstr "%5$s ha fallado. Se esperaba: (%3$s) \"%4$s\". Real: (%1$s) \"%2$s\"."
 
-#: src/Utilities/UnitTesting/Assert.php:98
-#: src/Utilities/UnitTesting/Assert.php:151
-#: src/Utilities/UnitTesting/Assert.php:220
-#: src/Utilities/UnitTesting/Assert.php:242
-#: src/Utilities/UnitTesting/Assert.php:290
-#: src/Utilities/UnitTesting/Assert.php:312
+#: src/Utilities/UnitTesting/Assert.php:100
+#: src/Utilities/UnitTesting/Assert.php:153
+#: src/Utilities/UnitTesting/Assert.php:222
+#: src/Utilities/UnitTesting/Assert.php:244
+#: src/Utilities/UnitTesting/Assert.php:292
+#: src/Utilities/UnitTesting/Assert.php:314
 #, php-format
 msgid "Message: %s"
 msgstr "Mensaje: %s"
 
-#: src/Utilities/UnitTesting/Assert.php:142
+#: src/Utilities/UnitTesting/Assert.php:144
 #, php-format
 msgid "%5$s failed. Not expected: (%3$s) \"%4$s\". Actual: (%1$s) \"%2$s\"."
 msgstr ""
 "%5$s ha fallado. No se esperaba: (%3$s) \"%4$s\". Real: (%1$s) \"%2$s\"."
 
-#: src/Utilities/UnitTesting/Assert.php:213
-#: src/Utilities/UnitTesting/Assert.php:235
-#: src/Utilities/UnitTesting/Assert.php:283
-#: src/Utilities/UnitTesting/Assert.php:305
+#: src/Utilities/UnitTesting/Assert.php:215
+#: src/Utilities/UnitTesting/Assert.php:237
+#: src/Utilities/UnitTesting/Assert.php:285
+#: src/Utilities/UnitTesting/Assert.php:307
 #, php-format
 msgid "%1$s failed. Expected: \"%2$s\". Actual: \"%3$s\"."
 msgstr "%1$s ha fallado. Se esperaba: \"%2$s\". Real: \"%3$s\"."
 
-#: src/Version.php:63 src/Version.php:82 src/VersionComponent.php:69
-#: src/VersionComponent.php:124
+#: src/Version.php:62 src/Version.php:81
 msgid ""
 " \"{name}\" (position {pos}) must to be an instance of \"{expected}\"; "
 "\"{actual}\" given."
 msgstr ""
 
-#: src/Version.php:66 src/Version.php:85
+#: src/Version.php:65 src/Version.php:84
 msgid " Convert value or use the \"{class}::parse\" (static) method."
 msgstr ""
 
-#: src/Version.php:99 src/Version.php:115 src/VersionComponent.php:49
+#: src/Version.php:98 src/Version.php:114
 msgid ""
 " \"{name}\" (position {pos}) must to be a positive number; \"{actual}\" "
 "given."
 msgstr ""
 
-#: src/Version.php:161
+#: src/Version.php:156
 msgid "Unable to parse. Argument passed has an invalid type: \"{0}\"."
 msgstr ""
 
-#: src/Version.php:169
+#: src/Version.php:164
 msgid "Unable to parse. Argument passed has an invalid format: \"{0}\"."
 msgstr ""
 
-#: src/VersionComponent.php:105
-msgid " \"{name}\" (position {pos}) has invalid chars; \"{actual}\" given."
+#: src/VersionComponent.php:58
+#, fuzzy
+#| msgid ""
+#| "Invalid argument value. '%s' (argument %s) must be a positive number; "
+#| "'%s' given."
+msgid " {position} argument must to be a positive number; \"{actual}\" given."
 msgstr ""
+"Valor inválido de argumento. '%s' (argumento %s) debe ser un número "
+"positivo; '%s' dado."
 
-#: src/PropertiesHandler.inc:70
-msgid "Unable to get the property value in \"{0}\" class."
-msgstr ""
-
-#: src/PropertiesHandler.inc:96
-msgid "Unable to set the property value in \"{0}\" class."
-msgstr ""
-
-#: src/PropertiesHandler.inc:118
-msgid "Property name is not valid."
-msgstr ""
-
-#: src/PropertiesHandler.inc:128
-msgid "Property \"{class}::{property}\" do not exists."
-msgstr ""
-
-#: src/PropertiesHandler.inc:150
-msgid "Method name is not valid."
-msgstr ""
-
-#: src/PropertiesHandler.inc:160
-msgid "Method \"{class}::{method}\" do not exists."
-msgstr ""
-
-#: src/PropertiesHandler.inc:189
-msgid "Property \"{class}::{name}\" has not a setter."
-msgstr ""
-
-#: src/PropertiesHandler.inc:218
-msgid "Property \"{class}::{name}\" has not a getter."
+#: src/VersionComponent.php:92
+msgid " {position} parameter has invalid chars; \"{actual}\" given."
 msgstr ""
 
 #~ msgid "Can not specify $versions argument if $name argument is null."
@@ -209,13 +238,6 @@ msgstr ""
 
 #~ msgid "Asset has not version %s."
 #~ msgstr "Recurso no tiene definida la versión %s."
-
-#~ msgid ""
-#~ "Invalid argument value. '%s' (argument %s) must be a positive number; "
-#~ "'%s' given."
-#~ msgstr ""
-#~ "Valor inválido de argumento. '%s' (argumento %s) debe ser un número "
-#~ "positivo; '%s' dado."
 
 #~ msgid "Unable to parse. Argument passed has an invalid format: '%s'."
 #~ msgstr ""
