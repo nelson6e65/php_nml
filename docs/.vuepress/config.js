@@ -1,7 +1,7 @@
 module.exports = {
   // Output build
   dest: 'output/docs',
-  base: 'php_nml',
+  base: '/php_nml/',
 
   title: 'PHP: Nelson Martell Library',
   description: 'A set of auxiliary classes for your PHP applications',
