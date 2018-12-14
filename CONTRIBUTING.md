@@ -4,6 +4,8 @@
 - Git
 - PHP 5.6+
 - [Composer](https://getcomposer.org/)
+- Node.js
+- [Yarn](https://yarnpkg.com)
 
 ### Initialization
 
@@ -15,6 +17,11 @@ git clone git@github.com:nelson6e65/php_nml.git
 - Install PHP dependencies:
 ```bash
 composer install
+```
+
+- Install Node dependencies:
+```bash
+yarn
 ```
 
 
@@ -39,6 +46,13 @@ composer install
     - For HTML format only: **`composer build-code-coverage-html`**.
 
 - **`composer build-api`**: Generates API documentation in `output/api/` directory using [ApiGen](https://github.com/ApiGen/ApiGen).
+
+
+
+- **`yarn docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.
+
+- **`yarn docs:build`**: Build the VuePress documentation to be published.
+
 
 
 

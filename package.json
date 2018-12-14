@@ -1,0 +1,16 @@
+{
+  "name": "php_nml",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:nelson6e65/php_nml.git",
+  "author": "Nelson Martell <nelson6e65@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "vuepress": "^0.14.8"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  }
+}
