@@ -1,5 +1,23 @@
 # Contributing guidelines for PHP: Nelson Martell Library
 
+## Global requirements
+- Git
+- PHP 5.6+
+- [Composer](https://getcomposer.org/)
+
+### Initialization
+
+- Clone the repository:
+```bash
+git clone git@github.com:nelson6e65/php_nml.git
+```
+
+- Install PHP dependencies:
+```bash
+composer install
+```
+
+
 ## Scripts helpers
 
 > **Note:** This scripts should be run from root php_nml directory (where `composer.json` is).
