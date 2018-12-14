@@ -37,6 +37,7 @@ before_install:
 before_script:
   - composer self-update
   - composer install --no-interaction --dev
+  - yarn
   # - if [[ $BUILD_API == 'true' ]]; then composer require apigen/apigen:dev-master; fi
 
 script:
