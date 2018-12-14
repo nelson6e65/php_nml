@@ -16,10 +16,10 @@ matrix:
   fast_finish: false
   include:
     - php: 7.1
-      env: BUILD_API=true
+      env: BUILD_DOCS=true
   allow_failures:
     - php: 7.1
-      env: BUILD_API=true
+      env: BUILD_DOCS=true
 
 before_install:
   # Setup Git
@@ -29,6 +29,10 @@ before_install:
   # Setup Composer
   - composer global config minimum-stability dev
   - composer global config prefer-stable true
+
+  # Install Yarn
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+
 
 before_script:
   - composer self-update
@@ -41,6 +45,7 @@ script:
   # - if [[ $BUILD_API == 'true' ]]; then composer build-api; fi
 
 after_success:
+  - if [[ $BUILD_DOCS == 'true' ]]; then yarn docs:build; fi
   # - if [[ $BUILD_API == 'true' ]]; then .travis/deploy-documentation; fi
 
 notifications:
@@ -52,3 +57,13 @@ notifications:
     on_start: always
   slack:
     secure: J5EWCVQ1hhUQNc6/RCh0wPhk1HvVhYi5OK8XTKqafTicnNWemGDSfK7AaBWHGkP0gyLFd38xby/tFa6+1WMkUjCL01CIIKSHOlq/d0q9KJBpDvEq6oDqzzlc3bP0q6rlhEUQSqsFRz1VBYdfGWKJC3LWdSS7vY0J4T5hgiPBRMk=
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  local-dir: output/docs
+  on:
+    branch: master
+    condition: $BUILD_DOCS = true
