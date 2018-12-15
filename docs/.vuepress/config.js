@@ -7,7 +7,7 @@ module.exports = {
   description: 'A set of auxiliary classes for your PHP applications',
 
   markdown: {
-    lineNumbers: true,
+    lineNumbers: false,
     toc: { includeLevel: [1, 2, 3] },
   },
 
