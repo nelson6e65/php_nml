@@ -29,7 +29,7 @@ composer require nelson6e65/php_nml
 
 > More info at https://nelson6e65.github.io/php_nml/guide/install.html
 
-## Documentation
+## [Documentation](https://nelson6e65.github.io/php_nml)
 For more detailed information and description and instructions, check the documentation at **https://nelson6e65.github.io/php_nml**
 
 
