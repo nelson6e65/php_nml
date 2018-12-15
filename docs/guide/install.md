@@ -29,7 +29,6 @@ composer require nelson6e65/php_nml
 
 ::: tip
 Remember to add your `vendor` directory in your `.gitignore` file ([Why?](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
-
 :::
 
 
