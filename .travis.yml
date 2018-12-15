@@ -44,11 +44,10 @@ before_script:
 script:
   - composer analize-code
   - composer test-code
-  # - if [[ $BUILD_API == 'true' ]]; then composer build-api; fi
+  - export CHANGED_DOC_FILES=($(git diff --name-only $TRAVIS_COMMIT_RANGE docs))
 
 after_success:
-  - if [[ $BUILD_DOCS == 'true' ]]; then yarn docs:build; fi
-  # - if [[ $BUILD_API == 'true' ]]; then .travis/deploy-documentation; fi
+  - if [[ $BUILD_DOCS == 'true' ]]; then .travis/build-documentation; fi
 
 notifications:
   webhooks:
@@ -68,4 +67,4 @@ deploy:
   local-dir: output/docs
   on:
     branch: master
-    condition: $BUILD_DOCS = true
+    condition: $BUILD_DOCS = true && $CHANGED_DOC_FILES IS NOT blank

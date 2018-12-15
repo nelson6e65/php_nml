@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ $TRAVIS_BRANCH != 'master' ]] || [[ $TRAVIS_PULL_REQUEST == 'true' ]]; then
+    echo 'Skip documentation build! Not a master brach push'
+    exit 0
+fi
+
+if [[ -z $CHANGED_DOC_FILES ]] ; then
+    echo 'Skip documentation build! No changes to update'
+    exit 0
+fi
+
+yarn docs:build
