@@ -200,7 +200,10 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
                                     // Recursive call to compare values
                                     $r = static::compare($lValue, $rValue);
                                 }
-                            } while (each($left) && each($right) && $r === 0);
+
+                                next($left);
+                                next($right);
+                            } while (key($left) !== null && key($right) !== null && $r === 0);
                         }
                         break;
 
