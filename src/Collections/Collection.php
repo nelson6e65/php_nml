@@ -23,6 +23,7 @@ namespace NelsonMartell\Collections;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\StrictObject;
 use function NelsonMartell\typeof;
+use OutOfRangeException;
 
 /**
  * Clase base de una colección de objetos, que provee una implementación
@@ -56,11 +57,10 @@ class Collection extends StrictObject implements ICollection
     /**
      * Inserta un nuevo elemento a la colección, en el índice especificado.
      *
-     * @param integer $index   Índice del elemento a insertar.
+     * @param int     $index   Índice del elemento a insertar.
      * @param mixed   $newItem Nuevo elemento a insertar a la colección.
      *
      * @return void
-     * @access protected
      * */
     protected function insertItem($index, $newItem)
     {
@@ -90,7 +90,7 @@ class Collection extends StrictObject implements ICollection
     /**
      * Establece un elemento en el índice especificado.
      *
-     * @param integer $index   Índice del elemento a establecer.
+     * @param int $index   Índice del elemento a establecer.
      * @param mixed   $newItem Nuevo valor con el que se va a reemplazar.
      *
      * @return void
@@ -112,7 +112,7 @@ class Collection extends StrictObject implements ICollection
      * dentro de la colección, tendría que utilizarse el método
      * Collection::setItem una vez modificado.
      *
-     * @param integer $index Índice del elemento a obtener.
+     * @param int $index Índice del elemento a obtener.
      *
      * @return mixed
      * */
@@ -128,7 +128,7 @@ class Collection extends StrictObject implements ICollection
     /**
      * Remove the item in specified index.
      *
-     * @param integer $index Index.
+     * @param int $index Index.
      *
      * @return void
      */
@@ -223,7 +223,7 @@ class Collection extends StrictObject implements ICollection
      * Obtiene el número de elementos incluidos en la colección.
      * Esta propiedad es de sólo lectura.
      *
-     * @var integer
+     * @var int
      * */
     public $Count;
     private $count = 0;
@@ -231,7 +231,7 @@ class Collection extends StrictObject implements ICollection
     /**
      * Getter for Count property.
      *
-     * @return integer
+     * @return int
      * */
     public function getCount()
     {
@@ -270,7 +270,7 @@ class Collection extends StrictObject implements ICollection
      *
      * @param mixed $item Objeto que se va a buscar.
      *
-     * @return boolean `true` si $item se encuentra; en caso contrario, `false`.
+     * @return bool `true` si $item se encuentra; en caso contrario, `false`.
      * */
     public function contains($item)
     {
@@ -289,7 +289,7 @@ class Collection extends StrictObject implements ICollection
      *
      * @param mixed $item Objeto que se va a quitar.
      *
-     * @return boolean `true` si el elemento se ha quitado correctamente; en
+     * @return bool `true` si el elemento se ha quitado correctamente; en
      *   caso contrario, `false`. Este método también devuelve `false` si no
      *   se encontró.
      * */

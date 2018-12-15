@@ -33,7 +33,7 @@ interface IEquatable
      *
      * @param mixed $other Another object to compare equality.
      *
-     * @return boolean
+     * @return bool
      * */
     public function equals($other);
 }

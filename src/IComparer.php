@@ -35,7 +35,7 @@ interface IComparer
      * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
      * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
      *
-     * @return integer|null
+     * @return int|null
      *   Debe devolver:
      *   - ``= 0`` si $left se considera equivalente a $right;
      *   - ``> 0`` si $left se considera mayor a $right;

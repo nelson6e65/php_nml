@@ -118,7 +118,7 @@ class VersionComponent extends IntString implements IEquatable
     /**
      * Determina si este componente tiene los valores predeterminados (0).
      *
-     * @return boolean
+     * @return bool
      * */
     public function isDefault()
     {
@@ -135,7 +135,7 @@ class VersionComponent extends IntString implements IEquatable
     /**
      * Getter method for VersionComponent::IntValue property.
      *
-     * @return integer|NULL
+     * @return int|null
      * */
     public function getIntValue()
     {
@@ -146,7 +146,7 @@ class VersionComponent extends IntString implements IEquatable
     /**
      * Determina si este componente NO tiene los valores predeterminados.
      *
-     * @return boolean
+     * @return bool
      * */
     public function isNotDefault()
     {
@@ -156,7 +156,7 @@ class VersionComponent extends IntString implements IEquatable
     /**
      * Determina si esta instancia es nula.
      *
-     * @return boolean
+     * @return bool
      * */
     public function isNull()
     {
@@ -170,7 +170,7 @@ class VersionComponent extends IntString implements IEquatable
     /**
      * Determina si esta instancia NO es nula.
      *
-     * @return boolean
+     * @return bool
      * */
     public function isNotNull()
     {

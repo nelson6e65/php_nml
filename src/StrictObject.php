@@ -19,8 +19,6 @@
 
 namespace NelsonMartell;
 
-use \BadMethodCallException;
-
 /**
  * Base class that encapsulates strict properties and other basic features.
  *
@@ -32,6 +30,9 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
 {
     use PropertiesHandler;
 
+    /**
+     *
+     */
     public function __construct()
     {
     }
@@ -82,6 +83,15 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
         return '{ '.$type.' }';
     }
 
+    /**
+     * Indica si el objeto especificado es igual a la instancia actual.
+     *
+     * Note: This methods must to be overriden.
+     *
+     * @param mixed $other Another object to compare equality.
+     *
+     * @return bool
+     * */
     public function equals($other)
     {
         if (defined('CODE_ANALYSIS')) {
@@ -134,7 +144,7 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
      * @param mixed $left  Left object.
      * @param mixed $right Right object.
      *
-     * @return integer|null
+     * @return int|null
      *   Returns:
      *   - ``= 0`` if $left is considered equivalent to $other;
      *   - ``> 0`` if $left is considered greater than $other;

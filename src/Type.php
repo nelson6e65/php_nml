@@ -125,7 +125,7 @@ final class Type extends StrictObject
      * If this Type is not a class, this property is set to `NULL`.
      * This property is read-only.
      *
-     * @var string|NULL
+     * @var string|null
      * */
     public $Namespace;
     private $namespace;
@@ -133,7 +133,7 @@ final class Type extends StrictObject
     /**
      * Getter for Type::Namespace property.
      *
-     * @return string|NULL
+     * @return string|null
      * @see    Type::Namespace
      * */
     public function getNamespace()
@@ -207,7 +207,7 @@ final class Type extends StrictObject
     /**
      * Determina si este Type es `null`.
      *
-     * @return boolean `true` if this type is `null`; other case, `false`.
+     * @return bool `true` if this type is `null`; other case, `false`.
      * */
     public function isNull()
     {
@@ -221,7 +221,7 @@ final class Type extends StrictObject
     /**
      * Determina si este Type NO es `null`.
      *
-     * @return boolean `true` if this type is NOT `null`; other case, `false`.
+     * @return bool `true` if this type is NOT `null`; other case, `false`.
      * */
     public function isNotNull()
     {
@@ -232,7 +232,7 @@ final class Type extends StrictObject
     /**
      * Determina si este Type es una clase personalizada.
      *
-     * @return boolean `true`, if this Type is a custom class; another case,
+     * @return bool `true`, if this Type is a custom class; another case,
      *   `false`.
      * */
     public function isCustom()
@@ -243,7 +243,7 @@ final class Type extends StrictObject
     /**
      * Determinate if this type is scalar.
      *
-     * @return boolean
+     * @return bool
      * @see    is_scalar()
      * */
     public function isScalar()
@@ -268,7 +268,7 @@ final class Type extends StrictObject
     /**
      * Determina si este Type es de tipo valor.
      *
-     * @return boolean
+     * @return bool
      * */
     public function isValueType()
     {
@@ -282,7 +282,7 @@ final class Type extends StrictObject
     /**
      * Determina si este Type es de tipo referencia.
      *
-     * @return boolean
+     * @return bool
      * */
     public function isReferenceType()
     {
@@ -308,6 +308,8 @@ final class Type extends StrictObject
     /**
      * Obtiene el tipo del objeto especificado.
      * Es un alias para el constructor de Type.
+     *
+     * @param mixed $obj
      *
      * @return     Type
      * @deprecated since 5.0.1 and will be removed in 0.7.0. Use constructor instead.

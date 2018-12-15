@@ -36,7 +36,7 @@ interface IList extends ICollection
      *
      * @param mixed $item Objeto que se va a buscar.
      *
-     * @return integer Índice de $item si se encuentra en la lista; en caso
+     * @return int Índice de $item si se encuentra en la lista; en caso
      *   contrario, -1.
      * */
     public function indexOf($item);
@@ -45,7 +45,7 @@ interface IList extends ICollection
     /**
      * Inserta un elemento en la lista, en el índice especificado.
      *
-     * @param integer $index Índice de base cero en el que debe insertarse
+     * @param int $index Índice de base cero en el que debe insertarse
      *   $item.
      * @param mixed   $item  Objeto que se va a insertar.
      *
@@ -57,10 +57,10 @@ interface IList extends ICollection
     /**
      * Quita el elemento del índice especificado.
      *
-     * @param integer $index Índice de base cero del elemento que se va a
+     * @param int $index Índice de base cero del elemento que se va a
      *   quitar.
      *
-     * @return boolean `true` si el elemento se ha quitado correctamente; en
+     * @return bool `true` si el elemento se ha quitado correctamente; en
      *   caso contrario, `false`. Este método también devuelve `false` si no
      *   se encontró.
      * */

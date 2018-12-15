@@ -35,7 +35,7 @@ interface ICollection extends Iterator
      * Si extiende la clase NelsonMartell.Object, puede accederse desde la
      * propiedad `Count`.
      *
-     * @return integer
+     * @return int
      * @see    NelsonMartell\StrictObject
      * */
     public function getCount();
@@ -66,7 +66,7 @@ interface ICollection extends Iterator
      *
      * @param mixed $item Objeto que se va a buscar.
      *
-     * @return boolean `true` si $item se encuentra; en caso contrario, `false`.
+     * @return bool `true` si $item se encuentra; en caso contrario, `false`.
      * */
     public function contains($item);
 
@@ -77,7 +77,7 @@ interface ICollection extends Iterator
      *
      * @param mixed $item Objeto que se va a quitar.
      *
-     * @return boolean `true` si el elemento se ha quitado correctamente; en
+     * @return bool `true` si el elemento se ha quitado correctamente; en
      *   caso contrario, `false`. Este método también devuelve `false` si no
      *   se encontró.
      * */

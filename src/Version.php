@@ -311,7 +311,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * 6. Build está definido y tiene la cadena, pero Revision no está definido.
      * 7. Revision posee cadena, pero Build no.
      *
-     * @return boolean Un valor que indica si la instancia actual es válida.
+     * @return bool Un valor que indica si la instancia actual es válida.
      * */
     public function isValid()
     {
@@ -388,7 +388,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * @param Version|int|string|mixed $other
      *   The other object to compare with.
      *
-     * @return integer|null
+     * @return int|null
      *   Returns:
      *   - ``= 0`` if this instance is considered equivalent to $other;
      *   - ``> 0`` si esta instancia se considera mayor a $other;
