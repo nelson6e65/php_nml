@@ -10,7 +10,7 @@ env:
   global:
     - ENCRYPTION_LABEL="7dec5f5b26df"
   matrix:
-    - BUILD_API=false
+    - BUILD_DOCS=false
 
 matrix:
   fast_finish: false
@@ -30,8 +30,9 @@ before_install:
   - composer global config minimum-stability dev
   - composer global config prefer-stable true
 
-  # Install Yarn
+  # Install/update Yarn
   - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
 
 
 before_script:
