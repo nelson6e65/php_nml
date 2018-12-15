@@ -34,6 +34,9 @@ before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
 
+  # Variables
+  - source .travis/docs-variables
+
 
 before_script:
   - composer self-update
@@ -44,10 +47,9 @@ before_script:
 script:
   - composer analize-code
   - composer test-code
-  - export CHANGED_DOC_FILES=($(git diff --name-only $TRAVIS_COMMIT_RANGE docs))
 
 after_success:
-  - if [[ $BUILD_DOCS == 'true' ]]; then .travis/build-documentation; fi
+  - if [[ $CHANGED_DOC_FILES == 'true' ]]; then yarn docs:build; fi
 
 notifications:
   webhooks:
@@ -67,4 +69,4 @@ deploy:
   local-dir: output/docs
   on:
     branch: master
-    condition: $BUILD_DOCS = true && $CHANGED_DOC_FILES IS NOT blank
+    condition: $BUILD_DOCS = true && $CHANGED_DOC_FILES = true

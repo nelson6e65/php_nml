@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+CHANGED_DOC_FILES=true
+
+git diff --quiet ${TRAVIS_COMMIT_RANGE} docs
+
+if [[ $? -eq 0 ]] ; then
+    echo 'No changes in documentation to update'
+    CHANGED_DOC_FILES=false
+fi
+
+export CHANGED_DOC_FILES
