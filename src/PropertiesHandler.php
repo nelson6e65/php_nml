@@ -13,7 +13,7 @@
  *
  * @copyright 2015-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.5.0
+ * @since     0.5.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -86,6 +86,7 @@ use \InvalidArgumentException;
  *   could try to rename methods instead first.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.5.0
  * */
 trait PropertiesHandler
 {

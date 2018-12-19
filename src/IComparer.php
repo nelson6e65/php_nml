@@ -13,7 +13,7 @@
  *
  * @copyright 2016-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -24,6 +24,7 @@ namespace NelsonMartell;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @see IComparable
+ * @since 0.6.0
  * */
 interface IComparer
 {

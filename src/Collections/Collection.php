@@ -14,7 +14,7 @@
  *
  * @copyright 2015-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.4.0
+ * @since     0.4.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -30,6 +30,7 @@ use OutOfRangeException;
  * predeterminada de la interfaz ICollection.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.4.0
  * */
 class Collection extends StrictObject implements ICollection
 {

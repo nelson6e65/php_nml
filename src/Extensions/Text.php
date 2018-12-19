@@ -13,7 +13,7 @@
  *
  * @copyright 2015-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.7.0
+ * @since     0.7.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 namespace NelsonMartell\Extensions;
@@ -28,7 +28,9 @@ use function NelsonMartell\typeof;
  * Provides extension methods to handle strings.
  * This class is based on \Cake\Utility\Text of CakePHP(tm) class.
  *
- * @see \Cake\Utility\Text::insert
+ * @since 0.7.0
+ * @author Nelson Martell <nelson6e65@gmail.com>
+ * @see \Cake\Utility\Text::insert()
  * @link http://book.cakephp.org/3.0/en/core-libraries/text.html
  * */
 class Text extends TextBase

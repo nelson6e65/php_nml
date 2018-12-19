@@ -13,7 +13,7 @@
  *
  * @copyright 2015-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.5.0
+ * @since     0.5.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -22,7 +22,7 @@
  * Only for internal usage.
  *
  * @constant string
- * @since    v0.4.5
+ * @since 0.4.5
  */
 define('NML_GETTEXT_DOMAIN', 'nml');
 
@@ -32,7 +32,7 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  * Can be parsed into a `NelsonMartell\Version` object. ;)
  *
  * @constant string
- * @since    v0.4.4
+ * @since 0.4.4
  */
 define('NML_VERSION', '0.7.1-dev');
 

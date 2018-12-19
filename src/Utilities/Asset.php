@@ -13,7 +13,7 @@
  *
  * @copyright 2014-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.1.1
+ * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -33,8 +33,10 @@ use function NelsonMartell\typeof;
  * y recursos entre sus diferentes versiones.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.1.1
+ * @deprecated 0.7.1
  * */
-class Asset extends StrictObject
+abstract class Asset extends StrictObject
 {
     /**
      * Crea una nueva instancia de la clase Asset.
@@ -337,11 +339,9 @@ class Asset extends StrictObject
      * Obtiene la ruta del recurso de la versión especificada. Si no se
      * especifica, se devuelve la versión más reciente.
      *
-     * @param string|Version $version Versión a obtener. También puede
-     *   tomar los valores 'newest' u 'oldest' para representar a la versión
-     *   más nueva o más vieja, respectivamente.
-     * @param string         $append  Texto que se le anezará a la cadena
-     *   de salida.
+     * @param string|Version $version Versión a obtener. También puede tomar los valores 'newest' u 'oldest' para
+     *   representar a la versión más nueva o más vieja, respectivamente.
+     * @param string         $append  Texto que se le anexará a la cadena de salida.
      *
      * @return string Ruta del recurso
      * */

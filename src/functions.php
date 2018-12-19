@@ -13,7 +13,7 @@
  *
  * @copyright 2016-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -29,7 +29,7 @@ use NelsonMartell\Extensions\Text;
  * @param array|mixed $args    Lista de objetos que se van a incluir en las cadenas de formato del mensaje.
  *
  * @return string
- * @since v0.6.0
+ * @since 0.6.0
  * @see \dgettext()
  * */
 function msg($message, ...$args)
@@ -58,7 +58,7 @@ function msg($message, ...$args)
  * @param array|mixed $args     Lista de objetos que se van a incluir en las cadenas de formato del mensaje.
  *
  * @return string
- * @since v0.6.0
+ * @since 0.6.0
  * @see \dngettext()
  * */
 function nmsg($singular, $plural, $n, ...$args)
@@ -82,7 +82,7 @@ function nmsg($singular, $plural, $n, ...$args)
  * @param mixed $obj Objeto al cual se le extraerá su tipo.
  *
  * @return Type
- * @since v0.6.0
+ * @since 0.6.0
  * */
 function typeof($obj)
 {

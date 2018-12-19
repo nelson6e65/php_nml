@@ -13,7 +13,7 @@
  *
  * @copyright 2015-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.1.1
+ * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -25,6 +25,7 @@ use \Iterator;
  * Define métodos para manipular colecciones de objetos.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.1.1
  * */
 interface ICollection extends Iterator
 {

@@ -14,7 +14,7 @@
  *
  * @copyright 2013-2015 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.1.1
+ * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -29,6 +29,7 @@ use \ReflectionMethod;
  * describe some info about itself.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.1.1
  * */
 final class Type extends StrictObject
 {
@@ -312,7 +313,7 @@ final class Type extends StrictObject
      * @param mixed $obj
      *
      * @return     Type
-     * @deprecated since 5.0.1 and will be removed in 0.7.0. Use constructor instead.
+     * @deprecated 0.5.1 Use constructor instead.
      * */
     public static function typeof($obj)
     {

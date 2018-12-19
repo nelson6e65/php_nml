@@ -13,7 +13,7 @@
  *
  * @copyright 2015-2017 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.3.2
+ * @since     0.3.2
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -23,6 +23,7 @@ namespace NelsonMartell;
  * Provee métodos para comparar posición relativa de instancia.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.3.2
  * */
 interface IComparable
 {
@@ -57,8 +58,9 @@ interface IComparable
      *   - ``> 0`` si $left se considera mayor a $right;
      *   - ``< 0`` si $left se considera menor a $right.
      *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
-     * @see IComparer::compare()
-     * @deprecated since v0.6.0; implement ``NelsonMartell\IComparer`` instead.
+     *
+     * @see IComparer
+     * @deprecated 0.6.0 Implement ``NelsonMartell\IComparer`` instead.
      * */
     public static function compare($left, $right);
 }
