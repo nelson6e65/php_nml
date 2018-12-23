@@ -39,9 +39,9 @@ before_install:
 
 before_script:
   - composer self-update
-  - composer global require phpdocumentor/phpdocumentor # phpdoc
   - composer install --no-interaction --dev
-  - yarn
+  - if [[ $BUILD_DOCS == 'true' ]]; then composer global require phpdocumentor/phpdocumentor; fi # phpdoc
+  - if [[ $BUILD_DOCS == 'true' ]]; then yarn; fi # yarn install
 
 script:
   - composer analize-code
