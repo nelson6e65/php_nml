@@ -5,7 +5,12 @@ Release notes for *PHP: Nelson Martell Library*.
 
 #### :star: Important changes
 
+- :new: Documentation with VuePress (including API docs).
+
 #### :notebook: Development changes
+
+- :up: Improve TravisCI to auto-generate documentation.
+- :up: Contributing instructions
 
 #### More changes
 

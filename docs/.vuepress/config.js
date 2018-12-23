@@ -16,18 +16,38 @@ module.exports = {
 
     nav: [
       { text: 'Guide', link: '/guide/' },
+      { text: 'API', link: '/api/' },
     ],
 
-    sidebar: [
-      {
-        title: 'Guide',
-        collapsable: false,
-        children: [
-          '/guide/',
-          '/guide/install'
-        ]
-      },
-    ],
+    sidebar: {
+      '/guide/': [
+        {
+          title: 'Guide',
+          collapsable: false,
+          children: [
+            '',
+            'install',
+          ]
+        }
+      ],
+      '/api/': [
+        {
+          title: 'API',
+          collapsable: false,
+          children: [
+            '',
+            'classes',
+            'interfaces',
+            'traits',
+            'functions',
+            'constants'
+          ]
+        }
+      ],
+      '/': [
+        ''
+      ]
+    },
     sidebarDepth: 3,
 
     lastUpdated: true,
