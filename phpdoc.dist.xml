@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <title>PHP: Nelson Martell Library</title>
+
+  <parser>
+    <visibility>public,protected</visibility>
+    <target>output/doc</target>
+  </parser>
+
+  <transformer>
+    <target>docs/api</target>
+  </transformer>
+
+  <transformations>
+    <template name="vendor/nelson6e65/phpdoc-vuepress/data/templates/vuepress" />
+  </transformations>
+
+  <files>
+    <directory>src</directory>
+    <file>vendor/cakephp/utility/Text.php</file>
+  </files>
+
+</phpdoc>

@@ -149,7 +149,19 @@ final class Type extends StrictObject
      * @var array
      * */
     public $Vars;
+
+    /**
+     * Properties of the type of this instance.
+     *
+     * @var array
+     */
     private $vars = null;
+
+    /**
+     * Getter for `$vars` property.
+     *
+     * @return array
+     */
     public function getVars()
     {
         if ($this->vars == null) {
@@ -168,6 +180,12 @@ final class Type extends StrictObject
      * */
     public $Methods;
     private $methods = null;
+
+    /**
+     * Getter for `$methods` property.
+     *
+     * @return array
+     */
     public function getMethods()
     {
         if ($this->methods == null) {
@@ -179,7 +197,11 @@ final class Type extends StrictObject
     }
 
     /**
+     * Checks if the type has a method.
+     *
      * @param string $name
+     *
+     * @return bool
      */
     public function hasMethod($name)
     {

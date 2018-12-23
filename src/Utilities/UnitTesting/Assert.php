@@ -33,7 +33,14 @@ use \Exception;
  * */
 final class Assert
 {
-
+    /**
+     *
+     *
+     * @param mixed $expected
+     * @param mixed $actual
+     *
+     * @return bool
+     */
     private static function equals($expected, $actual)
     {
         if ($expected === $actual) {
@@ -59,8 +66,9 @@ final class Assert
      * advertencia.
      *
      *
-     * @param bool   $expected
-     * @param string $msg Custom message to append on assert failed.
+     * @param mixed  $expected
+     * @param mixed  $actual
+     * @param string $msg      Custom message to append on assert failed.
      *
      * @return bool true si son iguales; false, en caso contrario.
      * */
@@ -115,7 +123,10 @@ final class Assert
      * emite una advertencia.
      *
      *
-     * @param  string $msg Custom message to append on assert failed.
+     * @param mixed  $notExpected
+     * @param mixed  $actual
+     * @param string $msg      Custom message to append on assert failed.
+     *
      * @return  boolean true si NO son iguales; false, en caso contrario.
      * */
     public static function areNotEqual($notExpected, $actual, $msg = '')
@@ -161,12 +172,25 @@ final class Assert
         return $not_equals;
     }
 
-
+    /**
+     * Tests that the object is `true`.
+     *
+     * @param mixed $actual
+     *
+     * @return bool
+     */
     public static function isTrue($actual)
     {
         return self::areEqual(true, $actual);
     }
 
+    /**
+     * Tests that the object is `false`.
+     *
+     * @param mixed $actual
+     *
+     * @return bool
+     */
     public static function isFalse($actual)
     {
         return self::areEqual(false, $actual);
@@ -254,12 +278,22 @@ final class Assert
     }
 
 
-
+    /**
+     * Tests if a property trows an exception.
+     *
+     * @param mixed     $obj               Target object.
+     * @param string    $property_name
+     * @param mixed     $value
+     * @param Exception $expectedException
+     * @param string    $msg
+     *
+     * @return bool
+     */
     public static function propertyThrowsException(
         $obj,
         $property_name,
         $value,
-        Exception $expectedException = null,
+        $expectedException = null,
         $msg = ''
     ) {
         $equals = false;

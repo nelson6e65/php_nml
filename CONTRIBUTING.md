@@ -6,6 +6,7 @@
 - [Composer](https://getcomposer.org/)
 - Node.js
 - [Yarn](https://yarnpkg.com)
+- [phpDocumentor](https://www.phpdoc.org/)
 
 ### Initialization
 
@@ -48,6 +49,7 @@ yarn
 - **`composer build-api`**: Generates API documentation in `output/api/` directory using [ApiGen](https://github.com/ApiGen/ApiGen).
 
 
+- **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
 
 - **`yarn docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.
 
@@ -57,5 +59,5 @@ yarn
 
 
 ### Deployment scripts
-
+[DEPRECATED]
 - `.travis/deploy-documentation`: Generates documentation and publish it in `gh-pages` brach. **Note:** _This script is used by [Travis CI](travis-ci.org) to publish documentation and **should not be run in local development**_.

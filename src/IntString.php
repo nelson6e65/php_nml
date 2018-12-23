@@ -33,6 +33,8 @@ use \InvalidArgumentException;
 class IntString extends StrictObject implements IEquatable, IComparable
 {
     /**
+     * Creates a new IntString instance.
+     *
      * @param int          $intValue    Integer part. Default: ``0`` (zero).
      * @param string|null  $stringValue String part. Default: ``''`` (empty).
      */
@@ -125,32 +127,69 @@ class IntString extends StrictObject implements IEquatable, IComparable
         return new IntString($intValue, $stringValue);
     }
 
+    /**
+     * Integer part of the instance.
+     *
+     * @var int
+     */
     protected $intValue;
+
+    /**
+     * String part of the instance.
+     *
+     * @var string
+     */
     protected $stringValue;
 
     /**
+     * Gets the integer part of the instance.
+     *
      * @var int
      */
     public $IntValue;
+
+    /**
+     * Getter for $indValue property.
+     *
+     * @return int
+     */
     public function getIntValue()
     {
         return $this->intValue;
     }
 
     /**
+     * Gets the string part of the instance.
+     *
      * @var string
      */
     public $StringValue;
+
+    /**
+     * Getter for $stringValue property.
+     *
+     * @return int
+     */
     public function getStringValue()
     {
         return $this->stringValue;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function toString()
     {
         return $this->IntValue.$this->StringValue;
     }
 
+    /**
+     * Indica si el objeto especificado es igual a la instancia actual.
+     *
+     * @param IntString|mixed $other
+     *
+     * @return bool
+     */
     public function equals($other)
     {
         if ($other instanceof IntString) {

@@ -7,8 +7,6 @@ php:
   - 7.2
 
 env:
-  global:
-    - ENCRYPTION_LABEL="7dec5f5b26df"
   matrix:
     - BUILD_DOCS=false
 
@@ -29,6 +27,7 @@ before_install:
   # Setup Composer
   - composer global config minimum-stability dev
   - composer global config prefer-stable true
+  - export PATH=$HOME/.config/composer/vendor/bin:$PATH
 
   # Install/update Yarn
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -40,16 +39,17 @@ before_install:
 
 before_script:
   - composer self-update
+  - composer global require phpdocumentor/phpdocumentor # phpdoc
   - composer install --no-interaction --dev
   - yarn
-  # - if [[ $BUILD_API == 'true' ]]; then composer require apigen/apigen:dev-master; fi
 
 script:
   - composer analize-code
   - composer test-code
 
 after_success:
-  - if [[ $CHANGED_DOC_FILES == 'true' ]]; then yarn docs:build; fi
+  - if [[ $BUILD_DOCS == 'true' ]]; then phpdoc; fi
+  - if [[ $BUILD_DOCS == 'true' ]]; then yarn docs:build; fi
 
 notifications:
   webhooks:
@@ -69,4 +69,4 @@ deploy:
   local-dir: output/docs
   on:
     branch: master
-    condition: $BUILD_DOCS = true && $CHANGED_DOC_FILES = true
+    condition: $BUILD_DOCS = true && $DOCS_NEEDS_UPDATE = true

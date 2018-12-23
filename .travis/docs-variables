@@ -10,3 +10,35 @@ if [[ $? -eq 0 ]] ; then
 fi
 
 export CHANGED_DOC_FILES
+
+
+CHANGED_SRC_FILES=true
+
+git diff --quiet ${TRAVIS_COMMIT_RANGE} src
+
+if [[ $? -eq 0 ]] ; then
+    echo 'No changes in sources'
+    CHANGED_SRC_FILES=false
+fi
+
+export CHANGED_SRC_FILES
+
+
+CHANGED_DOCS_CONFIG=false
+
+git diff --quiet ${TRAVIS_COMMIT_RANGE} phpdoc.dist.xml
+
+if [[ $? -eq 1 ]] ; then
+    CHANGED_DOCS_CONFIG=true
+fi
+
+export CHANGED_DOCS_CONFIG
+
+
+DOCS_NEEDS_UPDATE=false
+
+if [[ $CHANGED_DOC_FILES == 'true' || $CHANGED_SRC_FILES == 'true' || $CHANGED_DOCS_CONFIG == 'true' ]] ; then
+    DOCS_NEEDS_UPDATE=true # Si cambió ya sea el código, la documentación  o la configuración de la doc
+fi
+
+export DOCS_NEEDS_UPDATE
