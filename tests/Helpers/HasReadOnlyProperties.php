@@ -38,9 +38,9 @@ trait HasReadOnlyProperties
      * @returns IStrictPropertiesContainer
      * @see ImplementsIStrictPropertiesContainer::testImplementsIStrictPropertiesContainerInterface()
      */
-    public abstract function testImplementsIStrictPropertiesContainerInterface($obj);
+    abstract public function testImplementsIStrictPropertiesContainerInterface($obj);
 
-    public abstract function readonlyPropertiesProvider();
+    abstract public function readonlyPropertiesProvider();
 
 
     /**

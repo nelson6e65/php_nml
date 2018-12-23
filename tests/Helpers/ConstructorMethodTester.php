@@ -36,7 +36,7 @@ trait ConstructorMethodTester
      *
      * @return string
      */
-    public abstract function getTargetClassName();
+    abstract public function getTargetClassName();
 
     protected $targetClassReflection = null;
 
@@ -95,12 +95,12 @@ trait ConstructorMethodTester
      *
      * @return array
      */
-    public abstract function goodConstructorArgumentsProvider();
+    abstract public function goodConstructorArgumentsProvider();
 
     /**
      * Must provide invalid argument for constructor.
      *
      * @return array
      */
-    public abstract function badConstructorArgumentsProvider();
+    abstract public function badConstructorArgumentsProvider();
 }

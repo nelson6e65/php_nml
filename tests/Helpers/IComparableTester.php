@@ -31,17 +31,17 @@ use NelsonMartell\IComparable;
  * */
 trait IComparableTester
 {
-    public abstract function getTargetClassInstance(); // use ConstructorMethodTester;
-    public abstract function getTargetClassName(); // use ConstructorMethodTester;
-    public abstract function getTargetClassReflection(); // use ConstructorMethodTester;
-    public abstract function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
+    abstract public function getTargetClassInstance(); // use ConstructorMethodTester;
+    abstract public function getTargetClassName(); // use ConstructorMethodTester;
+    abstract public function getTargetClassReflection(); // use ConstructorMethodTester;
+    abstract public function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
 
     /**
      * Datasets for ``testIComparableCompareToMethod(integer|null $expected, IComparable $left, mixed $right)``.
      *
      * @return array
      */
-    public abstract function IComparableCompareToMethodArgumentsProvider();
+    abstract public function IComparableCompareToMethodArgumentsProvider();
 
     /**
      * @testdox Can compare relative position with other objects

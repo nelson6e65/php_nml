@@ -34,9 +34,9 @@ trait HasReadWriteProperties
     /**
      * @returns IStrictPropertiesContainer
      */
-    public abstract function testImplementsIStrictPropertiesContainerInterface($obj);
+    abstract public function testImplementsIStrictPropertiesContainerInterface($obj);
 
-    public abstract function readwritePropertiesProvider();
+    abstract public function readwritePropertiesProvider();
 
 
     /**

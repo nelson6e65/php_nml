@@ -32,16 +32,16 @@ use NelsonMartell\IEquatable;
  * */
 trait IEquatableTester
 {
-    public abstract function getTargetClassName(); // use ConstructorMethodTester;
-    public abstract function getTargetClassReflection(); // use ConstructorMethodTester;
-    public abstract function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
+    abstract public function getTargetClassName(); // use ConstructorMethodTester;
+    abstract public function getTargetClassReflection(); // use ConstructorMethodTester;
+    abstract public function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
 
     /**
      * Datasets for ``testIEquatableEqualsMethod(bool $expected, IEquatable $left, mixed $right)``.
      *
      * @return array
      */
-    public abstract function IEquatableMethodArgumentsProvider();
+    abstract public function IEquatableMethodArgumentsProvider();
 
 
     /**

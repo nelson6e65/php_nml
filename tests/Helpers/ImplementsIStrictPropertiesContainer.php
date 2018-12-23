@@ -38,7 +38,7 @@ use SebastianBergmann\Exporter\Exporter;
  * */
 trait ImplementsIStrictPropertiesContainer
 {
-    public abstract function objectInstanceProvider();
+    abstract public function objectInstanceProvider();
 
     /**
      * @dataProvider objectInstanceProvider
