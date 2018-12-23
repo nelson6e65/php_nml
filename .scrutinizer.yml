@@ -3,6 +3,8 @@ build:
     php:
       version: 7.1
 
+    node: v8.14.0
+
   tests:
     override:
       -
