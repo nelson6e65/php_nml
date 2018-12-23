@@ -6,10 +6,11 @@ Release notes for *PHP: Nelson Martell Library*.
 #### :star: Important changes
 
 - :new: Documentation with VuePress (including API docs).
+- :new: Compatible with PHP 7.3.
 
 #### :notebook: Development changes
 
-- :up: Improve TravisCI to auto-generate documentation.
+- :up: Improve Travis CI to auto-generate documentation.
 - :up: Contributing instructions
 
 #### More changes
