@@ -32,7 +32,7 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
     use PropertiesHandler;
 
     /**
-     *
+     * Constructor.
      */
     public function __construct()
     {
