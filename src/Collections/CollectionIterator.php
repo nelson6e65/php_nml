@@ -56,5 +56,5 @@ trait CollectionIterator
         return $v;
     }
 
-    protected abstract function getItem($index);
+    abstract protected function getItem($index);
 }

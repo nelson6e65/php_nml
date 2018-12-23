@@ -31,23 +31,23 @@ use NelsonMartell\IComparer;
  * */
 trait IComparerTester
 {
-    public abstract function getTargetClassName(); // use ConstructorMethodTester;
-    public abstract function getTargetClassReflection(); // use ConstructorMethodTester;
-    public abstract function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
+    abstract public function getTargetClassName(); // use ConstructorMethodTester;
+    abstract public function getTargetClassReflection(); // use ConstructorMethodTester;
+    abstract public function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
 
     /**
      * Datasets for ``testCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
      *
      * @return array
      */
-    public abstract function compareMethodArgumentsProvider();
+    abstract public function compareMethodArgumentsProvider();
 
     /**
      * Datasets for ``testCanUseCompareMethodInArraySorting(integer|null $expected, mixed $left, mixed $right)``.
      *
      * @return array
      */
-    public abstract function compareMethodArraysProvider();
+    abstract public function compareMethodArraysProvider();
 
 
     /**

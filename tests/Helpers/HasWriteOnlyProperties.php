@@ -34,9 +34,9 @@ trait HasWriteOnlyProperties
     /**
      * @returns IStrictPropertiesContainer
      */
-    public abstract function testImplementsIStrictPropertiesContainerInterface($obj);
+    abstract public function testImplementsIStrictPropertiesContainerInterface($obj);
 
-    public abstract function writeonlyPropertiesProvider();
+    abstract public function writeonlyPropertiesProvider();
 
     /**
      * @dataProvider writeonlyPropertiesProvider

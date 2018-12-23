@@ -34,9 +34,9 @@ trait HasUnaccesibleProperties
     /**
      * @returns IStrictPropertiesContainer
      */
-    public abstract function testImplementsIStrictPropertiesContainerInterface($obj);
+    abstract public function testImplementsIStrictPropertiesContainerInterface($obj);
 
-    public abstract function unaccesiblePropertiesProvider();
+    abstract public function unaccesiblePropertiesProvider();
 
     /**
      * @dataProvider unaccesiblePropertiesProvider
