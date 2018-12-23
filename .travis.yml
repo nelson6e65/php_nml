@@ -29,6 +29,7 @@ before_install:
   # Setup Composer
   - composer global config minimum-stability dev
   - composer global config prefer-stable true
+  - export PATH=$HOME/.config/composer/vendor/bin:$PATH
 
   # Install/update Yarn
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -40,8 +41,8 @@ before_install:
 
 before_script:
   - composer self-update
-  - composer install --no-interaction --dev
   - composer global require phpdocumentor/phpdocumentor # phpdoc
+  - composer install --no-interaction --dev
   - yarn
 
 script:
