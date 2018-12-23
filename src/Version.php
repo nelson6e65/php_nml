@@ -28,6 +28,15 @@ use \InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.1.1
+ * @property-read int               $major    Obtiene el valor del componente principal del número de versión. Esta
+ *   propiedad es de sólo lectura.
+ * @property-read int               $minor    Obtiene el valor del componente secundario del número de versión. Esta
+ *   propiedad es de sólo lectura.
+ * @property-read VersionComponent  $build    Obtiene el valor del componente de compilación del número de versión.
+ *   Esta propiedad es de sólo lectura.
+ * @property-read VersionComponent  $revision Obtiene el valor del componente de revisión del número de versión. Esta
+ *   propiedad es de sólo lectura.
+ *
  * */
 final class Version extends StrictObject implements IEquatable, IComparable
 {
@@ -47,7 +56,6 @@ final class Version extends StrictObject implements IEquatable, IComparable
     public function __construct($major, $minor, $build = null, $revision = null)
     {
         parent::__construct();
-        unset($this->Major, $this->Minor, $this->Build, $this->Revision);
 
         if (!is_integer($major)) {
             $args = [
@@ -184,36 +192,19 @@ final class Version extends StrictObject implements IEquatable, IComparable
         return new Version($major, $minor, $build, $revision);
     }
 
-    /**
-     * Obtiene el valor del componente principal del número de versión del
-     * objeto actual.
-     * Esta propiedad es de sólo lectura.
-     *
-     * @var int Componente principal del número de versión.
-     * */
-    public $Major;
     private $major;
 
     /**
-     * Getter for Major property.
+     * Getter for major property.
      *
      * @return int
      * @see    Version::$major
      */
-    public function getMajor()
+    protected function getMajor()
     {
         return $this->major;
     }
 
-
-    /**
-     * Obtiene el valor del componente secundario del número de versión del
-     * objeto actual.
-     * Esta propiedad es de sólo lectura.
-     *
-     * @var int Componente secundario del número de versión.
-     * */
-    public $Minor;
     private $minor;
 
     /**
@@ -222,49 +213,33 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * @return int
      * @see    Version::$minor
      */
-    public function getMinor()
+    protected function getMinor()
     {
         return $this->minor;
     }
 
-    /**
-     * Obtiene el valor del componente de compilación del número de versión
-     * del objeto actual.
-     * Esta propiedad es de sólo lectura.
-     *
-     * @var VersionComponent Componente de compilación del número de versión.
-     * */
-    public $Build;
     private $build;
 
     /**
-     * Getter for Build property.
+     * Getter for build property.
      *
      * @return VersionComponent
      * @see    Version::$build
      */
-    public function getBuild()
+    protected function getBuild()
     {
         return $this->build;
     }
 
-    /**
-     * Obtiene el valor del componente de revisión del número de versión del
-     * objeto actual.
-     * Esta propiedad es de sólo lectura.
-     *
-     * @var VersionComponent Componente de revisión del número de versión.
-     * */
-    public $Revision;
     private $revision;
 
     /**
-     * Getter for Revision property.
+     * Getter for revision property.
      *
      * @return VersionComponent
      * @see    Version::$revision
      */
-    public function getRevision()
+    protected function getRevision()
     {
         return $this->revision;
     }
@@ -284,15 +259,15 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * */
     public function toString()
     {
-        $s[0] = $this->Major;
-        $s[1] = $this->Minor;
+        $s[0] = $this->major;
+        $s[1] = $this->minor;
 
-        if ($this->Revision->isNotNull()) {
-            $s[2] = $this->Build;
-            $s[3] = $this->Revision;
+        if ($this->revision->isNotNull()) {
+            $s[2] = $this->build;
+            $s[3] = $this->revision;
         } else {
-            if ($this->Build->isNotNull()) {
-                $s[2] = $this->Build;
+            if ($this->build->isNotNull()) {
+                $s[2] = $this->build;
             }
         }
         $v = implode('.', $s);
@@ -304,47 +279,47 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * Indica si la instancia actual es un número de versión válido.
      *
      * Se considera válido si:
-     * 1. Major o Minor es mayor a cero (0). No puede ser '0.0'.
-     * 2. Build y Revision son nulos (no están definidos).
-     * 3. Build está definido pero Revision no.
+     * 1. major o minor es mayor a cero (0). No puede ser '0.0'.
+     * 2. build y revision son nulos (no están definidos).
+     * 3. build está definido pero revision no.
      * 4. Ambos están definidos, pero no poseen la parte de la cadena.
-     * 5. Ambos están definidos, pero Build no posee la parte de cadena.
-     * 6. Build está definido y tiene la cadena, pero Revision no está definido.
-     * 7. Revision posee cadena, pero Build no.
+     * 5. Ambos están definidos, pero build no posee la parte de cadena.
+     * 6. build está definido y tiene la cadena, pero revision no está definido.
+     * 7. revision posee cadena, pero build no.
      *
      * @return bool Un valor que indica si la instancia actual es válida.
      * */
     public function isValid()
     {
-        // Validación de Major y Minor:
-        $r = ($this->Major > 0 or $this->Minor > 0); //#1
+        // Validación de major y minor:
+        $r = ($this->major > 0 or $this->minor > 0); //#1
 
-        // Validación de Build y Revision:
+        // Validación de build y revision:
         if ($r) {
-            $r = ($this->Build->isNull() and $this->Revision->isNull()); // #2
+            $r = ($this->build->isNull() and $this->revision->isNull()); // #2
 
             if (!$r) {
-                if ($this->Build->isNotNull() and $this->Revision->isNotNull()) {
+                if ($this->build->isNotNull() and $this->revision->isNotNull()) {
                     // Si ambos están definidos...
 
-                    $r = (bool) ($this->Build->StringValue == ''); //#5
+                    $r = (bool) ($this->build->StringValue == ''); //#5
 
                     if (!$r) {
                         //#4
-                        $r = (bool) (($this->Build->StringValue == '') and ($this->Revision->StringValue == ''));
+                        $r = (bool) (($this->build->StringValue == '') and ($this->revision->StringValue == ''));
 
                         if (!$r) {
-                            if ($this->Build->StringValue != '') {
-                                $r = $this->Revision->isNull(); #6
+                            if ($this->build->StringValue != '') {
+                                $r = $this->revision->isNull(); #6
                             }
 
-                            if ($this->Revision->StringValue != '') {
-                                $r = ($this->Build->StringValue == ''); #7
+                            if ($this->revision->StringValue != '') {
+                                $r = ($this->build->StringValue == ''); #7
                             }
                         }
                     }
                 } else {
-                    $r = ($this->Build->isNotNull() and $this->Revision->isNull()); //#3
+                    $r = ($this->build->isNotNull() and $this->revision->isNull()); //#3
                 }
             }
         }
@@ -363,9 +338,9 @@ final class Version extends StrictObject implements IEquatable, IComparable
     public function equals($other)
     {
         if ($other instanceof Version) {
-            if ($this->Major == $other->Major && $this->Minor == $other->Minor) {
-                if ($this->Build->equals($other->Build)) {
-                    if ($this->Revision->equals($other->Revision)) {
+            if ($this->major == $other->major && $this->minor == $other->minor) {
+                if ($this->build->equals($other->build)) {
+                    if ($this->revision->equals($other->revision)) {
                         return true;
                     }
                 }
@@ -432,16 +407,16 @@ final class Version extends StrictObject implements IEquatable, IComparable
         }
 
         if ($r !== 0) {
-            $r = $this->Major - $other->Major;
+            $r = $this->major - $other->major;
 
             if ($r === 0) {
-                $r = $this->Minor - $other->Minor;
+                $r = $this->minor - $other->minor;
 
                 if ($r === 0) {
-                    $r = $this->Build->compareTo($other->Build);
+                    $r = $this->build->compareTo($other->build);
 
                     if ($r === 0) {
-                        $r = $this->Revision->compareTo($other->Revision);
+                        $r = $this->revision->compareTo($other->revision);
                     }
                 }
             }

@@ -19,15 +19,16 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell\Version;
-use NelsonMartell\VersionComponent;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Version;
+use NelsonMartell\VersionComponent;
 
 /**
  *
@@ -43,6 +44,19 @@ trait VersionTestProvider
     use IEquatableTester;
     use ImplementsIStrictPropertiesContainer;
     use HasReadOnlyProperties;
+    use HasUnaccesibleProperties;
+
+    public function unaccesiblePropertiesProvider()
+    {
+        $version = Version::parse(NML_VERSION);
+
+        return [
+            '$major with case changed'    => [$version, 'Major'],
+            '$minor with case changed'    => [$version, 'Minor'],
+            '$build with case changed'    => [$version, 'Build'],
+            '$revision with case changed' => [$version, 'Revision'],
+        ];
+    }
 
     /**
      * Provides invalid arguments for constructor.
