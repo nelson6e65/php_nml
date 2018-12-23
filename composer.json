@@ -59,10 +59,6 @@
 		"test-code": [
 			"phpunit --color=always"
 		],
-		"build": [
-			"@build-code-coverage",
-			"@build-api"
-		],
 		"build-code-coverage": [
 			"phpunit --color=always --coverage-clover=\"output/code-coverage/clover.xml\" --coverage-html=\"output/code-coverage\""
 		],
@@ -74,9 +70,6 @@
 		],
 		"build-code-coverage-html": [
 			"phpunit --color=always --coverage-html=\"output/code-coverage\""
-		],
-		"build-api": [
-			"apigen generate src --destination output/api --ansi --no-interaction"
 		]
 	},
 	"extra": {

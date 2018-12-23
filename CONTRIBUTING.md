@@ -1,12 +1,11 @@
 # Contributing guidelines for PHP: Nelson Martell Library
 
 ## Global requirements
-- Git
-- PHP 5.6+
-- [Composer](https://getcomposer.org/)
-- Node.js
-- [Yarn](https://yarnpkg.com)
-- [phpDocumentor](https://www.phpdoc.org/)
+- `git` - [Git](https://git-scm.com/)
+- `php` - PHP 5.6+
+- `composer` - [Composer](https://getcomposer.org/)
+- `yarn` - [Yarn](https://yarnpkg.com) (and `node` v8+)
+- `phpdoc` - [phpDocumentor](https://www.phpdoc.org/)
 
 ### Initialization
 
@@ -41,12 +40,10 @@ yarn
 
 - **`composer check-all`**: Runs coding standard analisis (PHP: Code Sniffer) + tests (PHPUnit).
 
-- **`composer build`**: Run this sub-scripts:
-  1. **`composer build-code-coverage`**: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
-    - For XML format only (`output/code-coverage/clover.xml`): **`composer build-code-coverage-clover`** or **`composer build-code-coverage-xml`** (alias).
-    - For HTML format only: **`composer build-code-coverage-html`**.
-
-- **`composer build-api`**: Generates API documentation in `output/api/` directory using [ApiGen](https://github.com/ApiGen/ApiGen).
+- **`composer build-code-coverage`**: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
+    - **`composer build-code-coverage-clover`**: For XML format only (`output/code-coverage/clover.xml`)
+    - **`composer build-code-coverage-xml`**: Alias for `composer build-code-coverage-clover`.
+    - **`composer build-code-coverage-html`**: For HTML format only.
 
 
 - **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
@@ -54,10 +51,3 @@ yarn
 - **`yarn docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.
 
 - **`yarn docs:build`**: Build the VuePress documentation to be published.
-
-
-
-
-### Deployment scripts
-[DEPRECATED]
-- `.travis/deploy-documentation`: Generates documentation and publish it in `gh-pages` brach. **Note:** _This script is used by [Travis CI](travis-ci.org) to publish documentation and **should not be run in local development**_.
