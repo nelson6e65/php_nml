@@ -4,7 +4,6 @@
 [![Scrutinizer Build Status](https://img.shields.io/scrutinizer/build/g/nelson6e65/php_nml.svg?b=master&label=scrutinizer)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/build-status/master)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/nelson6e65/php_nml.svg?label=quality)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
 [![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/nelson6e65/php_nml/master.svg)](https://scrutinizer-ci.com/g/nelson6e65/php_nml/?branch=master)
-[![VersionEye](https://img.shields.io/versioneye/d/php/nelson6e65:php_nml.svg)](https://www.versioneye.com/php/nelson6e65:php_nml#dependencies)
 
 [![GitHub release](https://img.shields.io/github/tag/nelson6e65/php_nml.svg)](https://github.com/nelson6e65/php_nml/tags)
 [![Latest Version](https://img.shields.io/packagist/v/nelson6e65/php_nml.svg?label=stable)](https://packagist.org/packages/nelson6e65/php_nml)
