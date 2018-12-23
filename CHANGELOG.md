@@ -1,7 +1,7 @@
 ## CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
-### Release 0.7.1 (WIP)
+### Release 0.7.1 (2018-12-23)
 
 #### :star: Important changes
 
@@ -15,7 +15,7 @@ Release notes for *PHP: Nelson Martell Library*.
 
 #### More changes
 
-See [changes since v0.7.0](https://github.com/nelson6e65/php_nml/compare/v0.7.0...master?w=1) for more detailed info.
+See [changes since v0.7.0](https://github.com/nelson6e65/php_nml/compare/v0.7.0...v0.7.1?w=1) for more detailed info.
 
 
 
