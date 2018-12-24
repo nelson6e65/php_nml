@@ -22,8 +22,9 @@ namespace NelsonMartell\Collections;
 
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\StrictObject;
-use function NelsonMartell\typeof;
 use OutOfRangeException;
+
+use function NelsonMartell\typeof;
 
 /**
  * Clase base de una colección de objetos, que provee una implementación
@@ -31,6 +32,9 @@ use OutOfRangeException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.4.0
+ *
+ * @property-read int $count Obtiene el número de elementos incluidos en la colección. Esta propiedad es de sólo
+ *   lectura.
  * */
 class Collection extends StrictObject implements ICollection
 {
@@ -40,7 +44,6 @@ class Collection extends StrictObject implements ICollection
     public function __construct()
     {
         parent::__construct();
-        unset($this->Count);
     }
 
     final public function __invoke($index, $value = null)
@@ -65,11 +68,11 @@ class Collection extends StrictObject implements ICollection
      * */
     protected function insertItem($index, $newItem)
     {
-        if ($index > $this->Count || $index < 0) {
+        if ($index > $this->count || $index < 0) {
             throw new OutOfRangeException();
         }
 
-        if ($index == $this->Count) {
+        if ($index == $this->count) {
             $this->items[$index] = null;
             $this->count++;
         }
@@ -98,7 +101,7 @@ class Collection extends StrictObject implements ICollection
      * */
     protected function setItem($index, $newItem)
     {
-        if ($index >= $this->Count || $index < 0) {
+        if ($index >= $this->count || $index < 0) {
             throw new OutOfRangeException();
         }
 
@@ -119,7 +122,7 @@ class Collection extends StrictObject implements ICollection
      * */
     protected function getItem($index)
     {
-        if ($index >= $this->Count || $index < 0) {
+        if ($index >= $this->count || $index < 0) {
             return null;
         }
 
@@ -135,15 +138,15 @@ class Collection extends StrictObject implements ICollection
      */
     protected function removeItem($index)
     {
-        if ($index >= $this->Count || $index < 0) {
+        if ($index >= $this->count || $index < 0) {
             throw new OutOfRangeException();
         }
 
-        for ($i = $index; $i < $this->Count - 1; $i++) {
+        for ($i = $index; $i < $this->count - 1; $i++) {
             $this->items[$i] = $this->items[$i + 1]; //Mueve los valores
         }
 
-        unset($this->items[$this->Count - 1]); //Des-asigna el último elemento
+        unset($this->items[$this->count - 1]); //Des-asigna el último elemento
 
         $this->count--;
     }
@@ -218,19 +221,10 @@ class Collection extends StrictObject implements ICollection
         return $s;
     }
 
-
-
-    /**
-     * Obtiene el número de elementos incluidos en la colección.
-     * Esta propiedad es de sólo lectura.
-     *
-     * @var int
-     * */
-    public $Count;
     private $count = 0;
 
     /**
-     * Getter for Count property.
+     * Getter for $count property.
      *
      * @return int
      * */
@@ -250,7 +244,7 @@ class Collection extends StrictObject implements ICollection
      * */
     public function add($item)
     {
-        $this->insertItem($this->Count, $item);
+        $this->insertItem($this->count, $item);
     }
 
     /**
@@ -296,7 +290,7 @@ class Collection extends StrictObject implements ICollection
      * */
     public function remove($item)
     {
-        for ($i = 0; $i < $this->Count; $i++) {
+        for ($i = 0; $i < $this->count; $i++) {
             if ($this->items[$i] === $item) {
                 $this->removeItem($i);
             }
