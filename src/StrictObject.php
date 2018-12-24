@@ -63,11 +63,11 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
         $type = typeof($this);
 
         if (defined('CODE_ANALYSIS')) {
-            if ($type->Name != 'NelsonMartell\StrictObject') {
+            if ($type->name != 'NelsonMartell\StrictObject') {
                 $args = [
                     'access'     => 'public',
                     'base_class' => __CLASS__,
-                    'class'      => $type->Name,
+                    'class'      => $type->name,
                     'function'   => __FUNCTION__,
                 ];
 
@@ -102,7 +102,7 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
                 $args = [
                     'access'     => 'public',
                     'base_class' => __CLASS__,
-                    'class'      => $type->Name,
+                    'class'      => $type->name,
                     'function'   => __FUNCTION__,
                 ];
 
@@ -173,8 +173,8 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
             $rtype = typeof($right);
 
             // If they are of the same type.
-            if ($ltype->Name === $rtype->Name) {
-                switch ($ltype->Name) {
+            if ($ltype->name === $rtype->name) {
+                switch ($ltype->name) {
                     case 'string':
                         $r = strnatcmp($left, $right);
                         break;

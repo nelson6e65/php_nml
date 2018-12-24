@@ -206,9 +206,9 @@ class Collection extends StrictObject implements ICollection
         $items = implode(', ', $this->items);
 
         $placeHoldersValues = [
-            'class'     => $t->ShortName,
-            'nsclass'    => $t->Name,
-            'count'     => $this->Count,
+            'class'     => $t->shortName,
+            'nsclass'    => $t->name,
+            'count'     => $this->count,
             'items'     => $items,
         ];
 

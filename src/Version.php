@@ -59,7 +59,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
 
         if (!is_integer($major)) {
             $args = [
-                'class'    => typeof($this)->Name,
+                'class'    => typeof($this)->name,
                 'name'     => 'major',
                 'pos'      => 0,
                 'expected' => typeof(0),
@@ -78,7 +78,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
 
         if (!is_integer($minor)) {
             $args = [
-                'class'    => typeof($this)->Name,
+                'class'    => typeof($this)->name,
                 'name'     => 'minor',
                 'pos'      => 1,
                 'expected' => typeof(0),

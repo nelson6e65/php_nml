@@ -19,11 +19,12 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell\Type;
+use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
+use NelsonMartell\Type;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\TypeTest.
@@ -36,6 +37,26 @@ trait TypeTestProvider
     use ConstructorMethodTester;
     use ImplementsIStrictPropertiesContainer;
     use HasReadOnlyProperties;
+    use HasUnaccesibleProperties;
+
+    /**
+     *
+     * @return array
+     * @since 1.0.0-dev
+     */
+    public function unaccesiblePropertiesProvider()
+    {
+        $obj = new Type($this);
+
+        return [
+            '$reflectionObject'             => [$obj, 'reflectionObject'],
+            '$namespace with case changed'  => [$obj, 'Namespace'],
+            '$name with case changed'       => [$obj, 'Name'],
+            '$shortName with case changed'  => [$obj, 'ShortName'],
+            '$methods with case changed'    => [$obj, 'Methods'],
+            '$vars with case changed'       => [$obj, 'Vars'],
+        ];
+    }
 
     /**
      * Provides valid arguments for constructor.
@@ -88,8 +109,8 @@ trait TypeTestProvider
 
         return [
             [$obj, 'name', __CLASS__],
-            [$obj, 'ShortName', 'TypeTest'],
-            [$obj, 'Namespace', 'NelsonMartell\Test\TestCase', ],
+            [$obj, 'shortName', 'TypeTest'],
+            [$obj, 'namespace', 'NelsonMartell\Test\TestCase'],
         ];
     }
 

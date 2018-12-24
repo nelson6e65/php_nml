@@ -30,6 +30,17 @@ use \ReflectionMethod;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.1.1
+ *
+ * @property-read string        $name      Gets the name of this Type. This property is read-only.
+ * @property-read string        $shortName Gets the abbreviated name of class, in other words, without the namespace.
+ *   This property is read-only.
+ * @property-read string|null   $namespace Gets the namespace name of this class. If this Type is not a class, this
+ *   property is set to `null`. This property is read-only.
+ * @property-read string|null   $methods   Gets the public|protected methods (ReflectionMethod) of this Type. This
+ *   property is read-only.
+ * @property-read string|null   $vars      Gets the public|protected properties (ReflectionProperty) of this Type.
+ *   This property is read-only.
+ *
  * */
 final class Type extends StrictObject
 {
@@ -42,7 +53,6 @@ final class Type extends StrictObject
     public function __construct($obj)
     {
         parent::__construct();
-        unset($this->Namespace, $this->Name, $this->ShortName, $this->Vars, $this->Methods);
 
         $name = gettype($obj);
         $shortname = null;
@@ -82,36 +92,23 @@ final class Type extends StrictObject
 
     private $reflectionObject = null;
 
-    /**
-     * Gets the name of this Type.
-     * This property is read-only.
-     *
-     * @var string
-     * */
-    public $Name;
     private $name;
 
     /**
-     * Getter for Type::Name property.
+     * Getter for `$name` property.
      *
      * @return string
+     * @see Type::$name
      * */
-    public function getName()
+    protected function getName()
     {
         return $this->name;
     }
 
-    /**
-     * Gets the abbreviated name of class, in other words, without the namespace.
-     * This property is read-only.
-     *
-     * @var string
-     * */
-    public $ShortName;
     private $shortName = null;
 
     /**
-     * Getter for Type::ShortName property.
+     * Getter for `$shortName` property.
      *
      * @return string
      * @see Type::$shortName
@@ -121,40 +118,19 @@ final class Type extends StrictObject
         return $this->shortName;
     }
 
-    /**
-     * Gets the namespace name of this class.
-     * If this Type is not a class, this property is set to `NULL`.
-     * This property is read-only.
-     *
-     * @var string|null
-     * */
-    public $Namespace;
     private $namespace;
 
     /**
-     * Getter for Type::Namespace property.
+     * Getter for `$namespace` property.
      *
      * @return string|null
-     * @see    Type::Namespace
+     * @see    Type::$namespace
      * */
     public function getNamespace()
     {
         return $this->namespace;
     }
 
-    /**
-     * Gets the public|protected properties (ReflectionProperty) of this Type.
-     * This property is read-only.
-     *
-     * @var array
-     * */
-    public $Vars;
-
-    /**
-     * Properties of the type of this instance.
-     *
-     * @var array
-     */
     private $vars = null;
 
     /**
@@ -172,19 +148,13 @@ final class Type extends StrictObject
         return $this->vars;
     }
 
-    /**
-     * Gets the public|protected methods (ReflectionMethod) of this Type.
-     * This property is read-only.
-     *
-     * @var array
-     * */
-    public $Methods;
     private $methods = null;
 
     /**
      * Getter for `$methods` property.
      *
      * @return array
+     * @see    Type::$methods
      */
     public function getMethods()
     {
@@ -234,7 +204,7 @@ final class Type extends StrictObject
      * */
     public function isNull()
     {
-        if ($this->Name == 'NULL' || $this->Name == 'null') {
+        if ($this->name == 'NULL' || $this->name == 'null') {
             return true;
         }
 
@@ -267,13 +237,13 @@ final class Type extends StrictObject
      * Determinate if this type is scalar.
      *
      * @return bool
-     * @see    is_scalar()
+     * @see    \is_scalar()
      * */
     public function isScalar()
     {
         $r = false;
 
-        switch ($this->Name) {
+        switch ($this->name) {
             case 'boolean':
             case 'integer':
             case 'double':
@@ -295,7 +265,7 @@ final class Type extends StrictObject
      * */
     public function isValueType()
     {
-        if ($this->isScalar() || $this->Name === 'array') {
+        if ($this->isScalar() || $this->name === 'array') {
             return true;
         }
 
@@ -319,7 +289,7 @@ final class Type extends StrictObject
      * */
     public function toString()
     {
-        $s = $this->Name;
+        $s = $this->name;
 
         if ($this->isCustom()) {
             $s = sprintf("object (%s)", $s);
