@@ -7,6 +7,7 @@ Release notes for *PHP: Nelson Martell Library*.
 
 - :fire: Remove public getters from classes. Now should be access via property instead.
 - :fire: Remove Pascal Case in properties. Properties updated to be camel case only.
+- :fire: Remove deprecated classes under `ǸelsonMartell\Utilities` namespace.
 
 
 #### :notebook: Development changes
