@@ -1,45 +1,45 @@
-## CHANGELOG
+# CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
-### Release 1.0.0-dev (WIP)
+## Release 1.0.0-dev (WIP)
 
-#### :star: Important changes
+### :star: Important changes
 
 - :fire: Remove public getters from classes. Now should be access via property instead.
 - :fire: Remove Pascal Case in properties. Properties updated to be camel case only.
 - :fire: Remove deprecated classes under `ǸelsonMartell\Utilities` namespace.
 
 
-#### :notebook: Development changes
+### :notebook: Development changes
 
 
-#### More changes
+### More changes
 
 See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...master?w=1) for more detailed info.
 
 
 
-### Release 0.7.1 (2018-12-23)
+## Release 0.7.1 (2018-12-23)
 
-#### :star: Important changes
+### :star: Important changes
 
 - :new: Documentation with VuePress (including API docs).
 - :new: Compatible with PHP 7.3.
 
-#### :notebook: Development changes
+### :notebook: Development changes
 
 - :up: Improve Travis CI to auto-generate documentation.
 - :up: Contributing instructions
 
-#### More changes
+### More changes
 
 See [changes since v0.7.0](https://github.com/nelson6e65/php_nml/compare/v0.7.0...v0.7.1?w=1) for more detailed info.
 
 
 
-### Release 0.7.0 (2017-12-04)
+## Release 0.7.0 (2017-12-04)
 
-#### :star: Important changes
+### :star: Important changes
 
 This release is mainly intended to provide PHP 7 compatibility:
 
@@ -50,7 +50,7 @@ This release is mainly intended to provide PHP 7 compatibility:
 - :fire: Remove global functions. Are only available under `NelsonMartell` namespace now.
 - :bug: Correct minor issues.
 
-#### :notebook: Development changes
+### :notebook: Development changes
 
 There are some improvements for development:
 
@@ -73,12 +73,12 @@ There are some improvements for development:
 
 > **NOTE**: API Documentation not updated to this release due to conflict in API generation tool.
 
-#### More changes
+### More changes
 
 See [changes since v0.6.1](https://github.com/nelson6e65/php_nml/compare/v0.6.1...v0.7.0?w=1) for more detailed info.
 
 
-### Release 0.6.1 (2017-05-01)
+## Release 0.6.1 (2017-05-01)
 
 - Minor improvements in sources and documentation info.
 - Improvements in README instruccions.
@@ -92,12 +92,12 @@ See [changes since v0.6.1](https://github.com/nelson6e65/php_nml/compare/v0.6.1.
 See [changes since v0.6.0](https://github.com/nelson6e65/php_nml/compare/v0.6.0...v0.6.1) for more detailed info.
 
 
-### Release 0.6.0 (2016-10-06)
+## Release 0.6.0 (2016-10-06)
 
-#### Installation changes
+### Installation changes
 - :fire: Removed dependencies copy. Now you must install dependencies manually if not using `composer`.
 
-#### Public API changes
+### Public API changes
 - :bug: Fixed issue (possible bug) in properties with custom prefix. Now, it must be implemented ``ICustomPrefixedPropertiesContainer`` in order to use custom getter/setter prefixes (in addition to `get`/`set` defaults).
   - :new: Interface: ``ICustomPrefixedPropertiesContainer``. Enables the use of custom properties getter/setter's prefixes.
   - :fire: Removed ``PropertiesHandler::$getterPrefix`` and ``PropertiesHandler::$setterPrefix`` static attributes (functionality replaced by ``ICustomPrefixedPropertiesContainer`` methods).
@@ -115,7 +115,7 @@ See [changes since v0.6.0](https://github.com/nelson6e65/php_nml/compare/v0.6.0.
 > Classes/interfaces/traits names in this description are under ``NelsonMartell`` namespace by default (unless name starts with ``\``).
 
 
-#### Development changes
+### Development changes
 - :new: Tracking development progress in [waffle.io](http://waffle.io/nelson6e65/php_nml).
 - :art: Update copyright year and email in source files.
 - :memo: Improve & update [README](README.md) file.
@@ -137,7 +137,7 @@ See [changes since v0.5.1](https://github.com/nelson6e65/php_nml/compare/v0.5.1.
 
 
 
-### Release 0.5.1
+## Release 0.5.1
 - Automatize API generation via Travis CI
 - Some improvements in documentation and instructions
 - Minor fixes in possible errors
@@ -145,5 +145,5 @@ See [changes since v0.5.1](https://github.com/nelson6e65/php_nml/compare/v0.5.1.
 
 See [detailed changelog](https://github.com/nelson6e65/php_nml/compare/v0.5.0...v0.5.1).
 
-### Release 0.5.0
+## Release 0.5.0
 <!-- TODO -->
