@@ -29,19 +29,22 @@ use \InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.1.1
+ *
+ * @property-read int    $stringValue Gets the integer part.
+ * @property-read string $stringValue Gets the string part.
  * */
 class IntString extends StrictObject implements IEquatable, IComparable
 {
     /**
      * Creates a new IntString instance.
      *
-     * @param int          $intValue    Integer part. Default: ``0`` (zero).
-     * @param string|null  $stringValue String part. Default: ``''`` (empty).
+     * @param int|null     $intValue    Integer part. Default: `0` (zero).
+     * @param string|null  $stringValue String part. Default: `''` (empty).
+     *
+     * @since 1.0.0-dev Allow `null` value for `$intValue`.
      */
     public function __construct($intValue = 0, $stringValue = '')
     {
-        unset($this->IntValue, $this->StringValue);
-
         if (!(is_integer($intValue) || $intValue === null)) {
             $args = [
                 'position' => '1st',
@@ -57,6 +60,8 @@ class IntString extends StrictObject implements IEquatable, IComparable
 
             throw new InvalidArgumentException($msg);
         }
+
+        $this->intValue = $intValue;
 
         if (!typeof($stringValue)->canBeString()) {
             $args = [
@@ -74,7 +79,6 @@ class IntString extends StrictObject implements IEquatable, IComparable
             throw new InvalidArgumentException($msg);
         }
 
-        $this->intValue = (integer) $intValue;
         $this->stringValue = (string) $stringValue;
     }
 
@@ -132,45 +136,31 @@ class IntString extends StrictObject implements IEquatable, IComparable
      *
      * @var int
      */
-    protected $intValue;
+    private $intValue;
 
     /**
      * String part of the instance.
      *
      * @var string
      */
-    protected $stringValue;
+    private $stringValue;
 
     /**
-     * Gets the integer part of the instance.
-     *
-     * @var int
-     */
-    public $IntValue;
-
-    /**
-     * Getter for $indValue property.
+     * Getter for $intValue property.
      *
      * @return int
      */
-    public function getIntValue()
+    protected function getIntValue()
     {
         return $this->intValue;
     }
-
-    /**
-     * Gets the string part of the instance.
-     *
-     * @var string
-     */
-    public $StringValue;
 
     /**
      * Getter for $stringValue property.
      *
      * @return int
      */
-    public function getStringValue()
+    protected function getStringValue()
     {
         return $this->stringValue;
     }
@@ -180,7 +170,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
      */
     public function toString()
     {
-        return $this->IntValue.$this->StringValue;
+        return $this->getIntValue().$this->getStringValue();
     }
 
     /**
@@ -193,8 +183,8 @@ class IntString extends StrictObject implements IEquatable, IComparable
     public function equals($other)
     {
         if ($other instanceof IntString) {
-            if ($this->IntValue === $other->IntValue) {
-                if ($this->StringValue === $other->StringValue) {
+            if ($this->getIntValue() === $other->getIntValue()) {
+                if ($this->getIntValue() === $other->getStringValue()) {
                     return true;
                 }
             }
@@ -221,10 +211,10 @@ class IntString extends StrictObject implements IEquatable, IComparable
 
         if ($r != 0) {
             if ($other instanceof IntString) {
-                $r = $this->IntValue - $other->IntValue;
+                $r = $this->intValue - $other->intValue;
 
                 if ($r == 0) {
-                    $r = strnatcmp($this->StringValue, $other->StringValue);
+                    $r = strnatcmp($this->stringValue, $other->stringValue);
                 }
             } else {
                 $r = 1;

@@ -302,19 +302,19 @@ final class Version extends StrictObject implements IEquatable, IComparable
                 if ($this->build->isNotNull() and $this->revision->isNotNull()) {
                     // Si ambos están definidos...
 
-                    $r = (bool) ($this->build->StringValue == ''); //#5
+                    $r = (bool) ($this->build->stringValue == ''); //#5
 
                     if (!$r) {
                         //#4
-                        $r = (bool) (($this->build->StringValue == '') and ($this->revision->StringValue == ''));
+                        $r = (bool) (($this->build->stringValue == '') and ($this->revision->stringValue == ''));
 
                         if (!$r) {
-                            if ($this->build->StringValue != '') {
+                            if ($this->build->stringValue != '') {
                                 $r = $this->revision->isNull(); #6
                             }
 
-                            if ($this->revision->StringValue != '') {
-                                $r = ($this->build->StringValue == ''); #7
+                            if ($this->revision->stringValue != '') {
+                                $r = ($this->build->stringValue == ''); #7
                             }
                         }
                     }

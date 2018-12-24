@@ -41,14 +41,15 @@ class VersionComponent extends IntString implements IEquatable
         // Validates filters for only null or int/string value types.
         parent::__construct($intValue, $stringValue);
 
-        if ($intValue === null) {
-            $this->intValue = $intValue;
+        $intValue    = $this->intValue;
+        $stringValue = $this->stringValue;
 
+        if ($intValue === null) {
             // Ignore string value if intValue is null.
-            $this->stringValue = '';
+            $stringValue = '';
         } else {
             // Validation of values
-            if ($this->IntValue < 0) {
+            if ($intValue < 0) {
                 $args = [
                     'position' => '1st',
                     'actual'   => $intValue,
@@ -64,10 +65,10 @@ class VersionComponent extends IntString implements IEquatable
             } // Integer is valid
 
             if ($stringValue !== null) {
-                if ($this->StringValue != '') {
+                if ($stringValue != '') {
                     $pattern = '~^([a-z])$~'; // 1 char
 
-                    if (strlen($this->StringValue) > 1) {
+                    if (strlen($stringValue) > 1) {
                         $start = '~^([a-z]|-)';
                         $middle = '([a-z]|[0-9]|-)*';
                         $end = '([a-z]|[0-9])$~';
@@ -75,11 +76,11 @@ class VersionComponent extends IntString implements IEquatable
                         $pattern = $start.$middle.$end;
                     }
 
-                    $correct = (boolean) preg_match($pattern, $this->StringValue);
+                    $correct = (boolean) preg_match($pattern, $stringValue);
 
                     if ($correct) {
                         //Último chequeo: que no hayan 2 '-' consecutivos.
-                        $correct = strpos($this->StringValue, '--') == false ? true : false;
+                        $correct = strpos($stringValue, '--') == false ? true : false;
                     }
 
                     if (!$correct) {
@@ -99,6 +100,8 @@ class VersionComponent extends IntString implements IEquatable
                 }
             } // String is valid
         }
+
+        parent::__construct($intValue, $stringValue);
     }
 
     public static function parse($obj)
@@ -113,7 +116,7 @@ class VersionComponent extends IntString implements IEquatable
 
         $objConverted = parent::parse($obj);
 
-        return new VersionComponent($objConverted->IntValue, $objConverted->StringValue);
+        return new VersionComponent($objConverted->intValue, $objConverted->stringValue);
     }
 
     /**
@@ -123,26 +126,14 @@ class VersionComponent extends IntString implements IEquatable
      * */
     public function isDefault()
     {
-        if ($this->IntValue === 0) {
-            if ($this->StringValue === '') {
+        if ($this->intValue === 0) {
+            if ($this->stringValue === '') {
                 return true;
             }
         }
 
         return false;
     }
-
-
-    /**
-     * Getter method for VersionComponent::IntValue property.
-     *
-     * @return int|null
-     * */
-    public function getIntValue()
-    {
-        return $this->intValue;
-    }
-
 
     /**
      * Determina si este componente NO tiene los valores predeterminados.
@@ -161,7 +152,7 @@ class VersionComponent extends IntString implements IEquatable
      * */
     public function isNull()
     {
-        if ($this->IntValue === null) {
+        if ($this->intValue === null) {
             return true;
         }
 
@@ -181,8 +172,8 @@ class VersionComponent extends IntString implements IEquatable
     public function equals($other)
     {
         if ($other instanceof VersionComponent) {
-            if ($this->IntValue === $other->IntValue) {
-                if ($this->StringValue === $other->StringValue) {
+            if ($this->intValue === $other->intValue) {
+                if ($this->stringValue === $other->stringValue) {
                     return true;
                 }
             }
@@ -207,10 +198,10 @@ class VersionComponent extends IntString implements IEquatable
                 $r = 1;
             } else {
                 // Here are evaluated as integers
-                $r = $this->IntValue - $other->IntValue;
+                $r = $this->intValue - $other->intValue;
 
                 if ($r === 0) {
-                    $r = strnatcmp($this->StringValue, $other->StringValue);
+                    $r = strnatcmp($this->stringValue, $other->stringValue);
                 }
             }
         } elseif (is_integer($other) || is_array($other)) {

@@ -19,14 +19,15 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell\VersionComponent;
-use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\VersionComponent;
 
 /**
  * Data providers for NelsonMartell\Test\VersionComponent.
@@ -43,6 +44,17 @@ trait VersionComponentTestProvider
     use IEquatableTester;
     use ImplementsIStrictPropertiesContainer;
     use HasReadOnlyProperties;
+    use HasUnaccesibleProperties;
+
+    public function unaccesiblePropertiesProvider()
+    {
+        $obj = new VersionComponent(null, 'beta');
+
+        return [
+            '$stringValue with case changed' => [$obj, 'StringValue'],
+            '$intValue with case changed'    => [$obj, 'IntValue'],
+        ];
+    }
 
     public function goodConstructorArgumentsProvider()
     {
