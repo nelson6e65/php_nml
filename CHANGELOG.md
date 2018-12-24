@@ -5,6 +5,9 @@ Release notes for *PHP: Nelson Martell Library*.
 
 #### :star: Important changes
 
+- :fire: Remove public getters from classes. Now should be access via property instead.
+- :fire: Remove Pascal Case in properties. Properties updated to be camel case only.
+
 
 #### :notebook: Development changes
 

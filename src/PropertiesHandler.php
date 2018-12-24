@@ -24,59 +24,101 @@ use \BadMethodCallException;
 use \InvalidArgumentException;
 
 /**
- * Enables the class to use properties, by encapsulating class attributes in order to use with
- * auto-setters/getters methods instead of direct access.
+ * Enables the class to call, implicitly, getter and setters for its properties, allowing to use properties directly.
  *
- * Using this trail will restrict get and set actions for a property if there is not defined in
- * the class or if there is not a getter or setter method (respectively) for that property.
  *
- * So, you MUST (1) create the property in the class and (2) then unset it in the constructor
- * (*this requirements will change in next releases to be more 'auto-magic'*).
- * You can, also, expose read-only attributes to be public by creating only a getter method and declare
- * visibility of attribute as private.
+ * Restricts get and set actions for a property if there is not getter/setter definicion for that property, by
+ * encapsulating the class attributes.
  *
- * @example
+ * You can customize the properties validation/normalization without the need to call other functions/methods outside
+ * the class _before_ to set the value of _after_ outputs.
+ *
+ * In addition, the class will be strict: any access to undefined property will be bloqued and informed in dev time.
+ *
+ * Also, any property can be restricted to "read-only" or "write-only" from outside the class if you simply exclude
+ * the setter or getter for that property, respectively.
+ *
+ *
+ * **Usage:**
+ *
+ * ***Example 1:*** Person with normalizations on its name:
+ *
+ * ```php
+ * <?php
+ * // You can document $name property using: "@property string $name Name of person" in the class definition
+ * class Person implements \NelsonMartell\IStrictPropertiesContainer {
+ *     use \NelsonMartell\PropertiesHandler;
+ *
+ *     public function __construct($name)
+ *     {
+ *         $this->setName($name); // Explicit call the setter inside constructor/class
+ *     }
+ *
+ *     private $name = ''; // Property. 'private' in order to hide from inherited classes and public
+ *
+ *     protected function getName() // Getter. 'protected' to hide from public
+ *     {
+ *         return ucwords($this->name); // Format the $name output
+ *     }
+ *
+ *     protected function setName($value) // Setter. 'protected' in order to hide from public
+ *     {
+ *         $this->name = strtolower($value); // Normalize the $name
+ *     }
+ * }
+ *
+ * $obj = new Person();
+ * $obj->name = 'nelson maRtElL'; // Implicit call to setter
+ * echo $obj->name; // 'Nelson Martell' // Implicit call to getter
+ * echo $obj->Name; // Throws: InvalidArgumentException: "Name" property do not exists in "Nameable" class.
+ * ```
+ *
+ *
+ * ***Example 2:*** Same as before, but using a property wrapper (not recommended):
+ *
  * ```php
  * <?php
  * class Nameable implements NelsonMartell\IStrictPropertiesContainer {
  *     use NelsonMartell\PropertiesHandler;
  *
- *     public function __construct()
+ *     private $_name = ''; // Attribute: Stores the value.
+ *     public $name; // Property wrapper. Declare in order to be detected. Accesible name for the property.
+ *
+ *      public function __construct($name)
  *     {
- *         unset($this->Name); // (2)
+ *         unset($this->name); // IMPORTANT: Unset the wrapper in order to redirect operations to the getter/setter
+ *
+ *         $this->name = $name; // Implicit call to the setter
  *     }
  *
- *     private $_name = ''; // Attribute: Stores the value.
- *     public $Name; // (1) Property: Accesible name for the property.
- *
- *     public function getName()
+ *     protected function getName()
  *     {
  *         return ucwords($this->_name);
  *     }
  *
- *     public function setName($value)
+ *     protected function setName($value)
  *     {
  *         $this->_name = strtolower($value);
  *     }
  * }
  *
  * $obj = new Nameable();
- * $obj->Name = 'nelson maRtElL';
- * echo $obj->Name; // 'Nelson Martell'
- * echo $obj->name; // Throws: InvalidArgumentException: "name" property do not exists in "Nameable" class.
+ * $obj->name = 'nelson maRtElL';
+ * echo $obj->name; // 'Nelson Martell'
  *
  * ?>
  * ```
  *
- * ## Notes:
+ *
+ * **Limitations:**
  * - You should not define properties wich names only are only different in the first letter upper/lowercase;
  *   it will be used the same getter/setter method (since in PHP methods are case-insensitive). In the last
- *   example, if you (in addition) define the `public $name` and `unset($this->name)` in the constructor, it will
+ *   example, if you (in addition) define another property called `$Name`, when called, it will
  *   be used the same getter and setter method when you access or set both properties (`->Name` and `->name`).
- * - Only works for public properties (even if you declare visibility of getter/setter methods as `private`
- *   or `protected`); this only will avoid the direct use of method (``$obj->getName(); // ERROR``), but property
- *   value still will be available in child classes and main (``$value = $this->name; // No error``).
- * - Getter and Setter methods SHOULD NOT be declared as ``private`` in child classes if parent already
+ * - Only works for public properties (even if attribute and getter/setter methods are not `public`);
+ *   this only will avoid the direct use of method (`$obj->getName(); // ERROR`), but the property
+ *   value still will be accesible in child classes and public scope (`$value = $this->name; // No error`).
+ * - Getter and Setter methods SHOULD NOT be declared as `private` in child classes if parent already
  *   uses this trait.
  * - Custom prefixes ability (by implementing ``ICustomPrefixedPropertiesContainer``) is not posible for
  *   multiple prefixes in multiples child classes by overriding ``ICustomPrefixedPropertiesContainer`` methods.

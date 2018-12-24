@@ -109,6 +109,7 @@ trait PropertiesHandlerTestProvider
 
         return [
             'Get inexistent property in base'      => [$a, 'property4'],
+            'Get existent property with case changed' => [$a, 'Property1'],
             'Get inexistent property in child'     => [$b, 'property5'],
             'Set inexistent property'              => [$a, 'property6', 6],
             'Set read-only property'               => [$b, 'property4', 4],
