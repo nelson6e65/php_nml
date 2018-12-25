@@ -25,7 +25,7 @@ use NelsonMartell\Test\Helpers\HasWriteOnlyProperties;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasReadWriteProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\PropertiesHandlerTest.

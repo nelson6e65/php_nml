@@ -24,8 +24,8 @@ use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\ObjectTestProvider;
 use NelsonMartell\Object;
 use PHPUnit\Framework\TestCase;
-use \InvalidArgumentException;
-use \Exception;
+use InvalidArgumentException;
+use Exception;
 
 /**
  *

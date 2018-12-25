@@ -21,7 +21,7 @@ namespace NelsonMartell\Test\Helpers;
 
 use NelsonMartell\Extensions\Text;
 use SebastianBergmann\Exporter\Exporter;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Plugin to export variables in test clases.

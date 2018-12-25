@@ -20,7 +20,7 @@
 namespace NelsonMartell;
 
 use NelsonMartell\Extensions\Text;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Representa un elemento mixto, compuesto por un entero y una cadena unidos

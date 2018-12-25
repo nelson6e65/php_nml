@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Representa el número de versión de un programa o ensamblado, de la forma "1.2.3.4". Sólo

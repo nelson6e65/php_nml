@@ -19,7 +19,7 @@
 
 namespace NelsonMartell\Collections;
 
-use \Iterator;
+use Iterator;
 
 /**
  * Define métodos para manipular colecciones de objetos.

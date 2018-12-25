@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Representa un componente de un número de Version.

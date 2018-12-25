@@ -19,7 +19,7 @@
 
 namespace NelsonMartell;
 
-use \JsonSerializable;
+use JsonSerializable;
 
 /**
  * Provides methods to convert objets into JSON string.

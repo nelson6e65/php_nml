@@ -19,10 +19,10 @@
 
 namespace NelsonMartell\Test\Helpers;
 
-use \ReflectionClass;
-use \ReflectionException;
-use \BadMethodCallException;
-use \UnexpectedValueException;
+use ReflectionClass;
+use ReflectionException;
+use BadMethodCallException;
+use UnexpectedValueException;
 
 /**
  * Provides test methods and helpers to test class constructors.

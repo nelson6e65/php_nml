@@ -20,7 +20,7 @@ namespace NelsonMartell\Test\TestCase\Extensions;
 
 use NelsonMartell\Extensions\Text;
 use PHPUnit\Framework\TestCase;
-use \InvalidArgumentException;
+use InvalidArgumentException;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString as ClassString;
 use function NelsonMartell\typeof;
 

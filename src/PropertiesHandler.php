@@ -20,8 +20,8 @@
 namespace NelsonMartell;
 
 use NelsonMartell\Extensions\Text;
-use \BadMethodCallException;
-use \InvalidArgumentException;
+use BadMethodCallException;
+use InvalidArgumentException;
 
 /**
  * Enables the class to call, implicitly, getter and setters for its properties, allowing to use properties directly.
@@ -79,7 +79,7 @@ use \InvalidArgumentException;
  * ```php
  * <?php
  * class Nameable implements NelsonMartell\IStrictPropertiesContainer {
- *     use NelsonMartell\PropertiesHandler;
+ *     use \NelsonMartell\PropertiesHandler;
  *
  *     private $_name = ''; // Attribute: Stores the value.
  *     public $name; // Property wrapper. Declare in order to be detected. Accesible name for the property.
