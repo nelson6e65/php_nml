@@ -1,7 +1,11 @@
 # CHANGELOG
+
 Release notes for *PHP: Nelson Martell Library*.
 
-## Release 1.0.0-dev (WIP)
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+
+## [Unreleased] (WIP)
 
 ### :star: Important changes
 
@@ -13,13 +17,13 @@ Release notes for *PHP: Nelson Martell Library*.
 ### :notebook: Development changes
 
 
-### More changes
+### :bookmark: More changes
 
 See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...master?w=1) for more detailed info.
 
 
 
-## Release 0.7.1 (2018-12-23)
+## [v0.7.1] - 2018-12-23
 
 ### :star: Important changes
 
@@ -31,13 +35,13 @@ See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1.
 - :up: Improve Travis CI to auto-generate documentation.
 - :up: Contributing instructions
 
-### More changes
+### :bookmark: More changes
 
 See [changes since v0.7.0](https://github.com/nelson6e65/php_nml/compare/v0.7.0...v0.7.1?w=1) for more detailed info.
 
 
 
-## Release 0.7.0 (2017-12-04)
+## [v0.7.0] - 2017-12-04
 
 ### :star: Important changes
 
@@ -73,12 +77,12 @@ There are some improvements for development:
 
 > **NOTE**: API Documentation not updated to this release due to conflict in API generation tool.
 
-### More changes
+### :bookmark: More changes
 
 See [changes since v0.6.1](https://github.com/nelson6e65/php_nml/compare/v0.6.1...v0.7.0?w=1) for more detailed info.
 
 
-## Release 0.6.1 (2017-05-01)
+## [v0.6.1] - 2017-05-01
 
 - Minor improvements in sources and documentation info.
 - Improvements in README instruccions.
@@ -92,7 +96,7 @@ See [changes since v0.6.1](https://github.com/nelson6e65/php_nml/compare/v0.6.1.
 See [changes since v0.6.0](https://github.com/nelson6e65/php_nml/compare/v0.6.0...v0.6.1) for more detailed info.
 
 
-## Release 0.6.0 (2016-10-06)
+## [v0.6.0] - 2016-10-06
 
 ### Installation changes
 - :fire: Removed dependencies copy. Now you must install dependencies manually if not using `composer`.
@@ -137,7 +141,7 @@ See [changes since v0.5.1](https://github.com/nelson6e65/php_nml/compare/v0.5.1.
 
 
 
-## Release 0.5.1
+## [v0.5.1]
 - Automatize API generation via Travis CI
 - Some improvements in documentation and instructions
 - Minor fixes in possible errors
@@ -145,5 +149,5 @@ See [changes since v0.5.1](https://github.com/nelson6e65/php_nml/compare/v0.5.1.
 
 See [detailed changelog](https://github.com/nelson6e65/php_nml/compare/v0.5.0...v0.5.1).
 
-## Release 0.5.0
+## [v0.5.0]
 <!-- TODO -->
