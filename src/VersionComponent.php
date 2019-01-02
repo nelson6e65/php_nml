@@ -2,9 +2,6 @@
 /**
  * PHP: Nelson Martell Library file
  *
- * Content:
- * - Class definition:  [NelsonMartell]  VersionComponent
- *
  * Copyright © 2015-2019 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)

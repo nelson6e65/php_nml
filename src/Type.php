@@ -2,10 +2,6 @@
 /**
  * PHP: Nelson Martell Library file
  *
- * Content:
- * - Class definition:    [NelsonMartell]  Type
- * - Function definition: []               typeof(mixed)
- *
  * Copyright © 2013-2015 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)

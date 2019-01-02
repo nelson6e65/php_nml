@@ -2,10 +2,6 @@
 /**
  * PHP: Nelson Martell Library file
  *
- * Content:
- * - Trait definition:  [NelsonMartell\Collections]  CollectionIterator
- * - Class definition:  [NelsonMartell\Collections]  Collection
- *
  * Copyright © 2015-2019 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)

@@ -2,10 +2,7 @@
 /**
  * PHP: Nelson Martell Library file
  *
- * Content:
- * - Class definition:  [NelsonMartell\Extensions]  String
- *
- * Copyright © 2015-2016 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2015-2019 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE

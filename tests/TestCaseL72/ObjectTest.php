@@ -2,9 +2,6 @@
 /**
  * PHP: Nelson Martell Library file
  *
- * Content:
- * - Test case for: [NelsonMartell] Object (alias for StrictObject)
- *
  * Copyright © 2016-2019 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
