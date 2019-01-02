@@ -38,7 +38,7 @@ use ReflectionMethod;
  *   This property is read-only.
  *
  * */
-final class Type extends StrictObject
+final class Type extends StrictObject implements IEquatable
 {
 
     /**
@@ -292,6 +292,21 @@ final class Type extends StrictObject
         }
 
         return $s;
+    }
+
+
+    /**
+     * @param Type|mixed $other
+     *
+     * @return bool
+     */
+    public function equals($other)
+    {
+        if ($other instanceof Type) {
+            return $this->name == $other->name;
+        } else {
+            return false;
+        }
     }
 
     /**

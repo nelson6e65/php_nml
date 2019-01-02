@@ -16,11 +16,13 @@
 
 namespace NelsonMartell\Test\TestCase;
 
+use stdClass;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
 use NelsonMartell\Type;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Exporter\Exporter;
+use function NelsonMartell\typeof;
 
 /**
  *
@@ -145,5 +147,46 @@ class TypeTest extends TestCase
         $actual = $type->canBeString();
 
         $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * @dataProvider goodConstructorArgumentsProvider
+     * @since 1.0.0
+     */
+    public function testTypesEquality($obj)
+    {
+        $t1 = new Type($obj);
+        $t2 = new Type($obj);
+
+        $this->assertTrue($t1->equals($t2));
+        $this->assertTrue($t2->equals($t1));
+        $this->assertFalse($t1->equals($obj));
+    }
+
+    /**
+     *
+     * @depends testTypesEquality
+     * @since 1.0.0
+     */
+    public function testTypesInequality()
+    {
+        $t1 = new Type(new stdClass);
+        $t2 = new Type(new stdClass);
+
+        $this->assertTrue($t1->equals($t2));
+        $this->assertTrue($t2->equals($t1));
+
+
+        $t1 = new Type("1");
+        $t2 = new Type(1);
+
+        $this->assertFalse($t1->equals($t2));
+        $this->assertFalse($t2->equals($t1));
+
+        $t1 = new Type(2.0);
+        $t2 = new Type(2);
+
+        $this->assertFalse($t1->equals($t2));
+        $this->assertFalse($t2->equals($t1));
     }
 }
