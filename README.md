@@ -36,6 +36,6 @@ For more detailed information and description and instructions, check the docume
 
 [![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
 
-Copyright (c) 2014-2018 Nelson Martell
+Copyright (c) 2014-2019 Nelson Martell
 
 Read the [`LICENSE` file](LICENSE) for details.

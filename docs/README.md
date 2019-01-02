@@ -18,5 +18,5 @@ features:
 - title: Utility classes
   details: Predefined classes with utility features.
 
-footer: MIT Licensed | Copyright © 2014-2018 Nelson Martell
+footer: MIT Licensed | Copyright © 2014-2019 Nelson Martell
 ---
