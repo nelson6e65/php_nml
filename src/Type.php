@@ -310,18 +310,4 @@ final class Type extends StrictObject implements IEquatable
             return false;
         }
     }
-
-    /**
-     * Obtiene el tipo del objeto especificado.
-     * Es un alias para el constructor de Type.
-     *
-     * @param mixed $obj
-     *
-     * @return     Type
-     * @deprecated 0.5.1 Use constructor instead.
-     * */
-    public static function typeof($obj)
-    {
-        return new static($obj);
-    }
 }
