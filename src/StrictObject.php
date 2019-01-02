@@ -16,6 +16,8 @@
 
 namespace NelsonMartell;
 
+use NelsonMartell\Extensions\Arrays;
+
 /**
  * Base class that encapsulates strict properties and other basic features.
  *
@@ -188,29 +190,7 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
                         break;
 
                     case 'array':
-                        $r = count($left) - count($right);
-
-                        if ($r === 0) {
-                            reset($left);
-                            reset($right);
-
-                            do {
-                                $lKey = key($left);
-                                $lValue = current($left);
-                                $rKey = key($right);
-                                $rValue = current($right);
-
-                                $r = static::compare((string) $lKey, (string) $rKey);
-
-                                if ($r === 0) {
-                                    // Recursive call to compare values
-                                    $r = static::compare($lValue, $rValue);
-                                }
-
-                                next($left);
-                                next($right);
-                            } while (key($left) !== null && key($right) !== null && $r === 0);
-                        }
+                        $r = Arrays::compare($left, $right);
                         break;
 
                     default:
