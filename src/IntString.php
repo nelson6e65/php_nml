@@ -171,7 +171,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
     }
 
     /**
-     * Indica si el objeto especificado es igual a la instancia actual.
+     * Indicates whether the specified object is equal to the current instance.
      *
      * @param IntString|mixed $other
      *

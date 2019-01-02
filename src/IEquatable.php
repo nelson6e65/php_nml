@@ -27,7 +27,7 @@ interface IEquatable
 {
 
     /**
-     * Indica si el objeto especificado es igual a la instancia actual.
+     * Indicates whether the specified object is equal to the current instance.
      *
      * @param mixed $other Another object to compare equality.
      *

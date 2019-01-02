@@ -325,7 +325,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
     }
 
     /**
-     * Determina si el objeto $other especificado es igual a la instancia actual.
+     * Indicates whether the specified object is equal to the current instance.
      *
      * @param Version $other El otro objeto a comparar.
      *

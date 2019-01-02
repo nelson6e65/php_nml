@@ -296,9 +296,11 @@ final class Type extends StrictObject implements IEquatable
 
 
     /**
+     * Indicates whether the specified object is equal to the current instance.
+     *
      * @param Type|mixed $other
      *
-     * @return bool
+     * @return bool Returns always `false` if `$other` is not a `Type`.
      */
     public function equals($other)
     {

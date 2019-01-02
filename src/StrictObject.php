@@ -82,13 +82,11 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
     }
 
     /**
-     * Indica si el objeto especificado es igual a la instancia actual.
-     *
-     * Note: This methods must to be overriden.
+     * Indicates whether the specified object is equal to the current instance.
      *
      * @param mixed $other Another object to compare equality.
      *
-     * @return bool
+     * @return bool Retuns default behaviour of `==`. ***This method must be overridden***.
      * */
     public function equals($other)
     {
