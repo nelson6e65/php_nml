@@ -17,6 +17,7 @@
 namespace NelsonMartell;
 
 use NelsonMartell\Extensions\Arrays;
+use NelsonMartell\Extensions\Numbers;
 
 /**
  * Base class that encapsulates strict properties and other basic features.
@@ -121,23 +122,23 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
     }
 
     /**
-     * Determina la posición relativa del objeto de la izquierda con respecto al de la derecha.
+     * Determines the relative position of the object on the left with respect to the one on the right.
      *
-     * Compatible with, strings, integers, boolean, arrays and classes implementing ``IComparable`` interface.
+     * This method is compatible with core types and other types. You can implement `NelsonMartell\IComparable`
+     * in order to improve the beaviout for other classes.
      *
-     * Puede usarse como segundo argumento en la función de ordenamiento de
-     * arrays 'usort'.
+     * This method can be used as sorting function for `usort()` function.
      *
-     * Notes:
+     * **Notes:**
      * - Comparison is made in natural way if they are of the same type. If not, is used the PHP standard
      * comparison.
      * - If ``$left`` and ``$right`` are arrays, comparison is made by first by 'key' (as strings) and then by
      *   'values' (using this method recursively).
      *
-     * # Override
-     * You can override this method to implement a contextual sorting behaviour for ``usort()`` function.
-     * If you only need to compare instances of your class with other objects, implement
-     * ``NelsonMartell\IComparable`` instead.
+     * **Override:**
+     * You can override this method to implement a contextual sorting behaviour for `usort()` function.
+     * If you only need to compare instances of your class with other objects, implement `NelsonMartell\IComparable`
+     * instead.
      *
      * @param mixed $left  Left object.
      * @param mixed $right Right object.
@@ -148,10 +149,14 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
      *   - ``> 0`` if $left is considered greater than $other;
      *   - ``< 0`` if $left is considered less than $other;
      *   - ``null`` if $left can't be compared to $other .
-     * @see IComparer::compare()
-     * @see IComparable::compareTo()
+     *
      * @see \strnatcmp()
      * @see \usort()
+     * @see Arrays::compare()
+     * @see IComparable
+     * @see IComparable::compareTo()
+     * @see IComparer::compare()
+     * @see Numbers::compare()
      * */
     public static function compare($left, $right)
     {
@@ -170,7 +175,7 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
             $rtype = typeof($right);
 
             // If they are of the same type.
-            if ($ltype->name === $rtype->name) {
+            if ($ltype->equals($rtype)) {
                 switch ($ltype->name) {
                     case 'string':
                         $r = strnatcmp($left, $right);
@@ -181,12 +186,9 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
                         break;
 
                     case 'integer':
-                        $r = $left - $right;
-                        break;
-
                     case 'float':
                     case 'double':
-                        $r = (int) ceil($left - $right);
+                        $r = Numbers::compare($left, $right);
                         break;
 
                     case 'array':
@@ -201,15 +203,24 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
                         }
                 }
             } else {
-                if ($left == $right) {
-                    $r = 0;
-                } elseif ($left > $right) {
-                    $r = 1;
-                } elseif ($left < $right) {
+                if ($ltype->isCustom()) {
+                    if ($rtype->isCustom()) {
+                        $r = ($ltype == $rtype) ? 0 : null;
+                    } else {
+                        $r = 1;
+                    }
+                } elseif ($rtype->isCustom()) {
                     $r = -1;
                 } else {
-                    // If can't determinate, retuns null
-                    $r = null;
+                    if (is_numeric($left) || is_numeric($right)) {
+                        $r = Numbers::compare($left, $right);
+                    } else {
+                        if ($left == $right) {
+                            $r = 0;
+                        } else {
+                            $r = null;
+                        }
+                    }
                 }
             }
         }

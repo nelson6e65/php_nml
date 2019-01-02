@@ -16,7 +16,11 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
+use stdClass;
+
 use NelsonMartell\StrictObject;
+use NelsonMartell\Test\DataProviders\ExampleClass\A;
+
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
@@ -79,8 +83,31 @@ trait ObjectTestProvider
             'array > array (values)'        => [1, ['hola', 'mundo'], ['hello', 'world']],
             'array < array (values)'        => [-1, ['hello', 'world'], ['hola', 'mundo']],
             'array < array (keys)'          => [-1, ['hola', 'mundo'], ['one' => 'hello', 'two' => 'world']],
-            'stdClass = stdClass'           => [0, $obj, $obj],
+            'same reference =='             => [0, $obj, $obj],
+            'empty classes =='              => [0, new A(), new A()],
+            'different class'               => [null, new A(), new stdClass],
             'stdClass (empty) < stdClass'   => [-1, new \stdClass, $obj],
+            'stdClass > stdClass (empty)'   => [1, $obj, new \stdClass],
+            'stdClass > integer'            => [1, $obj, 1234],
+            'integer < stdClass'            => [-1, 1234, $obj],
+            'stdClass > string'             => [1, $obj, "1234"],
+            'string < stdClass'             => [-1, "1234", $obj],
+            'stdClass > null'               => [1, $obj, null],
+            'null < stdClass'               => [-1, null, $obj],
+            'float > null'                  => [1, 1.23, null],
+            'null < float'                  => [-1, null, 1.23],
+            'null < float (negative)'       => [-1, null, -1.23],
+            'float (negative) > null'       => [1, -1.23, null],
+            'float == integer'              => [0, 1.00, 1],
+            'float != integer'              => [1, 1.0000001, 1],
+            'floats near to zero'           => [1, 0.00000000001, -0.00000000001],
+            'float > integer'               => [1, 1.23, 1],
+            'integer < float'               => [-1, 1, 1.23],
+            'floats <'                      => [-1, 1.234, 1.2345],
+            'bool cant integer'             => [null, false, 19],
+            'integer cant bool'             => [null, 1, true],
+            'boolean < boolean'             => [-1, false, true],
+            'boolean > boolean'             => [1, true, false],
         ];
 
         return $args;
