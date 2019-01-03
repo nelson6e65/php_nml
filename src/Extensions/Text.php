@@ -223,8 +223,8 @@ class Text extends TextBase implements IComparer
      * `StrictObject::compare()`.` You should use it directly instead of this method as comparation function
      * for `usort()`.
      *
-     * @param array $left
-     * @param array $right
+     * @param string|mixed $left
+     * @param string|mixed $right
      *
      * @return int|null
      *
@@ -239,7 +239,7 @@ class Text extends TextBase implements IComparer
             } elseif (typeof($right)->canBeString()) {
                 return strnatcmp($left, $right);
             } else {
-                return null;
+                return -1;
             }
         } elseif (is_string($right)) {
             $r = static::compare($right, $left);

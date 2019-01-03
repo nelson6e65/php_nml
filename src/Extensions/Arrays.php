@@ -53,43 +53,64 @@ class Arrays implements IComparer
     /**
      * {@inheritDoc}
      *
-     * @param array $left
-     * @param array $right
+     * This methods is specific for the case when one of them are `array`. In other case, will fallback to
+     * `StrictObject::compare()`.` You should use it directly instead of this method as comparation function
+     * for `usort()`.
+     *
+     * @param array|mixed $left
+     * @param array|mixed $right
      *
      * @return int|null Returns null if one of them is not an `array`.
      *
      * @since 1.0.0  Move implementation of array comparation from `StrictObject::compare()`.
+     * @see StrictObject::compare()
      */
     public static function compare($left, $right)
     {
-        if (!is_array($left) || !is_array($right)) {
-            return null;
-        }
-
-        $r = count($left) - count($right);
-
-        if ($r === 0) {
-            reset($left);
-            reset($right);
-
-            do {
-                $lKey   = key($left);
-                $lValue = current($left);
-                $rKey   = key($right);
-                $rValue = current($right);
-
-                $r = StrictObject::compare((string) $lKey, (string) $rKey);
+        if (is_array($left)) {
+            if (is_array($right)) {
+                $r = count($left) - count($right);
 
                 if ($r === 0) {
-                    // Recursive call to compare values
-                    $r = StrictObject::compare($lValue, $rValue);
+                    reset($left);
+                    reset($right);
+
+                    do {
+                        $lKey   = key($left);
+                        $lValue = current($left);
+                        $rKey   = key($right);
+                        $rValue = current($right);
+
+                        $r = StrictObject::compare((string) $lKey, (string) $rKey);
+
+                        if ($r === 0) {
+                            // Recursive call to compare values
+                            $r = StrictObject::compare($lValue, $rValue);
+                        }
+
+                        next($left);
+                        next($right);
+                    } while (key($left) !== null && key($right) !== null && $r === 0);
                 }
 
-                next($left);
-                next($right);
-            } while (key($left) !== null && key($right) !== null && $r === 0);
+                return $r;
+            } else {
+                if (typeof($right)->isCustom()) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        } elseif (is_array($right)) {
+            $r = static::compare($right, $left);
+
+            if ($r !== null) {
+                $r *= -1; // Invert result
+            }
+
+            return $r;
         }
 
-        return $r;
+        return StrictObject::compare($left, $right);
     }
 }

@@ -62,6 +62,7 @@ class Numbers implements IComparer
      * @return int|null
      *
      * @since 1.0.0
+     * @see StrictObject::compare()
      */
     public static function compare($left, $right)
     {
@@ -78,10 +79,8 @@ class Numbers implements IComparer
                 return $r;
             } elseif ($right === null) {
                 return 1;
-            } elseif (typeof($right)->isCustom()) {
-                return -1;
             } else {
-                return null;
+                return -1;
             }
         } elseif (is_numeric($right)) {
             $r = static::compare($right, $left);
