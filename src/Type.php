@@ -19,6 +19,7 @@ namespace NelsonMartell;
 use ReflectionClass;
 use ReflectionProperty;
 use ReflectionMethod;
+use InvalidArgumentException;
 
 /**
  * Represents a PHP object type, and provides some properties and methods to
@@ -309,5 +310,76 @@ final class Type extends StrictObject implements IEquatable
         } else {
             return false;
         }
+    }
+
+    /**
+     * Detect if at least one of the objects are from this type.
+     *
+     * **Usage:**
+     *
+     * ```php
+     * $var1 = 'Hola, mundo';
+     * $oneIsString = typeof((string) '')->isIn($var1, 1, 34); // true
+     * ```
+     *
+     * Also works with 1st dimention of arrays:
+     * ```php
+     * $vars = ['Hola, mundo', 1, 34];
+     * $oneIsString = typeof((string) '')->isIn($vars); // true
+     * ```
+     *
+     * @param array $args List of object to check type.
+     *
+     * @return bool
+     *
+     * @see typeof()
+     * @see Type::is()
+     * @since 1.0.0
+     */
+    public function isIn(...$args)
+    {
+        foreach ($args as $obj) {
+            if ($this->equals(typeof($obj))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Detect if all object are from this type.
+     *
+     * * **Usage:**
+     *
+     * ```php
+     * $var1 = 'Hola, mundo';
+     * $allAreString = typeof((string) '')->isIn($var1, 1, 34); // false
+     * $allAreString = typeof((string) '')->isIn($var1, '1', '34'); // true
+     * ```
+     *
+     * Also works with 1st dimention of arrays:
+     * ```php
+     * $vars = ['Hola, mundo', '1', '34'];
+     * $allAreString = typeof((string) '')->isIn($vars); // true
+     * ```
+     *
+     * @param array $args List of object to check type.
+     *
+     * @return bool
+     *
+     * @see typeof()
+     * @see Type::isIn()
+     * @since 1.0.0
+     */
+    public function is(...$args)
+    {
+        foreach ($args as $obj) {
+            if (!$this->equals(typeof($obj))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

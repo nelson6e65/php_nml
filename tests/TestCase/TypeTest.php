@@ -189,4 +189,36 @@ class TypeTest extends TestCase
         $this->assertFalse($t1->equals($t2));
         $this->assertFalse($t2->equals($t1));
     }
+
+    /**
+     * Pruebas para Type::is()
+     *
+     * @dataProvider methodIsProvider
+     *
+     * @param  bool   $expected
+     * @param  mixed   $type
+     * @param  array  $args
+     * @return void
+     */
+    public function testIsMethod(bool $expected, $type, array $args)
+    {
+        $this->assertEquals($expected, typeof($type)->is(...$args));
+        $this->assertNotEquals(!$expected, typeof($type)->is(...$args));
+    }
+
+    /**
+     * Pruebas para Type::isIn()
+     *
+     * @dataProvider methodIsInProvider
+     *
+     * @param  bool   $expected
+     * @param  mixed   $type
+     * @param  array  $args
+     * @return void
+     */
+    public function testIsInMethod(bool $expected, $type, array $args)
+    {
+        $this->assertEquals($expected, typeof($type)->isIn(...$args));
+        $this->assertNotEquals(!$expected, typeof($type)->isIn(...$args));
+    }
 }

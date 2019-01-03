@@ -15,6 +15,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :bug: :fire: Fix problem in `NelsonMartell\StrictObject::compare()` for some types and make it more generic.
 - :new: `class`: `NelsonMartell\Extensions\Numbers`.
 - :new: `class`: `NelsonMartell\Extensions\Arrays`.
+- :new: Add methods to check if a list of objects are of a type:
+  - :new: `NelsonMartell\Type::is()`
+  - :new: `NelsonMartell\Type::isIn()`
 
 
 ### :notebook: Development changes

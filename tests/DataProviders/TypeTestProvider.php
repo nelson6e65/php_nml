@@ -16,6 +16,9 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
+use stdClass;
+
+use NelsonMartell\Test\DataProviders\ExampleClass\A;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
@@ -114,5 +117,57 @@ trait TypeTestProvider
     public function objectInstanceProvider()
     {
         return [[new Type($this)]];
+    }
+
+    /**
+     * [
+     *  (bool) if should match,
+     *  (mixed) type,
+     *  (array) objects
+     * ]
+     * @return array
+     */
+    public function methodIsProvider()
+    {
+        return [
+            [true,  (bool) true,    [true, false]],
+            [false, (bool) false,   [true, false, 0]],
+            [true,  (int) 123,      [11, 0, -34]],
+            [false, (int) 123,      [11, 0, -34.456]],
+            [true,  (float) 1.23,   [11.0, 0.0, -34.6]],
+            [false, (float) 1.23,   [11.0, 0, -34.4]],
+            [true,  (string) '',    ['', '0', 'i am not a string']],
+            [false, (string) '',    [11.2, '0', true]],
+            [true,  null,           [null, null]],
+            [false, null,           [[], null, false]],
+            [true,  new stdClass,   [new stdClass, new stdClass]],
+            [false, new stdClass,   [[], new stdClass, true]],
+        ];
+    }
+
+    /**
+     * [
+     *  (bool) if should match,
+     *  (mixed) type,
+     *  (array) objects
+     * ]
+     * @return array
+     */
+    public function methodIsInProvider()
+    {
+        return [
+            [true,  (bool) true,    [true, false, 1, 'string']],
+            [false, (bool) false,   ['true', 'false', 0, 1]],
+            [true,  (int) 123,      [11, 0, -34]],
+            [false, (int) 123,      [11.2, '0', true]],
+            [true,  (float) 1.23,   [11, 0.5, -34]],
+            [false, (float) 1.23,   [11, '0', true]],
+            [true,  (string) '',    [11, '0', -34]],
+            [false, (string) '',    [11.2, 0, true]],
+            [true,  null,           [null, true, 4]],
+            [false, null,           [[], 'null', false]],
+            [true,  new stdClass,   [new stdClass, new A, 0]],
+            [false, new stdClass,   [[], 'stdClass', true]],
+        ];
     }
 }
