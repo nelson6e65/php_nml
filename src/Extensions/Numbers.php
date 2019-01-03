@@ -40,7 +40,7 @@ class Numbers implements IComparer
      */
     public static function ensureIsNumeric($obj)
     {
-        if (!is_int($obj) || !is_float($obj) || is_nan($obj)) {
+        if (!is_int($obj) || !is_float($obj) || is_object($obj)) {
             $msg = msg('Provided object must to be an integer or float; "{0}" given.', typeof($obj));
             throw new InvalidArgumentException($msg);
         }
@@ -62,7 +62,7 @@ class Numbers implements IComparer
         $r = null;
 
         if (is_numeric($left)) {
-            if (is_numeric($right)) {
+            if (is_numeric($right) && !is_nan($right)) {
                 $r = $left - $right;
 
                 if ($r > 0) {
@@ -70,7 +70,7 @@ class Numbers implements IComparer
                 } else {
                     $r = (int) floor($r);
                 }
-            } elseif ($right === null || is_nan($right)) {
+            } elseif ($right === null) {
                 $r = 1;
             } elseif (typeof($right)->isCustom()) {
                 $r = -1;
