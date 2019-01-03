@@ -42,6 +42,8 @@ trait IComparerTester
     /**
      * Datasets for ``testCanUseCompareMethodInArraySorting(integer|null $expected, mixed $left, mixed $right)``.
      *
+     * Must provide an array of sorted items.
+     *
      * @return array
      */
     abstract public function compareMethodArraysProvider();

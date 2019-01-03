@@ -20,6 +20,8 @@ use Cake\Utility\Text as TextBase;
 
 use function NelsonMartell\msg;
 use function NelsonMartell\typeof;
+use NelsonMartell\IComparer;
+use NelsonMartell\StrictObject;
 
 /**
  * Provides extension methods to handle strings.
@@ -30,7 +32,7 @@ use function NelsonMartell\typeof;
  * @see \Cake\Utility\Text::insert()
  * @link http://book.cakephp.org/3.0/en/core-libraries/text.html
  * */
-class Text extends TextBase
+class Text extends TextBase implements IComparer
 {
 
     /**
@@ -211,5 +213,44 @@ class Text extends TextBase
         }
 
         return $string;
+    }
+
+
+    /**
+     * {@inheritDoc}
+     *
+     * This methods is specific for the case when one of them are `string`. In other case, will fallback to
+     * `StrictObject::compare()`.` You should use it directly instead of this method as comparation function
+     * for `usort()`.
+     *
+     * @param array $left
+     * @param array $right
+     *
+     * @return int|null
+     *
+     * @since 1.0.0
+     * @see StrictObject::compare()
+     */
+    public static function compare($left, $right)
+    {
+        if (is_string($left)) {
+            if (typeof($right)->isCustom()) { // String are minor than classes
+                return -1;
+            } elseif (typeof($right)->canBeString()) {
+                return strnatcmp($left, $right);
+            } else {
+                return null;
+            }
+        } elseif (is_string($right)) {
+            $r = static::compare($right, $left);
+
+            if ($r !== null) {
+                $r *= -1; // Invert result
+            }
+
+            return $r;
+        }
+
+        return StrictObject::compare($left, $right);
     }
 }

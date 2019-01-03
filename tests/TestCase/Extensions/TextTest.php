@@ -15,11 +15,18 @@
  * */
 namespace NelsonMartell\Test\TestCase\Extensions;
 
-use NelsonMartell\Extensions\Text;
-use PHPUnit\Framework\TestCase;
+use stdClass;
+use ReflectionClass;
 use InvalidArgumentException;
+
+use NelsonMartell\Extensions\Text;
+
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString as ClassString;
-use function NelsonMartell\typeof;
+
+use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\IComparerTester;
+
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test case for `NelsonMartell\Extensions\Text` class.
@@ -31,6 +38,9 @@ use function NelsonMartell\typeof;
  * */
 class TextTest extends TestCase
 {
+    use IComparerTester;
+    use ExporterPlugin;
+
     /**
      * @dataProvider validPositionalArgsListProvider
      * @dataProvider validNamedArgsListProvider
@@ -176,6 +186,39 @@ class TextTest extends TestCase
                     'coords' => new ClassString(),
                 ],
             ],
+        ];
+    }
+
+    // IComparerTester ==============================================================================
+
+    public function getTargetClassName()
+    {
+        return Text::class;
+    }
+
+    public function getTargetClassReflection()
+    {
+        return new ReflectionClass($this->getTargetClassName());
+    }
+
+
+
+    public function compareMethodArgumentsProvider()
+    {
+        return [
+            'stdClass > string'     => [1, new stdClass, 'stdClass'],
+            'string < stdClass'     => [-1, 'stdClass', new stdClass],
+            'string > null'         => [1, 's', null],
+            'null < string'         => [-1, null, 's'],
+            'string (empty) == null' => [0, '', null],
+            'null == string (empty)' => [0, null, ''],
+        ];
+    }
+
+    public function compareMethodArraysProvider()
+    {
+        return [
+            [[-1, 0, 1, 'b', 'c', 'd', 'z', 'z1', new stdClass]],
         ];
     }
 }

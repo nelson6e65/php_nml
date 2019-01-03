@@ -20,6 +20,7 @@ use InvalidArgumentException;
 use function NelsonMartell\msg;
 use function NelsonMartell\typeof;
 use NelsonMartell\IComparer;
+use NelsonMartell\StrictObject;
 
 /**
  * Provides extension methods to handle numbers.
@@ -50,6 +51,11 @@ class Numbers implements IComparer
 
     /**
      * {@inheritDoc}
+     *
+     * This methods is specific for the case when one of them are `numeric`. In other case, will fallback to
+     * `StrictObject::compare()`.` You should use it directly instead of this method as comparation function
+     * for `usort()`.
+     *
      * @param int|float|mixed $left
      * @param int|float|mixed $right
      *
@@ -59,8 +65,6 @@ class Numbers implements IComparer
      */
     public static function compare($left, $right)
     {
-        $r = null;
-
         if (is_numeric($left)) {
             if (is_numeric($right) && !is_nan($right)) {
                 $r = $left - $right;
@@ -70,12 +74,14 @@ class Numbers implements IComparer
                 } else {
                     $r = (int) floor($r);
                 }
+
+                return $r;
             } elseif ($right === null) {
-                $r = 1;
+                return 1;
             } elseif (typeof($right)->isCustom()) {
-                $r = -1;
+                return -1;
             } else {
-                $r = null;
+                return null;
             }
         } elseif (is_numeric($right)) {
             $r = static::compare($right, $left);
@@ -83,10 +89,10 @@ class Numbers implements IComparer
             if ($r !== null) {
                 $r *= -1;
             }
-        } else {
-            $r = null;
+
+            return $r;
         }
 
-        return $r;
+        return StrictObject::compare($left, $right);
     }
 }

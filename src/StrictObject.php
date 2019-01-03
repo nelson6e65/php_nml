@@ -16,6 +16,7 @@
 
 namespace NelsonMartell;
 
+use NelsonMartell\Extensions\Text;
 use NelsonMartell\Extensions\Arrays;
 use NelsonMartell\Extensions\Numbers;
 
@@ -157,6 +158,7 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
      * @see IComparable::compareTo()
      * @see IComparer::compare()
      * @see Numbers::compare()
+     * @see Text::compare()
      * */
     public static function compare($left, $right)
     {
@@ -174,53 +176,39 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
             $ltype = typeof($left);
             $rtype = typeof($right);
 
-            // If they are of the same type.
-            if ($ltype->equals($rtype)) {
-                switch ($ltype->name) {
-                    case 'string':
-                        $r = strnatcmp($left, $right);
-                        break;
-
-                    case 'boolean':
-                        $r = (int) $left - (int) $right;
-                        break;
-
-                    case 'integer':
-                    case 'float':
-                    case 'double':
-                        $r = Numbers::compare($left, $right);
-                        break;
-
-                    case 'array':
-                        $r = Arrays::compare($left, $right);
-                        break;
-
-                    default:
-                        if ($left == $right) {
-                            $r = 0;
-                        } else {
-                            $r = ($left > $right) ? +1 : -1;
-                        }
+            if (typeof((bool) true)->isIn($left, $right)) {
+            // Boolean compare -----------------------------------------
+                if (typeof((bool) true)->is($left, $right)) {
+                    $r = (int) $left - (int) $right;
+                } else {
+                    $r = null;
                 }
+            } elseif (typeof((int) 0)->isIn($left, $right) || typeof((float) 0)->isIn($left, $right)) {
+            // Numeric compare -----------------------------------------
+                $r = Numbers::compare($left, $right);
+            } elseif (typeof((string) '')->isIn($left, $right)) {
+            // String compare ------------------------------------------
+                $r = Text::compare($left, $right);
+            } elseif (typeof((array) [])->isIn($left, $right)) {
+            // Array compare -------------------------------------------
+                $r = Arrays::compare($left, $right);
             } else {
                 if ($ltype->isCustom()) {
                     if ($rtype->isCustom()) {
-                        $r = ($ltype == $rtype) ? 0 : null;
+                        if ($left == $right) {
+                            $r = 0;
+                        } elseif ($ltype->equals($rtype)) {
+                            $r = ($left > $right) ? +1 : -1;
+                        } else {
+                            $r = null;
+                        }
                     } else {
                         $r = 1;
                     }
                 } elseif ($rtype->isCustom()) {
                     $r = -1;
                 } else {
-                    if (is_numeric($left) || is_numeric($right)) {
-                        $r = Numbers::compare($left, $right);
-                    } else {
-                        if ($left == $right) {
-                            $r = 0;
-                        } else {
-                            $r = null;
-                        }
-                    }
+                    $r = null;
                 }
             }
         }
