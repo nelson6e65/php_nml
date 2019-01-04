@@ -289,21 +289,21 @@ final class Version extends StrictObject implements IEquatable, IComparable
     public function isValid()
     {
         // Validación de major y minor:
-        $r = ($this->major > 0 or $this->minor > 0); //#1
+        $r = ($this->major > 0 || $this->minor > 0); // 1
 
         // Validación de build y revision:
         if ($r) {
-            $r = ($this->build->isNull() and $this->revision->isNull()); // #2
+            $r = ($this->build->isNull() && $this->revision->isNull()); // 2
 
             if (!$r) {
-                if ($this->build->isNotNull() and $this->revision->isNotNull()) {
+                if ($this->build->isNotNull() && $this->revision->isNotNull()) {
                     // Si ambos están definidos...
 
-                    $r = (bool) ($this->build->stringValue == ''); //#5
+                    $r = (bool) ($this->build->stringValue == ''); // 5
 
                     if (!$r) {
-                        //#4
-                        $r = (bool) (($this->build->stringValue == '') and ($this->revision->stringValue == ''));
+                        // 4
+                        $r = (bool) (($this->build->stringValue == '') && ($this->revision->stringValue == ''));
 
                         if (!$r) {
                             if ($this->build->stringValue != '') {
@@ -316,7 +316,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
                         }
                     }
                 } else {
-                    $r = ($this->build->isNotNull() and $this->revision->isNull()); //#3
+                    $r = ($this->build->isNotNull() && $this->revision->isNull()); // 3
                 }
             }
         }

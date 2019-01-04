@@ -183,7 +183,7 @@ class Collection extends StrictObject implements ICollection
             'G' => '{nsclass} ({count} items): { {items} }',
         ];
 
-        if ($format == null or !is_string($format)) {
+        if ($format == null || !is_string($format)) {
             $format = 'r'; //Override if is not an string
         }
 

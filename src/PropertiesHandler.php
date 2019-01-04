@@ -207,7 +207,7 @@ trait PropertiesHandler
             // Check in parent classes for private property
             $current = $args['class'];
             $exists  = false;
-            while ($current = get_parent_class($current) and !$exists) {
+            while (($current = get_parent_class($current)) && !$exists) {
                 $exists = property_exists($current, $args['property']);
             }
 
