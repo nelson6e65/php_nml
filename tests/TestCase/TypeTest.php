@@ -90,8 +90,8 @@ class TypeTest extends TestCase
         $this->assertInternalType('string', $actual);
         $this->assertEquals($expected, $actual);
 
-        $actual   = "<Type>$actual</Type>";
-        $expected = "<Type>$expected</Type>";
+        $actual   = '<Type>'.$actual.'</Type>';
+        $expected = '<Type>'.$expected.'</Type>';
         $this->assertEquals($expected, $actual);
     }
 
@@ -177,7 +177,7 @@ class TypeTest extends TestCase
         $this->assertTrue($t2->equals($t1));
 
 
-        $t1 = new Type("1");
+        $t1 = new Type('1');
         $t2 = new Type(1);
 
         $this->assertFalse($t1->equals($t2));

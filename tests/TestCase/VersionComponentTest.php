@@ -98,8 +98,8 @@ class VersionComponentTest extends TestCase
      */
     public function testPerformsImplicitConversionToString($str, VersionComponent $obj)
     {
-        $expected = "<VersionComponent>$str</VersionComponent>";
-        $actual   = "<VersionComponent>$obj</VersionComponent>";
+        $expected = '<VersionComponent>'.$str.'</VersionComponent>';
+        $actual   = '<VersionComponent>'.$obj.'</VersionComponent>';
 
         $this->assertEquals($expected, $actual);
     }

@@ -77,8 +77,8 @@ class VersionTest extends TestCase
      */
     public function testPerformsImplicitConversionToString($str, Version $obj)
     {
-        $expected = "<Version>$str</Version>";
-        $actual   = "<Version>$obj</Version>";
+        $expected = '<Version>'.$str.'</Version>';
+        $actual   = '<Version>'.$obj.'</Version>';
 
         $this->assertEquals($expected, $actual);
     }

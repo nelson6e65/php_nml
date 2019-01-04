@@ -289,7 +289,7 @@ final class Type extends StrictObject implements IEquatable
         $s = $this->name;
 
         if ($this->isCustom()) {
-            $s = sprintf("object (%s)", $s);
+            $s = sprintf('object (%s)', $s);
         }
 
         return $s;

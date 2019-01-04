@@ -154,15 +154,15 @@ trait VersionComponentTestProvider
     {
         return [
             'VersionComponent[]' => [[
-                VersionComponent::parse("0-4-g"),
-                VersionComponent::parse("1-4-g"),
-                VersionComponent::parse("2-3-g"),
-                VersionComponent::parse("2-3-g726356"),
-                VersionComponent::parse("2-4-g"),
-                VersionComponent::parse("4-3-g"),
-                VersionComponent::parse("4-3-gsh4hajk7"),
-                VersionComponent::parse("4-3-gsh4hbjk7"),
-                VersionComponent::parse("11-4-g"),
+                VersionComponent::parse('0-4-g'),
+                VersionComponent::parse('1-4-g'),
+                VersionComponent::parse('2-3-g'),
+                VersionComponent::parse('2-3-g726356'),
+                VersionComponent::parse('2-4-g'),
+                VersionComponent::parse('4-3-g'),
+                VersionComponent::parse('4-3-gsh4hajk7'),
+                VersionComponent::parse('4-3-gsh4hbjk7'),
+                VersionComponent::parse('11-4-g'),
             ]],
             'VersionComponent[] + integer[]' => [[
                 1,
@@ -238,7 +238,7 @@ trait VersionComponentTestProvider
             ['', new VersionComponent(null, null)],
             ['1a', new VersionComponent(1, 'a')],
             ['1-beta', new VersionComponent(1, '-beta')],
-            ['2-rc1-20-g8c5b85c', new VersionComponent(2, "-rc1-20-g8c5b85c")],
+            ['2-rc1-20-g8c5b85c', new VersionComponent(2, '-rc1-20-g8c5b85c')],
         ];
     }
 
@@ -254,7 +254,7 @@ trait VersionComponentTestProvider
             ['null', new VersionComponent(null, null)],
             ['defined', new VersionComponent(1, 'a')],
             ['defined', new VersionComponent(1, '-beta')],
-            ['defined', new VersionComponent(2, "-rc1-20-g8c5b85c")],
+            ['defined', new VersionComponent(2, '-rc1-20-g8c5b85c')],
         ];
     }
 }

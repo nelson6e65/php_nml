@@ -115,7 +115,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
             throw new InvalidArgumentException($msg, 1, $e);
         }
 
-        $stringValue = ltrim($obj, "$intValue");
+        $stringValue = ltrim($obj, "${intValue}");
 
         // Validate that 0 (zero) is not interpreted as '' (empty string)
         if ($stringValue === $obj) {

@@ -74,7 +74,7 @@ trait ExporterPlugin
                         if (is_object($value)) {
                             $sclass = static::getClass($value, $short);
 
-                            $sVal = "$sclass({...})";
+                            $sVal = $sclass.'({...})';
                         } elseif (is_array($value)) {
                             $sVal = '[...]';
                         } else {

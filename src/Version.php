@@ -151,7 +151,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
             $version = [$value, 0];
         } elseif (is_float($value)) {
             // Integer part as major, and decimal part as minor
-            $version = sprintf("%F", $value);
+            $version = sprintf('%F', $value);
             $version = explode('.', $version);
         } elseif (is_array($value)) {
             // Implode first 4 places for major, minor, build and revision respectivally.
