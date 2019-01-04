@@ -307,11 +307,11 @@ final class Version extends StrictObject implements IEquatable, IComparable
 
                         if (!$r) {
                             if ($this->build->stringValue != '') {
-                                $r = $this->revision->isNull(); #6
+                                $r = $this->revision->isNull(); // 6
                             }
 
                             if ($this->revision->stringValue != '') {
-                                $r = ($this->build->stringValue == ''); #7
+                                $r = ($this->build->stringValue == ''); // 7
                             }
                         }
                     }
@@ -348,7 +348,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
     }
 
 
-    #region IComparable
+    // region IComparable
 
     /**
      * Determina la posición relativa de esta instancia con respecto al objeto especificado.
@@ -422,5 +422,5 @@ final class Version extends StrictObject implements IEquatable, IComparable
         return $r;
     }
 
-    #endregion
+    // endregion
 }

@@ -36,7 +36,7 @@ trait StrictObjectTestProvider
     use ConstructorMethodTester;
     use IComparerTester;
 
-    # ConstructorMethodTester
+    // ConstructorMethodTester
 
     public function getTargetClassName()
     {
@@ -53,10 +53,10 @@ trait StrictObjectTestProvider
     {
         return null;
     }
-    #
+    //
 
 
-    # IComparerTester
+    // IComparerTester
     public function compareMethodArgumentsProvider()
     {
         $obj = new \stdClass();
@@ -128,5 +128,5 @@ trait StrictObjectTestProvider
             'string[]'            => [['a', 'b', 'c', 'd', 'z', 'z1']],
         ];
     }
-    #
+    //
 }
