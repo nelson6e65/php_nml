@@ -25,6 +25,7 @@
   <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
     <exclude-pattern>tests/</exclude-pattern>
   </rule>
+  <rule ref="Generic.NamingConventions.ConstructorName"/>
 
 
   <!-- <config name="show_progress" value="1"/>
