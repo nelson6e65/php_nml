@@ -47,8 +47,12 @@
 	},
 	"scripts": {
 		"check-all": [
+			"@analize-syntax",
 			"@test-code",
 			"@analize-code"
+		],
+		"analize-syntax": [
+			"phpcs src/ config/ autoload.php -q --standard=Generic --sniffs=Generic.PHP.Syntax --colors"
 		],
 		"analize-code": [
 			"phpcs src/ tests/ config/ autoload.php -p --runtime-set ignore_warnings_on_exit 1"

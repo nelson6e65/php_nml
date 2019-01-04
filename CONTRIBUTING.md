@@ -34,6 +34,8 @@ yarn
 
 - **`composer test-code`**: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
 
+- **`composer analize-syntax`**: Runs PHP syntax checks.
+
 - **`composer analize-code`**: Runs coding standards checks (PHP: Code Sniffer).
 
 - **`composer autofix-code`**: Runs coding standard auto-fixes (PHP: Code Sniffer).

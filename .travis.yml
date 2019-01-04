@@ -48,8 +48,7 @@ before_script:
   - if [[ $BUILD_DOCS == 'true' ]]; then yarn; fi # yarn install
 
 script:
-  - composer analize-code
-  - composer test-code
+  - composer check-all
 
 after_success:
   - if [[ $BUILD_DOCS == 'true' ]]; then phpdoc; fi
