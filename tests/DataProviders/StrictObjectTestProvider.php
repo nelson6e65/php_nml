@@ -30,7 +30,7 @@ use NelsonMartell\Test\Helpers\IComparerTester;
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
  * */
-trait ObjectTestProvider
+trait StrictObjectTestProvider
 {
     use ExporterPlugin;
     use ConstructorMethodTester;

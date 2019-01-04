@@ -18,7 +18,7 @@ namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell as NML;
 use NelsonMartell\Extensions\Text;
-use NelsonMartell\Test\DataProviders\ObjectTestProvider;
+use NelsonMartell\Test\DataProviders\StrictObjectTestProvider;
 use NelsonMartell\StrictObject;
 use PHPUnit\Framework\TestCase;
 use InvalidArgumentException;
@@ -32,7 +32,7 @@ use Exception;
  * */
 class StrictObjectTest extends TestCase
 {
-    use ObjectTestProvider;
+    use StrictObjectTestProvider;
 
     /**
      * Overrides default tests, due to this class constructor do not throws argument exceptions.
