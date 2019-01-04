@@ -51,10 +51,10 @@
 			"@analize-code"
 		],
 		"analize-code": [
-			"phpcs -p --runtime-set ignore_warnings_on_exit 1"
+			"phpcs src/ tests/ config/ autoload.php -p --runtime-set ignore_warnings_on_exit 1"
 		],
 		"autofix-code": [
-			"phpcbf -p"
+			"phpcbf src/ tests/ config/ autoload.php -p"
 		],
 		"test-code": [
 			"phpunit --color=always"
