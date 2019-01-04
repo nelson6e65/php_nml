@@ -168,7 +168,6 @@ final class Version extends StrictObject implements IEquatable, IComparable
 
         if ($c > 4 || $c < 2) {
             $msg = msg('Unable to parse. Argument passed has an invalid format: "{0}".', $value);
-            //var_dump($version);
             throw new InvalidArgumentException($msg);
         }
 

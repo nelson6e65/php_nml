@@ -65,8 +65,6 @@ trait ExporterPlugin
                 // Replace array braces and separator
                 $content = str_replace([' => ', '[ ', ' ]'], [': ', '{ ', ' }'], $content);
 
-                // var_dump($content, $depth);
-
                 if ($depth > 1) {
                     foreach ($arrayObject as $key => $value) {
                         $format = '{0}: {1}';

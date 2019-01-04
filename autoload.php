@@ -14,7 +14,7 @@
  *
  * @copyright 2015-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.3.0
+ * @since     0.3.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -24,5 +24,3 @@ require_once __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'bootstrap
 require_once __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'autoloader.php';
 
 spl_autoload_register('autoloadNelsonMartellLibrary');
-
-// require_once('vendor/autoload.php');

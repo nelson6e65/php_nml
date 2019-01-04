@@ -8,6 +8,13 @@
   <rule ref="PEAR.Commenting.InlineComment"/>
 
   <rule ref="Squiz.Operators.ValidLogicalOperators"/>
+  <rule ref="Squiz.PHP.CommentedOutCode">
+    <properties>
+        <property name="maxPercentage" value="50" />
+    </properties>
+  </rule>
+  <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+  <rule ref="Squiz.PHP.NonExecutableCode"/>
   <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
   <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 

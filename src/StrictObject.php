@@ -49,8 +49,6 @@ class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibl
      * */
     final public function __toString()
     {
-        //$args = null;
-        //list($args) = func_get_args();
         return $this->toString();
     }
 
