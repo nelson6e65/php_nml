@@ -7,10 +7,10 @@
   <!-- <config name="show_progress" value="1"/>
   <config name="encoding" value="utf-8"/> -->
 
-
-  <!-- <file>.</file> -->
-  <!-- <file>./src</file> -->
-  <!-- <file>./config</file> -->
+  <file>autoload.php</file>
+  <file>src</file>
+  <file>config</file>
+  <file>tests</file>
 
   <exclude-pattern type="relative">^.git/*</exclude-pattern>
   <exclude-pattern type="relative">^output/*</exclude-pattern>
