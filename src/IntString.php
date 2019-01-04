@@ -27,7 +27,7 @@ use InvalidArgumentException;
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.1.1
  *
- * @property-read int    $stringValue Gets the integer part.
+ * @property-read int    $intValue    Gets the integer part.
  * @property-read string $stringValue Gets the string part.
  * */
 class IntString extends StrictObject implements IEquatable, IComparable
