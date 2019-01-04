@@ -8,6 +8,7 @@
   <rule ref="PEAR.Commenting.InlineComment"/>
 
   <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
+  <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 
   <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
   <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
