@@ -1,6 +1,6 @@
 module.exports = {
   // Output build
-  dest: 'output/docs',
+  dest: 'output/docs/php_nml',
   base: '/php_nml/',
 
   title: 'PHP: Nelson Martell Library',

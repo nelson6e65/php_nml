@@ -50,4 +50,5 @@ yarn
 
 - **`yarn docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.
 
-- **`yarn docs:build`**: Build the VuePress documentation to be published.
+- **`yarn docs:build`**: Build the VuePress documentation to be published (`phpdoc` must be run before). You can preview with the [PHP's built-in web server](http://php.net/manual/features.commandline.webserver.php):
+  - **`php -S localhost:8910 -t output/docs/`**: Example to preview documentation locally in http://localhost:8910/php_nml/

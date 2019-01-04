@@ -70,7 +70,7 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
-  local-dir: output/docs
+  local-dir: output/docs/php_nml
   on:
     branch: master
     condition: $BUILD_DOCS = true && $DOCS_NEEDS_UPDATE = true
