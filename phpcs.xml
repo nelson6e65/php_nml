@@ -4,6 +4,7 @@
 
   <rule ref="PSR2"/>
 
+  <rule ref="PEAR.Functions.ValidDefaultValue"/>
   <!-- <config name="show_progress" value="1"/>
   <config name="encoding" value="utf-8"/> -->
 
