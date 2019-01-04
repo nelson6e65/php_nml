@@ -59,5 +59,12 @@ module.exports = {
     docsDir: 'docs',
     editLinks: true,
     // editLinkText: 'Improve this page'
+  },
+
+  configureWebpack: {
+    output: {
+      filename: '[name].js',
+      chunkFilename: 'assets/js/[name].js' + '?id=[chunkhash]'
+    }
   }
 }
