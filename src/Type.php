@@ -51,39 +51,39 @@ final class Type extends StrictObject implements IEquatable
     {
         parent::__construct();
 
-        $name = gettype($obj);
+        $name      = gettype($obj);
         $shortname = null;
         $namespace = null;
-        $vars = null;
-        $methods = null;
-        $ref = null;
+        $vars      = null;
+        $methods   = null;
+        $ref       = null;
 
         switch ($name) {
             case 'object':
-                $ref = new ReflectionClass($obj);
-                $name = $ref->getName();
+                $ref       = new ReflectionClass($obj);
+                $name      = $ref->getName();
                 $shortName = $ref->getShortName();
                 $namespace = $ref->getNamespaceName();
                 break;
 
             case 'resource':
                 $shortName = get_resource_type($obj);
-                $name = 'resource: '.$shortName;
-                $vars = [];
-                $methods = [];
+                $name      = 'resource: '.$shortName;
+                $vars      = [];
+                $methods   = [];
                 break;
 
             default:
                 $shortName = $name;
-                $vars = [];
-                $methods = [];
+                $vars      = [];
+                $methods   = [];
         }
 
-        $this->name = $name;
-        $this->shortName = $shortName;
-        $this->namespace = $namespace;
-        $this->vars = $vars;
-        $this->methods = $methods;
+        $this->name             = $name;
+        $this->shortName        = $shortName;
+        $this->namespace        = $namespace;
+        $this->vars             = $vars;
+        $this->methods          = $methods;
         $this->reflectionObject = $ref;
     }
 

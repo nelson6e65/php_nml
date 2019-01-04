@@ -57,6 +57,6 @@ trait HasWriteOnlyProperties
         $value
     ) {
         $obj->$property = $value;
-        $actual = $obj->$property;
+        $actual         = $obj->$property;
     }
 }

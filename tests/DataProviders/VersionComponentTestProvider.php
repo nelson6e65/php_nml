@@ -93,9 +93,9 @@ trait VersionComponentTestProvider
 
     public function IComparableCompareToMethodArgumentsProvider()
     {
-        $v = new VersionComponent(1, '-alpha');
-        $obj = new \stdClass();
-        $obj->intValue = 1;
+        $v                = new VersionComponent(1, '-alpha');
+        $obj              = new \stdClass();
+        $obj->intValue    = 1;
         $obj->stringValue = '-alpha';
 
         $args = [
@@ -138,9 +138,9 @@ trait VersionComponentTestProvider
 
     public function compareMethodArgumentsProvider()
     {
-        $v = new VersionComponent(1, '-alpha');
-        $obj = new \stdClass();
-        $obj->intValue = 1;
+        $v                = new VersionComponent(1, '-alpha');
+        $obj              = new \stdClass();
+        $obj->intValue    = 1;
         $obj->stringValue = '-alpha';
 
         return [

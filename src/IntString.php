@@ -49,7 +49,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
                 'actual'   => typeof($intValue),
             ];
 
-            $msg = msg('Invalid argument type.');
+            $msg  = msg('Invalid argument type.');
             $msg .= msg(
                 ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
                 $args
@@ -67,7 +67,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
                 'actual'   => typeof($stringValue),
             ];
 
-            $msg = msg('Invalid argument type.');
+            $msg  = msg('Invalid argument type.');
             $msg .= msg(
                 ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
                 $args
@@ -106,7 +106,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
                 'actual'   => typeof($obj),
             ];
 
-            $msg = msg('Invalid argument type.');
+            $msg  = msg('Invalid argument type.');
             $msg .= msg(
                 ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
                 $args
@@ -119,7 +119,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
 
         // Validate that 0 (zero) is not interpreted as '' (empty string)
         if ($stringValue === $obj) {
-            $msg = msg('Invalid argument value.');
+            $msg  = msg('Invalid argument value.');
             $msg .= msg(' "{0}" (string) must to start with an integer.', $obj);
 
             throw new InvalidArgumentException($msg);

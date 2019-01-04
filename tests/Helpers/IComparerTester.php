@@ -55,7 +55,7 @@ trait IComparerTester
      */
     public function testCompareMethod($expected, $left, $right)
     {
-        $class = $this->getTargetClassName();
+        $class  = $this->getTargetClassName();
         $actual = $class::compare($left, $right);
 
         $message = Text::format(

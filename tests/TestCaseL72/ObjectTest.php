@@ -45,7 +45,7 @@ class ObjectTest extends TestCase
      */
     public function testConstructorWithBadArguments()
     {
-        $actual = null;
+        $actual  = null;
         $message = Text::format(
             '$object = new {class}();',
             [
@@ -56,7 +56,7 @@ class ObjectTest extends TestCase
         try {
             $actual = new Object();
         } catch (Exception $e) {
-            $actual = $e;
+            $actual   = $e;
             $message .= Text::format(
                 ' // # Constructor should not throws exceptions. Error: {0}',
                 $this->exporter->export($e->getMessage())

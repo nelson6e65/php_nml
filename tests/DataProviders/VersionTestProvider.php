@@ -122,11 +122,11 @@ trait VersionTestProvider
 
     public function IComparableCompareToMethodArgumentsProvider()
     {
-        $v = new Version(1, 0, 9);
-        $obj = new \stdClass();
-        $obj->major = 1;
-        $obj->minor = 0;
-        $obj->build = 9;
+        $v             = new Version(1, 0, 9);
+        $obj           = new \stdClass();
+        $obj->major    = 1;
+        $obj->minor    = 0;
+        $obj->build    = 9;
         $obj->revision = null;
 
 
@@ -152,11 +152,11 @@ trait VersionTestProvider
 
     public function compareMethodArgumentsProvider()
     {
-        $v = new Version(1, 0, 9);
-        $obj = new \stdClass();
-        $obj->major = 1;
-        $obj->minor = 0;
-        $obj->build = 9;
+        $v             = new Version(1, 0, 9);
+        $obj           = new \stdClass();
+        $obj->major    = 1;
+        $obj->minor    = 0;
+        $obj->build    = 9;
         $obj->revision = null;
 
         $args = [

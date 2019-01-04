@@ -52,7 +52,7 @@ class VersionComponent extends IntString implements IEquatable
                     'actual'   => $intValue,
                 ];
 
-                $msg = msg('Invalid argument value.');
+                $msg  = msg('Invalid argument value.');
                 $msg .= msg(
                     ' {position} argument must to be a positive number; "{actual}" given.',
                     $args
@@ -66,9 +66,9 @@ class VersionComponent extends IntString implements IEquatable
                     $pattern = '~^([a-z])$~'; // 1 char
 
                     if (strlen($stringValue) > 1) {
-                        $start = '~^([a-z]|-)';
+                        $start  = '~^([a-z]|-)';
                         $middle = '([a-z]|[0-9]|-)*';
-                        $end = '([a-z]|[0-9])$~';
+                        $end    = '([a-z]|[0-9])$~';
 
                         $pattern = $start.$middle.$end;
                     }
@@ -86,7 +86,7 @@ class VersionComponent extends IntString implements IEquatable
                             'actual'   => $stringValue,
                         ];
 
-                        $msg = msg('Invalid argument value.');
+                        $msg  = msg('Invalid argument value.');
                         $msg .= msg(
                             ' {position} parameter has invalid chars; "{actual}" given.',
                             $args

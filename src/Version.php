@@ -63,7 +63,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
                 'actual'   => typeof($major),
             ];
 
-            $msg = msg('Invalid argument type.');
+            $msg  = msg('Invalid argument type.');
             $msg .= msg(
                 ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
                 $args
@@ -82,7 +82,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
                 'actual'   => typeof($minor),
             ];
 
-            $msg = msg('Invalid argument type.');
+            $msg  = msg('Invalid argument type.');
             $msg .= msg(
                 ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
                 $args
@@ -99,7 +99,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
                 'actual'   => $major,
             ];
 
-            $msg = msg('Invalid argument value.');
+            $msg  = msg('Invalid argument value.');
             $msg .= msg(
                 ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
                 $args
@@ -115,7 +115,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
                 'actual'   => $minor,
             ];
 
-            $msg = msg('Invalid argument value.');
+            $msg  = msg('Invalid argument value.');
             $msg .= msg(
                 ' "{name}" (position {pos}) must to be a positive number; "{actual}" given.',
                 $args
@@ -124,9 +124,9 @@ final class Version extends StrictObject implements IEquatable, IComparable
             throw new InvalidArgumentException($msg);
         }
 
-        $this->major = $major;
-        $this->minor = $minor;
-        $this->build = VersionComponent::parse($build);
+        $this->major    = $major;
+        $this->minor    = $minor;
+        $this->build    = VersionComponent::parse($build);
         $this->revision = VersionComponent::parse($revision);
     }
 
@@ -173,9 +173,9 @@ final class Version extends StrictObject implements IEquatable, IComparable
         }
 
 
-        $major = (int) $version[0];
-        $minor = (int) $version[1];
-        $build = null;
+        $major    = (int) $version[0];
+        $minor    = (int) $version[1];
+        $build    = null;
         $revision = null;
 
         if (count($version) >= 3) {
@@ -388,7 +388,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
                     // Se tratan de convertir las cadenas y arrays
                     try {
                         $tmp = Version::parse($other);
-                        $r = $this->compareTo($tmp);
+                        $r   = $this->compareTo($tmp);
                     } catch (InvalidArgumentException $e) {
                         // Siempre es mayor a strings o arrays que no se puedan convertir
                         $r = 1;

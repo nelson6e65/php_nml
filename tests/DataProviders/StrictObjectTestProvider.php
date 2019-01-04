@@ -59,8 +59,8 @@ trait StrictObjectTestProvider
     // IComparerTester
     public function compareMethodArgumentsProvider()
     {
-        $obj = new \stdClass();
-        $obj->one = 1;
+        $obj       = new \stdClass();
+        $obj->one  = 1;
         $obj->nine = 9;
 
         $args = [

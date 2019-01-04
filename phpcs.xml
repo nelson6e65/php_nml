@@ -8,6 +8,8 @@
   <rule ref="PEAR.Commenting.InlineComment"/>
 
   <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
+
+  <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
   <!-- <config name="show_progress" value="1"/>
   <config name="encoding" value="utf-8"/> -->
 

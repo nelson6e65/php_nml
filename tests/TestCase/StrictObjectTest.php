@@ -43,7 +43,7 @@ class StrictObjectTest extends TestCase
      */
     public function testConstructorWithBadArguments()
     {
-        $actual = null;
+        $actual  = null;
         $message = Text::format(
             '$object = new {class}();',
             [
@@ -54,7 +54,7 @@ class StrictObjectTest extends TestCase
         try {
             $actual = new StrictObject();
         } catch (Exception $e) {
-            $actual = $e;
+            $actual   = $e;
             $message .= Text::format(
                 ' // # Constructor should not throws exceptions. Error: {0}',
                 $this->exporter->export($e->getMessage())
