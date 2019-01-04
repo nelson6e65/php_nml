@@ -10,6 +10,11 @@
   <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
 
   <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
+  <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
+    <exclude-pattern>tests/</exclude-pattern>
+  </rule>
+
+
   <!-- <config name="show_progress" value="1"/>
   <config name="encoding" value="utf-8"/> -->
 

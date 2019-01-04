@@ -17,7 +17,7 @@
  *
  * @return void
  */
-function autoload_NML($class)
+function autoloadNelsonMartellLibrary($class)
 {
     static $DS = DIRECTORY_SEPARATOR;
 

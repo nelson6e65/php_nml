@@ -23,6 +23,6 @@ require_once __DIR__.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'functions.ph
 require_once __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'bootstrap.php';
 require_once __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'autoloader.php';
 
-spl_autoload_register('autoload_NML');
+spl_autoload_register('autoloadNelsonMartellLibrary');
 
 // require_once('vendor/autoload.php');
