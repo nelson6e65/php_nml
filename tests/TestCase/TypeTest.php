@@ -61,7 +61,6 @@ class TypeTest extends TestCase
      */
     public function testConstructorWithBadArguments($obj)
     {
-        $actual  = null;
         $message = Text::format(
             '$type = new {class}({obj});',
             [

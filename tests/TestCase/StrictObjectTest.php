@@ -45,7 +45,6 @@ class StrictObjectTest extends TestCase
      */
     public function testConstructorWithBadArguments()
     {
-        $actual  = null;
         $message = Text::format(
             '$object = new {class}();',
             [

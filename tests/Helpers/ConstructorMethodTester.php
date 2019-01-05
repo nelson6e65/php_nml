@@ -74,7 +74,7 @@ trait ConstructorMethodTester
      */
     public function testConstructor()
     {
-        $obj = call_user_func_array([$this, 'getTargetClassInstance'], func_get_args());
+        call_user_func_array([$this, 'getTargetClassInstance'], func_get_args());
     }
 
     /**
@@ -84,7 +84,7 @@ trait ConstructorMethodTester
      */
     public function testConstructorWithBadArguments()
     {
-        $obj = call_user_func_array([$this, 'getTargetClassInstance'], func_get_args());
+        call_user_func_array([$this, 'getTargetClassInstance'], func_get_args());
     }
 
     /**
