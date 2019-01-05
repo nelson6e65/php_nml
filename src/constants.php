@@ -21,7 +21,7 @@
  * Gettext domain for NML messages.
  * Only for internal usage.
  *
- * @constant string
+ * @var string
  * @since 0.4.5
  */
 define('NML_GETTEXT_DOMAIN', 'nml');
@@ -31,7 +31,7 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  * Current version of `PHP: Nelson Martell Library` using.
  * Can be parsed into a `NelsonMartell\Version` object. ;)
  *
- * @constant string
+ * @var string
  * @since 0.4.4
  */
 define('NML_VERSION', '1.0.0-dev');
