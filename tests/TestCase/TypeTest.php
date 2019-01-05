@@ -210,4 +210,33 @@ class TypeTest extends TestCase
         $this->assertEquals($expected, typeof($type)->isIn(...$args));
         $this->assertNotEquals(!$expected, typeof($type)->isIn(...$args));
     }
+
+    /**
+     * @dataProvider getInterfacesProvider
+     *
+     * @param mixed $obj
+     * @param array $interfaces
+     */
+    public function testGetInterfaces($obj, array $interfaces)
+    {
+        $type = new Type($obj);
+
+        $reflections = $type->getInterfaces(true);
+        $strings     = $type->getInterfaces();
+
+        $this->assertInternalType('array', $reflections);
+        $this->assertInternalType('array', $strings);
+
+        $this->assertCount(count($interfaces), $reflections);
+        $this->assertCount(count($interfaces), $strings);
+
+        if (count($interfaces) > 0) {
+            sort($interfaces);
+            sort($strings);
+            ksort($reflections);
+
+            $this->assertEquals($interfaces, $strings);
+            $this->assertEquals($strings, array_keys($reflections));
+        }
+    }
 }

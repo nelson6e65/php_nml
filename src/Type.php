@@ -194,6 +194,29 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
+     * Gets a list of all interfaces of this Type.
+     *
+     * @param bool $reflection If set to `true`, returns a list of interfaces as `ReflectionClass` (keyed by its names)
+     *   instead of a list of names only (`string`).
+     *
+     * @return ReflectionClass[]|string[]
+     *
+     * @since 1.0.0
+     */
+    public function getInterfaces($reflection = false)
+    {
+        if ($this->reflectionObject !== null) {
+            if ($reflection === true) {
+                return $this->reflectionObject->getInterfaces();
+            } else {
+                return $this->reflectionObject->getInterfaceNames();
+            }
+        }
+
+        return [];
+    }
+
+    /**
      * Determines if instances of this Type can be converted to string.
      *
      *

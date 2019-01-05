@@ -18,15 +18,20 @@ namespace NelsonMartell\Test\DataProviders;
 
 use stdClass;
 
+use NelsonMartell\Type;
+use NelsonMartell\IConvertibleToString;
+use NelsonMartell\IStrictPropertiesContainer;
+use NelsonMartell\ICustomPrefixedPropertiesContainer;
+
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
+use NelsonMartell\Test\DataProviders\ExampleClass\B;
+use NelsonMartell\Test\DataProviders\ExampleClass\C;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-
-use NelsonMartell\Type;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\TypeTest.
@@ -194,6 +199,25 @@ trait TypeTestProvider
             [false, null,           [[], 'null', false]],
             [true,  new stdClass,   [new stdClass, new A, 0]],
             [false, new stdClass,   [[], 'stdClass', true]],
+        ];
+    }
+
+    /**
+     * [
+     *      (mixed) object,
+     *      (array<string>) interfaces
+     * ]
+     *
+     * @return array
+     */
+    public function getInterfacesProvider()
+    {
+        return [
+            [new A, [IStrictPropertiesContainer::class]],
+            [new B, [IStrictPropertiesContainer::class]],
+            [new C, [ICustomPrefixedPropertiesContainer::class, IStrictPropertiesContainer::class]],
+            [new ToString, [IConvertibleToString::class]],
+            ['string', []],
         ];
     }
 }
