@@ -16,7 +16,6 @@
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
-use NelsonMartell\PropertiesHandler;
 use NelsonMartell\IConvertibleToString;
 
 /**

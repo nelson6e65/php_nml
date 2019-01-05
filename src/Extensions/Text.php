@@ -16,12 +16,14 @@
 namespace NelsonMartell\Extensions;
 
 use InvalidArgumentException;
+
 use Cake\Utility\Text as TextBase;
+
+use NelsonMartell\IComparer;
+use NelsonMartell\StrictObject;
 
 use function NelsonMartell\msg;
 use function NelsonMartell\typeof;
-use NelsonMartell\IComparer;
-use NelsonMartell\StrictObject;
 
 /**
  * Provides extension methods to handle strings.

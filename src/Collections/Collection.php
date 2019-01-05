@@ -16,9 +16,11 @@
 
 namespace NelsonMartell\Collections;
 
-use NelsonMartell\Extensions\Text;
-use NelsonMartell\StrictObject;
 use OutOfRangeException;
+
+use NelsonMartell\Extensions\Text;
+
+use NelsonMartell\StrictObject;
 
 use function NelsonMartell\typeof;
 

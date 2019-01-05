@@ -17,9 +17,8 @@
 namespace NelsonMartell;
 
 use ReflectionClass;
-use ReflectionProperty;
 use ReflectionMethod;
-use InvalidArgumentException;
+use ReflectionProperty;
 
 /**
  * Represents a PHP object type, and provides some properties and methods to

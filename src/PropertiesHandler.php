@@ -16,9 +16,10 @@
 
 namespace NelsonMartell;
 
-use NelsonMartell\Extensions\Text;
 use BadMethodCallException;
 use InvalidArgumentException;
+
+use NelsonMartell\Extensions\Text;
 
 /**
  * Enables the class to call, implicitly, getter and setters for its properties, allowing to use properties directly.

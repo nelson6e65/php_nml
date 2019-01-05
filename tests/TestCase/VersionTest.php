@@ -17,10 +17,12 @@
 namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell\Extensions\Text;
+
 use NelsonMartell\Test\DataProviders\VersionTestProvider;
+
 use NelsonMartell\Version;
+
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
 
 /**
  *

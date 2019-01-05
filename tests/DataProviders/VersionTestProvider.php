@@ -16,14 +16,15 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
-use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
-use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
+use NelsonMartell\Test\Helpers\IComparableTester;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
+
 use NelsonMartell\Version;
 use NelsonMartell\VersionComponent;
 

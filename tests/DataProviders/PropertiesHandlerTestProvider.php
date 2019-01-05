@@ -17,12 +17,11 @@
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\Test\Helpers\ExporterPlugin;
-use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-use NelsonMartell\Test\Helpers\HasWriteOnlyProperties;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasReadWriteProperties;
+use NelsonMartell\Test\Helpers\HasWriteOnlyProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
-use InvalidArgumentException;
+use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\PropertiesHandlerTest.

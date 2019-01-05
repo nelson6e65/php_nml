@@ -19,15 +19,17 @@ namespace NelsonMartell\Test\DataProviders;
 use stdClass;
 
 use NelsonMartell\StrictObject;
+
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
 
-use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 
 /**
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since  0.6.0
  * @internal
  * */
 trait StrictObjectTestProvider

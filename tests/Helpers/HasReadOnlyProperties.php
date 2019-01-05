@@ -16,11 +16,15 @@
 
 namespace NelsonMartell\Test\Helpers;
 
-use Cake\Utility\Inflector;
-use NelsonMartell\Extensions\Text;
-use NelsonMartell\IStrictPropertiesContainer;
-use SebastianBergmann\Exporter\Exporter;
 use BadMethodCallException;
+
+use Cake\Utility\Inflector;
+
+use NelsonMartell\Extensions\Text;
+
+use NelsonMartell\IStrictPropertiesContainer;
+
+use SebastianBergmann\Exporter\Exporter;
 
 /**
  * Split of ImplementsIStrictPropertiesContainer, for classes implementing any write-only property.

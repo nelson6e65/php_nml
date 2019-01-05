@@ -16,13 +16,15 @@
 
 namespace NelsonMartell\Test\TestCaseLt71;
 
-use NelsonMartell as NML;
-use NelsonMartell\Extensions\Text;
-use NelsonMartell\Test\DataProviders\StrictObjectTestProvider;
-use NelsonMartell\Object;
-use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
 use Exception;
+
+use NelsonMartell\Extensions\Text;
+
+use NelsonMartell\Object;
+
+use NelsonMartell\Test\DataProviders\StrictObjectTestProvider;
+
+use PHPUnit\Framework\TestCase;
 
 /**
  *

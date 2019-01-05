@@ -17,8 +17,11 @@
 namespace NelsonMartell\Test\Helpers;
 
 use Cake\Utility\Inflector;
+
 use NelsonMartell\Extensions\Text;
+
 use NelsonMartell\IStrictPropertiesContainer;
+
 use SebastianBergmann\Exporter\Exporter;
 
 /**

@@ -17,6 +17,7 @@
 namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell\Test\DataProviders\PropertiesHandlerTestProvider;
+
 use PHPUnit\Framework\TestCase;
 
 /**

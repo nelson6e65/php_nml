@@ -17,10 +17,11 @@ namespace NelsonMartell\Extensions;
 
 use InvalidArgumentException;
 
-use function NelsonMartell\msg;
-use function NelsonMartell\typeof;
 use NelsonMartell\IComparer;
 use NelsonMartell\StrictObject;
+
+use function NelsonMartell\msg;
+use function NelsonMartell\typeof;
 
 /**
  * Provides extension methods to handle numbers.

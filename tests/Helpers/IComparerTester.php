@@ -17,6 +17,7 @@
 namespace NelsonMartell\Test\Helpers;
 
 use NelsonMartell\Extensions\Text;
+
 use NelsonMartell\IComparer;
 
 /**

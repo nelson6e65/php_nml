@@ -20,10 +20,12 @@ use stdClass;
 
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
-use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
+
 use NelsonMartell\Type;
 
 /**
