@@ -204,21 +204,13 @@ trait PropertiesHandler
             throw new InvalidArgumentException($msg, 10, $error);
         }
 
-        if (!property_exists($args['class'], $args['property'])) {
-            // Check in parent classes for private property
-            $current = $args['class'];
-            $exists  = false;
-            while (($current = get_parent_class($current)) && !$exists) {
-                $exists = property_exists($current, $args['property']);
-            }
+        if (!typeof(get_called_class(), true)->hasProperty($name)) {
+            $msg = msg(
+                '"{property}" property do not exists in "{class}" class or parent classes.',
+                $args
+            );
 
-            if (!$exists) {
-                $msg = msg(
-                    '"{property}" property do not exists in "{class}" class or parent classes.',
-                    $args
-                );
-                throw new InvalidArgumentException($msg, 11);
-            }
+            throw new InvalidArgumentException($msg, 11);
         }
 
         return $name;
