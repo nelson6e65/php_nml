@@ -23,8 +23,7 @@ use ReflectionException;
 use InvalidArgumentException;
 
 /**
- * Represents a PHP object type, and provides some properties and methods to
- * describe some info about itself.
+ * Represents a PHP object type. Provides some properties and methods to describe some info about itself.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.1.1
@@ -46,7 +45,7 @@ final class Type extends StrictObject implements IEquatable
     /**
      * Gets the type of specified $obj and collect some info about itself.
      *
-     * @param string|mixed  $obj         Target object.
+     * @param string|mixed  $obj        Target object or `class`|`interface`|`trait` name.
      * @param bool          $searchName Set this to `true` if `$obj` is a class name instead of an instance.
      *   This param is ignored if `obj` is not a `string`.
      *
@@ -103,6 +102,9 @@ final class Type extends StrictObject implements IEquatable
      */
     private $reflectionObject = null;
 
+    /**
+     * @var string
+     */
     private $name;
 
     /**
@@ -116,6 +118,9 @@ final class Type extends StrictObject implements IEquatable
         return $this->name;
     }
 
+    /**
+     * @var string
+     */
     private $shortName = null;
 
     /**
@@ -129,6 +134,9 @@ final class Type extends StrictObject implements IEquatable
         return $this->shortName;
     }
 
+    /**
+     * @var string
+     */
     private $namespace;
 
     /**
@@ -142,6 +150,11 @@ final class Type extends StrictObject implements IEquatable
         return $this->namespace;
     }
 
+    /**
+     * @var array
+     *
+     * @deprecated 0.7.2
+     */
     private $vars = null;
 
     /**
@@ -159,6 +172,9 @@ final class Type extends StrictObject implements IEquatable
         return $this->vars;
     }
 
+    /**
+     * @var array
+     */
     private $methods = null;
 
     /**
@@ -178,7 +194,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Checks if the type has a method.
+     * Checks if the specified method is defined in the underlying type of this instance.
      *
      * @param string $name
      *
@@ -194,7 +210,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Gets a list of all interfaces of this Type.
+     * Gets a list of all interfaces of the underlying type of this instance.
      *
      * @param bool $reflection If set to `true`, returns a list of interfaces as `ReflectionClass` (keyed by its names)
      *   instead of a list of names only (`string`).
@@ -218,7 +234,7 @@ final class Type extends StrictObject implements IEquatable
 
 
     /**
-     * Gets a list of traits used by this `Type`.
+     * Gets a list of traits used by the underlying type of this instance.
      *
      * @param bool $reflection If set to `true`, returns a list of interfaces as `ReflectionClass` (keyed by its names)
      *   instead of a list of names only (`string`).
@@ -259,11 +275,11 @@ final class Type extends StrictObject implements IEquatable
 
 
     /**
-     * Checks if the specified property is defined in this `Type`.
+     * Checks if the specified property is defined in the underlying type of this instance.
      *
      * Unlike `property_exists()` function, this method returns `false` for dynamic attributes of an object.
      *
-     * This method is case-sensitive.
+     * This method is ***case-sensitive***.
      *
      * @param string $name      Name of property.
      * @param bool   $recursive Indicates if search for inherithed properties. Default: `true`.
@@ -298,8 +314,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Determines if instances of this Type can be converted to string.
-     *
+     * Determines if instances of the underlying type can be converted to `string`.
      *
      * @return bool
      */
@@ -313,7 +328,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Determina si este Type es `null`.
+     * Determines if the underlying type is `null`.
      *
      * @return bool `true` if this type is `null`; other case, `false`.
      * */
@@ -327,7 +342,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Determina si este Type NO es `null`.
+     * Determines if the underlying type is NOT `null`.
      *
      * @return bool `true` if this type is NOT `null`; other case, `false`.
      * */
@@ -338,10 +353,9 @@ final class Type extends StrictObject implements IEquatable
 
 
     /**
-     * Determina si este Type es una clase personalizada.
+     * Determines if the underlying type of this instance is a custom `class`.
      *
-     * @return bool `true`, if this Type is a custom class; another case,
-     *   `false`.
+     * @return bool `true`, if the underlying type is a custom class; another case, `false`.
      * */
     public function isCustom()
     {
@@ -349,7 +363,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Determinate if this type is scalar.
+     * Determines if the underlying type of this instance is scalar.
      *
      * @return bool
      * @see    \is_scalar()
@@ -374,7 +388,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Determina si este Type es de tipo valor.
+     * Determines if the underlying type of this instance is value type.
      *
      * @return bool
      * */
@@ -388,7 +402,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Determina si este Type es de tipo referencia.
+     * Determines if the underlying type of this instance is ref type.
      *
      * @return bool
      * */
@@ -398,7 +412,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Convierte la instancia actual en su representación en cadena.
+     * Converts the current instance to its `string` representation.
      *
      * @return string
      * */
@@ -431,7 +445,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Detect if at least one of the objects are from this type.
+     * Detects if at least one of the objects are from the underlying type.
      *
      * **Usage:**
      *
@@ -466,7 +480,7 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * Detect if all object are from this type.
+     * Detects if all object are from the underlying type.
      *
      * * **Usage:**
      *

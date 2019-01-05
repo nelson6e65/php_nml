@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### :star: Important changes
 
-- :fire: Deprecate unsupported PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
+- :fire: Drop active support for eol PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
 - :fire: Remove public getters from classes. Now should be access via property instead.
 - :fire: Remove Pascal Case in properties. Properties updated to be camel case only.
 - :fire: Remove deprecated classes under `NelsonMartell\Utilities` namespace.
@@ -22,6 +22,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :new: Add methods to check if a list of objects are of a type:
   - :new: `NelsonMartell\Type::is()`
   - :new: `NelsonMartell\Type::isIn()`
+- :new: Method: `NelsonMartell\Type::hasProperty()`.
+- :new: Method: `NelsonMartell\Type::hasGetTraits()`.
+- :new: Method: `NelsonMartell\Type::hasGetInterfaces()`.
 
 
 ### :notebook: Development changes
