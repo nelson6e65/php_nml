@@ -52,7 +52,7 @@ final class Type extends StrictObject implements IEquatable
         parent::__construct();
 
         $name      = gettype($obj);
-        $shortname = null;
+        $shortName = null;
         $namespace = null;
         $vars      = null;
         $methods   = null;
