@@ -19,6 +19,7 @@ namespace NelsonMartell\Test\DataProviders;
 use stdClass;
 
 use NelsonMartell\Type;
+use NelsonMartell\PropertiesHandler;
 use NelsonMartell\IConvertibleToString;
 use NelsonMartell\IStrictPropertiesContainer;
 use NelsonMartell\ICustomPrefixedPropertiesContainer;
@@ -32,6 +33,8 @@ use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
+
+use NelsonMartell\Test\TestCase\TypeTest;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\TypeTest.
@@ -217,6 +220,54 @@ trait TypeTestProvider
             [new B, [IStrictPropertiesContainer::class]],
             [new C, [ICustomPrefixedPropertiesContainer::class, IStrictPropertiesContainer::class]],
             [new ToString, [IConvertibleToString::class]],
+            ['string', []],
+        ];
+    }
+
+    /**
+     * [
+     *      (mixed) object,
+     *      (array<string>) interfaces
+     * ]
+     *
+     * @return array
+     */
+    public function getTraitsProvider()
+    {
+        return [
+            [new A, [PropertiesHandler::class]],
+            [new B, []],
+            [new C, []],
+            [new ToString, []],
+            [new Type(TypeTest::class, true), [
+                TypeTestProvider::class,
+            ]],
+            ['string', []],
+        ];
+    }
+
+    /**
+     * [
+     *      (mixed) object,
+     *      (array<string>) interfaces
+     * ]
+     *
+     * @return array
+     */
+    public function getRecursiveTraitsProvider()
+    {
+        return [
+            [new A, [PropertiesHandler::class]],
+            [new B, [PropertiesHandler::class]],
+            [new C, [PropertiesHandler::class]],
+            [new Type(TypeTest::class, true), [
+                TypeTestProvider::class,
+                ConstructorMethodTester::class,
+                ImplementsIStrictPropertiesContainer::class,
+                HasReadOnlyProperties::class,
+                HasUnaccesibleProperties::class,
+            ]],
+            [new ToString, []],
             ['string', []],
         ];
     }

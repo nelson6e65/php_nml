@@ -217,6 +217,46 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
+     * Gets a list of traits used by this `Type`.
+     *
+     * @param bool $reflection If set to `true`, returns a list of interfaces as `ReflectionClass` (keyed by its names)
+     *   instead of a list of names only (`string`).
+     * @param bool $recursive  If set to `true` will get all traits used by parent classes and used traits.
+     *
+     * @return array
+     *
+     * @since 1.0.0
+     */
+    public function getTraits($reflection = false, $recursive = false)
+    {
+        $traits = [];
+
+        if ($this->reflectionObject !== null) {
+            $traits += (array) $this->reflectionObject->getTraits();
+
+            if ($recursive === true) {
+                // Search in sub-traits of this class --------------------------------------------
+                foreach ($traits as $name => $traitClass) {
+                    $traits += typeof($name, true)->getTraits(true, true);
+                }
+
+                // Search in parent class
+                $parent = $this->reflectionObject->getParentClass();
+
+                if ($parent) { // Search in parent class
+                    $traits += typeof($parent->getName(), true)->getTraits(true, true);
+                }
+            }
+        }
+
+        if (count($traits) && !$reflection) {
+            $traits = array_keys($traits); // Get only names if `$reflection == false`
+        }
+
+        return $traits;
+    }
+
+    /**
      * Determines if instances of this Type can be converted to string.
      *
      *

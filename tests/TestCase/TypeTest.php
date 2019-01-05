@@ -39,6 +39,10 @@ class TypeTest extends TestCase
 {
     use TypeTestProvider;
 
+    /**
+     *
+     * @var Exporter
+     */
     public $exporter = null;
 
     public function setUp()
@@ -236,6 +240,74 @@ class TypeTest extends TestCase
             ksort($reflections);
 
             $this->assertEquals($interfaces, $strings);
+            $this->assertEquals($strings, array_keys($reflections));
+        }
+    }
+
+    /**
+     * @dataProvider getTraitsProvider
+     *
+     * @param mixed $obj
+     * @param array $traits
+     */
+    public function testGetExplicitTraitsInClass($obj, array $traits)
+    {
+        if ($obj instanceof Type) {
+            $type = $obj;
+        } else {
+            $type = new Type($obj);
+        }
+
+        $reflections = $type->getTraits(true);
+        $strings     = $type->getTraits();
+
+        $this->assertInternalType('array', $reflections);
+        $this->assertInternalType('array', $strings);
+
+        $this->assertEquals(count($strings), count($reflections), 'Not same count for strings and reflections');
+        $this->assertCount(count($traits), $reflections);
+        $this->assertCount(count($traits), $strings);
+
+        if (count($traits) > 0) {
+            sort($traits);
+            sort($strings);
+            ksort($reflections);
+
+            $this->assertEquals($traits, $strings);
+            $this->assertEquals($strings, array_keys($reflections));
+        }
+    }
+
+    /**
+     * @dataProvider getRecursiveTraitsProvider
+     *
+     * @param Type|mixed $obj
+     * @param array $traits
+     */
+    public function testGetAllRecursiveTraitsInClass($obj, array $traits)
+    {
+        if ($obj instanceof Type) {
+            $type = $obj;
+        } else {
+            $type = new Type($obj);
+        }
+
+        $reflections = $type->getTraits(true, true);
+        $strings     = $type->getTraits(false, true);
+
+        $this->assertInternalType('array', $reflections);
+        $this->assertInternalType('array', $strings);
+
+        $this->assertEquals(count($strings), count($reflections), 'Not same count for strings and reflections');
+        $this->assertCount(count($traits), $reflections);
+        $this->assertCount(count($traits), $strings);
+
+        if (count($traits) > 0) {
+            sort($traits);
+            sort($strings);
+            ksort($reflections);
+
+            $this->assertEquals($traits, $strings);
             $this->assertEquals($strings, array_keys($reflections));
         }
     }
