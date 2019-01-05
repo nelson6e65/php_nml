@@ -41,6 +41,21 @@ See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1.
 
 
 
+### [v0.7.2] - 2019-01-05
+
+#### :star: Important changes
+
+- :fire: Deprecate unsupported PHP versions: 5.6 and 7.0 (http://php.net/supported-versions.php).
+
+#### :notebook: Development changes
+
+
+#### More changes
+
+See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...v0.7.2?w=1) for more detailed info.
+
+
+
 ## [v0.7.1] - 2018-12-23
 
 ### :star: Important changes
