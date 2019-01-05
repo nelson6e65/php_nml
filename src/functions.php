@@ -19,6 +19,8 @@
 
 namespace NelsonMartell;
 
+use InvalidArgumentException;
+
 use NelsonMartell\Extensions\Text;
 
 /**
@@ -79,12 +81,17 @@ function nmsg($singular, $plural, $n, ...$args)
  * Obtiene el tipo del objeto especificado.
  * Es un alias para el constructor de la clase Type.
  *
- * @param mixed $obj Objeto al cual se le extraerá su tipo.
+ * @param string|mixed  $obj
+ * @param bool          $searchName
  *
  * @return Type
+ * @throws InvalidArgumentException
+ *
  * @since 0.6.0
+ *
+ * @see Type::__construct()
  * */
-function typeof($obj)
+function typeof($obj, bool $searchName = false)
 {
-    return new Type($obj);
+    return new Type($obj, $searchName);
 }

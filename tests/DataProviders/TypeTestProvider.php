@@ -68,14 +68,18 @@ trait TypeTestProvider
     public function goodConstructorArgumentsProvider()
     {
         return [
-            'NULL'        => [null, true],
-            'integer'     => [1, true],
-            'double'      => [1.9999, true],
-            'string'      => ['str', true],
-            ToString::class => [new ToString(), true],
-            'array'       => [[], false],
-            'stdClass'    => [new \stdClass, false],
-            __CLASS__     => [$this, false],
+            'NULL'        => [null],
+            'integer'     => [1],
+            'double'      => [1.9999],
+            'string'      => ['str'],
+            ToString::class => [new ToString()],
+            'array'       => [[]],
+            'stdClass'    => [new \stdClass],
+            __CLASS__     => [$this],
+
+            'string: '.ToString::class => [ToString::class, true],
+            'string: '.stdClass::class => [stdClass::class, true],
+            'non string as `$obj` arg' => [new stdClass, true],
         ];
     }
 
@@ -92,13 +96,33 @@ trait TypeTestProvider
         ];
     }
 
-    /**
-     * This class constructor do not throws argument exceptions, so, using any type should be pass.
-     * @return array
-     */
     public function badConstructorArgumentsProvider()
     {
-        return $this->goodConstructorArgumentsProvider();
+        return [
+            'not existing class'   => ['Hola', true],
+        ];
+    }
+
+    public function canBeStringProvider()
+    {
+        return [
+            'NULL'        => [null],
+            'integer'     => [1],
+            'double'      => [1.9999],
+            'string'      => ['str'],
+            ToString::class => [new ToString()],
+            'string: '.ToString::class => [ToString::class, true],
+        ];
+    }
+
+    public function canNotBeStringProvider()
+    {
+        return [
+            'array'       => [[]],
+            'stdClass'    => [new \stdClass],
+            __CLASS__     => [$this],
+            'string: '.stdClass::class => [stdClass::class, true],
+        ];
     }
 
 

@@ -19,6 +19,8 @@ namespace NelsonMartell;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionProperty;
+use ReflectionException;
+use InvalidArgumentException;
 
 /**
  * Represents a PHP object type, and provides some properties and methods to
@@ -44,22 +46,36 @@ final class Type extends StrictObject implements IEquatable
     /**
      * Gets the type of specified $obj and collect some info about itself.
      *
-     * @param mixed $obj Target object.
+     * @param string|mixed  $obj         Target object.
+     * @param bool          $searchName Set this to `true` if `$obj` is a class name instead of an instance.
+     *   This param is ignored if `obj` is not a `string`.
+     *
+     * @throws InvalidArgumentException If `$obj` is not a class name when `$searchName` is `true`.
+     *
+     * @since 1.0.0 Allow construct from a class name string.
      * */
-    public function __construct($obj)
+    public function __construct($obj, bool $searchName = false)
     {
         parent::__construct();
 
-        $name      = gettype($obj);
+        $name      = (is_string($obj) && $searchName === true) ? 'object' : gettype($obj);
         $shortName = null;
         $namespace = null;
-        $vars      = null;
-        $methods   = null;
+        $vars      = [];
+        $methods   = [];
         $ref       = null;
 
         switch ($name) {
             case 'object':
-                $ref       = new ReflectionClass($obj);
+                try {
+                    $ref = new ReflectionClass($obj);
+                } catch (ReflectionException $e) {
+                    $msg  = msg('Invalid value.');
+                    $msg .= msg(' `{0}` (position {1}) must to be a name of an existing class.', 'obj', 0);
+
+                    throw new InvalidArgumentException($msg, 1, $e);
+                }
+
                 $name      = $ref->getName();
                 $shortName = $ref->getShortName();
                 $namespace = $ref->getNamespaceName();
@@ -68,14 +84,10 @@ final class Type extends StrictObject implements IEquatable
             case 'resource':
                 $shortName = get_resource_type($obj);
                 $name      = 'resource: '.$shortName;
-                $vars      = [];
-                $methods   = [];
                 break;
 
             default:
                 $shortName = $name;
-                $vars      = [];
-                $methods   = [];
         }
 
         $this->name             = $name;
@@ -86,6 +98,9 @@ final class Type extends StrictObject implements IEquatable
         $this->reflectionObject = $ref;
     }
 
+    /**
+     * @var ReflectionClass|null
+     */
     private $reflectionObject = null;
 
     private $name;

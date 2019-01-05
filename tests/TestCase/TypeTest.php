@@ -51,36 +51,6 @@ class TypeTest extends TestCase
         return Type::class;
     }
 
-    /**
-     * Overrides default tests, due to this class constructor do not throws argument exceptions.
-     * So, using any type should be pass.
-     *
-     * @testdox Do not throws error on creating new instances
-     * @dataProvider badConstructorArgumentsProvider
-     * @group Criticals
-     */
-    public function testConstructorWithBadArguments($obj)
-    {
-        $message = Text::format(
-            '$type = new {class}({obj});',
-            [
-                'class'   => Type::class,
-                'obj'     => $this->exporter->shortenedExport($obj),
-            ]
-        );
-
-        try {
-            $actual = new Type($obj);
-        } catch (\Exception $e) {
-            $actual   = $e;
-            $message .= Text::format(
-                ' // # Constructor should not throws exceptions. Error: {0}',
-                $this->exporter->export($e->getMessage())
-            );
-        }
-
-        $this->assertInstanceOf(Type::class, $actual, $message);
-    }
 
     /**
      * @coverage Type::toString
@@ -142,16 +112,30 @@ class TypeTest extends TestCase
     }
 
     /**
-     * @coverage Type::canBeString
-     * @dataProvider goodConstructorArgumentsProvider
+     * @dataProvider canBeStringProvider
+     *
+     * @param array $args Arguments of constructor
      */
-    public function testCanCheckIfTypeCanBeConvertedToString($obj, $expected)
+    public function testCanCheckIfTypeCanBeConvertedToString(...$args)
     {
-        $type = new Type($obj);
+        $type = new Type(...$args);
 
         $actual = $type->canBeString();
 
-        $this->assertEquals($expected, $actual);
+        $this->assertTrue($actual);
+    }
+    /**
+     * @dataProvider canNotBeStringProvider
+     *
+     * @param array $args Arguments of constructor
+     */
+    public function testCanCheckIfTypeCanNotBeConvertedToString(...$args)
+    {
+        $type = new Type(...$args);
+
+        $actual = $type->canBeString();
+
+        $this->assertFalse($actual);
     }
 
     /**
