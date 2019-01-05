@@ -271,4 +271,40 @@ trait TypeTestProvider
             ['string', []],
         ];
     }
+
+    /**
+     * <mixed, string>
+     *
+     * @return array
+     */
+    public function hasPropertyProvider()
+    {
+        return [
+            [new A, 'attribute1'],
+            [new A, 'property1'],
+            [new Type(A::class, true), 'attribute4'],
+            [new B, 'property2'],
+            [new B, 'attribute2'],
+        ];
+    }
+
+    /**
+     * <mixed, string>
+     *
+     * @return array
+     */
+    public function hasNotPropertyProvider()
+    {
+        $obj = new stdClass;
+
+        $obj->testProperty = 0;
+
+        return [
+            ['string', ''],
+            [new A, 'xyz'],
+            [new A, 'Property1'],
+            [new B, 'property5'],
+            'should ignore dinamic properties' => [$obj, 'testProperty'],
+        ];
+    }
 }

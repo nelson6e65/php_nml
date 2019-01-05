@@ -216,6 +216,7 @@ final class Type extends StrictObject implements IEquatable
         return [];
     }
 
+
     /**
      * Gets a list of traits used by this `Type`.
      *
@@ -254,6 +255,46 @@ final class Type extends StrictObject implements IEquatable
         }
 
         return $traits;
+    }
+
+
+    /**
+     * Checks if the specified property is defined in this `Type`.
+     *
+     * Unlike `property_exists()` function, this method returns `false` for dynamic attributes of an object.
+     *
+     * This method is case-sensitive.
+     *
+     * @param string $name      Name of property.
+     * @param bool   $recursive Indicates if search for inherithed properties. Default: `true`.
+     *
+     * @return bool
+     *
+     * @since 1.0.0
+     *
+     * @see ReflectionClass::hasProperty()
+     * @see \property_exists()
+     */
+    public function hasProperty($name, bool $recursive = true)
+    {
+        if ($this->reflectionObject !== null) {
+            $itHas = $this->reflectionObject->hasProperty($name);
+
+            if ($itHas == false && $recursive === true) {
+                /**
+                 * @var ReflectionClass|bool
+                 */
+                $parentClass = $this->reflectionObject->getParentClass();
+
+                if ($parentClass != false) {
+                    $itHas = typeof($parentClass->getName(), true)->hasProperty($name, true);
+                }
+            }
+
+            return $itHas;
+        }
+
+        return false;
     }
 
     /**

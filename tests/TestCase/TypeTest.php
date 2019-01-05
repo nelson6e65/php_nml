@@ -311,4 +311,52 @@ class TypeTest extends TestCase
             $this->assertEquals($strings, array_keys($reflections));
         }
     }
+
+    /**
+     * @dataProvider hasPropertyProvider
+     *
+     * @param mixed $obj
+     * @param string $name
+     */
+    public function testCanCheckIfTypeHasProperty($obj, string $name)
+    {
+        /**
+         * @var Type
+         */
+        $type = $obj;
+
+        if (!($obj instanceof Type)) {
+            $type = new Type($obj);
+        }
+
+        $actual = $type->hasProperty($name);
+
+        $this->assertInternalType('bool', $actual, 'This method must return a boolean');
+
+        $this->assertTrue($actual);
+    }
+
+    /**
+     * @dataProvider hasNotPropertyProvider
+     *
+     * @param mixed $obj
+     * @param string $name
+     */
+    public function testCanCheckIfTypeHasNotProperty($obj, string $name)
+    {
+        /**
+         * @var Type
+         */
+        $type = $obj;
+
+        if (!($obj instanceof Type)) {
+            $type = new Type($obj);
+        }
+
+        $actual = $type->hasProperty($name);
+
+        $this->assertInternalType('bool', $actual, 'This method must return a boolean');
+
+        $this->assertFalse($actual);
+    }
 }
