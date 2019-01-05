@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -34,7 +34,7 @@ use NelsonMartell\Extensions\Text;
  * @since 0.6.0
  * @see \dgettext()
  * */
-function msg($message, ...$args)
+function msg(string $message, ...$args) : string
 {
     $translated = \dgettext(NML_GETTEXT_DOMAIN, $message);
 
@@ -63,7 +63,7 @@ function msg($message, ...$args)
  * @since 0.6.0
  * @see \dngettext()
  * */
-function nmsg($singular, $plural, $n, ...$args)
+function nmsg(string $singular, string $plural, int $n, ...$args) : string
 {
     $translated = \dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
 
@@ -91,7 +91,7 @@ function nmsg($singular, $plural, $n, ...$args)
  *
  * @see Type::__construct()
  * */
-function typeof($obj, bool $searchName = false)
+function typeof($obj, bool $searchName = false) : Type
 {
     return new Type($obj, $searchName);
 }
