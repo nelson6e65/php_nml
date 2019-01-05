@@ -1,17 +1,18 @@
 ## CHANGELOG
 Release notes for *PHP: Nelson Martell Library*.
 
-### Release 1.0.0-dev (WIP)
+### Release 0.7.2
 
 #### :star: Important changes
 
+- :fire: Deprecate unsupported PHP versions: 5.6 and 7.0 (http://php.net/supported-versions.php).
 
 #### :notebook: Development changes
 
 
 #### More changes
 
-See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...master?w=1) for more detailed info.
+See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...v0.7.2?w=1) for more detailed info.
 
 
 

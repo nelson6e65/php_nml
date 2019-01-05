@@ -72,11 +72,6 @@
 			"phpunit --color=always --coverage-html=\"output/code-coverage\""
 		]
 	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "v1.0.x-dev"
-		}
-	},
 	"minimum-stability": "dev",
 	"prefer-stable": true
 }
