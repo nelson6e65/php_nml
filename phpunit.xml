@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" colors="auto" addUncoveredFilesFromWhitelist="true">
+<phpunit bootstrap="vendor/autoload.php" colors="true" beStrictAboutTestsThatDoNotTestAnything="false">
     <testsuites>
         <testsuite name="PHP: Nelson Martell Library Tests Suite">
             <file>tests/TestCase/Extensions/TextTest.php</file>
@@ -21,7 +21,7 @@
     </groups>
 
     <filter>
-        <whitelist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
             <file>vendor/cakephp/utility/Text.php</file>
             <file>config/bootstrap.php</file>
