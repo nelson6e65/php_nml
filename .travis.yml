@@ -74,3 +74,5 @@ deploy:
   on:
     branch: master
     condition: $BUILD_DOCS = true && $DOCS_NEEDS_UPDATE = true
+  verbose: true
+  fqdn: 'nelson6e65.github.io/php_nml'
