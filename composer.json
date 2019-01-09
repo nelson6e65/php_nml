@@ -68,6 +68,9 @@
 		],
 		"unit:coverage-html": [
 			"phpunit --color=always --coverage-html=\"output/code-coverage\""
+		],
+		"build:api-docs": [
+			"phpdoc"
 		]
 	},
 	"scripts-descriptions": {
@@ -77,7 +80,8 @@
 		"cs:fix": "Runs coding standards auto-fixes (PHP: Code Sniffer).",
 		"unit:test": "Runs unit-testing with PHPUnit.",
 		"unit:coverage": "Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.",
-		"unit:coverage-html": "Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory."
+		"unit:coverage-html": "Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.",
+		"build:api-docs": "Builds API documentation in VuePress sources format to `docs/api/` directory using phpDocumentor."
     },
 	"extra": {
 		"branch-alias": {

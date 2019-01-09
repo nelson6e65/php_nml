@@ -40,10 +40,12 @@ before_script:
   - if [[ $BUILD_DOCS == 'true' ]]; then yarn; fi # yarn install
 
 script:
-  - composer check:all
+  - composer cs:php
+  - composer unit:test
+  - composer cs:lint
 
 after_success:
-  - if [[ $BUILD_DOCS == 'true' ]]; then phpdoc; fi
+  - if [[ $BUILD_DOCS == 'true' ]]; then composer build:api-docs; fi
   - if [[ $BUILD_DOCS == 'true' ]]; then yarn docs:build; fi
 
 notifications:

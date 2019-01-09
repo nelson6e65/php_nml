@@ -50,6 +50,8 @@ The `composer list` exposes this project commands:
 
 - **`composer unit:coverage-html`**: Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.
 
+- **`build:api-docs`**: Generates API documentation in VuePress sources format to `docs/api/` directory using `phpDocumentor`. `phpdoc` must be installed.
+
 
 #### Other
 - **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
