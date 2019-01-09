@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -81,9 +81,9 @@ class IntString extends StrictObject implements IEquatable, IComparable
     }
 
     /**
-     * Convert the object to an instance of ``IntString``.
+     * Converts the object to an instance of `IntString` if compatible.
      *
-     * @param string|IntString $obj Object to convert to ``IntString``.
+     * @param mixed $obj Object to convert to `IntString`.
      *
      * @return IntString
      * @throws InvalidArgumentException if object is not a string or format is invalid.
@@ -146,7 +146,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
     /**
      * Getter for $intValue property.
      *
-     * @return int
+     * @return int|null
      */
     protected function getIntValue()
     {
@@ -156,9 +156,9 @@ class IntString extends StrictObject implements IEquatable, IComparable
     /**
      * Getter for $stringValue property.
      *
-     * @return int
+     * @return string
      */
-    protected function getStringValue()
+    protected function getStringValue() : string
     {
         return $this->stringValue;
     }
@@ -166,7 +166,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
     /**
      * {@inheritDoc}
      */
-    public function toString()
+    public function toString() : string
     {
         return $this->getIntValue().$this->getStringValue();
     }
@@ -174,11 +174,11 @@ class IntString extends StrictObject implements IEquatable, IComparable
     /**
      * Indicates whether the specified object is equal to the current instance.
      *
-     * @param IntString|mixed $other
+     * @param mixed $other
      *
      * @return bool
      */
-    public function equals($other)
+    public function equals($other) : bool
     {
         if ($other instanceof IntString) {
             if ($this->getIntValue() === $other->getIntValue()) {
@@ -198,7 +198,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
      * Nota: Cualquier objeto que no sea instancia de IntString se
      * considerará menor.
      *
-     * @param IntString|mixed $other Objeto con el que se va a comparar.
+     * @param mixed $other Objeto con el que se va a comparar.
      *
      * @return int Cero (0), si esta instancia es igual a $other; mayor
      *   a cero (>0), si es mayor a $other; menor a cero (<0), si es menor.

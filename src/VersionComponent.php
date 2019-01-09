@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -101,6 +101,14 @@ class VersionComponent extends IntString implements IEquatable
         parent::__construct($intValue, $stringValue);
     }
 
+    /**
+     * Converts the object to an instance of `VersionComponent` if compatible.
+     *
+     * @param mixed $obj Object to convert.
+     *
+     * @return VersionComponent
+     * @throws InvalidArgumentException if object is not a string or format is invalid.
+     */
     public static function parse($obj)
     {
         if ($obj instanceof VersionComponent) {
@@ -121,7 +129,7 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isDefault()
+    public function isDefault() : bool
     {
         if ($this->intValue === 0) {
             if ($this->stringValue === '') {
@@ -137,7 +145,7 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isNotDefault()
+    public function isNotDefault() : bool
     {
         return !$this->isDefault();
     }
@@ -147,7 +155,7 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isNull()
+    public function isNull() : bool
     {
         if ($this->intValue === null) {
             return true;
@@ -161,12 +169,12 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isNotNull()
+    public function isNotNull() : bool
     {
         return !$this->isNull();
     }
 
-    public function equals($other)
+    public function equals($other) : bool
     {
         if ($other instanceof VersionComponent) {
             if ($this->intValue === $other->intValue) {

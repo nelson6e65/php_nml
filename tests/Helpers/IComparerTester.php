@@ -124,7 +124,7 @@ trait IComparerTester
     /**
      * @testdox Provides comparison function to array sorting
      * @dataProvider compareMethodArraysProvider
-      *
+     *
      * @param array $expected
      */
     public function testCanUseCompareMethodInArraySorting(array $expected) : void
