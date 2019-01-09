@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -15,6 +15,9 @@
  * */
 
 namespace NelsonMartell\Test\DataProviders;
+
+use TypeError;
+use InvalidArgumentException;
 
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
@@ -69,11 +72,11 @@ trait VersionComponentTestProvider
     public function badConstructorArgumentsProvider()
     {
         return [
-            'Negative integer part'        => [-1, null],
-            'Invalid string value part'    => [0, 'erróneo'],
-            'Invalid type (float) for string part'  => [0, 23.912],
-            'Invalid type (object) for string part'  => [0, new \stdClass],
-            'Invalid type (array) for string part'  => [0, ['no']],
+            'Negative integer part'        => [InvalidArgumentException::class, -1, null],
+            'Invalid string value part'    => [InvalidArgumentException::class, 0, 'erróneo'],
+            'Invalid type (float) for string part'  => [InvalidArgumentException::class, 0, 23.912],
+            'Invalid type (object) for string part'  => [InvalidArgumentException::class, 0, new \stdClass],
+            'Invalid type (array) for string part'  => [InvalidArgumentException::class, 0, ['no']],
         ];
     }
 

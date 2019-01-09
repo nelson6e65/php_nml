@@ -16,6 +16,9 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
+use TypeError;
+use InvalidArgumentException;
+
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
@@ -64,16 +67,16 @@ trait VersionTestProvider
     public function badConstructorArgumentsProvider()
     {
         return [
-            'Type: null (all)'               => [null, null],
-            'Only first argument'            => [1, null],
-            'Invalid $major and $minor type' => ['hello', 'world'],
-            'Invalid $major type (string)'   => ['hello', 1],
-            'Invalid $minor type (string)'   => [1, 'world'],
-            '$major value < 0'               => [-1, 0],
-            '$minor value < 0'               => [1, -3],
-            '$build value < 0'               => [1, 0, -1, null],
-            '$revision value < 0'            => [1, 0, 1, -1],
-            '$revision while $build is not'  => [1, 0, null, -1],
+            'Type: null (all)'               => [TypeError::class, null, null],
+            'Only first argument'            => [TypeError::class, 1, null],
+            'Invalid $major and $minor type' => [TypeError::class, 'hello', 'world'],
+            'Invalid $major type (string)'   => [TypeError::class, 'hello', 1],
+            'Invalid $minor type (string)'   => [TypeError::class, 1, 'world'],
+            '$major value < 0'               => [InvalidArgumentException::class, -1, 0],
+            '$minor value < 0'               => [InvalidArgumentException::class, 1, -3],
+            '$build value < 0'               => [InvalidArgumentException::class, 1, 0, -1, null],
+            '$revision value < 0'            => [InvalidArgumentException::class, 1, 0, 1, -1],
+            '$revision while $build is not'  => [InvalidArgumentException::class, 1, 0, null, -1],
         ];
     }
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -10,12 +10,13 @@
  *
  * @copyright 2016-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
 namespace NelsonMartell\Test\Helpers;
 
+use Throwable;
 use ReflectionClass;
 use ReflectionException;
 use BadMethodCallException;
@@ -25,6 +26,7 @@ use UnexpectedValueException;
  * Provides test methods and helpers to test class constructors.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.6.0
  * */
 trait ConstructorMethodTester
 {
@@ -35,10 +37,18 @@ trait ConstructorMethodTester
      */
     abstract public function getTargetClassName();
 
+    /**
+     *
+     * @var ReflectionClass
+     */
     protected $targetClassReflection = null;
 
-
-    public function getTargetClassReflection()
+    /**
+     *
+     * @return ReflectionClass
+     * @throws BadMethodCallException
+     */
+    public function getTargetClassReflection() : ReflectionClass
     {
         if ($this->targetClassReflection === null) {
             try {
@@ -59,32 +69,44 @@ trait ConstructorMethodTester
      * Gets (dinamically) an instance of target class using its constructor with the (optional) arguments.
      * It uses the ``getTargetClassName`` return value to determinate the name of target class.
      *
+     * @param mixed  $args
+     *
      * @return mixed Instance of target class.
      * @throws UnexpectedValueException
      * @throws BadMethodCallException
      */
-    public function getTargetClassInstance()
+    public function getTargetClassInstance(...$args)
     {
-        return $this->getTargetClassReflection()->newInstanceArgs(func_get_args());
+        return $this->getTargetClassReflection()->newInstanceArgs($args);
     }
 
     /**
      * @testdox Creates new instances
      * @dataProvider goodConstructorArgumentsProvider
+     *
+     * @param mixed  $args Constructor arguments
      */
-    public function testConstructor()
+    public function testConstructor(...$args) : void
     {
-        call_user_func_array([$this, 'getTargetClassInstance'], func_get_args());
+        $this->getTargetClassInstance(...$args);
     }
 
     /**
      * @testdox Informs when error occurs on creating new instances
      * @dataProvider badConstructorArgumentsProvider
-     * @expectedException \InvalidArgumentException
+     *
+     * @param string $exception Exception name
+     * @param mixed  $args Constructor arguments
      */
-    public function testConstructorWithBadArguments()
+    public function testConstructorWithBadArguments(string $exception, ...$args) : void
     {
-        call_user_func_array([$this, 'getTargetClassInstance'], func_get_args());
+        if (!is_subclass_of($exception, Throwable::class)) {
+            $this->fail('dataProvider argument error: first argument must to be a Throwable name');
+        }
+
+        $this->expectException($exception);
+
+        $this->getTargetClassInstance(...$args);
     }
 
     /**
@@ -92,12 +114,12 @@ trait ConstructorMethodTester
      *
      * @return array
      */
-    abstract public function goodConstructorArgumentsProvider();
+    abstract public function goodConstructorArgumentsProvider() : array;
 
     /**
-     * Must provide invalid argument for constructor.
+     * Must provide a exception class name and invalid arguments for constructor.
      *
      * @return array
      */
-    abstract public function badConstructorArgumentsProvider();
+    abstract public function badConstructorArgumentsProvider() : array;
 }

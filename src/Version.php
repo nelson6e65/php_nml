@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -50,47 +50,9 @@ final class Version extends StrictObject implements IEquatable, IComparable
      *
      * @throws InvalidArgumentException
      * */
-    public function __construct($major, $minor, $build = null, $revision = null)
+    public function __construct(int $major, int $minor, $build = null, $revision = null)
     {
         parent::__construct();
-
-        if (!is_integer($major)) {
-            $args = [
-                'class'    => typeof($this)->name,
-                'name'     => 'major',
-                'pos'      => 0,
-                'expected' => typeof(0),
-                'actual'   => typeof($major),
-            ];
-
-            $msg  = msg('Invalid argument type.');
-            $msg .= msg(
-                ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
-                $args
-            );
-            $msg .= msg(' Convert value or use the "{class}::parse" (static) method.', $args);
-
-            throw new InvalidArgumentException($msg);
-        }
-
-        if (!is_integer($minor)) {
-            $args = [
-                'class'    => typeof($this)->name,
-                'name'     => 'minor',
-                'pos'      => 1,
-                'expected' => typeof(0),
-                'actual'   => typeof($minor),
-            ];
-
-            $msg  = msg('Invalid argument type.');
-            $msg .= msg(
-                ' "{name}" (position {pos}) must to be an instance of "{expected}"; "{actual}" given.',
-                $args
-            );
-            $msg .= msg(' Convert value or use the "{class}::parse" (static) method.', $args);
-
-            throw new InvalidArgumentException($msg);
-        }
 
         if ($major < 0) {
             $args = [
@@ -137,7 +99,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      *
      * @return Version Objeto convertido desde $value.
      * */
-    public static function parse($value)
+    public static function parse($value) : Version
     {
         if ($value instanceof Version) {
             return $value;
@@ -222,7 +184,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * @return VersionComponent
      * @see    Version::$build
      */
-    protected function getBuild()
+    protected function getBuild() : VersionComponent
     {
         return $this->build;
     }
@@ -235,7 +197,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * @return VersionComponent
      * @see    Version::$revision
      */
-    protected function getRevision()
+    protected function getRevision() : VersionComponent
     {
         return $this->revision;
     }
@@ -253,7 +215,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      * @see    VersionComponent::isNull()
      * @see    Version::isValid()
      * */
-    public function toString()
+    public function toString() : string
     {
         $s[0] = $this->major;
         $s[1] = $this->minor;
@@ -285,7 +247,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      *
      * @return bool Un valor que indica si la instancia actual es válida.
      * */
-    public function isValid()
+    public function isValid() : bool
     {
         // Validación de major y minor:
         $r = ($this->major > 0 || $this->minor > 0); // 1

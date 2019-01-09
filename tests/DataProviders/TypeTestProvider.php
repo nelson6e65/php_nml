@@ -17,6 +17,7 @@
 namespace NelsonMartell\Test\DataProviders;
 
 use stdClass;
+use InvalidArgumentException;
 
 use NelsonMartell\Type;
 use NelsonMartell\PropertiesHandler;
@@ -107,7 +108,7 @@ trait TypeTestProvider
     public function badConstructorArgumentsProvider()
     {
         return [
-            'not existing class'   => ['Hola', true],
+            'not existing class'   => [InvalidArgumentException::class, 'Hola', true],
         ];
     }
 

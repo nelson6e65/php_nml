@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -10,7 +10,7 @@
  *
  * @copyright 2016-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -28,6 +28,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
+ * @since 0.6.0
  * */
 class VersionTest extends TestCase
 {
@@ -39,7 +40,6 @@ class VersionTest extends TestCase
     }
 
     /**
-     * @coverage Version::parse
      * @depends NelsonMartell\Test\TestCase\VersionComponentTest::testParseMethod
      */
     public function testPerformsConversionFromString()
@@ -51,11 +51,13 @@ class VersionTest extends TestCase
     }
 
     /**
-     * @coverage Version::parse
      * @depends NelsonMartell\Test\TestCase\VersionComponentTest::testPerformsConversionToString
      * @dataProvider toStringMethodProvider
+     *
+     * @param string $expected
+     * @param  Version $version  [description]
      */
-    public function testPerformsConversionToString($expected, Version $version)
+    public function testPerformsConversionToString(string $expected, Version $version) : void
     {
         $actual = $version->toString();
 
@@ -72,12 +74,13 @@ class VersionTest extends TestCase
     }
 
     /**
-     * @coverage Version::__toString
-     * @coverage Version::toString
      * @depends testPerformsConversionToString
      * @dataProvider toStringMethodProvider
+     *
+     * @param string  $str
+     * @param Version $obj
      */
-    public function testPerformsImplicitConversionToString($str, Version $obj)
+    public function testPerformsImplicitConversionToString(string $str, Version $obj) : void
     {
         $expected = '<Version>'.$str.'</Version>';
         $actual   = '<Version>'.$obj.'</Version>';
@@ -87,10 +90,12 @@ class VersionTest extends TestCase
 
     /**
      * @testdox Can check if Version instance is valid
-     * @coverage Version::isValid
      * @dataProvider isValidProvider
+     *
+     * @param  bool    $expected [description]
+     * @param  Version $version  [description]
      */
-    public function testIsValid($expected, Version $version)
+    public function testIsValid(bool $expected, Version $version) : void
     {
         $actual = $version->isValid();
 
