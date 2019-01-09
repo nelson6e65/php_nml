@@ -22,7 +22,7 @@
 		"docs": "http://nelson6e65.github.io/php_nml/api"
 	},
 	"require": {
-		"php": "7.0.* || 7.1.* || 7.2.* || 7.3.*",
+		"php": "7.1.* || 7.2.* || 7.3.*",
 		"cakephp/utility": "^3.0.1"
 	},
 	"require-dev": {
