@@ -95,7 +95,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
         }
 
         if (is_integer($obj)) {
-            return new VersionComponent($obj);
+            return new IntString($obj);
         }
 
         try {
