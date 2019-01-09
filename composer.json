@@ -46,36 +46,39 @@
 		}
 	},
 	"scripts": {
-		"check-all": [
-			"@analize-syntax",
-			"@test-code",
-			"@analize-code"
+		"check:all": [
+			"@cs:php",
+			"@unit:test",
+			"@cs:lint"
 		],
-		"analize-syntax": [
+		"cs:php": [
 			"phpcs src/ config/ autoload.php -q --standard=Generic --sniffs=Generic.PHP.Syntax --colors"
 		],
-		"analize-code": [
+		"cs:lint": [
 			"phpcs src/ tests/ config/ autoload.php -p --runtime-set ignore_warnings_on_exit 1"
 		],
-		"autofix-code": [
+		"cs:fix": [
 			"phpcbf src/ tests/ config/ autoload.php -p"
 		],
-		"test-code": [
+		"unit:test": [
 			"phpunit --color=always"
 		],
-		"build-code-coverage": [
-			"phpunit --color=always --coverage-clover=\"output/code-coverage/clover.xml\" --coverage-html=\"output/code-coverage\""
-		],
-		"build-code-coverage-xml": [
-			"@build-code-coverage-clover"
-		],
-		"build-code-coverage-clover": [
+		"unit:coverage": [
 			"phpunit --color=always --coverage-clover=\"output/code-coverage/clover.xml\""
 		],
-		"build-code-coverage-html": [
+		"unit:coverage-html": [
 			"phpunit --color=always --coverage-html=\"output/code-coverage\""
 		]
 	},
+	"scripts-descriptions": {
+		"check:all": "Runs coding standard analysis (PHP: Code Sniffer) + tests (PHPUnit).",
+		"cs:php": "Runs PHP syntax checks (PHP: Code Sniffer).",
+		"cs:lint": "Runs coding standards linting (PHP: Code Sniffer).",
+		"cs:fix": "Runs coding standards auto-fixes (PHP: Code Sniffer).",
+		"unit:test": "Runs unit-testing with PHPUnit.",
+		"unit:coverage": "Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.",
+		"unit:coverage-html": "Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory."
+    },
 	"extra": {
 		"branch-alias": {
 			"dev-master": "1.0.x-dev"

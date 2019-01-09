@@ -32,22 +32,26 @@ yarn
 
 ### Development scripts
 
-- **`composer test-code`**: Runs unit-testing tests with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test-code -- --verbose`.
+#### Composer
 
-- **`composer analize-syntax`**: Runs PHP syntax checks.
+The `composer list` exposes this project commands:
 
-- **`composer analize-code`**: Runs coding standards checks (PHP: Code Sniffer).
+- **`composer check:all`**: Runs coding standard analysis (PHP: Code Sniffer) + tests (PHPUnit).
 
-- **`composer autofix-code`**: Runs coding standard auto-fixes (PHP: Code Sniffer).
+- **`composer cs:php`**: Runs PHP syntax checks (PHP: Code Sniffer).
 
-- **`composer check-all`**: Runs coding standard analisis (PHP: Code Sniffer) + tests (PHPUnit).
+- **`composer cs:lint`**: Runs coding standards linting (PHP: Code Sniffer).
 
-- **`composer build-code-coverage`**: Runs tests and build code coverage reports (XML and HTML formats) in `output/code-coverage/` directory.
-    - **`composer build-code-coverage-clover`**: For XML format only (`output/code-coverage/clover.xml`)
-    - **`composer build-code-coverage-xml`**: Alias for `composer build-code-coverage-clover`.
-    - **`composer build-code-coverage-html`**: For HTML format only.
+- **`composer cs:fix`**: Runs coding standards auto-fixes (PHP: Code Sniffer).
+
+- **`composer unit:test`**: Runs unit-testing with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer unit:test -- --verbose`.
+
+- **`composer unit:coverage`**: Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.
+
+- **`composer unit:coverage-html`**: Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.
 
 
+#### Other
 - **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
 
 - **`yarn docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.

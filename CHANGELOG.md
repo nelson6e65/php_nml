@@ -32,7 +32,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :art: Improve doc blocks.
 - :up: Improve tests and increase the code coverage.
 - :up: Improve coding style: add more rules to checks the code.
-- :new: Composer command to perform PHP Syntax checks: `composer analize-syntax`
+- :new: Composer command to perform PHP Syntax checks: `composer cs:php`
+- :up: Rename composer commands and add descriptions.
 
 
 ### :bookmark: More changes

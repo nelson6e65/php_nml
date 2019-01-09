@@ -45,7 +45,7 @@ before_script:
   - if [[ $BUILD_DOCS == 'true' ]]; then yarn; fi # yarn install
 
 script:
-  - composer check-all
+  - composer check:all
 
 after_success:
   - if [[ $BUILD_DOCS == 'true' ]]; then phpdoc; fi
@@ -72,4 +72,3 @@ deploy:
     branch: master
     condition: $BUILD_DOCS = true && $DOCS_NEEDS_UPDATE = true
   verbose: true
-  fqdn: 'nelson6e65.github.io/php_nml'
