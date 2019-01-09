@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -10,7 +10,7 @@
  *
  * @copyright 2016-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -26,25 +26,30 @@ use SebastianBergmann\Exporter\Exporter;
  * Plugin to export variables in test clases.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.6.0
  * @internal
  * */
 trait ExporterPlugin
 {
+    /**
+     * @var Exporter
+     */
     protected static $exporter = null;
 
     /**
      * Extract the string representation of specified object in one line.
      *
-     * @param mixed   $obj   Object to export.
-     * @param integer $depth How many levels of depth will export in arrays and objects. If $depth <= 0,
+     * @param mixed $obj   Object to export.
+     * @param int   $depth How many levels of depth will export in arrays and objects. If $depth <= 0,
      *   only '...' will be returned for content of object or array. Default: ``2``.
-     * @param bool    $short If class names are returned without namespace. Default: ``false``.
+     * @param bool  $short If class names are returned without namespace. Default: ``false``.
      *
      * @return string
+     *
      * @see Exporter::shortenedRecursiveExport()
      * @see Exporter::export()
      */
-    public static function export($obj, $depth = 2, $short = false)
+    public static function export($obj, int $depth = 2, bool $short = false) : string
     {
         if (static::$exporter === null) {
             static::$exporter = new Exporter();
@@ -114,12 +119,12 @@ trait ExporterPlugin
     /**
      * Exports class name of an object instance.
      *
-     * @param object  $obj   Object to get the class name.
-     * @param boolean $short Return only class name without namespace.
+     * @param object $obj   Object to get the class name.
+     * @param bool   $short Return only class name without namespace.
      *
      * @return string
      */
-    public static function getClass($obj, $short = false)
+    public static function getClass($obj, bool $short = false) : string
     {
         if (!is_object($obj)) {
             throw new InvalidArgumentException('Object argument is not an object instance.');

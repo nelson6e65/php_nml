@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -10,11 +10,13 @@
  *
  * @copyright 2016-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
 namespace NelsonMartell\Test\Helpers;
+
+use ReflectionClass;
 
 use NelsonMartell\Extensions\Text;
 
@@ -26,19 +28,41 @@ use NelsonMartell\IComparer;
  * Note: Classes using this trait MUST use ConstructorMethodTester and ExporterPlugin traits too.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since  0.6.0
  * */
 trait IComparerTester
 {
-    abstract public function getTargetClassName(); // use ConstructorMethodTester;
-    abstract public function getTargetClassReflection(); // use ConstructorMethodTester;
-    abstract public function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
+    /**
+     * @return string
+     *
+     * @see ConstructorMethodTester
+     */
+    abstract public function getTargetClassName() : string;
+
+    /**
+     * @return ReflectionClass
+     *
+     * @see ConstructorMethodTester
+     */
+    abstract public function getTargetClassReflection() : ReflectionClass;
+
+    /**
+     * @param mixed $obj
+     * @param int   $depth
+     * @param bool  $short
+     *
+     * @return string
+     *
+     * @see ExporterPlugin
+     */
+    abstract public function export($obj, int $depth = 2, bool $short = false) : string;
 
     /**
      * Datasets for ``testCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
      *
      * @return array
      */
-    abstract public function compareMethodArgumentsProvider();
+    abstract public function compareMethodArgumentsProvider() : array;
 
     /**
      * Datasets for ``testCanUseCompareMethodInArraySorting(integer|null $expected, mixed $left, mixed $right)``.
@@ -47,14 +71,18 @@ trait IComparerTester
      *
      * @return array
      */
-    abstract public function compareMethodArraysProvider();
+    abstract public function compareMethodArraysProvider() : array;
 
 
     /**
      * @testdox Can compare relative position of objects of different type
      * @dataProvider compareMethodArgumentsProvider
+     *
+     * @param int|null $expected
+     * @param mixed $left
+     * @param mixed $right
      */
-    public function testCompareMethod($expected, $left, $right)
+    public function testCompareMethod($expected, $left, $right) : void
     {
         $class  = $this->getTargetClassName();
         $actual = $class::compare($left, $right);
@@ -96,8 +124,10 @@ trait IComparerTester
     /**
      * @testdox Provides comparison function to array sorting
      * @dataProvider compareMethodArraysProvider
+      *
+     * @param array $expected
      */
-    public function testCanUseCompareMethodInArraySorting(array $expected)
+    public function testCanUseCompareMethodInArraySorting(array $expected) : void
     {
         $actual = $expected;
 
@@ -121,7 +151,7 @@ trait IComparerTester
      * @testdox Is compliant with ``NelsonMartell\IComparer`` interface
      * @depends testCanUseCompareMethodInArraySorting
      */
-    public function testIsCompliantWithIComparerIterface()
+    public function testIsCompliantWithIComparerIterface() : void
     {
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',

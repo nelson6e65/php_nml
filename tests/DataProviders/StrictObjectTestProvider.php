@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -10,7 +10,7 @@
  *
  * @copyright 2016-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -40,18 +40,18 @@ trait StrictObjectTestProvider
 
     // ConstructorMethodTester
 
-    public function getTargetClassName()
+    public function getTargetClassName() : string
     {
         return StrictObject::class;
     }
 
-    public function goodConstructorArgumentsProvider()
+    public function goodConstructorArgumentsProvider() : array
     {
         return [[]];
     }
 
 
-    public function badConstructorArgumentsProvider()
+    public function badConstructorArgumentsProvider() : array
     {
         return null;
     }
@@ -59,7 +59,7 @@ trait StrictObjectTestProvider
 
 
     // IComparerTester
-    public function compareMethodArgumentsProvider()
+    public function compareMethodArgumentsProvider() : array
     {
         $obj       = new \stdClass();
         $obj->one  = 1;
@@ -123,7 +123,7 @@ trait StrictObjectTestProvider
         return $args;
     }
 
-    public function compareMethodArraysProvider()
+    public function compareMethodArraysProvider() : array
     {
         return [
             'integer[]'           => [[-67, -9, 0, 4, 5, 6]],

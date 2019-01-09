@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -16,6 +16,8 @@
 
 namespace NelsonMartell\Test\Helpers;
 
+use ReflectionClass;
+
 use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\IComparable;
@@ -29,10 +31,23 @@ use NelsonMartell\IComparable;
  * */
 trait IComparableTester
 {
-    abstract public function getTargetClassInstance(); // use ConstructorMethodTester;
-    abstract public function getTargetClassName(); // use ConstructorMethodTester;
-    abstract public function getTargetClassReflection(); // use ConstructorMethodTester;
-    abstract public function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
+    /**
+     * @return ReflectionClass
+     *
+     * @see ConstructorMethodTester
+     */
+    abstract public function getTargetClassReflection() : ReflectionClass;
+
+    /**
+     * @param mixed $obj
+     * @param int   $depth
+     * @param bool  $short
+     *
+     * @return string
+     *
+     * @see ExporterPlugin
+     */
+    abstract public function export($obj, int $depth = 2, bool $short = false) : string;
 
     /**
      * Datasets for ``testIComparableCompareToMethod(integer|null $expected, IComparable $left, mixed $right)``.
@@ -44,8 +59,14 @@ trait IComparableTester
     /**
      * @testdox Can compare relative position with other objects
      * @dataProvider IComparableCompareToMethodArgumentsProvider
+     *
+     * @param int|null    $expected
+     * @param IComparable $left
+     * @param mixed       $right
+     *
+     * @see IComparable::compareTo()
      */
-    public function testIComparableCompareToMethod($expected, IComparable $left, $right)
+    public function testIComparableCompareToMethod($expected, IComparable $left, $right) : void
     {
         $actual = $left->compareTo($right);
 

@@ -35,7 +35,7 @@ trait ConstructorMethodTester
      *
      * @return string
      */
-    abstract public function getTargetClassName();
+    abstract public function getTargetClassName() : string;
 
     /**
      *

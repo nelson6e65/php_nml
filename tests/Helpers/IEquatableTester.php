@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -16,9 +16,14 @@
 
 namespace NelsonMartell\Test\Helpers;
 
+use ReflectionClass;
+use InvalidArgumentException;
+
 use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\IEquatable;
+
+use function NelsonMartell\typeof;
 
 /**
  * Test helper for classes implementing ``NelsonMartell\IEquatable`` interface.
@@ -29,23 +34,48 @@ use NelsonMartell\IEquatable;
  * */
 trait IEquatableTester
 {
-    abstract public function getTargetClassName(); // use ConstructorMethodTester;
-    abstract public function getTargetClassReflection(); // use ConstructorMethodTester;
-    abstract public function export($obj, $depth = 2, $short = false); // use plugin/ExporterPlugin;
+    /**
+     * @return string
+     *
+     * @see ConstructorMethodTester
+     */
+    abstract public function getTargetClassName() : string;
+
+    /**
+     * @return ReflectionClass
+     *
+     * @see ConstructorMethodTester
+     */
+    abstract public function getTargetClassReflection() : ReflectionClass;
+
+    /**
+     * @param mixed $obj
+     * @param int   $depth
+     * @param bool  $short
+     *
+     * @return string
+     *
+     * @see ExporterPlugin
+     */
+    abstract public function export($obj, int $depth = 2, bool $short = false) : string;
 
     /**
      * Datasets for ``testIEquatableEqualsMethod(bool $expected, IEquatable $left, mixed $right)``.
      *
      * @return array
      */
-    abstract public function IEquatableMethodArgumentsProvider();
+    abstract public function IEquatableMethodArgumentsProvider() : array;
 
 
     /**
      * @testdox Can check if instances are equals to other objects
      * @dataProvider IEquatableMethodArgumentsProvider
+     *
+     * @param int|null   $expected
+     * @param IEquatable $left
+     * @param mixed      $right
      */
-    public function testIEquatableEqualsMethod($expected, IEquatable $left, $right)
+    public function testIEquatableEqualsMethod($expected, IEquatable $left, $right) : void
     {
         $actual = $left->equals($right);
 
@@ -64,7 +94,7 @@ trait IEquatableTester
         if (!is_bool($expected)) {
             throw new InvalidArgumentException(Text::format(
                 '1st argument of data provider should be of "boolean" type, "{0}" given.',
-                NML\typeof($expected)
+                typeof($expected)
             ));
         }
 
