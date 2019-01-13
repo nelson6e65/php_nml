@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -33,9 +33,9 @@ use InvalidArgumentException;
  *   This property is read-only.
  * @property-read string|null   $namespace Gets the namespace name of this class. If this Type is not a class, this
  *   property is set to `null`. This property is read-only.
- * @property-read string|null   $methods   Gets the public|protected methods (ReflectionMethod) of this Type. This
+ * @property-read array         $methods   Gets the public|protected methods (ReflectionMethod) of this Type. This
  *   property is read-only.
- * @property-read string|null   $vars      Gets the public|protected properties (ReflectionProperty) of this Type.
+ * @property-read array         $vars      Gets the public|protected properties (ReflectionProperty) of this Type.
  *   This property is read-only.
  *
  * */
@@ -113,7 +113,7 @@ final class Type extends StrictObject implements IEquatable
      * @return string
      * @see Type::$name
      * */
-    protected function getName()
+    protected function getName() : string
     {
         return $this->name;
     }
@@ -129,7 +129,7 @@ final class Type extends StrictObject implements IEquatable
      * @return string
      * @see Type::$shortName
      * */
-    public function getShortName()
+    public function getShortName() : string
     {
         return $this->shortName;
     }
@@ -145,7 +145,7 @@ final class Type extends StrictObject implements IEquatable
      * @return string|null
      * @see    Type::$namespace
      * */
-    public function getNamespace()
+    public function getNamespace() : string
     {
         return $this->namespace;
     }
@@ -161,8 +161,10 @@ final class Type extends StrictObject implements IEquatable
      * Getter for `$vars` property.
      *
      * @return array
+     *
+     * @deprecated 0.7.2
      */
-    public function getVars()
+    public function getVars() : array
     {
         if ($this->vars == null) {
             $this->vars = $this->reflectionObject->getProperties(
@@ -183,7 +185,7 @@ final class Type extends StrictObject implements IEquatable
      * @return array
      * @see    Type::$methods
      */
-    public function getMethods()
+    public function getMethods() : array
     {
         if ($this->methods == null) {
             $this->methods = $this->reflectionObject->getMethods(
@@ -200,7 +202,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return bool
      */
-    public function hasMethod($name)
+    public function hasMethod(string $name) : bool
     {
         if ($this->reflectionObject !== null) {
             return $this->reflectionObject->hasMethod($name);
@@ -219,7 +221,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @since 1.0.0
      */
-    public function getInterfaces($reflection = false)
+    public function getInterfaces(bool $reflection = false)
     {
         if ($this->reflectionObject !== null) {
             if ($reflection === true) {
@@ -244,7 +246,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @since 1.0.0
      */
-    public function getTraits($reflection = false, $recursive = false)
+    public function getTraits(bool $reflection = false, bool $recursive = false) : array
     {
         $traits = [];
 
@@ -291,7 +293,7 @@ final class Type extends StrictObject implements IEquatable
      * @see ReflectionClass::hasProperty()
      * @see \property_exists()
      */
-    public function hasProperty($name, bool $recursive = true)
+    public function hasProperty(string $name, bool $recursive = true) : bool
     {
         if ($this->reflectionObject !== null) {
             $itHas = $this->reflectionObject->hasProperty($name);
@@ -318,7 +320,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return bool
      */
-    public function canBeString()
+    public function canBeString() : bool
     {
         if ($this->isNull() || $this->isScalar() || $this->hasMethod('__toString')) {
             return true;
@@ -332,7 +334,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return bool `true` if this type is `null`; other case, `false`.
      * */
-    public function isNull()
+    public function isNull() : bool
     {
         if ($this->name == 'NULL' || $this->name == 'null') {
             return true;
@@ -345,8 +347,12 @@ final class Type extends StrictObject implements IEquatable
      * Determines if the underlying type is NOT `null`.
      *
      * @return bool `true` if this type is NOT `null`; other case, `false`.
+     *
+     * @deprecated 1.0.0 Use `!Type::isNull()` instead
+     *
+     * @see Type::isNull()
      * */
-    public function isNotNull()
+    public function isNotNull() : bool
     {
         return !$this->isNull();
     }
@@ -357,7 +363,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return bool `true`, if the underlying type is a custom class; another case, `false`.
      * */
-    public function isCustom()
+    public function isCustom() : bool
     {
         return !$this->isValueType() && $this->isNotNull();
     }
@@ -368,7 +374,7 @@ final class Type extends StrictObject implements IEquatable
      * @return bool
      * @see    \is_scalar()
      * */
-    public function isScalar()
+    public function isScalar() : bool
     {
         $r = false;
 
@@ -392,7 +398,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return bool
      * */
-    public function isValueType()
+    public function isValueType() : bool
     {
         if ($this->isScalar() || $this->name === 'array') {
             return true;
@@ -406,7 +412,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return bool
      * */
-    public function isReferenceType()
+    public function isReferenceType() : bool
     {
         return !$this->isValueType();
     }
@@ -416,7 +422,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return string
      * */
-    public function toString()
+    public function toString() : string
     {
         $s = $this->name;
 
@@ -435,7 +441,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @return bool Returns always `false` if `$other` is not a `Type`.
      */
-    public function equals($other)
+    public function equals($other) : bool
     {
         if ($other instanceof Type) {
             return $this->name == $other->name;
@@ -468,7 +474,7 @@ final class Type extends StrictObject implements IEquatable
      * @see Type::is()
      * @since 1.0.0
      */
-    public function isIn(...$args)
+    public function isIn(...$args) : bool
     {
         foreach ($args as $obj) {
             if ($this->equals(typeof($obj))) {
@@ -504,7 +510,7 @@ final class Type extends StrictObject implements IEquatable
      * @see Type::isIn()
      * @since 1.0.0
      */
-    public function is(...$args)
+    public function is(...$args) : bool
     {
         foreach ($args as $obj) {
             if (!$this->equals(typeof($obj))) {
