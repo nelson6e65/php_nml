@@ -15,6 +15,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :fire: Remove deprecated classes under `NelsonMartell\Utilities` namespace.
 - :new: `class`: `NelsonMartell\Extensions\Numbers`.
 - :new: `class`: `NelsonMartell\Extensions\Arrays`.
+- :new: `class`: `NelsonMartell\Extensions\PropertyExtension`.
+- :new: `class`: `NelsonMartell\Extensions\MethodExtension`.
 - :bug: :fire: Fix problem in `NelsonMartell\StrictObject::compare()` for some types and make it more generic and split implementation to:
   - :new: `NelsonMartell\Text::compare()`
   - :new: `NelsonMartell\Arrays::compare()`

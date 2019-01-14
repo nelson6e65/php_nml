@@ -204,6 +204,8 @@ class Text extends TextBase implements IComparer
      * @return string
      * @throws InvalidArgumentException if object is not an `string` or do not
      *   follows the PHP variables naming convention.
+     *
+     * @see PropertyExtension::ensureIsValidName()
      */
     public static function ensureIsValidVarName($string)
     {

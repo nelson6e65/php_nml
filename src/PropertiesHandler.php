@@ -20,6 +20,8 @@ use BadMethodCallException;
 use InvalidArgumentException;
 
 use NelsonMartell\Extensions\Text;
+use NelsonMartell\Extensions\MethodExtension;
+use NelsonMartell\Extensions\PropertyExtension;
 
 /**
  * Enables the class to call, implicitly, getter and setters for its properties, allowing to use properties directly.
@@ -190,30 +192,14 @@ trait PropertiesHandler
      *
      * @return string Same property name, but validated.
      * @throws InvalidArgumentException If property name is not valid (10) or do not exists (11).
+     *
+     * @deprecated 1.0.0 Implementation moved to Extensions\PropertyExtension::ensureIsDefined()
+     *
+     * @see PropertyExtension::ensureIsDefined()
      */
     protected static function ensurePropertyExists($name)
     {
-        $args = [
-            'class'    => get_called_class(),
-        ];
-
-        try {
-            $args['property'] = Text::ensureIsValidVarName($name);
-        } catch (InvalidArgumentException $error) {
-            $msg = msg('Property name is not valid.');
-            throw new InvalidArgumentException($msg, 10, $error);
-        }
-
-        if (!typeof(get_called_class(), true)->hasProperty($name)) {
-            $msg = msg(
-                '"{property}" property do not exists in "{class}" class or parent classes.',
-                $args
-            );
-
-            throw new InvalidArgumentException($msg, 11);
-        }
-
-        return $name;
+        return PropertyExtension::ensureIsDefined($name, get_called_class());
     }
 
 
@@ -224,27 +210,14 @@ trait PropertiesHandler
      *
      * @return string Same method name, but validated.
      * @throws InvalidArgumentException If method name is not valid (20) or do not exists (21).
+     *
+     * @deprecated 1.0.0 Implementation moved to Extensions\MethodExtension::ensureIsDefined()
+     *
+     * @see MethodExtension::ensureIsDefined()
      */
     protected static function ensureMethodExists($name)
     {
-        $args = [
-            'class'  => get_called_class(),
-        ];
-
-        try {
-            $args['method'] = Text::ensureIsValidVarName($name);
-        } catch (InvalidArgumentException $error) {
-            $msg = msg('Method name is not valid.');
-            throw new InvalidArgumentException($msg, 20, $error);
-        }
-
-        if (method_exists($args['class'], $args['method']) === false) {
-            $msg = msg('"{class}::{method}" do not exists.', $args);
-
-            throw new InvalidArgumentException($msg, 21);
-        }
-
-        return $name;
+        return MethodExtension::ensureIsDefined($name, get_called_class());
     }
 
 
