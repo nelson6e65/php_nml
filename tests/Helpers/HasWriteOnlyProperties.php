@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -15,6 +15,8 @@
  * */
 
 namespace NelsonMartell\Test\Helpers;
+
+use BadMethodCallException;
 
 use NelsonMartell\IStrictPropertiesContainer;
 
@@ -34,26 +36,20 @@ trait HasWriteOnlyProperties
 
     /**
      * @dataProvider writeonlyPropertiesProvider
+     *
+     * @param IStrictPropertiesContainer $obj
+     * @param string                     $property
+     * @param mixed                     $value
      */
-    public function testWriteonlyPropertiesAreWritables(
+    public function testWriteonlyPropertiesAreWritablesAreNotReadables(
         IStrictPropertiesContainer $obj,
-        $property,
+        string $property,
         $value
-    ) {
+    ) : void {
         $obj->$property = $value;
-    }
+        $this->addToAssertionCount(1);
 
-    /**
-     * @depends testWriteonlyPropertiesAreWritables
-     * @dataProvider writeonlyPropertiesProvider
-     * @expectedException \BadMethodCallException
-     */
-    public function testWriteonlyPropertiesAreNotReadables(
-        IStrictPropertiesContainer $obj,
-        $property,
-        $value
-    ) {
-        $obj->$property = $value;
-        $actual         = $obj->$property;
+        $this->expectException(BadMethodCallException::class);
+        $actual = $obj->$property;
     }
 }
