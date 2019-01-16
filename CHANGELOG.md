@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - :fire: Drop active support for eol PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
 - :fire: Remove public getters from classes. Now should be access via property instead.
-- :fire: Remove Pascal Case in properties. Properties updated to be camel case only.
+- :fire: Remove Pascal Case in properties. Properties updated to be camel case only (e.g. use `Version::$major` instead of `Version::$Major`).
 - :fire: Remove deprecated classes under `NelsonMartell\Utilities` namespace.
 - :new: `class`: `NelsonMartell\Extensions\Numbers`.
 - :new: `class`: `NelsonMartell\Extensions\Arrays`.
@@ -27,16 +27,20 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :new: Method: `NelsonMartell\Type::hasProperty()`.
 - :new: Method: `NelsonMartell\Type::hasGetTraits()`.
 - :new: Method: `NelsonMartell\Type::hasGetInterfaces()`.
+- :up: Signature of methods `NelsonMartell\PropertiesHandler::getPropertyGetter()` and `NelsonMartell\PropertiesHandler::getPropertySetter()`: add `$prefix` and `$useCustom` params.
+- :up: Strict-typed return type of methods of `NelsonMartell\ICustomPrefixedPropertiesContainer`.
 
 
 ### :notebook: Development changes
 
-- :art: Improve doc blocks.
+- :art: :memo: Improve DocBlocks.
+- :art: Improve content and style of documentation.
 - :up: Improve tests and increase the code coverage.
 - :up: Improve coding style: add more rules to checks the code.
 - :new: Composer command to perform PHP Syntax checks: `composer cs:php`
 - :up: Rename composer commands and add descriptions.
 - :new: `class`: `NelsonMartell\Test\Helpers\ImplementsIConvertibleToString`.
+- :up: Use PHPUnit 7.
 
 
 
