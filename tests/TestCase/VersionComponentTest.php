@@ -106,7 +106,7 @@ class VersionComponentTest extends TestCase
 
         foreach ($actuals as $method => $actual) {
             // Pre-tests for returning type
-            $this->assertInternalType('boolean', $actual, $messages[$method].' # Should return a boolean #');
+            $this->assertIsBool($actual, $messages[$method].' # Should return a boolean #');
         }
 
         // Pre-tests for different values

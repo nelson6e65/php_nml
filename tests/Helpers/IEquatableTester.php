@@ -82,7 +82,7 @@ trait IEquatableTester
             ]
         );
 
-        $this->assertInternalType('boolean', $actual, $message);
+        $this->assertIsBool($actual, $message);
 
         if (!is_bool($expected)) {
             throw new InvalidArgumentException(Text::format(

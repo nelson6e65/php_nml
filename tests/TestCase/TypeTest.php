@@ -214,8 +214,8 @@ class TypeTest extends TestCase
         $reflections = $type->getInterfaces(true);
         $strings     = $type->getInterfaces();
 
-        $this->assertInternalType('array', $reflections);
-        $this->assertInternalType('array', $strings);
+        $this->assertIsArray($reflections);
+        $this->assertIsArray($strings);
 
         $this->assertCount(count($interfaces), $reflections);
         $this->assertCount(count($interfaces), $strings);
@@ -247,8 +247,8 @@ class TypeTest extends TestCase
         $reflections = $type->getTraits(true);
         $strings     = $type->getTraits();
 
-        $this->assertInternalType('array', $reflections);
-        $this->assertInternalType('array', $strings);
+        $this->assertIsArray($reflections);
+        $this->assertIsArray($strings);
 
         $this->assertEquals(count($strings), count($reflections), 'Not same count for strings and reflections');
         $this->assertCount(count($traits), $reflections);
@@ -281,8 +281,8 @@ class TypeTest extends TestCase
         $reflections = $type->getTraits(true, true);
         $strings     = $type->getTraits(false, true);
 
-        $this->assertInternalType('array', $reflections);
-        $this->assertInternalType('array', $strings);
+        $this->assertIsArray($reflections);
+        $this->assertIsArray($strings);
 
         $this->assertEquals(count($strings), count($reflections), 'Not same count for strings and reflections');
         $this->assertCount(count($traits), $reflections);
@@ -317,7 +317,7 @@ class TypeTest extends TestCase
 
         $actual = $type->hasProperty($name);
 
-        $this->assertInternalType('bool', $actual, 'This method must return a boolean');
+        $this->assertIsBool($actual, 'This method must return a boolean');
 
         $this->assertTrue($actual);
     }
@@ -341,7 +341,7 @@ class TypeTest extends TestCase
 
         $actual = $type->hasProperty($name);
 
-        $this->assertInternalType('bool', $actual, 'This method must return a boolean');
+        $this->assertIsBool($actual, 'This method must return a boolean');
 
         $this->assertFalse($actual);
     }

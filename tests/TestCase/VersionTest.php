@@ -72,7 +72,7 @@ class VersionTest extends TestCase
             ]
         );
 
-        $this->assertInternalType('boolean', $actual, $message.' # Should return a boolean #');
+        $this->assertIsBool($actual, $message.' # Should return a boolean #');
 
         if ($expected === true) {
             $this->assertTrue($actual, $message);

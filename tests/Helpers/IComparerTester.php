@@ -92,7 +92,7 @@ trait IComparerTester
         );
 
         if ($expected === 0) {
-            $this->assertInternalType('integer', $actual, $message);
+            $this->assertIsInt($actual, $message);
             $this->assertEquals(0, $actual, $message);
         } else {
             if ($expected === null) {
@@ -106,7 +106,7 @@ trait IComparerTester
                     $major = $actual;
                 }
 
-                $this->assertInternalType('integer', $actual, $message);
+                $this->assertIsInt($actual, $message);
                 $this->assertGreaterThan($minor, $major, $message);
                 $this->assertLessThan($major, $minor, $message);
             }
