@@ -18,13 +18,14 @@ namespace NelsonMartell\Test\DataProviders;
 
 use InvalidArgumentException;
 
+use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
+use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
+use NelsonMartell\Test\Helpers\IComparableTester;
 use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
-use NelsonMartell\Test\Helpers\IComparableTester;
-use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
-use NelsonMartell\Test\Helpers\ConstructorMethodTester;
-use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
+use NelsonMartell\Test\Helpers\ImplementsIConvertibleToString;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
 
 use NelsonMartell\VersionComponent;
@@ -39,14 +40,15 @@ use NelsonMartell\VersionComponent;
  * */
 trait VersionComponentTestProvider
 {
-    use ExporterPlugin;
     use ConstructorMethodTester;
+    use ExporterPlugin;
+    use HasReadOnlyProperties;
+    use HasUnaccesibleProperties;
     use IComparableTester;
     use IComparerTester;
     use IEquatableTester;
+    use ImplementsIConvertibleToString;
     use ImplementsIStrictPropertiesContainer;
-    use HasReadOnlyProperties;
-    use HasUnaccesibleProperties;
 
     public function unaccesiblePropertiesProvider()
     {
@@ -232,7 +234,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function versionComponentToStringMethodArgumentsProvider()
+    public function toStringProvider()
     {
         return [
             ['0', new VersionComponent(0)],

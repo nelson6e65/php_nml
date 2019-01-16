@@ -55,25 +55,6 @@ class TypeTest extends TestCase
     }
 
     /**
-     * @covers ::toString
-     * @covers ::__toString
-     * @dataProvider toStringCheckProvider
-     *
-     * @param string $expected
-     * @param mixed  $arg
-     */
-    public function testPerformsConversionToString(string $expected, $arg): void
-    {
-        $obj    = new Type($arg);
-        $actual = $obj->toString();
-
-        $this->assertSame($expected, $obj->toString(), 'Explicit conversion to string');
-
-        $this->assertSame($expected, $obj.'', 'Implicit conversion to string');
-    }
-
-
-    /**
      * @covers ::hasMethod
      */
     public function testCanCheckIfAClassHasAMethod() : void

@@ -1,4 +1,4 @@
-<?php  declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -19,23 +19,26 @@ namespace NelsonMartell\Test\DataProviders;
 use stdClass;
 use InvalidArgumentException;
 
-use NelsonMartell\Type;
-use NelsonMartell\PropertiesHandler;
 use NelsonMartell\IConvertibleToString;
-use NelsonMartell\IStrictPropertiesContainer;
 use NelsonMartell\ICustomPrefixedPropertiesContainer;
+use NelsonMartell\IStrictPropertiesContainer;
+use NelsonMartell\PropertiesHandler;
+use NelsonMartell\Type;
 
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
 use NelsonMartell\Test\DataProviders\ExampleClass\B;
 use NelsonMartell\Test\DataProviders\ExampleClass\C;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 
-use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
+use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
+use NelsonMartell\Test\Helpers\ImplementsIConvertibleToString;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
 
 use NelsonMartell\Test\TestCase\TypeTest;
+
+use function NelsonMartell\typeof;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\TypeTest.
@@ -49,6 +52,7 @@ trait TypeTestProvider
     use ImplementsIStrictPropertiesContainer;
     use HasReadOnlyProperties;
     use HasUnaccesibleProperties;
+    use ImplementsIConvertibleToString;
 
     /**
      *
@@ -92,16 +96,16 @@ trait TypeTestProvider
         ];
     }
 
-    public function toStringCheckProvider() : array
+    public function toStringProvider() : array
     {
         return [
-            'NULL'          => ['NULL', null],
-            'integer'       => ['integer', 1],
-            'double'        => ['double', 1.9999],
-            'string'        => ['string', 'str'],
-            'array'         => ['array', []],
-            'stdClass'      => ['object (stdClass)', new \stdClass],
-            __CLASS__       => ['object (NelsonMartell\Test\TestCase\TypeTest)', $this],
+            'NULL'          => ['NULL', typeof(null)],
+            'integer'       => ['integer', typeof(1)],
+            'double'        => ['double', typeof(1.9999)],
+            'string'        => ['string', typeof('str')],
+            'array'         => ['array', typeof([])],
+            'stdClass'      => ['object (stdClass)', typeof(new \stdClass)],
+            __CLASS__       => ['object (NelsonMartell\Test\TestCase\TypeTest)', typeof($this)],
         ];
     }
 
@@ -265,6 +269,7 @@ trait TypeTestProvider
                 TypeTestProvider::class,
                 ConstructorMethodTester::class,
                 ImplementsIStrictPropertiesContainer::class,
+                ImplementsIConvertibleToString::class,
                 HasReadOnlyProperties::class,
                 HasUnaccesibleProperties::class,
             ]],

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -40,10 +40,13 @@ class VersionComponentTest extends TestCase
 
     /**
      * @testdox Performs conversion from compatible objects
-     * @coverage VersionComponent::parse
+     * @covers VersionComponent::parse
      * @dataProvider goodVersionComponentParseMethodArgumentsProvider
+     *
+     * @param VersionComponent $expected
+     * @param mixed            $obj
      */
-    public function testParseMethod(VersionComponent $expected, $obj)
+    public function testParseMethod(VersionComponent $expected, $obj) : void
     {
         $actual = VersionComponent::parse($obj);
 
@@ -62,9 +65,11 @@ class VersionComponentTest extends TestCase
 
     /**
      * @testdox Informs if error occurs on parsing incompatible objects
-     * @coverage VersionComponent::parse
+     * @covers VersionComponent::parse
      * @dataProvider badVersionComponentParseMethodArgumentsProvider
      * @expectedException \InvalidArgumentException
+     *
+     * @param mixed $obj
      */
     public function testParseMethodWithInvalidArguments($obj)
     {
@@ -72,49 +77,19 @@ class VersionComponentTest extends TestCase
     }
 
     /**
-     * @coverage VersionComponent::__toString
-     * @coverage VersionComponent::toString
-     * @dataProvider versionComponentToStringMethodArgumentsProvider
-     */
-    public function testPerformsConversionToString($expected, VersionComponent $versionComponent)
-    {
-        $actual = $versionComponent->toString();
-
-        $message = Text::format(
-            '$versionComponent->{method}(); // {actual}',
-            [
-                'method' => 'toString',
-                'actual' => static::export($actual)
-            ]
-        );
-
-        $this->assertInternalType('string', $actual, $message.' # Should return a string #');
-        $this->assertEquals($expected, $actual, $message);
-    }
-
-    /**
-     * @coverage VersionComponent::__toString
-     * @coverage VersionComponent::toString
-     * @depends testPerformsConversionToString
-     * @dataProvider versionComponentToStringMethodArgumentsProvider
-     */
-    public function testPerformsImplicitConversionToString($str, VersionComponent $obj)
-    {
-        $expected = '<VersionComponent>'.$str.'</VersionComponent>';
-        $actual   = '<VersionComponent>'.$obj.'</VersionComponent>';
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * @coverage VersionComponent::isNull
-     * @coverage VersionComponent::isNotNull
-     * @coverage VersionComponent::isDefault
-     * @coverage VersionComponent::isNotDefault
+     * @covers VersionComponent::isNull
+     * @covers VersionComponent::isNotNull
+     * @covers VersionComponent::isDefault
+     * @covers VersionComponent::isNotDefault
      * @dataProvider nullOrDefaultStatesProvider
+     *
+     * @param string           $expected
+     * @param VersionComponent $versionComponent
      */
-    public function testCanCheckIfVersionComponentIsInDefaultOrNullState($expected, VersionComponent $versionComponent)
-    {
+    public function testCanCheckIfVersionComponentIsInDefaultOrNullState(
+        string $expected,
+        VersionComponent $versionComponent
+    ) : void {
         static $format = '$versionComponent->{method}(); // {actual}';
 
         $actuals['isDefault']    = $versionComponent->isDefault();

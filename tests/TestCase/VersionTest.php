@@ -50,43 +50,6 @@ class VersionTest extends TestCase
         );
     }
 
-    /**
-     * @depends NelsonMartell\Test\TestCase\VersionComponentTest::testPerformsConversionToString
-     * @dataProvider toStringMethodProvider
-     *
-     * @param string $expected
-     * @param  Version $version  [description]
-     */
-    public function testPerformsConversionToString(string $expected, Version $version) : void
-    {
-        $actual = $version->toString();
-
-        $message = Text::format(
-            '$version->{method}(); // {actual}',
-            [
-                'method' => 'toString',
-                'actual' => static::export($actual)
-            ]
-        );
-
-        $this->assertInternalType('string', $actual, $message.' # Should return a string #');
-        $this->assertEquals($expected, $actual, $message);
-    }
-
-    /**
-     * @depends testPerformsConversionToString
-     * @dataProvider toStringMethodProvider
-     *
-     * @param string  $str
-     * @param Version $obj
-     */
-    public function testPerformsImplicitConversionToString(string $str, Version $obj) : void
-    {
-        $expected = '<Version>'.$str.'</Version>';
-        $actual   = '<Version>'.$obj.'</Version>';
-
-        $this->assertEquals($expected, $actual);
-    }
 
     /**
      * @testdox Can check if Version instance is valid
