@@ -54,7 +54,7 @@ class Arrays implements IComparer
      * {@inheritDoc}
      *
      * This methods is specific for the case when one of them are `array`. In other case, will fallback to
-     * `StrictObject::compare()`.` You should use it directly instead of this method as comparation function
+     * `Objects::compare()`.` You should use it directly instead of this method as comparation function
      * for `usort()`.
      *
      * @param array|mixed $left
@@ -62,8 +62,8 @@ class Arrays implements IComparer
      *
      * @return int|null Returns null if one of them is not an `array`.
      *
-     * @since 1.0.0  Move implementation of array comparation from `StrictObject::compare()`.
-     * @see StrictObject::compare()
+     * @since 1.0.0  Move implementation of array comparation from `Objects::compare()`.
+     * @see Objects::compare()
      */
     public static function compare($left, $right)
     {
@@ -81,11 +81,11 @@ class Arrays implements IComparer
                         $rKey   = key($right);
                         $rValue = current($right);
 
-                        $r = StrictObject::compare((string) $lKey, (string) $rKey);
+                        $r = Objects::compare((string) $lKey, (string) $rKey);
 
                         if ($r === 0) {
                             // Recursive call to compare values
-                            $r = StrictObject::compare($lValue, $rValue);
+                            $r = Objects::compare($lValue, $rValue);
                         }
 
                         next($left);

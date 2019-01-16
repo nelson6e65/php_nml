@@ -224,7 +224,7 @@ class Text extends TextBase implements IComparer
      * {@inheritDoc}
      *
      * This methods is specific for the case when one of them are `string`. In other case, will fallback to
-     * `StrictObject::compare()`.` You should use it directly instead of this method as comparation function
+     * `Objects::compare()`.` You should use it directly instead of this method as comparation function
      * for `usort()`.
      *
      * @param string|mixed $left
@@ -233,7 +233,7 @@ class Text extends TextBase implements IComparer
      * @return int|null
      *
      * @since 1.0.0
-     * @see StrictObject::compare()
+     * @see Objects::compare()
      */
     public static function compare($left, $right)
     {

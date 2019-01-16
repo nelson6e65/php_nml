@@ -328,7 +328,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      *   - ``> 0`` si esta instancia se considera mayor a $other;
      *   - ``< 0`` si esta instancia se considera menor a $other.
      *   - ``null`` if this instance can't be compared against $other .
-     * @see StrictObject::compare()
+     * @see \NelsonMartell\Extensions\Objects::compare()
      * */
     public function compareTo($other)
     {

@@ -365,7 +365,7 @@ final class Type extends StrictObject implements IEquatable
      * */
     public function isCustom() : bool
     {
-        return !$this->isValueType() && $this->isNotNull();
+        return !$this->isValueType() && !$this->isNull();
     }
 
     /**
