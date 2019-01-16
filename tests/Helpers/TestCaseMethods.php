@@ -33,7 +33,15 @@ trait TestCaseMethods
         bool $checkForObjectIdentity = true,
         bool $checkForNonObjectIdentity = false
     ) : void;
-    abstract public function assertEquals($expected, $actual, string $message = '') : void;
+    abstract public function assertEquals(
+        $expected,
+        $actual,
+        string $message = '',
+        float $delta = 0,
+        int $maxDepth = 10,
+        bool $canonicalize = false,
+        bool $ignoreCase = false
+    ) : void;
     abstract public function assertGreaterThan($expected, $actual, string $message = '') : void;
     abstract public function assertInstanceOf(string $expected, $actual, string $message = '') : void;
     abstract public function assertIsBool($actual, string $message = '') : void;
