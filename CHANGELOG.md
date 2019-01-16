@@ -36,6 +36,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :up: Improve coding style: add more rules to checks the code.
 - :new: Composer command to perform PHP Syntax checks: `composer cs:php`
 - :up: Rename composer commands and add descriptions.
+- :new: `class`: `NelsonMartell\Test\Helpers\ImplementsIConvertibleToString`.
+
 
 
 ### :bookmark: More changes
