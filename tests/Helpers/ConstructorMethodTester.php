@@ -89,6 +89,7 @@ trait ConstructorMethodTester
     public function testConstructor(...$args) : void
     {
         $this->getTargetClassInstance(...$args);
+        $this->assertTrue(true);
     }
 
     /**
