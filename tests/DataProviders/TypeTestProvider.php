@@ -35,6 +35,7 @@ use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIConvertibleToString;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
+use NelsonMartell\Test\Helpers\TestCaseMethods;
 
 use NelsonMartell\Test\TestCase\TypeTest;
 
@@ -49,10 +50,10 @@ use function NelsonMartell\typeof;
 trait TypeTestProvider
 {
     use ConstructorMethodTester;
-    use ImplementsIStrictPropertiesContainer;
     use HasReadOnlyProperties;
     use HasUnaccesibleProperties;
     use ImplementsIConvertibleToString;
+    use ImplementsIStrictPropertiesContainer;
 
     /**
      *
@@ -266,12 +267,13 @@ trait TypeTestProvider
             [new B, [PropertiesHandler::class]],
             [new C, [PropertiesHandler::class]],
             [new Type(TypeTest::class, true), [
-                TypeTestProvider::class,
                 ConstructorMethodTester::class,
-                ImplementsIStrictPropertiesContainer::class,
-                ImplementsIConvertibleToString::class,
                 HasReadOnlyProperties::class,
                 HasUnaccesibleProperties::class,
+                ImplementsIConvertibleToString::class,
+                ImplementsIStrictPropertiesContainer::class,
+                TestCaseMethods::class,
+                TypeTestProvider::class,
             ]],
             [new ToString, []],
             ['string', []],

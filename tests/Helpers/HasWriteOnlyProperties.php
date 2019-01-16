@@ -10,7 +10,7 @@
  *
  * @copyright 2017-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.7.0
+ * @since     0.7.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
@@ -24,13 +24,15 @@ use NelsonMartell\IStrictPropertiesContainer;
  * Split of ImplementsIStrictPropertiesContainer, for classes implementing any write-only property.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since 0.7.0
  * */
 trait HasWriteOnlyProperties
 {
+    use TestCaseMethods;
+
     /**
-     * @returns IStrictPropertiesContainer
      */
-    abstract public function testImplementsIStrictPropertiesContainerInterface($obj);
+    abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
 
     abstract public function writeonlyPropertiesProvider();
 
@@ -39,7 +41,7 @@ trait HasWriteOnlyProperties
      *
      * @param IStrictPropertiesContainer $obj
      * @param string                     $property
-     * @param mixed                     $value
+     * @param mixed                      $value
      */
     public function testWriteonlyPropertiesAreWritablesAreNotReadables(
         IStrictPropertiesContainer $obj,

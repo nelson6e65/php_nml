@@ -30,12 +30,16 @@ use UnexpectedValueException;
  * */
 trait ConstructorMethodTester
 {
+    use TestCaseMethods;
+
     /**
      * Gets the name of class target of this test-class.
      *
      * @return string
      */
     abstract public function getTargetClassName() : string;
+
+
 
     /**
      *

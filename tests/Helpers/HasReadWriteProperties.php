@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -31,10 +31,12 @@ use SebastianBergmann\Exporter\Exporter;
  * */
 trait HasReadWriteProperties
 {
+    use TestCaseMethods;
+
     /**
-     * @returns IStrictPropertiesContainer
+     *
      */
-    abstract public function testImplementsIStrictPropertiesContainerInterface($obj);
+    abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
 
     abstract public function readwritePropertiesProvider();
 
@@ -42,13 +44,18 @@ trait HasReadWriteProperties
     /**
      * @depends testImplementsIStrictPropertiesContainerInterface
      * @dataProvider readwritePropertiesProvider
+     *
+     * @param IStrictPropertiesContainer    $obj
+     * @param string                        $property
+     * @param mixed                         $value
+     * @param mixed                         $expected
      */
     public function testPropertiesWithFullAccessAreReadablesAndWritables(
         IStrictPropertiesContainer $obj,
-        $property,
+        string $property,
         $value,
         $expected
-    ) {
+    ) : void {
         $exporter = new Exporter();
 
         $var = get_class($obj);

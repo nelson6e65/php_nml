@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -16,6 +16,10 @@
 
 namespace NelsonMartell\Test\Helpers;
 
+use ReflectionClass;
+
+use NelsonMartell\Extensions\Text;
+
 use NelsonMartell\IStrictPropertiesContainer;
 
 /**
@@ -32,23 +36,46 @@ use NelsonMartell\IStrictPropertiesContainer;
  * */
 trait ImplementsIStrictPropertiesContainer
 {
+    use TestCaseMethods;
+
+    /**
+     * @return string
+     */
+    abstract public function getTargetClassName() : string;
+
     abstract public function objectInstanceProvider();
 
     /**
-     * @dataProvider objectInstanceProvider
-     * @todo Check returning value of dependency tests.
+     *
      */
-    public function testImplementsIStrictPropertiesContainerInterface($obj)
+    public function testImplementsIStrictPropertiesContainerInterface() : void
     {
-        $this->assertInstanceOf(IStrictPropertiesContainer::class, $obj);
+        $class = new ReflectionClass($this->getTargetClassName());
 
-        return $obj;
+        if ($class->isTrait()) {
+            $this->assertTrue(true);
+            return;
+        }
+
+        $message = Text::format(
+            '"{0}" do not implements "{1}" interface.',
+            $this->getTargetClassName(),
+            IStrictPropertiesContainer::class
+        );
+
+        $this->assertContains(
+            IStrictPropertiesContainer::class,
+            $class->getInterfaceNames(),
+            $message
+        );
     }
 
     /**
      * @depends testImplementsIStrictPropertiesContainerInterface
      * @dataProvider objectInstanceProvider
      * @expectedException \BadMethodCallException
+     *
+     * @param IStrictPropertiesContainer $obj
      */
     public function testIsUnableToCreateDirectAttributesOutsideOfClassDefinition(IStrictPropertiesContainer $obj)
     {

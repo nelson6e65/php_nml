@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -30,6 +30,8 @@ use NelsonMartell\IConvertibleToString;
  * */
 trait ImplementsIConvertibleToString
 {
+    use TestCaseMethods;
+
     /**
      * @return string
      */

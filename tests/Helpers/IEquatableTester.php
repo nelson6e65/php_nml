@@ -34,6 +34,8 @@ use function NelsonMartell\typeof;
  * */
 trait IEquatableTester
 {
+    use TestCaseMethods;
+
     /**
      * @return string
      *

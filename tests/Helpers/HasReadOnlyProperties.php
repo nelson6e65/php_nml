@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -33,13 +33,14 @@ use SebastianBergmann\Exporter\Exporter;
  * */
 trait HasReadOnlyProperties
 {
+    use TestCaseMethods;
+
     /**
      * ImplementsIStrictPropertiesContainer trait provides this method implementation.
      *
-     * @returns IStrictPropertiesContainer
      * @see ImplementsIStrictPropertiesContainer::testImplementsIStrictPropertiesContainerInterface()
      */
-    abstract public function testImplementsIStrictPropertiesContainerInterface($obj);
+    abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
 
     abstract public function readonlyPropertiesProvider();
 
@@ -48,12 +49,16 @@ trait HasReadOnlyProperties
      * @depends testImplementsIStrictPropertiesContainerInterface
      *
      * @dataProvider readonlyPropertiesProvider
+     *
+     * @param IStrictPropertiesContainer $obj
+     * @param string                     $property
+     * @param mixed                      $expected
      */
     public function testReadonlyPropertiesAreReadables(
         IStrictPropertiesContainer $obj,
-        $property,
+        string $property,
         $expected
-    ) {
+    ) : void {
         try {
             $actual = $obj->$property;
         } catch (BadMethodCallException $e) {
@@ -91,12 +96,16 @@ trait HasReadOnlyProperties
      * @depends testImplementsIStrictPropertiesContainerInterface
      * @dataProvider readonlyPropertiesProvider
      * @expectedException \BadMethodCallException
+     *
+     * @param IStrictPropertiesContainer|null   $obj
+     * @param string|null                       $property
+     * @param mixed                             $value
      */
     public function testReadonlyPropertiesAreNotWritables(
         IStrictPropertiesContainer $obj = null,
-        $property = null,
+        string $property = null,
         $value = null
-    ) {
+    ) : void {
         $obj->$property = $value;
     }
 }

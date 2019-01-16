@@ -28,15 +28,18 @@ use NelsonMartell\IComparable;
  * Note: Classes using this trait MUST use ConstructorMethodTester and ExporterPlugin traits too.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since  0.6.0
  * */
 trait IComparableTester
 {
+    use TestCaseMethods;
+
     /**
-     * @return ReflectionClass
+     * @return string
      *
      * @see ConstructorMethodTester
      */
-    abstract public function getTargetClassReflection() : ReflectionClass;
+    abstract public function getTargetClassName() : string;
 
     /**
      * @param mixed $obj

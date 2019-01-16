@@ -32,6 +32,8 @@ use NelsonMartell\IComparer;
  * */
 trait IComparerTester
 {
+    use TestCaseMethods;
+
     /**
      * @return string
      *

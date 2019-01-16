@@ -23,6 +23,8 @@ use NelsonMartell\Test\Helpers\HasWriteOnlyProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
 
+use NelsonMartell\PropertiesHandler;
+
 /**
  * Data providers for NelsonMartell\Test\TestCase\PropertiesHandlerTest.
  *
@@ -37,6 +39,11 @@ trait PropertiesHandlerTestProvider
     use HasWriteOnlyProperties;
     use HasReadWriteProperties;
     use HasReadOnlyProperties;
+
+    public function getTargetClassName() : string
+    {
+        return PropertiesHandler::class;
+    }
 
     public function objectInstanceProvider()
     {
