@@ -52,13 +52,9 @@ trait ConstructorMethodTester
     {
         if ($this->targetClassReflection === null) {
             try {
-                if (!is_string($this->getTargetClassName())) {
-                    throw new UnexpectedValueException('``getTargetClassName()`` is not returning an string.');
-                }
-
                 $this->targetClassReflection = new ReflectionClass($this->getTargetClassName());
             } catch (ReflectionException $e) {
-                throw new BadMethodCallException('``getTargetClassName()`` is not returning a valid class name.');
+                throw new BadMethodCallException('``getTargetClassName()`` is not returning a valid class name.', 1, $e);
             }
         }
 

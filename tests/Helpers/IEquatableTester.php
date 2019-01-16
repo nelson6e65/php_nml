@@ -42,13 +42,6 @@ trait IEquatableTester
     abstract public function getTargetClassName() : string;
 
     /**
-     * @return ReflectionClass
-     *
-     * @see ConstructorMethodTester
-     */
-    abstract public function getTargetClassReflection() : ReflectionClass;
-
-    /**
      * @param mixed $obj
      * @param int   $depth
      * @param bool  $short
@@ -115,6 +108,8 @@ trait IEquatableTester
             IEquatable::class
         );
 
-        $this->assertContains(IEquatable::class, $this->getTargetClassReflection()->getInterfaceNames(), $message);
+        $reflectionClass = new ReflectionClass($this->getTargetClassName());
+
+        $this->assertContains(IEquatable::class, $reflectionClass->getInterfaceNames(), $message);
     }
 }

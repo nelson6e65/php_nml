@@ -40,13 +40,6 @@ trait IComparerTester
     abstract public function getTargetClassName() : string;
 
     /**
-     * @return ReflectionClass
-     *
-     * @see ConstructorMethodTester
-     */
-    abstract public function getTargetClassReflection() : ReflectionClass;
-
-    /**
      * @param mixed $obj
      * @param int   $depth
      * @param bool  $short
@@ -159,6 +152,8 @@ trait IComparerTester
             IComparer::class
         );
 
-        $this->assertContains(IComparer::class, $this->getTargetClassReflection()->getInterfaceNames(), $message);
+        $reflectionClass = new ReflectionClass($this->getTargetClassName());
+
+        $this->assertContains(IComparer::class, $reflectionClass->getInterfaceNames(), $message);
     }
 }

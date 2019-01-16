@@ -114,6 +114,8 @@ trait IComparableTester
             IComparable::class
         );
 
-        $this->assertContains(IComparable::class, $this->getTargetClassReflection()->getInterfaceNames(), $message);
+        $classReflection = new ReflectionClass($this->getTargetClassName());
+
+        $this->assertContains(IComparable::class, $classReflection->getInterfaceNames(), $message);
     }
 }
