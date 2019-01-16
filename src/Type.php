@@ -57,17 +57,12 @@ final class Type extends StrictObject implements IEquatable
     {
         parent::__construct();
 
-        $name      = (is_string($obj) && $searchName === true) ? 'object' : gettype($obj);
-        $shortName = null;
-        $namespace = null;
-        $vars      = [];
-        $methods   = [];
-        $ref       = null;
+        $type = (is_string($obj) && $searchName === true) ? 'object' : gettype($obj);
 
-        switch ($name) {
+        switch ($type) {
             case 'object':
                 try {
-                    $ref = new ReflectionClass($obj);
+                    $this->reflectionObject = new ReflectionClass($obj);
                 } catch (ReflectionException $e) {
                     $msg  = msg('Invalid value.');
                     $msg .= msg(' `{0}` (position {1}) must to be a name of an existing class.', 'obj', 0);
@@ -75,30 +70,23 @@ final class Type extends StrictObject implements IEquatable
                     throw new InvalidArgumentException($msg, 1, $e);
                 }
 
-                $name      = $ref->getName();
-                $shortName = $ref->getShortName();
-                $namespace = $ref->getNamespaceName();
+                $this->name      = $this->reflectionObject->getName();
+                $this->shortName = $this->reflectionObject->getShortName();
+                $this->namespace = $this->reflectionObject->getNamespaceName();
                 break;
 
             case 'resource':
-                $shortName = get_resource_type($obj);
-                $name      = 'resource: '.$shortName;
+                $this->shortName = get_resource_type($obj);
+                $this->name      = 'resource: '.$this->shortName;
                 break;
 
             default:
-                $shortName = $name;
+                $this->shortName = $this->name = $type;
         }
-
-        $this->name             = $name;
-        $this->shortName        = $shortName;
-        $this->namespace        = $namespace;
-        $this->vars             = $vars;
-        $this->methods          = $methods;
-        $this->reflectionObject = $ref;
     }
 
     /**
-     * @var ReflectionClass|null
+     * @var ReflectionClass
      */
     private $reflectionObject = null;
 
@@ -121,7 +109,7 @@ final class Type extends StrictObject implements IEquatable
     /**
      * @var string
      */
-    private $shortName = null;
+    private $shortName;
 
     /**
      * Getter for `$shortName` property.
@@ -137,12 +125,12 @@ final class Type extends StrictObject implements IEquatable
     /**
      * @var string
      */
-    private $namespace;
+    private $namespace = '';
 
     /**
      * Getter for `$namespace` property.
      *
-     * @return string|null
+     * @return string
      * @see    Type::$namespace
      * */
     public function getNamespace() : string
@@ -155,7 +143,7 @@ final class Type extends StrictObject implements IEquatable
      *
      * @deprecated 0.7.2
      */
-    private $vars = null;
+    private $vars = [];
 
     /**
      * Getter for `$vars` property.
@@ -177,7 +165,7 @@ final class Type extends StrictObject implements IEquatable
     /**
      * @var array
      */
-    private $methods = null;
+    private $methods = [];
 
     /**
      * Getter for `$methods` property.
