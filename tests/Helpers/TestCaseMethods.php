@@ -51,5 +51,5 @@ trait TestCaseMethods
     abstract public function assertSame($expected, $actual, string $message = '') : void;
     abstract public function assertTrue($condition, string $message = '') : void;
     abstract public function expectException(string $exception) : void;
-    abstract public function fail(string $message) : void;
+    abstract public function fail(string $message = '') : void;
 }
