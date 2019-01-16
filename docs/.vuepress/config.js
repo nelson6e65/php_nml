@@ -5,7 +5,12 @@ module.exports = {
 
   title: 'PHP: Nelson Martell Library',
   description: 'A set of auxiliary classes for your PHP applications',
-  ga: 'UA-58599811-1',
+
+  plugins: {
+    '@vuepress/google-analytics': {
+      ga: 'UA-58599811-1'
+    }
+  },
 
   markdown: {
     lineNumbers: false,

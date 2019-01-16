@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@vuepress/plugin-google-analytics": "1.0.0-alpha.32",
     "@vuepress/theme-default": "1.0.0-alpha.32",
     "vuepress": "1.0.0-alpha.32"
   },
