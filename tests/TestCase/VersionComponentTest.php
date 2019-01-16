@@ -25,6 +25,7 @@ use NelsonMartell\VersionComponent;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @coversDefaultClass NelsonMartell\VersionComponent
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
@@ -40,7 +41,7 @@ class VersionComponentTest extends TestCase
 
     /**
      * @testdox Performs conversion from compatible objects
-     * @covers VersionComponent::parse
+     * @covers ::parse
      * @dataProvider goodVersionComponentParseMethodArgumentsProvider
      *
      * @param VersionComponent $expected
@@ -65,7 +66,7 @@ class VersionComponentTest extends TestCase
 
     /**
      * @testdox Informs if error occurs on parsing incompatible objects
-     * @covers VersionComponent::parse
+     * @covers ::parse
      * @dataProvider badVersionComponentParseMethodArgumentsProvider
      * @expectedException \InvalidArgumentException
      *
@@ -77,10 +78,10 @@ class VersionComponentTest extends TestCase
     }
 
     /**
-     * @covers VersionComponent::isNull
-     * @covers VersionComponent::isNotNull
-     * @covers VersionComponent::isDefault
-     * @covers VersionComponent::isNotDefault
+     * @covers ::isNull
+     * @covers ::isNotNull
+     * @covers ::isDefault
+     * @covers ::isNotDefault
      * @dataProvider nullOrDefaultStatesProvider
      *
      * @param string           $expected

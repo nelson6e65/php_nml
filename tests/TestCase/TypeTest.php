@@ -29,10 +29,10 @@ use SebastianBergmann\Exporter\Exporter;
 use function NelsonMartell\typeof;
 
 /**
+ * @coversDefaultClass NelsonMartell\Type
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
- * @coversDefaultClass Type
  * */
 class TypeTest extends TestCase
 {
@@ -65,8 +65,8 @@ class TypeTest extends TestCase
     }
 
     /**
-     * @covers Type::isNUll
-     * @covers Type::isNotNUll
+     * @covers ::isNull
+     * @covers ::isNotNull
      * @dataProvider goodConstructorArgumentsProvider
      *
      * @param mixed $obj

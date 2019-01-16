@@ -25,6 +25,7 @@ use NelsonMartell\Version;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @coversDefaultClass NelsonMartell\Version
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
