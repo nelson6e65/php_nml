@@ -19,6 +19,7 @@ namespace NelsonMartell;
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Extensions\Arrays;
 use NelsonMartell\Extensions\Numbers;
+use NelsonMartell\Extensions\Objects;
 
 /**
  * Base class that encapsulates strict properties and other basic features.
@@ -126,7 +127,7 @@ abstract class StrictObject implements IComparer, IStrictPropertiesContainer, IC
      * Determines the relative position of the object on the left with respect to the one on the right.
      *
      * This method is compatible with core types and other types. You can implement `NelsonMartell\IComparable`
-     * in order to improve the beaviout for other classes.
+     * in order to improve the beaviour for other classes.
      *
      * This method can be used as sorting function for `usort()` function.
      *
@@ -159,60 +160,12 @@ abstract class StrictObject implements IComparer, IStrictPropertiesContainer, IC
      * @see IComparer::compare()
      * @see Numbers::compare()
      * @see Text::compare()
+     * @see Objects::compare()
+     *
+     * @deprecated 1.0.0 Use `{@see Objects::compare()}` instead.
      * */
     public static function compare($left, $right)
     {
-        $r = null;
-
-        if ($left instanceof IComparable) {
-            $r = $left->compareTo($right);
-        } elseif ($right instanceof IComparable) {
-            $r = $right->compareTo($left);
-
-            if ($r !== null) {
-                $r *= -1; // Invert result
-            }
-        } else {
-            $ltype = typeof($left);
-            $rtype = typeof($right);
-
-            if (typeof((bool) true)->isIn($left, $right)) {
-            // Boolean compare -----------------------------------------
-                if (typeof((bool) true)->is($left, $right)) {
-                    $r = (int) $left - (int) $right;
-                } else {
-                    $r = null;
-                }
-            } elseif (typeof((int) 0)->isIn($left, $right) || typeof((float) 0)->isIn($left, $right)) {
-            // Numeric compare -----------------------------------------
-                $r = Numbers::compare($left, $right);
-            } elseif (typeof((string) '')->isIn($left, $right)) {
-            // String compare ------------------------------------------
-                $r = Text::compare($left, $right);
-            } elseif (typeof((array) [])->isIn($left, $right)) {
-            // Array compare -------------------------------------------
-                $r = Arrays::compare($left, $right);
-            } else {
-                if ($ltype->isCustom()) {
-                    if ($rtype->isCustom()) {
-                        if ($left == $right) {
-                            $r = 0;
-                        } elseif ($ltype->equals($rtype)) {
-                            $r = ($left > $right) ? +1 : -1;
-                        } else {
-                            $r = null;
-                        }
-                    } else {
-                        $r = 1;
-                    }
-                } elseif ($rtype->isCustom()) {
-                    $r = -1;
-                } else {
-                    $r = null;
-                }
-            }
-        }
-
-        return $r;
+        return Objects::compare($left, $right);
     }
 }

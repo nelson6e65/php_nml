@@ -13,14 +13,16 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :fire: Remove public getters from classes. Now should be access via property instead.
 - :fire: Remove Pascal Case in properties. Properties updated to be camel case only (e.g. use `Version::$major` instead of `Version::$Major`).
 - :fire: Remove deprecated classes under `NelsonMartell\Utilities` namespace.
+- :new: `class`: `NelsonMartell\Extensions\Objects`.
 - :new: `class`: `NelsonMartell\Extensions\Numbers`.
 - :new: `class`: `NelsonMartell\Extensions\Arrays`.
 - :new: `class`: `NelsonMartell\Extensions\PropertyExtension`.
 - :new: `class`: `NelsonMartell\Extensions\MethodExtension`.
-- :bug: :fire: Fix problem in `NelsonMartell\StrictObject::compare()` for some types and make it more generic and split implementation to:
+- :bug: :fire: Fix problem in `NelsonMartell\StrictObject::compare()` for some types, move implementation to `NelsonMartell\Extensions\Objects`, make it more generic and split implementation to:
   - :new: `NelsonMartell\Text::compare()`
   - :new: `NelsonMartell\Arrays::compare()`
   - :new: `NelsonMartell\Numbers::compare()`
+- :up: Deprecated `NelsonMartell\StrictObject::compare()`. Use `NelsonMartell\Extensions\Objects::compare()` instead.
 - :new: Add methods to check if a list of objects are of a type:
   - :new: `NelsonMartell\Type::is()`
   - :new: `NelsonMartell\Type::isIn()`

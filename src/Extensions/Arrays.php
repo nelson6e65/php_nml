@@ -111,6 +111,6 @@ class Arrays implements IComparer
             return $r;
         }
 
-        return StrictObject::compare($left, $right);
+        return Objects::compare($left, $right);
     }
 }

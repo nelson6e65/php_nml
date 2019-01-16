@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -29,4 +29,12 @@ use PHPUnit\Framework\TestCase;
 class StrictObjectTest extends TestCase
 {
     use StrictObjectTestProvider;
+
+    /**
+     *
+     */
+    public function testExists() : void
+    {
+        $this->assertTrue(true);
+    }
 }
