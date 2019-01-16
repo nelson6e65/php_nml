@@ -7,8 +7,8 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@vuepress/theme-default": "1.0.0-alpha.30",
-    "vuepress": "1.0.0-alpha.30"
+    "@vuepress/theme-default": "1.0.0-alpha.32",
+    "vuepress": "1.0.0-alpha.32"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
