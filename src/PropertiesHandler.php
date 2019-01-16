@@ -248,7 +248,7 @@ trait PropertiesHandler
             if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard setter, check if custom available
                 // `false` to stop recursion
-                return static::getPropertySetter($name, $class::getCustomSetterPrefix(), false);
+                return static::getPropertySetter($name, static::getCustomSetterPrefix(), false);
             } else {
                 $msg = msg(
                     '"{name}" property has not a setter method in "{class}" ("{prefix}{name}").',
@@ -289,7 +289,7 @@ trait PropertiesHandler
             if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard getter, check if custom available
 
-                return static::getPropertyGetter($name, $class::getCustomGetterPrefix(), false);
+                return static::getPropertyGetter($name, static::getCustomGetterPrefix(), false);
             } else {
                 $msg = msg(
                     '"{name}" property has not a setter method in "{class}" ("{prefix}{name}").',
