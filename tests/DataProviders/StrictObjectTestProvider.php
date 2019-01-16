@@ -35,27 +35,12 @@ use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 trait StrictObjectTestProvider
 {
     use ExporterPlugin;
-    use ConstructorMethodTester;
     use IComparerTester;
-
-    // ConstructorMethodTester
 
     public function getTargetClassName() : string
     {
         return StrictObject::class;
     }
-
-    public function goodConstructorArgumentsProvider() : array
-    {
-        return [[]];
-    }
-
-
-    public function badConstructorArgumentsProvider() : array
-    {
-        return null;
-    }
-    //
 
 
     // IComparerTester

@@ -25,10 +25,12 @@ use NelsonMartell\Extensions\Numbers;
  *
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
- * @since  0.1.1
  * @see    PropertiesHandler
+ *
+ * @since  0.1.1
+ * @since 1.0.0 Made it `abstract`.
  * */
-class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibleToString
+abstract class StrictObject implements IComparer, IStrictPropertiesContainer, IConvertibleToString
 {
     use PropertiesHandler;
 

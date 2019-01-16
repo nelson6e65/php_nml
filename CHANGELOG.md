@@ -29,6 +29,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :new: Method: `NelsonMartell\Type::hasGetInterfaces()`.
 - :up: Signature of methods `NelsonMartell\PropertiesHandler::getPropertyGetter()` and `NelsonMartell\PropertiesHandler::getPropertySetter()`: add `$prefix` and `$useCustom` params.
 - :up: Strict-typed return type of methods of `NelsonMartell\ICustomPrefixedPropertiesContainer`.
+- :up: `NelsonMartell\StrictObject` class is `abstract` now.
 
 
 ### :notebook: Development changes
