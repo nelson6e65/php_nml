@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -225,49 +225,36 @@ trait PropertiesHandler
      * Gets the property setter method name.
      * You can customize the setter prefix by implementing ``ICustomPrefixedPropertiesContainer`` interface.
      *
-     * @param string $name Property name.
+     * @param string $name      Property name.
+     * @param string $prefix    Property setter prefix.
+     * @param bool   $useCustom Check for custom setter prefixes.
      *
      * @return string
      * @throws InvalidArgumentException If property is not valid or has not setter.
      * @throws BadMethodCallException If custom prefix is not an ``string`` instance.
      * @see ICustomPrefixedPropertiesContainer::getCustomSetterPrefix()
+     *
+     * @since 1.0.0 Add `$prefix` and `$useCustom` params.
      */
-    protected static function getPropertySetter($name)
+    protected static function getPropertySetter(string $name, string $prefix = 'set', bool $useCustom = true) : string
     {
-        $args = [
-            'class' => get_called_class(),
-        ];
+        $class = get_called_class();
 
-        $prefix = 'set';
-
-        $args['name'] = static::ensurePropertyExists($name, $args['class']);
+        PropertyExtension::ensureIsDefined($name, $class);
 
         try {
-            $setter = static::ensureMethodExists($prefix.$args['name']);
+            $setter = MethodExtension::ensureIsDefined($prefix.$name, $class);
         } catch (InvalidArgumentException $error) {
-            $msg = msg('"{name}" property has not a setter method in "{class}".', $args);
-
-            if (is_subclass_of($args['class'], ICustomPrefixedPropertiesContainer::class)) {
+            if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard setter, check if custom available
-                try {
-                    $prefix = Text::ensureIsString(static::getCustomSetterPrefix());
-                } catch (InvalidArgumentException $e) {
-                    $msg = msg(
-                        '"{class}::getCustomSetterPrefix" method must to return an string.',
-                        $args['class']
-                    );
-
-                    throw new BadMethodCallException($msg, 31, $e);
-                }
-
-                try {
-                    $setter = static::ensureMethodExists($prefix.$args['name']);
-                } catch (InvalidArgumentException $e) {
-                    throw new InvalidArgumentException($msg, 32, $e);
-                }
+                // `false` to stop recursion
+                return static::getPropertySetter($name, $class::getCustomSetterPrefix(), false);
             } else {
-                // Error for non custom prefixes
-                throw new InvalidArgumentException($msg, 30, $error);
+                $msg = msg(
+                    '"{name}" property has not a setter method in "{class}" ("{prefix}{name}").',
+                    compact('class', 'name', 'prefix')
+                );
+                throw new InvalidArgumentException($msg, 40, $error);
             }
         }
 
@@ -280,47 +267,34 @@ trait PropertiesHandler
      * You can customize the getter prefix by implementing ``ICustomPrefixedPropertiesContainer`` interface.
      *
      * @param string $name Property name.
+     * @param string $prefix    Property getter prefix.
+     * @param bool   $useCustom Check for custom getter prefixes.
      *
      * @return string
      * @throws InvalidArgumentException If property is not valid or has not getter.
      * @throws BadMethodCallException If custom prefix is not an ``string`` instance.
      * @see ICustomPrefixedPropertiesContainer::getCustomGetterPrefix()
+     *
+     * @since 1.0.0 Add `$prefix` and `$useCustom` params.
      */
-    protected static function getPropertyGetter($name)
+    protected static function getPropertyGetter(string $name, string $prefix = 'get', bool $useCustom = true) : string
     {
-        $args = [
-            'class' => get_called_class(),
-        ];
+        $class = get_called_class();
 
-        $prefix = 'get';
-
-        $args['name'] = static::ensurePropertyExists($name, $args['class']);
+        PropertyExtension::ensureIsDefined($name, $class);
 
         try {
-            $getter = static::ensureMethodExists($prefix.$args['name']);
+            $getter = MethodExtension::ensureIsDefined($prefix.$name, $class);
         } catch (InvalidArgumentException $error) {
-            $msg = msg('"{name}" property has not a getter method in "{class}".', $args);
-
-            if (is_subclass_of($args['class'], ICustomPrefixedPropertiesContainer::class)) {
+            if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard getter, check if custom available
-                try {
-                    $prefix = Text::ensureIsString(static::getCustomGetterPrefix());
-                } catch (InvalidArgumentException $e) {
-                    $msg = msg(
-                        '"{class}::getCustomGetterPrefix" method must to return an string.',
-                        $args['class']
-                    );
 
-                    throw new BadMethodCallException($msg, 31, $e);
-                }
-
-                try {
-                    $getter = static::ensureMethodExists($prefix.$args['name']);
-                } catch (InvalidArgumentException $e) {
-                    throw new InvalidArgumentException($msg, 32, $e);
-                }
+                return static::getPropertyGetter($name, $class::getCustomGetterPrefix(), false);
             } else {
-                // Error for non custom prefixes
+                $msg = msg(
+                    '"{name}" property has not a setter method in "{class}" ("{prefix}{name}").',
+                    compact('class', 'name', 'prefix')
+                );
                 throw new InvalidArgumentException($msg, 30, $error);
             }
         }

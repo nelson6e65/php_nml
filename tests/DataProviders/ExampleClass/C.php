@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -30,12 +30,12 @@ class C extends B implements ICustomPrefixedPropertiesContainer
         );
     }
 
-    public static function getCustomGetterPrefix()
+    public static function getCustomGetterPrefix() : string
     {
         return 'getValueOf';
     }
 
-    public static function getCustomSetterPrefix()
+    public static function getCustomSetterPrefix() : string
     {
         return 'setValueOf';
     }

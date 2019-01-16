@@ -26,12 +26,12 @@ class D extends C
         );
     }
 
-    public static function getCustomGetterPrefix()
+    public static function getCustomGetterPrefix() : string
     {
         return 'get_';
     }
 
-    public static function getCustomSetterPrefix()
+    public static function getCustomSetterPrefix() : string
     {
         return 'set_';
     }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -35,12 +35,12 @@ interface ICustomPrefixedPropertiesContainer extends IStrictPropertiesContainer
      *
      * @return string
      */
-    public static function getCustomGetterPrefix();
+    public static function getCustomGetterPrefix() : string;
 
     /**
      * Gets the custom prefix for setters methods.
      *
      * @return string
      */
-    public static function getCustomSetterPrefix();
+    public static function getCustomSetterPrefix() : string;
 }
