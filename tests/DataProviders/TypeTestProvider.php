@@ -1,4 +1,4 @@
-<?php
+<?php  declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -55,7 +55,7 @@ trait TypeTestProvider
      * @return array
      * @since 1.0.0-dev
      */
-    public function unaccesiblePropertiesProvider()
+    public function unaccesiblePropertiesProvider() : array
     {
         $obj = new Type($this);
 
@@ -74,7 +74,7 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function goodConstructorArgumentsProvider()
+    public function goodConstructorArgumentsProvider() : array
     {
         return [
             'NULL'        => [null],
@@ -92,7 +92,7 @@ trait TypeTestProvider
         ];
     }
 
-    public function toStringCheckProvider()
+    public function toStringCheckProvider() : array
     {
         return [
             'NULL'          => ['NULL', null],
@@ -105,14 +105,14 @@ trait TypeTestProvider
         ];
     }
 
-    public function badConstructorArgumentsProvider()
+    public function badConstructorArgumentsProvider() : array
     {
         return [
             'not existing class'   => [InvalidArgumentException::class, 'Hola', true],
         ];
     }
 
-    public function canBeStringProvider()
+    public function canBeStringProvider() : array
     {
         return [
             'NULL'        => [null],
@@ -124,7 +124,7 @@ trait TypeTestProvider
         ];
     }
 
-    public function canNotBeStringProvider()
+    public function canNotBeStringProvider() : array
     {
         return [
             'array'       => [[]],
@@ -138,7 +138,7 @@ trait TypeTestProvider
     /**
      * @return array
      */
-    public function readonlyPropertiesProvider()
+    public function readonlyPropertiesProvider() : array
     {
         $obj = new Type($this);
 
@@ -149,7 +149,7 @@ trait TypeTestProvider
         ];
     }
 
-    public function objectInstanceProvider()
+    public function objectInstanceProvider() : array
     {
         return [[new Type($this)]];
     }
@@ -162,7 +162,7 @@ trait TypeTestProvider
      * ]
      * @return array
      */
-    public function methodIsProvider()
+    public function methodIsProvider() : array
     {
         return [
             [true,  (bool) true,    [true, false]],
@@ -188,7 +188,7 @@ trait TypeTestProvider
      * ]
      * @return array
      */
-    public function methodIsInProvider()
+    public function methodIsInProvider() : array
     {
         return [
             [true,  (bool) true,    [true, false, 1, 'string']],
@@ -214,7 +214,7 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function getInterfacesProvider()
+    public function getInterfacesProvider() : array
     {
         return [
             [new A, [IStrictPropertiesContainer::class]],
@@ -233,7 +233,7 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function getTraitsProvider()
+    public function getTraitsProvider() : array
     {
         return [
             [new A, [PropertiesHandler::class]],
@@ -255,7 +255,7 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function getRecursiveTraitsProvider()
+    public function getRecursiveTraitsProvider() : array
     {
         return [
             [new A, [PropertiesHandler::class]],
@@ -278,7 +278,7 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function hasPropertyProvider()
+    public function hasPropertyProvider() : array
     {
         return [
             [new A, 'attribute1'],
@@ -294,7 +294,7 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function hasNotPropertyProvider()
+    public function hasNotPropertyProvider() : array
     {
         $obj = new stdClass;
 

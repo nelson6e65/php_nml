@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -18,8 +18,6 @@ namespace NelsonMartell\Test\TestCase;
 
 use stdClass;
 
-use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\Test\DataProviders\TypeTestProvider;
 
 use NelsonMartell\Type;
@@ -34,6 +32,7 @@ use function NelsonMartell\typeof;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @internal
+ * @coversDefaultClass Type
  * */
 class TypeTest extends TestCase
 {
@@ -55,30 +54,29 @@ class TypeTest extends TestCase
         return Type::class;
     }
 
-
     /**
-     * @coverage Type::toString
-     * @coverage Type::__toString
+     * @covers ::toString
+     * @covers ::__toString
      * @dataProvider toStringCheckProvider
+     *
+     * @param string $expected
+     * @param mixed  $arg
      */
-    public function testPerformsConversionToString($expected, $arg)
+    public function testPerformsConversionToString(string $expected, $arg): void
     {
         $obj    = new Type($arg);
         $actual = $obj->toString();
 
-        $this->assertInternalType('string', $actual);
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $obj->toString(), 'Explicit conversion to string');
 
-        $actual   = '<Type>'.$actual.'</Type>';
-        $expected = '<Type>'.$expected.'</Type>';
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $obj.'', 'Implicit conversion to string');
     }
 
 
     /**
-     * @coverage Type::hasMethod
+     * @covers ::hasMethod
      */
-    public function testCanCheckIfAClassHasAMethod()
+    public function testCanCheckIfAClassHasAMethod() : void
     {
         $this->markTestIncomplete(
             'Tests for "'.Type::class.'::hasMethod'.'" has not been completed yet.'
@@ -86,11 +84,13 @@ class TypeTest extends TestCase
     }
 
     /**
-     * @coverage Type::isNUll
-     * @coverage Type::isNotNUll
+     * @covers Type::isNUll
+     * @covers Type::isNotNUll
      * @dataProvider goodConstructorArgumentsProvider
+     *
+     * @param mixed $obj
      */
-    public function testCanCheckIfTypeIsNull($obj)
+    public function testCanCheckIfTypeIsNull($obj) : void
     {
         if (is_null($obj)) {
             $actual = (new Type($obj))->isNull();
@@ -103,8 +103,10 @@ class TypeTest extends TestCase
 
     /**
      * @dataProvider goodConstructorArgumentsProvider
+     *
+     * @param mixed $obj
      */
-    public function testCanCheckIfTypeIsCustom($obj)
+    public function testCanCheckIfTypeIsCustom($obj) : void
     {
         $actual = (new Type($obj))->isCustom();
 
@@ -120,7 +122,7 @@ class TypeTest extends TestCase
      *
      * @param array $args Arguments of constructor
      */
-    public function testCanCheckIfTypeCanBeConvertedToString(...$args)
+    public function testCanCheckIfTypeCanBeConvertedToString(...$args) : void
     {
         $type = new Type(...$args);
 
@@ -133,7 +135,7 @@ class TypeTest extends TestCase
      *
      * @param array $args Arguments of constructor
      */
-    public function testCanCheckIfTypeCanNotBeConvertedToString(...$args)
+    public function testCanCheckIfTypeCanNotBeConvertedToString(...$args) : void
     {
         $type = new Type(...$args);
 
@@ -144,9 +146,12 @@ class TypeTest extends TestCase
 
     /**
      * @dataProvider goodConstructorArgumentsProvider
+     *
+     * @param mixed $obj
+     *
      * @since 1.0.0
      */
-    public function testTypesEquality($obj)
+    public function testTypesEquality($obj) : void
     {
         $t1 = new Type($obj);
         $t2 = new Type($obj);
@@ -161,7 +166,7 @@ class TypeTest extends TestCase
      * @depends testTypesEquality
      * @since 1.0.0
      */
-    public function testTypesInequality()
+    public function testTypesInequality() : void
     {
         $t1 = new Type(new stdClass);
         $t2 = new Type(new stdClass);
@@ -193,7 +198,7 @@ class TypeTest extends TestCase
      * @param  array  $args
      * @return void
      */
-    public function testIsMethod(bool $expected, $type, array $args)
+    public function testIsMethod(bool $expected, $type, array $args) : void
     {
         $this->assertEquals($expected, typeof($type)->is(...$args));
         $this->assertNotEquals(!$expected, typeof($type)->is(...$args));
@@ -209,7 +214,7 @@ class TypeTest extends TestCase
      * @param  array  $args
      * @return void
      */
-    public function testIsInMethod(bool $expected, $type, array $args)
+    public function testIsInMethod(bool $expected, $type, array $args) : void
     {
         $this->assertEquals($expected, typeof($type)->isIn(...$args));
         $this->assertNotEquals(!$expected, typeof($type)->isIn(...$args));
@@ -221,7 +226,7 @@ class TypeTest extends TestCase
      * @param mixed $obj
      * @param array $interfaces
      */
-    public function testGetInterfaces($obj, array $interfaces)
+    public function testGetInterfaces($obj, array $interfaces) : void
     {
         $type = new Type($obj);
 
@@ -250,7 +255,7 @@ class TypeTest extends TestCase
      * @param mixed $obj
      * @param array $traits
      */
-    public function testGetExplicitTraitsInClass($obj, array $traits)
+    public function testGetExplicitTraitsInClass($obj, array $traits) : void
     {
         if ($obj instanceof Type) {
             $type = $obj;
@@ -284,7 +289,7 @@ class TypeTest extends TestCase
      * @param Type|mixed $obj
      * @param array $traits
      */
-    public function testGetAllRecursiveTraitsInClass($obj, array $traits)
+    public function testGetAllRecursiveTraitsInClass($obj, array $traits) : void
     {
         if ($obj instanceof Type) {
             $type = $obj;
@@ -318,7 +323,7 @@ class TypeTest extends TestCase
      * @param mixed $obj
      * @param string $name
      */
-    public function testCanCheckIfTypeHasProperty($obj, string $name)
+    public function testCanCheckIfTypeHasProperty($obj, string $name) : void
     {
         /**
          * @var Type
@@ -342,7 +347,7 @@ class TypeTest extends TestCase
      * @param mixed $obj
      * @param string $name
      */
-    public function testCanCheckIfTypeHasNotProperty($obj, string $name)
+    public function testCanCheckIfTypeHasNotProperty($obj, string $name) : void
     {
         /**
          * @var Type
