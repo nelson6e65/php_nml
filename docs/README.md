@@ -8,15 +8,15 @@ actionLink: /guide/
 
 features:
 - title: Strict classes
-  details: No more misspell in properties name! Only defined properties in its class are allowed for an object.  
-- title: Strict properties
-  details: Define witch values and types are allowed for the object's properties.
-- title: String formats
-  details: Use easy placeholders to format your output text.
+  details: Limit direct access to your class attributes. Only defined properties in its class are allowed for an object. No more misspells in properties name!
+- title: Properties encapsulation
+  details: Provide your classes with auto-magic getters and setters for your properties. Add validations and customize the return values.
+- title: Debugging
+  details: Included specific exceptions in order to catch them and know what happened and where is the error.
 - title: Defined structures
-  details: Predefined interfaces and traits to normalice and expand your classes.
-- title: Utility classes
-  details: Predefined classes with utility features.
+  details: Normalize and expand your classes with the included interfaces and traits for string formatting, objects comparison and more.
+- title: Utilities
+  details: Format text with placeholders, get the type of objects and extract info, compare objects, ensure values, and more.
 
 footer: MIT Licensed | Copyright © 2014-2019 Nelson Martell
 ---
