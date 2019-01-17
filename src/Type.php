@@ -271,8 +271,9 @@ final class Type extends StrictObject implements IEquatable
      *
      * This method is ***case-sensitive***.
      *
-     * @param string $name      Name of property.
-     * @param bool   $recursive Indicates if search for inherithed properties. Default: `true`.
+     * @param string $name         Name of property.
+     * @param bool   $recursive    Indicates if search for inherithed properties. Default: `true`.
+     * @param bool   $includeMagic Include check for properties in class DocBlock definition.
      *
      * @return bool
      *
@@ -281,10 +282,17 @@ final class Type extends StrictObject implements IEquatable
      * @see ReflectionClass::hasProperty()
      * @see \property_exists()
      */
-    public function hasProperty(string $name, bool $recursive = true) : bool
+    public function hasProperty(string $name, bool $recursive = true, bool $includeMagic = false) : bool
     {
         if ($this->reflectionObject !== null) {
             $itHas = $this->reflectionObject->hasProperty($name);
+
+            if (!$itHas && $includeMagic) {
+                $pattern = '/\* @(?P<tag>property-read|property-write|property) +'.
+                           '(?P<types>([a-zA-Z]+[\[\]]*\|?)+) +(?P<property>\$'.$name.') *(?P<description>.*)/';
+
+                $itHas = preg_match($pattern, $this->reflectionObject->getDocComment()) > 0;
+            }
 
             if ($itHas == false && $recursive === true) {
                 /**
@@ -293,7 +301,7 @@ final class Type extends StrictObject implements IEquatable
                 $parentClass = $this->reflectionObject->getParentClass();
 
                 if ($parentClass != false) {
-                    $itHas = typeof($parentClass->getName(), true)->hasProperty($name, true);
+                    $itHas = typeof($parentClass->getName(), true)->hasProperty($name, true, $includeMagic);
                 }
             }
 

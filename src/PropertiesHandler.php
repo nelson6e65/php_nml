@@ -240,7 +240,7 @@ trait PropertiesHandler
     {
         $class = get_called_class();
 
-        PropertyExtension::ensureIsDefined($name, $class);
+        PropertyExtension::ensureIsDefined($name, $class, is_subclass_of($class, IMagicPropertiesContainer::class));
 
         try {
             $setter = MethodExtension::ensureIsDefined($prefix.$name, $class);
@@ -281,7 +281,7 @@ trait PropertiesHandler
     {
         $class = get_called_class();
 
-        PropertyExtension::ensureIsDefined($name, $class);
+        PropertyExtension::ensureIsDefined($name, $class, is_subclass_of($class, IMagicPropertiesContainer::class));
 
         try {
             $getter = MethodExtension::ensureIsDefined($prefix.$name, $class);
@@ -292,7 +292,7 @@ trait PropertiesHandler
                 return static::getPropertyGetter($name, static::getCustomGetterPrefix(), false);
             } else {
                 $msg = msg(
-                    '"{name}" property has not a setter method in "{class}" ("{prefix}{name}").',
+                    '"{name}" property has not a getter method in "{class}" ("{prefix}{name}").',
                     compact('class', 'name', 'prefix')
                 );
                 throw new InvalidArgumentException($msg, 30, $error);

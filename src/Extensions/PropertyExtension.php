@@ -56,6 +56,7 @@ class PropertyExtension
      *
      * @param string $property
      * @param string $class
+     * @param bool   $includeMagic
      *
      * @return string
      *
@@ -64,13 +65,14 @@ class PropertyExtension
      *
      * @see PropertyExtension::ensureIsValidName()
      */
-    public static function ensureIsDefined(string $property, string $class) : string
+    public static function ensureIsDefined(string $property, string $class, bool $includeMagic = false) : string
     {
         $type = typeof($class, true);
 
-        if (!$type->hasProperty(static::ensureIsValidName($property))) {
+        if (!$type->hasProperty(static::ensureIsValidName($property), true, $includeMagic)) {
             $msg = msg(
-                '"{property}" property do not exists in "{class}" class or parent classes.',
+                '"{property}" property is not defined in "{class}" class or parent classes'
+                .($includeMagic ? ' (including magic properties).' : '.'),
                 compact('property', 'class')
             );
 

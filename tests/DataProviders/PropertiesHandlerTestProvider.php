@@ -79,11 +79,19 @@ trait PropertiesHandlerTestProvider
         $c = new ExampleClass\C;
         $d = new ExampleClass\D;
 
+        $mb = new ExampleClass\WithMagicPropertiesBaseClass;
+        $mc = new ExampleClass\WithMagicPropertiesChildClass;
+
         return [
             'Set attribute with setter'                                     => [$a, 'property3', 3, (3 * 100)],
             'Custom prefix (parent using default): Own property directly'   => [$c, 'property6', 6, (6 * 99)],
             'Custom prefix (parent using custom): Own property directly'    => [$d, 'property9', -9, -(9 * 10)],
             'Custom prefix (parent using default)): Parent property '       => [$c, 'property3', -3, -(3 * 100)],
+
+            // Magic examples
+            'Using IMagicPropertiesContainer'                               => [$mb, 'baseProperty', 'base', 'base'],
+            'Parent using IMagicPropertiesContainer: Parent property'       => [$mc, 'baseProperty', 'base', 'base'],
+            'Parent using IMagicPropertiesContainer: Child property'        => [$mc, 'childProperty', 'child', 'child'],
         ];
     }
 
@@ -94,12 +102,18 @@ trait PropertiesHandlerTestProvider
         $b = new ExampleClass\B;
         $c = new ExampleClass\C;
         $d = new ExampleClass\D;
+
+        $mc = new ExampleClass\WithMagicPropertiesChildClass;
+
         return [
             'Get property accesible via a wrapper'                  => [$a, 'property1', -1],
             'Get property accesible using attribute name'           => [$a, 'attribute2', -2],
             'Get property accesible from parent only'               => [$b, 'property4', -4],
             'Custom prefix: Own attribute directly'                 => [$c, 'attribute5', (-5 * 2)],
             'Custom prefix: Parent property'                        => [$d, 'property1', -1],
+
+            // Magic
+            'Parent using IMagicPropertiesContainer'                => [$mc, 'readOnlyChildProperty', 1],
         ];
     }
 
