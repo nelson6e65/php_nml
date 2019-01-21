@@ -19,15 +19,13 @@ namespace NelsonMartell;
 use BadMethodCallException;
 use InvalidArgumentException;
 
-use NelsonMartell\Extensions\Text;
 use NelsonMartell\Extensions\MethodExtension;
 use NelsonMartell\Extensions\PropertyExtension;
 
 /**
  * Enables the class to call, implicitly, getter and setters for its properties, allowing to use properties directly.
  *
- *
- * Restricts get and set actions for a property if there is not getter/setter definicion for that property, by
+ * Restricts get and set actions for a property if there is not getter/setter definition for that property, by
  * encapsulating the class attributes.
  *
  * You can customize the properties validation/normalization without the need to call other functions/methods outside
@@ -35,7 +33,7 @@ use NelsonMartell\Extensions\PropertyExtension;
  *
  * In addition, the class will be strict: any access to undefined property will be bloqued and informed in dev time.
  *
- * Also, any property can be restricted to "read-only" or "write-only" from outside the class if you simply exclude
+ * Also, any property can be restricted to "read-only" or "write-only" from outside the class by simply excluding
  * the setter or getter for that property, respectively.
  *
  *
@@ -88,7 +86,47 @@ use NelsonMartell\Extensions\PropertyExtension;
  *     {
  *         unset($this->name); // IMPORTANT: Unset the wrapper in order to redirect operations to the getter/setter
  *
- *         $this->name = $name; // Implicit call to the setter
+ *         $this->name = $name; // Implicit call to the setter inside the class
+ *     }
+ *
+ *     protected function getName()
+ *     {
+ *         return ucwords($this->_name);
+ *     }
+ *
+ *     protected function setName($value)
+ *     {
+ *         $this->_name = strtolower($value);
+ *     }
+ * }
+ *
+ * $obj = new Nameable();
+ * $obj->name = 'nelson maRtElL';
+ * echo $obj->name; // 'Nelson Martell'
+ *
+ * ?>
+ * ```
+ *
+ *
+ * ***Example 3:*** Same as before, but implementing `IMagicPropertiesContainer`
+ *
+ * ```php
+ * <?php
+ * use NelsonMartell\IStrictPropertiesContainer;
+ * use NelsonMartell\PropertiesHandler;
+ * use NelsonMartell\IMagicPropertiesContainer;
+ *
+ *
+ * // Rest of class DocBlock...
+ * // @property string $name Name of person
+ * class Nameable implements IStrictPropertiesContainer, IMagicPropertiesContainer {
+ *     use PropertiesHandler;
+ *
+ *     private $_name = ''; // Attribute: Stores the value.
+ *
+ *      public function __construct($name)
+ *     {
+ *         $this->name = $name; // Implicit call to the setter inside the class
  *     }
  *
  *     protected function getName()
@@ -129,6 +167,9 @@ use NelsonMartell\Extensions\PropertyExtension;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.5.0
+ * @since 1.0.0 Auto-detect magic properties defined in class DocBlock.
+ *
+ * @see IMagicPropertiesContainer
  * */
 trait PropertiesHandler
 {

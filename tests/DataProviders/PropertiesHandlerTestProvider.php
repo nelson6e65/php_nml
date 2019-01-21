@@ -81,6 +81,7 @@ trait PropertiesHandlerTestProvider
 
         $mb = new ExampleClass\WithMagicPropertiesBaseClass;
         $mc = new ExampleClass\WithMagicPropertiesChildClass;
+        $wm = new ExampleClass\WithoutMagicPropertiesClass;
 
         return [
             'Set attribute with setter'                                     => [$a, 'property3', 3, (3 * 100)],
@@ -89,6 +90,7 @@ trait PropertiesHandlerTestProvider
             'Custom prefix (parent using default)): Parent property '       => [$c, 'property3', -3, -(3 * 100)],
 
             // Magic examples
+            'Not implementing IMagicPropertiesContainer'                    => [$wm, 'noMagicProperty', 'yes', 'yes'],
             'Using IMagicPropertiesContainer'                               => [$mb, 'baseProperty', 'base', 'base'],
             'Parent using IMagicPropertiesContainer: Parent property'       => [$mc, 'baseProperty', 'base', 'base'],
             'Parent using IMagicPropertiesContainer: Child property'        => [$mc, 'childProperty', 'child', 'child'],
@@ -123,6 +125,7 @@ trait PropertiesHandlerTestProvider
         $b = new ExampleClass\B;
         $c = new ExampleClass\C;
         $d = new ExampleClass\D;
+        $w = new ExampleClass\WithoutMagicPropertiesClass;
 
         return [
             'Get inexistent property in base'      => [$a, 'property4'],
@@ -137,6 +140,8 @@ trait PropertiesHandlerTestProvider
             'Existent, but wrong prefixes'         => [$b, 'property7', 7],
             'Double definition of custom getter prefix: D::C' => [$d, 'property6'],
             'Double definition of custom setter prefix: D::C' => [$d, 'property6', 6],
+
+            'Unaccesibe since not implementing IMacigPropertiesContainer' => [$w, 'magicProperty', 'no'],
         ];
     }
 }
