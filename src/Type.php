@@ -2,13 +2,13 @@
 /**
  * PHP: Nelson Martell Library file
  *
- * Copyright © 2013-2015 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2013-2019 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright 2013-2015 Nelson Martell
+ * @copyright 2013-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
  * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -16,11 +16,11 @@
 
 namespace NelsonMartell;
 
+use InvalidArgumentException;
 use ReflectionClass;
+use ReflectionException;
 use ReflectionMethod;
 use ReflectionProperty;
-use ReflectionException;
-use InvalidArgumentException;
 
 /**
  * Represents a PHP object type. Provides some properties and methods to describe some info about itself.
@@ -214,11 +214,11 @@ final class Type extends StrictObject implements IEquatable
      * @param bool $reflection If set to `true`, returns a list of interfaces as `ReflectionClass` (keyed by its names)
      *   instead of a list of names only (`string`).
      *
-     * @return ReflectionClass[]|string[]
+     * @return ReflectionClass[]|string[]|array
      *
      * @since 1.0.0
      */
-    public function getInterfaces(bool $reflection = false)
+    public function getInterfaces(bool $reflection = false) : array
     {
         if ($this->reflectionObject !== null) {
             if ($reflection === true) {
@@ -298,7 +298,7 @@ final class Type extends StrictObject implements IEquatable
 
             if (!$itHas && $includeMagic) {
                 $pattern = '/\* @(?P<tag>property-read|property-write|property) +'.
-                           '(?P<types>([a-zA-Z]+[\[\]]*\|?)+) +(?P<property>\$'.$name.') *(?P<description>.*)/';
+                    '(?P<types>([a-zA-Z]+[\[\]]*\|?)+) +(?P<property>\$'.$name.') *(?P<description>.*)/';
 
                 $itHas = preg_match($pattern, $this->reflectionObject->getDocComment()) > 0;
             }
