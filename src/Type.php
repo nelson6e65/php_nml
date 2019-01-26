@@ -34,9 +34,8 @@ use ReflectionProperty;
  * @property-read string        $namespace Gets the namespace name of this class. If the underlying type is not a class,
  *   this property is set to `''` (empty string). This property is read-only.
  * */
-final class Type extends StrictObject implements IEquatable
+final class Type extends StrictObject implements IEquatable, IMagicPropertiesContainer
 {
-
     /**
      * Gets the type of specified $obj and collect some info about itself.
      *
@@ -54,7 +53,7 @@ final class Type extends StrictObject implements IEquatable
 
         $type = (is_string($obj) && $searchName === true) ? 'object' : gettype($obj);
 
-        $this->namespace = '';
+        $namespace = $name = $shortName = '';
 
         switch ($type) {
             case 'object':
@@ -67,30 +66,34 @@ final class Type extends StrictObject implements IEquatable
                     throw new InvalidArgumentException($msg, 1, $e);
                 }
 
-                $this->name      = $this->reflectionObject->getName();
-                $this->shortName = $this->reflectionObject->getShortName();
-                $this->namespace = $this->reflectionObject->getNamespaceName();
+                $name      = $this->reflectionObject->getName();
+                $shortName = $this->reflectionObject->getShortName();
+                $namespace = $this->reflectionObject->getNamespaceName();
                 break;
 
             case 'resource':
-                $this->shortName = get_resource_type($obj);
-                $this->name      = 'resource: '.$this->shortName;
+                $shortName = get_resource_type($obj);
+                $name      = 'resource: '.$shortName;
                 break;
 
             default:
-                $this->shortName = $this->name = $type;
+                $shortName = $name = $type;
         }
+
+        $this->basicMetadata = compact('namespace', 'name', 'shortName');
     }
+
+    /**
+     * Namespace, Name and ShortName storage of the underlying type.
+     *
+     * @var string[]
+     */
+    private $basicMetadata;
 
     /**
      * @var ReflectionClass
      */
     private $reflectionObject = null;
-
-    /**
-     * @var string
-     */
-    private $name;
 
     /**
      * Getter for `$name` property.
@@ -100,13 +103,8 @@ final class Type extends StrictObject implements IEquatable
      * */
     protected function getName() : string
     {
-        return $this->name;
+        return $this->basicMetadata['name'];
     }
-
-    /**
-     * @var string
-     */
-    private $shortName;
 
     /**
      * Getter for `$shortName` property.
@@ -116,13 +114,8 @@ final class Type extends StrictObject implements IEquatable
      * */
     public function getShortName() : string
     {
-        return $this->shortName;
+        return $this->basicMetadata['shortName'];
     }
-
-    /**
-     * @var string
-     */
-    private $namespace = '';
 
     /**
      * Getter for `$namespace` property.
@@ -132,7 +125,7 @@ final class Type extends StrictObject implements IEquatable
      * */
     public function getNamespace() : string
     {
-        return $this->namespace;
+        return $this->basicMetadata['namespace'];
     }
 
     /**
@@ -343,7 +336,7 @@ final class Type extends StrictObject implements IEquatable
      * */
     public function isNull() : bool
     {
-        if ($this->name == 'NULL' || $this->name == 'null') {
+        if ($this->getName() == 'NULL' || $this->getName() == 'null') {
             return true;
         }
 
@@ -385,7 +378,7 @@ final class Type extends StrictObject implements IEquatable
     {
         $r = false;
 
-        switch ($this->name) {
+        switch ($this->getName()) {
             case 'boolean':
             case 'integer':
             case 'double':
@@ -407,7 +400,7 @@ final class Type extends StrictObject implements IEquatable
      * */
     public function isValueType() : bool
     {
-        if ($this->isScalar() || $this->name === 'array') {
+        if ($this->isScalar() || $this->getName() === 'array') {
             return true;
         }
 
@@ -431,13 +424,11 @@ final class Type extends StrictObject implements IEquatable
      * */
     public function toString() : string
     {
-        $s = $this->name;
-
         if ($this->isCustom()) {
-            $s = sprintf('object (%s)', $s);
+            return sprintf('object (%s)', $this->getName());
         }
 
-        return $s;
+        return $this->getName();
     }
 
 
@@ -451,7 +442,7 @@ final class Type extends StrictObject implements IEquatable
     public function equals($other) : bool
     {
         if ($other instanceof Type) {
-            return $this->name == $other->name;
+            return $this->getName() == $other->getName();
         } else {
             return false;
         }
