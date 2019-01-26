@@ -32,7 +32,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :up: Signature of methods `NelsonMartell\PropertiesHandler::getPropertyGetter()` and `NelsonMartell\PropertiesHandler::getPropertySetter()`: add `$prefix` and `$useCustom` params.
 - :up: Strict-typed return type of methods of `NelsonMartell\ICustomPrefixedPropertiesContainer`.
 - :up: `NelsonMartell\StrictObject` class is `abstract` now.
-
+- :new: Added `NelsonMartell\Type::getVars()` method in replacement of `Type::getVars()`, with a :new: `$filters` param.
+- :up: :new: Added `$filters` param to `NelsonMartell\Type::getMethods()` method.
+- :up: Deprecated `NelsonMartell\Type::getVars()` method. Use `Type::getProperties()` method instead.
+- :fire: Removed `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
+- :fire: Removed `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
 
 ### :notebook: Development changes
 

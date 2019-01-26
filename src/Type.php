@@ -33,11 +33,6 @@ use InvalidArgumentException;
  *   This property is read-only.
  * @property-read string|null   $namespace Gets the namespace name of this class. If this Type is not a class, this
  *   property is set to `null`. This property is read-only.
- * @property-read array         $methods   Gets the public|protected methods (ReflectionMethod) of this Type. This
- *   property is read-only.
- * @property-read array         $vars      Gets the public|protected properties (ReflectionProperty) of this Type.
- *   This property is read-only.
- *
  * */
 final class Type extends StrictObject implements IEquatable
 {
@@ -139,33 +134,42 @@ final class Type extends StrictObject implements IEquatable
     }
 
     /**
-     * @var array
      *
-     * @deprecated 0.7.2
+     * @param int $filters
+     *
+     * @return ReflectionProperty[]|array
+     *
+     * @deprecated 1.0.0 Use `Type::getProperties()` instead.
+     *
+     * @see Type::getProperties()
      */
-    private $vars = [];
-
-    /**
-     * Getter for `$vars` property.
-     *
-     * @return array
-     *
-     * @deprecated 0.7.2
-     */
-    public function getVars() : array
+    public function getVars(int $filters = ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED) : array
     {
-        if ($this->vars == null) {
-            $this->vars = $this->reflectionObject->getProperties(
-                ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED
-            );
-        }
-        return $this->vars;
+        return $this->getProperties($filter);
     }
 
     /**
-     * @var array
+     * Gets the properties of underlying type of this instance
+     *
+     * @param int $filters Filter the results to include only properties with certain attributes. Defaults to
+     *   `ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED`. Any combination of
+     *   `ReflectionMethod::IS_STATIC`, `ReflectionMethod::IS_PUBLIC`, `ReflectionMethod::IS_PROTECTED`,
+     *   `ReflectionMethod::IS_PRIVATE`.
+     *
+     * @return ReflectionProperty[]|array
+     *
+     * @since 1.0.0 Replacement for `Type::getVars()`
      */
-    private $methods = [];
+    public function getProperties(
+        int $filters = ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED
+    ) : array {
+        if ($this->reflectionObject != null) {
+            return $this->reflectionObject->getProperties($filters);
+        }
+
+        return [];
+    }
+
 
     /**
      * Gets the public|protected methods (ReflectionMethod) of the underlying type of this instance.
@@ -175,7 +179,7 @@ final class Type extends StrictObject implements IEquatable
      *   `ReflectionMethod::IS_STATIC`, `ReflectionMethod::IS_PUBLIC`, `ReflectionMethod::IS_PROTECTED`,
      *   `ReflectionMethod::IS_PRIVATE`, `ReflectionMethod::IS_ABSTRACT` and `ReflectionMethod::IS_FINAL`.
      *
-     * @return array
+     * @return ReflectionMethod[]|array
      *
      * @since 1.0.0 Add `$filters` param.
      */
