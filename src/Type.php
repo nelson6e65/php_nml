@@ -31,8 +31,8 @@ use ReflectionProperty;
  * @property-read string        $name      Gets the name of this Type. This property is read-only.
  * @property-read string        $shortName Gets the abbreviated name of class, in other words, without the namespace.
  *   This property is read-only.
- * @property-read string|null   $namespace Gets the namespace name of this class. If this Type is not a class, this
- *   property is set to `null`. This property is read-only.
+ * @property-read string        $namespace Gets the namespace name of this class. If the underlying type is not a class,
+ *   this property is set to `''` (empty string). This property is read-only.
  * */
 final class Type extends StrictObject implements IEquatable
 {
@@ -53,6 +53,8 @@ final class Type extends StrictObject implements IEquatable
         parent::__construct();
 
         $type = (is_string($obj) && $searchName === true) ? 'object' : gettype($obj);
+
+        $this->namespace = '';
 
         switch ($type) {
             case 'object':
