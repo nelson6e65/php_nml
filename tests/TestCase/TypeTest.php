@@ -56,13 +56,34 @@ class TypeTest extends TestCase
 
     /**
      * @covers ::hasMethod
+     *
+     * @dataProvider hasMethodProvider
+     *
+     * @param mixed  $obj
+     * @param string $name Method name.
      */
-    public function testCanCheckIfAClassHasAMethod() : void
+    public function testCanCheckIfAClassHasAMethod($obj, string $name) : void
     {
-        $this->markTestIncomplete(
-            'Tests for "'.Type::class.'::hasMethod'.'" has not been completed yet.'
-        );
+        $type = new Type($obj);
+
+        $this->assertTrue($type->hasMethod($name));
     }
+
+    /**
+     * @covers ::hasMethod
+     *
+     * @dataProvider hasNotMethodProvider
+     *
+     * @param mixed  $obj
+     * @param string $name Method name.
+     */
+    public function testCanCheckIfAClassHasNotAMethod($obj, string $name) : void
+    {
+        $type = new Type($obj);
+
+        $this->assertFalse($type->hasMethod($name));
+    }
+
 
     /**
      * @covers ::isNull

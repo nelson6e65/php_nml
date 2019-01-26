@@ -10,14 +10,11 @@
  *
  * @copyright 2016-2019 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
- * @since     v0.6.0
+ * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
 namespace NelsonMartell\Test\DataProviders;
-
-use stdClass;
-use InvalidArgumentException;
 
 use NelsonMartell\IConvertibleToString;
 use NelsonMartell\ICustomPrefixedPropertiesContainer;
@@ -29,6 +26,8 @@ use NelsonMartell\Test\DataProviders\ExampleClass\A;
 use NelsonMartell\Test\DataProviders\ExampleClass\B;
 use NelsonMartell\Test\DataProviders\ExampleClass\C;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
+use NelsonMartell\Test\DataProviders\ExampleClass\WithSomeMethodsChildClass;
+use NelsonMartell\Test\DataProviders\ExampleClass\WithSomeMethodsClass;
 
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
@@ -39,12 +38,16 @@ use NelsonMartell\Test\Helpers\TestCaseMethods;
 
 use NelsonMartell\Test\TestCase\TypeTest;
 
+use InvalidArgumentException;
+use stdClass;
+
 use function NelsonMartell\typeof;
 
 /**
  * Data providers for NelsonMartell\Test\TestCase\TypeTest.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
+ * @since  0.6.0
  * @internal
  * */
 trait TypeTestProvider
@@ -313,6 +316,38 @@ trait TypeTestProvider
             [new A, 'Property1'],
             [new B, 'property5'],
             'should ignore dinamic properties' => [$obj, 'testProperty'],
+        ];
+    }
+
+    /**
+     *
+     *
+     * @return array[] mixed => string
+     */
+    public function hasMethodProvider() : array
+    {
+        $obj = new WithSomeMethodsClass;
+        $obk = new WithSomeMethodsChildClass;
+
+        return [
+            'private' => [$obj, 'privateMethod'],
+            'protected' => [$obj, 'protectedMethod'],
+            'public' => [$obj, 'publicMethod'],
+            // 'magic' => [$obj, 'magicMethod'], // FIXME Implement detection of magic methods
+
+            'private in parent' => [$obk, 'privateMethod'],
+            'protected in parent' => [$obk, 'protectedMethod'],
+            'public in parent' => [$obk, 'publicMethod'],
+            // 'magic in parent' => [$obk, 'magicMethod'], // FIXME Implement detection of magic methods
+        ];
+    }
+
+    public function hasNotMethodProvider() : array
+    {
+        $obj = new WithSomeMethodsClass;
+
+        return [
+            [$obj, 'someMethodThatIsNotDefined']
         ];
     }
 }
