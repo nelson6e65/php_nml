@@ -168,19 +168,24 @@ final class Type extends StrictObject implements IEquatable
     private $methods = [];
 
     /**
-     * Getter for `$methods` property.
+     * Gets the public|protected methods (ReflectionMethod) of the underlying type of this instance.
+     *
+     * @param int $filters Filter the results to include only methods with certain attributes. Defaults to
+     *   `ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED`. Any combination of
+     *   `ReflectionMethod::IS_STATIC`, `ReflectionMethod::IS_PUBLIC`, `ReflectionMethod::IS_PROTECTED`,
+     *   `ReflectionMethod::IS_PRIVATE`, `ReflectionMethod::IS_ABSTRACT` and `ReflectionMethod::IS_FINAL`.
      *
      * @return array
-     * @see    Type::$methods
+     *
+     * @since 1.0.0 Add `$filters` param.
      */
-    public function getMethods() : array
+    public function getMethods(int $filters = ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED) : array
     {
-        if ($this->methods == null) {
-            $this->methods = $this->reflectionObject->getMethods(
-                ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED
-            );
+        if ($this->reflectionObject != null) {
+            return $this->reflectionObject->getMethods($filters);
         }
-        return $this->methods;
+
+        return [];
     }
 
     /**
