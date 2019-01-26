@@ -9,34 +9,60 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### :star: Important changes
 
-- :fire: Drop active support for eol PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
-- :fire: Remove public getters from classes. Now should be access via property instead.
-- :fire: Remove Pascal Case in properties. Properties updated to be camel case only (e.g. use `Version::$major` instead of `Version::$Major`).
-- :fire: Remove deprecated classes under `NelsonMartell\Utilities` namespace.
-- :new: `class`: `NelsonMartell\Extensions\Objects`.
-- :new: `class`: `NelsonMartell\Extensions\Numbers`.
-- :new: `class`: `NelsonMartell\Extensions\Arrays`.
-- :new: `class`: `NelsonMartell\Extensions\PropertyExtension`.
-- :new: `class`: `NelsonMartell\Extensions\MethodExtension`.
-- :bug: :fire: Fix problem in `NelsonMartell\StrictObject::compare()` for some types, move implementation to `NelsonMartell\Extensions\Objects`, make it more generic and split implementation to:
+
+#### :new: Added
+
+- Classes:
+  - `NelsonMartell\Extensions\Arrays`.
+  - `NelsonMartell\Extensions\MethodExtension`.
+  - `NelsonMartell\Extensions\Numbers`.
+  - `NelsonMartell\Extensions\Objects`.
+  - `NelsonMartell\Extensions\PropertyExtension`.
+
+
+- Interfaces:
+  - `IMagicPropertiesContainer`.
+
+
+- Methods:
+  - `NelsonMartell\Text::compare()`
+  - `NelsonMartell\Type::getInterfaces()`.
+  - `NelsonMartell\Type::getProperties()`, in replacement for `NelsonMartell\Type::getVars()`.
+  - `NelsonMartell\Type::hasGetTraits()`.
+  - `NelsonMartell\Type::hasProperty()`.
+  - `NelsonMartell\Type::is()`
+  - `NelsonMartell\Type::isIn()`   
+  - `NelsonMartell\Extensions\Objects::compare()`, in replacement for `NelsonMartell\StrictObject::compare()`.
+
+
+#### :up: Changed
+
+- Remove public getters from classes. Now should be access via property instead.
+- Remove Pascal Case in properties. Properties updated to be camel case only (e.g. use `Version::$major` instead of `Version::$Major`).
+- Signature of `NelsonMartell\PropertiesHandler::getPropertyGetter()` and `NelsonMartell\PropertiesHandler::getPropertySetter()` methods: add `$prefix` and `$useCustom` params.
+- Strict-typed return type of methods in `NelsonMartell\ICustomPrefixedPropertiesContainer`.
+- `NelsonMartell\StrictObject` class is **abstract** now.
+- Signature of `NelsonMartell\Type::getMethods()` method: :new: `$filters` parameter with a default value.
+
+
+
+#### :fire_engine:  Deprecated
+- `NelsonMartell\StrictObject::compare()` method. Use `NelsonMartell\Extensions\Objects::compare()` instead.
+- `NelsonMartell\Type::getVars()` method. Use `NelsonMartell\Type::getProperties()` instead.
+
+
+#### :fire: Removed
+- Drop active support for eol PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
+- Remove deprecated classes under `NelsonMartell\Utilities` namespace.
+- Remove `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
+- Remove `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
+
+#### :bug: Fixed
+- Problem in `NelsonMartell\StrictObject::compare()` for some types, move implementation to `NelsonMartell\Extensions\Objects`, make it more generic and split implementation to:
   - :new: `NelsonMartell\Text::compare()`
   - :new: `NelsonMartell\Arrays::compare()`
   - :new: `NelsonMartell\Numbers::compare()`
-- :up: Deprecated `NelsonMartell\StrictObject::compare()`. Use `NelsonMartell\Extensions\Objects::compare()` instead.
-- :new: Add methods to check if a list of objects are of a type:
-  - :new: `NelsonMartell\Type::is()`
-  - :new: `NelsonMartell\Type::isIn()`
-- :new: Method: `NelsonMartell\Type::hasProperty()`.
-- :new: Method: `NelsonMartell\Type::hasGetTraits()`.
-- :new: Method: `NelsonMartell\Type::hasGetInterfaces()`.
-- :up: Signature of methods `NelsonMartell\PropertiesHandler::getPropertyGetter()` and `NelsonMartell\PropertiesHandler::getPropertySetter()`: add `$prefix` and `$useCustom` params.
-- :up: Strict-typed return type of methods of `NelsonMartell\ICustomPrefixedPropertiesContainer`.
-- :up: `NelsonMartell\StrictObject` class is `abstract` now.
-- :new: Added `NelsonMartell\Type::getVars()` method in replacement of `Type::getVars()`, with a :new: `$filters` param.
-- :up: :new: Added `$filters` param to `NelsonMartell\Type::getMethods()` method.
-- :up: Deprecated `NelsonMartell\Type::getVars()` method. Use `Type::getProperties()` method instead.
-- :fire: Removed `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
-- :fire: Removed `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
+
 
 ### :notebook: Development changes
 
@@ -47,7 +73,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :new: Composer command to perform PHP Syntax checks: `composer cs:php`
 - :up: Rename composer commands and add descriptions.
 - :new: `class`: `NelsonMartell\Test\Helpers\ImplementsIConvertibleToString`.
-- :up: Use PHPUnit 7.
+- :arrow_up: :package: Use PHPUnit v7 instead of v5.
 
 
 
