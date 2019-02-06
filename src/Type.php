@@ -140,7 +140,8 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      */
     public function getVars(int $filters = ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED) : array
     {
-        return $this->getProperties($filter);
+        
+        return $this->getProperties($filters);
     }
 
     /**
