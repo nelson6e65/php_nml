@@ -140,7 +140,6 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      */
     public function getVars(int $filters = ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED) : array
     {
-        
         return $this->getProperties($filters);
     }
 
@@ -299,10 +298,8 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
                 $itHas = preg_match($pattern, $this->reflectionObject->getDocComment()) > 0;
             }
 
-            if ($itHas == false && $recursive === true) {
-                /**
-                 * @var ReflectionClass|bool
-                 */
+            if (!$itHas && $recursive) {
+                /** @var ReflectionClass */
                 $parentClass = $this->reflectionObject->getParentClass();
 
                 if ($parentClass != false) {
