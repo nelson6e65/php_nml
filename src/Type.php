@@ -53,7 +53,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
 
         $type = (is_string($obj) && $searchName === true) ? 'object' : gettype($obj);
 
-        $namespace = $name = $shortName = '';
+        $namespace = '';
 
         switch ($type) {
             case 'object':
