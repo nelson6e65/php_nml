@@ -37,8 +37,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 #### :up: Changed
 
-- Remove public getters from classes. Now should be access via property instead.
-- Remove Pascal Case in properties. Properties updated to be camel case only (e.g. use `Version::$major` instead of `Version::$Major`).
+- Remove public access to most of getters methods. Now you should access it via property instead.
+- Remove Pascal Case in properties. Properties updated to be camel case only (e.g. use `$version->major` instead of `$version->Major`).
 - Signature of `NelsonMartell\PropertiesHandler::getPropertyGetter()` and `NelsonMartell\PropertiesHandler::getPropertySetter()` methods: add `$prefix` and `$useCustom` params.
 - Strict-typed return type of methods in `NelsonMartell\ICustomPrefixedPropertiesContainer`.
 - `NelsonMartell\StrictObject` class is **abstract** now.
@@ -73,7 +73,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :new: Composer command to perform PHP Syntax checks: `composer cs:php`
 - :up: Rename composer commands and add descriptions.
 - :new: `class`: `NelsonMartell\Test\Helpers\ImplementsIConvertibleToString`.
-- :arrow_up: :package: Use PHPUnit v7 instead of v5.
+- :arrow_up: :package: PHPUnit 5 -> PHPUnit 7.
 
 
 
