@@ -25,6 +25,7 @@ use InvalidArgumentException;
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.1.1
+ *
  * @property-read int               $major    Obtiene el valor del componente principal del número de versión. Esta
  *   propiedad es de sólo lectura.
  * @property-read int               $minor    Obtiene el valor del componente secundario del número de versión. Esta
@@ -35,8 +36,14 @@ use InvalidArgumentException;
  *   propiedad es de sólo lectura.
  *
  * */
-final class Version extends StrictObject implements IEquatable, IComparable
+final class Version extends StrictObject implements IEquatable, IComparable, IMagicPropertiesContainer
 {
+    /**
+     * The version metadata.
+     *
+     * @var array
+     */
+    private $versionMetaData = [];
 
     /**
      * Crea una nueva instancia con los números principal, secundario, de
@@ -86,10 +93,10 @@ final class Version extends StrictObject implements IEquatable, IComparable
             throw new InvalidArgumentException($msg);
         }
 
-        $this->major    = $major;
-        $this->minor    = $minor;
-        $this->build    = VersionComponent::parse($build);
-        $this->revision = VersionComponent::parse($revision);
+        $build    = VersionComponent::parse($build);
+        $revision = VersionComponent::parse($revision);
+
+        $this->versionMetaData = compact('major', 'minor', 'build', 'revision');
     }
 
     /**
@@ -140,17 +147,15 @@ final class Version extends StrictObject implements IEquatable, IComparable
         $revision = null;
 
         if (count($version) >= 3) {
-            $build = VersionComponent::Parse($version[2]);
+            $build = VersionComponent::parse($version[2]);
 
             if (count($version) == 4) {
-                $revision = VersionComponent::Parse($version[3]);
+                $revision = VersionComponent::parse($version[3]);
             }
         }
 
         return new Version($major, $minor, $build, $revision);
     }
-
-    private $major;
 
     /**
      * Getter for major property.
@@ -160,10 +165,8 @@ final class Version extends StrictObject implements IEquatable, IComparable
      */
     protected function getMajor()
     {
-        return $this->major;
+        return $this->versionMetaData['major'];
     }
-
-    private $minor;
 
     /**
      * Getter for minor property.
@@ -173,10 +176,8 @@ final class Version extends StrictObject implements IEquatable, IComparable
      */
     protected function getMinor()
     {
-        return $this->minor;
+        return $this->versionMetaData['minor'];
     }
-
-    private $build;
 
     /**
      * Getter for build property.
@@ -186,10 +187,8 @@ final class Version extends StrictObject implements IEquatable, IComparable
      */
     protected function getBuild() : VersionComponent
     {
-        return $this->build;
+        return $this->versionMetaData['build'];
     }
-
-    private $revision;
 
     /**
      * Getter for revision property.
@@ -199,7 +198,7 @@ final class Version extends StrictObject implements IEquatable, IComparable
      */
     protected function getRevision() : VersionComponent
     {
-        return $this->revision;
+        return $this->versionMetaData['revision'];
     }
 
 
