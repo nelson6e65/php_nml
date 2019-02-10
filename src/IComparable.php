@@ -41,23 +41,4 @@ interface IComparable
      * @see IComparer::compare()
      * */
     public function compareTo($other);
-
-    /**
-     * Determina la posición relativa del objeto de la izquierda con respecto al de la derecha.
-     * Puede usarse como segundo argumento en la función de ordenamiento de arrays ``usort()``.
-     *
-     * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
-     * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
-     *
-     * @return int|null
-     *   Debe devolver:
-     *   - ``= 0`` si $left se considera equivalente a $right;
-     *   - ``> 0`` si $left se considera mayor a $right;
-     *   - ``< 0`` si $left se considera menor a $right.
-     *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
-     *
-     * @see IComparer
-     * @deprecated 0.6.0 Implement ``NelsonMartell\IComparer`` instead.
-     * */
-    public static function compare($left, $right);
 }

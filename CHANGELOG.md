@@ -56,6 +56,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Remove deprecated classes under `NelsonMartell\Utilities` namespace.
 - Remove `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
 - Remove `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
+- Remove deprecated `NelsonMartell\IComparable::compare()` method. Implement `NelsonMartell\IComparer` instead.
 
 #### :bug: Fixed
 - Problem in `NelsonMartell\StrictObject::compare()` for some types, move implementation to `NelsonMartell\Extensions\Objects`, make it more generic and split implementation to:
