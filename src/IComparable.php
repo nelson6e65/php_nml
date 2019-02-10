@@ -17,7 +17,7 @@
 namespace NelsonMartell;
 
 /**
- * Provee métodos para comparar posición relativa de instancia.
+ * Provides a generalized comparison method useful for sorting objects.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.3.2
@@ -26,17 +26,21 @@ interface IComparable
 {
 
     /**
-     * Determina la posición relativa de esta instancia con respecto al objeto especificado.
+     * Compares the current instance with another object and returns an integer that indicates whether the current
+     * instance precedes, follows, or occurs in the same position in the sort order as the other object.
      *
      *
-     * @param mixed $other Objeto con el cuál se va a comparar posición relativa de esta instancia.
+     * @param mixed $other An object to compare with this instance.
      *
-     * @return int|null
-     *   Debe devolver:
-     *   - ``= 0`` si esta instancia se considera equivalente a $other;
-     *   - ``> 0`` si esta instancia se considera mayor a $other;
-     *   - ``< 0`` si esta instancia se considera menor a $other.
-     *   - ``null`` si esta instancia no se puede comparar a $other.
+     * @return int|null A value that indicates the relative order of the objects being compared. The return value has
+     * these meanings:
+     *
+     * | Value           | Meaning |
+     * |:---:|---|
+     * Less than zero    | This instance precedes `$other` in the sort order.
+     * `0`               | This instance occurs in the same position in the sort order as `$other`.
+     * Greater than zero | This instance follows `$other` in the sort order.
+     * `null`            | Indeterminated. If `$other` can't be compared with this instance.
      *
      * @see IComparer::compare()
      * */
