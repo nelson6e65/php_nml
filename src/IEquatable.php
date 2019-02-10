@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * PHP: Nelson Martell Library file
  *
@@ -17,8 +17,7 @@
 namespace NelsonMartell;
 
 /**
- * Provee un método para comparar igualdad entre objetos del mismo tipo, o
- * compatibles.
+ * Provides a generalized method to compare equality of a class instance with a compatible object.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since 0.1.1
@@ -33,5 +32,5 @@ interface IEquatable
      *
      * @return bool
      * */
-    public function equals($other);
+    public function equals($other) : bool;
 }
