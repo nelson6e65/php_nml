@@ -17,7 +17,7 @@
 namespace NelsonMartell;
 
 /**
- * Provee métodos para comparar posición relativa entre objetos.
+ * Exposes a method that compares two objects
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @see IComparable
@@ -26,19 +26,24 @@ namespace NelsonMartell;
 interface IComparer
 {
     /**
-     * Compara dos objetos y devuelve un valor que indica si uno es menor, igual o mayor que el otro.
+     * Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the
+     * other.
      *
-     * Puede usarse como segundo argumento en la función de ordenamiento de arrays ``usort()``.
+     * Can be used as 2nd parameter of `usort()` function.
      *
-     * @param mixed $left  Objeto al que se le va a determinar la posición relativa.
-     * @param mixed $right Objeto con el cuál se va a comparar posición relativa del de la izquierda.
+     * @param mixed $left  Object to which the relative position will be determined.
+     * @param mixed $right The second object to compare.
      *
-     * @return int|null
-     *   Debe devolver:
-     *   - ``= 0`` si $left se considera equivalente a $right;
-     *   - ``> 0`` si $left se considera mayor a $right;
-     *   - ``< 0`` si $left se considera menor a $right.
-     *   - ``null`` si no se pueden comparar entre sí. (Al usar ``usort()`` se considerarán equivalentes)
+     * @return int|null A value that indicates the relative order of the objects being compared. The return value has
+     * these meanings:
+     *
+     * | Value           | Meaning |
+     * |:---:|---|
+     * Less than zero    | This `$left` precedes `$right` in the sort order.
+     * `0`               | `$left` occurs in the same position in the sort order as `$right`.
+     * Greater than zero | This instance follows `$other` in the sort order.
+     * `null`            | Indeterminated. If `$left` and `$right` can't be compared to each other.
+     *
      * @see \usort()
      * @see IComparable::compareTo()
      * */
