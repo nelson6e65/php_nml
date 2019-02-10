@@ -16,8 +16,9 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
-use TypeError;
 use InvalidArgumentException;
+use stdClass;
+use TypeError;
 
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
@@ -129,7 +130,7 @@ trait VersionTestProvider
     public function IComparableCompareToMethodArgumentsProvider()
     {
         $v             = new Version(1, 0, 9);
-        $obj           = new \stdClass();
+        $obj           = new stdClass();
         $obj->major    = 1;
         $obj->minor    = 0;
         $obj->build    = 9;
@@ -151,6 +152,7 @@ trait VersionTestProvider
             'Version < string parseable'        => [-1, Version::parse('1.1.0'), '2.0'],
             'Version > string not parseable'    => [1, Version::parse('1.1.0'), 'invalid string'],
             'integer|Version'                   => [1, $v, 9976645645656],
+            'Version > null'                    => [1, Version::parse('1.1.0'), null],
         ];
 
         return $args;

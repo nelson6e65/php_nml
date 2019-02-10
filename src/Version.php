@@ -287,12 +287,11 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
     /**
      * Indicates whether the specified object is equal to the current instance.
      *
-     * @param Version $other El otro objeto a comparar.
+     * @param Version|mixed $other The other object to compare with.
      *
-     * @return bool `true` si $other es igual esta instancia; caso contrario,
-     *   `false`.
+     * @return bool
      * */
-    public function equals($other)
+    public function equals($other) : bool
     {
         if ($other instanceof Version) {
             if ($this->major == $other->major && $this->minor == $other->minor) {
@@ -313,16 +312,13 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
     /**
      * Determina la posición relativa de esta instancia con respecto al objeto especificado.
      *
-     * For types different than ``Version``:
-     * - ``integer`` and ``null`` are always < 0;
-     * - ``string`` and ``array`` are parsed and then evaluated (if is not parseable, always > 0);
-     * - other types are always > 0
+     * For types different than `Version` (`null`, unparseable `string` and other value types) are considered lower
+     * than `Version`.
      *
-     * @param Version|int|string|mixed $other
-     *   The other object to compare with.
+     * @param Version|string|mixed $other The other object to compare with. If this is of type `string`, it will
+     *   try to convert to a `Version` object before the comparation.
      *
      * @return int|null
-     *   Returns:
      *   - ``= 0`` if this instance is considered equivalent to $other;
      *   - ``> 0`` si esta instancia se considera mayor a $other;
      *   - ``< 0`` si esta instancia se considera menor a $other.
@@ -333,19 +329,25 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
     {
         $r = $this->equals($other) ? 0 : 9999;
 
-        if (!($other instanceof Version)) {
-            switch (typeof($other)->toString()) {
-                case 'integer':
-                case 'float':
-                case 'double':
-                case 'null':
-                case 'NULL':
-                    $r = 1; // Siempre es mayor a cualquier número o null
-                    break;
+        if ($r !== 0) {
+            if ($other instanceof Version) {
+                $r = $this->major - $other->major;
 
-                case 'string':
-                case 'array':
-                    // Se tratan de convertir las cadenas y arrays
+                if ($r === 0) {
+                    $r = $this->minor - $other->minor;
+
+                    if ($r === 0) {
+                        $r = $this->build->compareTo($other->build);
+
+                        if ($r === 0) {
+                            $r = $this->revision->compareTo($other->revision);
+                        }
+                    }
+                }
+            } elseif (typeof($other)->isValueType() || $other === null) {
+                $r = 1;
+
+                if (typeof($other)->name === 'string' || typeof($other)->name === 'array') {
                     try {
                         $tmp = Version::parse($other);
                         $r   = $this->compareTo($tmp);
@@ -353,29 +355,10 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
                         // Siempre es mayor a strings o arrays que no se puedan convertir
                         $r = 1;
                     }
-                    break;
-
-                default:
-                    // No se puede determinar comparando a otros objetos.
-                    $r = null;
-            }
-
-            return $r;
-        }
-
-        if ($r !== 0) {
-            $r = $this->major - $other->major;
-
-            if ($r === 0) {
-                $r = $this->minor - $other->minor;
-
-                if ($r === 0) {
-                    $r = $this->build->compareTo($other->build);
-
-                    if ($r === 0) {
-                        $r = $this->revision->compareTo($other->revision);
-                    }
                 }
+            } else {
+                // No se puede determinar comparando a otros objetos.
+                $r = null;
             }
         }
 
