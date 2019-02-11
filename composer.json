@@ -48,7 +48,7 @@
 	"scripts": {
 		"check:all": [
 			"@cs:php",
-			"@unit:test",
+			"@test",
 			"@cs:lint"
 		],
 		"cs:php": [
@@ -60,13 +60,13 @@
 		"cs:fix": [
 			"phpcbf src/ tests/ config/ autoload.php -p"
 		],
-		"unit:test": [
+		"test": [
 			"phpunit --color=always"
 		],
-		"unit:coverage": [
+		"test:coverage": [
 			"phpunit --color=always --coverage-clover=\"output/code-coverage/clover.xml\""
 		],
-		"unit:coverage-html": [
+		"test:coverage-html": [
 			"phpunit --color=always --coverage-html=\"output/code-coverage\""
 		],
 		"build:api-docs": [
@@ -78,9 +78,9 @@
 		"cs:php": "Runs PHP syntax checks (PHP: Code Sniffer).",
 		"cs:lint": "Runs coding standards linting (PHP: Code Sniffer).",
 		"cs:fix": "Runs coding standards auto-fixes (PHP: Code Sniffer).",
-		"unit:test": "Runs unit-testing with PHPUnit.",
-		"unit:coverage": "Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.",
-		"unit:coverage-html": "Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.",
+		"test": "Runs unit-testing with PHPUnit.",
+		"test:coverage": "Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.",
+		"test:coverage-html": "Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.",
 		"build:api-docs": "Builds API documentation in VuePress sources format to `docs/api/` directory using phpDocumentor."
     },
 	"extra": {

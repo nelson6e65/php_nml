@@ -44,11 +44,11 @@ The `composer list` exposes this project commands:
 
 - **`composer cs:fix`**: Runs coding standards auto-fixes (PHP: Code Sniffer).
 
-- **`composer unit:test`**: Runs unit-testing with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer unit:test -- --verbose`.
+- **`composer test`**: Runs unit-testing with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test -- --verbose`.
 
-- **`composer unit:coverage`**: Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.
+- **`composer test:coverage`**: Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.
 
-- **`composer unit:coverage-html`**: Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.
+- **`composer test:coverage-html`**: Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.
 
 - **`build:api-docs`**: Generates API documentation in VuePress sources format to `docs/api/` directory using `phpDocumentor`. `phpdoc` must be installed.
 
