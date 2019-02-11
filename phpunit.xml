@@ -14,9 +14,9 @@
 
     <groups>
         <exclude>
-            <group>PHP examples</group>
-            <group>Features to be implemented</group>
-            <group>Proposals</group>
+            <group>examples</group>
+            <group>wip</group>
+            <group>proposals</group>
         </exclude>
     </groups>
 
