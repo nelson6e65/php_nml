@@ -20,8 +20,10 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
-            <file>vendor/cakephp/utility/Text.php</file>
-            <file>config/bootstrap.php</file>
+
+            <exclude>
+                <file>src/constants.php</file>
+            </exclude>
         </whitelist>
     </filter>
 
