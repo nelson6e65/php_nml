@@ -46,6 +46,8 @@ The `composer list` exposes this project commands:
 
 - **`composer test`**: Runs unit-testing with PHPUnit. You can pass more phpunit args with `-- <arg>`. For example: `composer test -- --verbose`.
 
+- **`composer test:wip`**: Runs Work In Progress tests with PHPUnit (marked with `@group wip`).
+
 - **`composer test:coverage`**: Runs PHPUnit tests and builds the code coverage report (as XML clover format) in `output/code-coverage/clover.xml`.
 
 - **`composer test:coverage-html`**: Runs PHPUnit tests and builds the code coverage report (as HTML) in `output/code-coverage/` directory.
