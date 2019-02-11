@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="vendor/autoload.php" colors="true" beStrictAboutTestsThatDoNotTestAnything="true">
     <testsuites>
-        <testsuite name="PHP: Nelson Martell Library Tests Suite">
+        <testsuite name="Core">
             <file>tests/TestCase/Extensions/TextTest.php</file>
             <file>tests/TestCase/TypeTest.php</file>
             <file>tests/TestCase/StrictObjectTest.php</file>
+        </testsuite>
+
+        <testsuite name="Unit">
             <directory>tests/TestCase</directory>
         </testsuite>
     </testsuites>
