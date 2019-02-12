@@ -16,11 +16,12 @@
 
 namespace NelsonMartell\Test\TestCase;
 
+use InvalidArgumentException;
+
 use NelsonMartell\Extensions\Text;
+use NelsonMartell\Version;
 
 use NelsonMartell\Test\DataProviders\VersionTestProvider;
-
-use NelsonMartell\Version;
 
 use PHPUnit\Framework\TestCase;
 
@@ -42,22 +43,42 @@ class VersionTest extends TestCase
 
     /**
      * @depends NelsonMartell\Test\TestCase\VersionComponentTest::testParseMethod
+     * @dataProvider parseableStringsProvider
+     * @dataProvider parseableArraysProvider
+     * @covers ::parse
+     *
+     * @param string|array $value
      */
-    public function testPerformsConversionFromString()
+    public function testPerformsConversionFromParseableStringAndArrays($value) : void
     {
-        // Test for array ['invalid', 'array']
-        $this->markTestIncomplete(
-            'Tests for "'.Version::class.'::parse'.'" has not been completed yet.'
-        );
+        $version = Version::parse($value);
+
+        $this->addToAssertionCount(1);
+    }
+
+    /**
+     * @depends testPerformsConversionFromParseableStringAndArrays
+     * @dataProvider nonParseableValuesProvider
+     * @covers ::parse
+     *
+     * @param mixed $value
+     */
+    public function testThrowsExceptionOnParsinInvalidValue($value) : void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $version = Version::parse($value);
     }
 
 
     /**
      * @testdox Can check if Version instance is valid
+     * @depends testPerformsConversionFromParseableStringAndArrays
      * @dataProvider isValidProvider
+     * @covers ::isValid
      *
-     * @param  bool    $expected [description]
-     * @param  Version $version  [description]
+     * @param  bool    $expected
+     * @param  Version $version
      */
     public function testIsValid(bool $expected, Version $version) : void
     {

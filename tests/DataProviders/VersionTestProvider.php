@@ -244,6 +244,7 @@ trait VersionTestProvider
             '4.0.2.0',
             '5.0.0.3-beta',
             '6.0.0-alpha',
+            NML_VERSION,
         ],
         'invalid' => [
             '0.0',
@@ -270,6 +271,58 @@ trait VersionTestProvider
         }
 
         return $args;
+    }
+
+
+    public function parseableStringsProvider() : array
+    {
+        $strings = [
+            NML_VERSION,
+            '1.0',
+            '0.2',
+            '2.3.2-3-g726351',
+            '2.3.2.3-2-g726352',
+            '3.0.1',
+            '4.0.2.0',
+            '5.0.0.3-beta',
+            '6.0.0-alpha',
+
+            // Invalid?
+            '0.0',
+            '1.0..1',
+            '2.0.0-alpha.0',
+            '2.3.2-3-g726353.3',
+            '2.3.2-3-g726356.1-2-gyt4f4',
+            '3.0.1-alpha.1',
+            '4.0.0-alpha.0-beta',
+            '5.0.1-alpha.2-beta',
+        ];
+
+        $r = [];
+
+        foreach ($strings as $str) {
+            $r[$str] = [$str];
+        }
+
+        return $r;
+    }
+
+    public function parseableArraysProvider() : array
+    {
+        return [
+            'minimum version'   => [[1, 0]],
+            'build version'     => [[1, 1, 2]],
+            'revision version'  => [[1, 0, '0-beta', 3]],
+        ];
+    }
+
+    public function nonParseableValuesProvider()
+    {
+        return [
+            'empty string'              => [''],
+            'empty array'               => [[]],
+            'array with only 1 element' => [[1]],
+        ];
     }
 
     public function toStringProvider()
