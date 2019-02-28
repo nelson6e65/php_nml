@@ -848,6 +848,11 @@
   dependencies:
     lodash.throttle "^4.1.1"
 
+"@vuepress/plugin-clean-urls@^1.0.0-alpha.40":
+  version "1.0.0-alpha.40"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-clean-urls/-/plugin-clean-urls-1.0.0-alpha.40.tgz#f26a99233a990aba33ce65d12008f21cf2d2d52d"
+  integrity sha512-KIn774jtcGVcE0YK1iS56jtI4d1lzI7kmRAP8NWlrQRNosm+XuMX7aqoCW+7DEgDqFaJFwPCXnSsKlwLPlZK1w==
+
 "@vuepress/plugin-google-analytics@^1.0.0-alpha.36":
   version "1.0.0-alpha.40"
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-google-analytics/-/plugin-google-analytics-1.0.0-alpha.40.tgz#0a797b1bf327ff51a395fcedfc76d2a8ca10e1ba"
