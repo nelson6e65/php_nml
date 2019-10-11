@@ -52,7 +52,7 @@ class MethodExtension
     }
 
     /**
-     * Ensures that the property is defined in the specified class.
+     * Ensures the method is defined in the specified class.
      *
      * @param string $method
      * @param string $class
