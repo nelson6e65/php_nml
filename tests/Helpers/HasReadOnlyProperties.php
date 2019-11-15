@@ -18,8 +18,6 @@ namespace NelsonMartell\Test\Helpers;
 
 use BadMethodCallException;
 
-use Cake\Utility\Inflector;
-
 use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\IStrictPropertiesContainer;
@@ -75,7 +73,7 @@ trait HasReadOnlyProperties
         $exporter = new Exporter();
 
         $var = get_class($obj);
-        $var = Inflector::variable(substr(
+        $var = Text::variable(substr(
             $var,
             strrpos($var, '\\') === false ? 0 : strrpos($var, '\\') + 1
         ));

@@ -16,8 +16,6 @@
 
 namespace NelsonMartell\Test\Helpers;
 
-use Cake\Utility\Inflector;
-
 use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\IStrictPropertiesContainer;
@@ -59,7 +57,7 @@ trait HasReadWriteProperties
         $exporter = new Exporter();
 
         $var = get_class($obj);
-        $var = Inflector::variable(substr(
+        $var = Text::variable(substr(
             $var,
             strrpos($var, '\\') === false ? 0 : strrpos($var, '\\') + 1
         ));
