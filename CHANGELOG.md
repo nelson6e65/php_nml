@@ -33,6 +33,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   - `NelsonMartell\Type::is()`
   - `NelsonMartell\Type::isIn()`   
   - `NelsonMartell\Extensions\Objects::compare()`, in replacement for `NelsonMartell\StrictObject::compare()`.
+  - `NelsonMartell\Utilities\Text::camelize()` (from  `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::delimit()` (from  `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::humanize()` (from  `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::underscore()` (from  `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::variable()` (from  `Cake\Utility\Inflector`).
 
 
 #### :up: Changed
@@ -57,6 +62,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Remove `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
 - Remove `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
 - Remove deprecated `NelsonMartell\IComparable::compare()` method. Implement `NelsonMartell\IComparer` instead.
+- Remove `cakephp/utily` dependency. `NelsonMartell\Utilities\Text` implements a copy of used methods from `Cake\Utility\Text` (some basic methods from  `Cake\Utility\Inflector` were placed in `NelsonMartell\Utilities\Text` class).
 
 #### :bug: Fixed
 - Problem in `NelsonMartell\StrictObject::compare()` for some types, move implementation to `NelsonMartell\Extensions\Objects`, make it more generic and split implementation to:
