@@ -9,6 +9,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      
+    - name: Setup PHP environment
+      uses: nanasess/setup-php@v3.0.4
+      with:
+        php-version: '7.3'
 
     - name: Validate composer.json and composer.lock
       run: composer validate
