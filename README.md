@@ -14,6 +14,7 @@
 
 [![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
 [![Documentation](http://img.shields.io/badge/📜-Documentation-lightgrey.svg)](http://nelson6e65.github.io/php_nml)
+[![Wakatime](https://wakatime.com/badge/github/nelson6e65/php_nml.svg)](https://wakatime.com/badge/github/nelson6e65/php_nml)
 
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
