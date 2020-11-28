@@ -112,7 +112,6 @@ trait IComparableTester
      */
     public function testIsCompliantWithIComparableIterface()
     {
-        /** @var TestCase $this */
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
             $this->getTargetClassName(),
@@ -121,6 +120,7 @@ trait IComparableTester
 
         $classReflection = new ReflectionClass($this->getTargetClassName());
 
+        /** @var TestCase $this */
         $this->assertContains(IComparable::class, $classReflection->getInterfaceNames(), $message);
     }
 }

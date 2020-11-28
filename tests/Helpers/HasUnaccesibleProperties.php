@@ -19,6 +19,7 @@ namespace NelsonMartell\Test\Helpers;
 use BadMethodCallException;
 
 use NelsonMartell\IStrictPropertiesContainer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Split of ImplementsIStrictPropertiesContainer, for classes implementing any read-only property

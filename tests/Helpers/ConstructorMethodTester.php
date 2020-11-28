@@ -88,8 +88,9 @@ trait ConstructorMethodTester
      */
     public function testConstructor(...$args) : void
     {
-        /** @var TestCase $this */
         $this->getTargetClassInstance(...$args);
+
+        /** @var TestCase $this */
         $this->assertTrue(true);
     }
 
@@ -109,6 +110,7 @@ trait ConstructorMethodTester
 
         $this->expectException($exception);
 
+        /** @var self $this */
         $this->getTargetClassInstance(...$args);
     }
 

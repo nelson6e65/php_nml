@@ -78,7 +78,6 @@ trait IComparerTester
      */
     public function testCompareMethod($expected, $left, $right) : void
     {
-        /** @var TestCase $this */
         $class  = $this->getTargetClassName();
         $actual = $class::compare($left, $right);
 
@@ -93,6 +92,7 @@ trait IComparerTester
             ]
         );
 
+        /** @var TestCase $this */
         if ($expected === 0) {
             $this->assertIsInt($actual, $message);
             $this->assertEquals(0, $actual, $message);
@@ -124,7 +124,6 @@ trait IComparerTester
      */
     public function testCanUseCompareMethodInArraySorting(array $expected) : void
     {
-        /** @var TestCase $this */
         $actual = $expected;
 
         @shuffle($actual);
@@ -140,6 +139,7 @@ trait IComparerTester
 
         @usort($actual, [$this->getTargetClassName(), 'compare']);
 
+        /** @var TestCase $this */
         $this->assertEquals($expected, $actual, $message);
     }
 
@@ -149,15 +149,17 @@ trait IComparerTester
      */
     public function testIsCompliantWithIComparerIterface() : void
     {
-        /** @var TestCase $this */
+        $className = $this->getTargetClassName();
+
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
-            $this->getTargetClassName(),
+            $className,
             IComparer::class
         );
 
-        $reflectionClass = new ReflectionClass($this->getTargetClassName());
+        $reflectionClass = new ReflectionClass($className);
 
+        /** @var TestCase $this */
         $this->assertContains(IComparer::class, $reflectionClass->getInterfaceNames(), $message);
     }
 }

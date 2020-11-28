@@ -48,12 +48,13 @@ trait ImplementsIConvertibleToString
      */
     public function testImplementsIConvertibleToString() : void
     {
-        /** @var TestCase $this */
-        $class = new ReflectionClass($this->getTargetClassName());
+        $className = $this->getTargetClassName();
+        $class     = new ReflectionClass($className);
 
+        /** @var TestCase $this */
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
-            $this->getTargetClassName(),
+            $className,
             IConvertibleToString::class
         );
 

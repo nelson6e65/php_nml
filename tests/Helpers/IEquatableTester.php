@@ -105,15 +105,17 @@ trait IEquatableTester
      */
     public function testIsCompliantWithIEquatableIterface()
     {
-        /** @var TestCase $this */
+        $className = $this->getTargetClassName();
+
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
-            $this->getTargetClassName(),
+            $className,
             IEquatable::class
         );
 
-        $reflectionClass = new ReflectionClass($this->getTargetClassName());
+        $reflectionClass = new ReflectionClass($className);
 
+        /** @var TestCase $this */
         $this->assertContains(IEquatable::class, $reflectionClass->getInterfaceNames(), $message);
     }
 }

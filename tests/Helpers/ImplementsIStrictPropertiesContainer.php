@@ -52,9 +52,10 @@ trait ImplementsIStrictPropertiesContainer
      */
     public function testImplementsIStrictPropertiesContainerInterface() : void
     {
-        /** @var TestCase $this */
-        $class = new ReflectionClass($this->getTargetClassName());
+        $className = $this->getTargetClassName();
+        $class     = new ReflectionClass($className);
 
+        /** @var TestCase $this */
         if ($class->isTrait()) {
             $this->assertTrue(true);
             return;
@@ -62,7 +63,7 @@ trait ImplementsIStrictPropertiesContainer
 
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
-            $this->getTargetClassName(),
+            $className,
             IStrictPropertiesContainer::class
         );
 
