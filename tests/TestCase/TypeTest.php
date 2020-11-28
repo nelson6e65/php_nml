@@ -44,7 +44,7 @@ class TypeTest extends TestCase
      */
     public $exporter = null;
 
-    public function setUp()
+    public function setUp():void
     {
         $this->exporter = new Exporter();
     }
