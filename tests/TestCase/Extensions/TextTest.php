@@ -58,11 +58,12 @@ class TextTest extends TestCase
 
 
     /**
-     * @expectedException InvalidArgumentException
      * @dataProvider nonStringObjectsProvider
      */
     public function testDoNotPerformsFormatWithPlaceholdersValuesNotConvertiblesToString($obj)
     {
+        $this->expectException(InvalidArgumentException::class);
+
         Text::format('{0}: {1}', InvalidArgumentException::class, $obj);
     }
 

@@ -96,7 +96,6 @@ trait HasReadOnlyProperties
     /**
      * @depends testImplementsIStrictPropertiesContainerInterface
      * @dataProvider readonlyPropertiesProvider
-     * @expectedException \BadMethodCallException
      *
      * @param IStrictPropertiesContainer|null   $obj
      * @param string|null                       $property
@@ -107,6 +106,9 @@ trait HasReadOnlyProperties
         string $property = null,
         $value = null
     ) : void {
+        /** @var TestCase $this */
+        $this->expectException(BadMethodCallException::class);
+
         $obj->$property = $value;
     }
 }

@@ -17,6 +17,7 @@
 namespace NelsonMartell\Test\Helpers;
 
 use ReflectionClass;
+use BadMethodCallException;
 
 use NelsonMartell\Extensions\Text;
 
@@ -75,12 +76,14 @@ trait ImplementsIStrictPropertiesContainer
     /**
      * @depends testImplementsIStrictPropertiesContainerInterface
      * @dataProvider objectInstanceProvider
-     * @expectedException \BadMethodCallException
      *
      * @param IStrictPropertiesContainer $obj
      */
     public function testIsUnableToCreateDirectAttributesOutsideOfClassDefinition(IStrictPropertiesContainer $obj)
     {
+        /** @var TestCase $this */
+        $this->expectException(BadMethodCallException::class);
+
         $obj->thisPropertyNameIsMaybeImposibleThatExistsInClassToBeUsedAsNameOfPropertyOfAnyClassGiven = 'No way';
     }
 }

@@ -77,6 +77,7 @@ trait ImplementsIConvertibleToString
      */
     public function testPerformsConversionToString(string $expected, IConvertibleToString $obj): void
     {
+        /** @var TestCase $this */
         $this->assertSame($expected, $obj->toString(), 'Failed explicit conversion to string');
 
         $this->assertSame($expected, $obj.'', 'Failed implicit conversion to string');

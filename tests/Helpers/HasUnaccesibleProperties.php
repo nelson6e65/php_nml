@@ -16,6 +16,8 @@
 
 namespace NelsonMartell\Test\Helpers;
 
+use BadMethodCallException;
+
 use NelsonMartell\IStrictPropertiesContainer;
 
 /**
@@ -34,7 +36,6 @@ trait HasUnaccesibleProperties
 
     /**
      * @dataProvider unaccesiblePropertiesProvider
-     * @expectedException \BadMethodCallException
      *
      * @param IStrictPropertiesContainer $obj
      * @param string                     $property
@@ -45,6 +46,8 @@ trait HasUnaccesibleProperties
         string $property,
         $value = null
     ) : void {
+        /** @var TestCase $this */
+        $this->expectException(BadMethodCallException::class);
 
         if ($value === null) {
             // Getter exception

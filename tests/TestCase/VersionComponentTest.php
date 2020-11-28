@@ -16,6 +16,8 @@
 
 namespace NelsonMartell\Test\TestCase;
 
+use InvalidArgumentException;
+
 use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
@@ -68,12 +70,13 @@ class VersionComponentTest extends TestCase
      * @testdox Informs if error occurs on parsing incompatible objects
      * @covers ::parse
      * @dataProvider badVersionComponentParseMethodArgumentsProvider
-     * @expectedException \InvalidArgumentException
      *
      * @param mixed $obj
      */
     public function testParseMethodWithInvalidArguments($obj)
     {
+        /** @var TestCase $this */
+        $this->expectException(InvalidArgumentException::class);
         $actual = VersionComponent::parse($obj);
     }
 
