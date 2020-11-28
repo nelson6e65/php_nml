@@ -289,6 +289,7 @@ trait PropertiesHandler
             if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard setter, check if custom available
                 // `false` to stop recursion
+                // @phpstan-ignore-next-line
                 return static::getPropertySetter($name, static::getCustomSetterPrefix(), false);
             } else {
                 $msg = msg(
@@ -329,7 +330,7 @@ trait PropertiesHandler
         } catch (InvalidArgumentException $error) {
             if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard getter, check if custom available
-
+                // @phpstan-ignore-next-line
                 return static::getPropertyGetter($name, static::getCustomGetterPrefix(), false);
             } else {
                 $msg = msg(
