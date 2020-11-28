@@ -11,7 +11,6 @@ In order to install, use and update this package you will need:
 If you don't like/want to use Composer package manager, see [**Alternative installation methods**](https://github.com/nelson6e65/php_nml/wiki/Alternative-installation-methods).
 :::
 
-
 ## Installing
 
 ::: warning
@@ -31,7 +30,6 @@ composer require nelson6e65/php_nml
 Remember to add your `vendor` directory in your `.gitignore` file ([Why?](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
 :::
 
-
 ### Configuring the autoloading
 
 If not already done, configure your app to autoload classes with Composer by including its autoloader (`vendor/autoload.php`) in your `config.php`, `bootstrap.php` or whatever file that performs your initialization. In most of modern PHP frameworks this is made automatically.
@@ -39,7 +37,6 @@ If not already done, configure your app to autoload classes with Composer by inc
 ::: tip Done!
 You are able to use NML classes now!
 :::
-
 
 ## Using
 

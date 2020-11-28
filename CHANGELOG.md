@@ -1,28 +1,26 @@
 # CHANGELOG
 
-Release notes for *PHP: Nelson Martell Library*.
+Release notes for _PHP: Nelson Martell Library_.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 
 ## [Unreleased] (WIP)
 
 ### :star: Important changes
 
-
 #### :new: Added
 
 - Classes:
+
   - `NelsonMartell\Extensions\Arrays`.
   - `NelsonMartell\Extensions\MethodExtension`.
   - `NelsonMartell\Extensions\Numbers`.
   - `NelsonMartell\Extensions\Objects`.
   - `NelsonMartell\Extensions\PropertyExtension`.
 
-
 - Interfaces:
-  - `IMagicPropertiesContainer`.
 
+  - `IMagicPropertiesContainer`.
 
 - Methods:
   - `NelsonMartell\Text::compare()`
@@ -31,14 +29,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   - `NelsonMartell\Type::hasGetTraits()`.
   - `NelsonMartell\Type::hasProperty()`.
   - `NelsonMartell\Type::is()`
-  - `NelsonMartell\Type::isIn()`   
+  - `NelsonMartell\Type::isIn()`
   - `NelsonMartell\Extensions\Objects::compare()`, in replacement for `NelsonMartell\StrictObject::compare()`.
-  - `NelsonMartell\Utilities\Text::camelize()` (from  `Cake\Utility\Inflector`).
-  - `NelsonMartell\Utilities\Text::delimit()` (from  `Cake\Utility\Inflector`).
-  - `NelsonMartell\Utilities\Text::humanize()` (from  `Cake\Utility\Inflector`).
-  - `NelsonMartell\Utilities\Text::underscore()` (from  `Cake\Utility\Inflector`).
-  - `NelsonMartell\Utilities\Text::variable()` (from  `Cake\Utility\Inflector`).
-
+  - `NelsonMartell\Utilities\Text::camelize()` (from `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::delimit()` (from `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::humanize()` (from `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::underscore()` (from `Cake\Utility\Inflector`).
+  - `NelsonMartell\Utilities\Text::variable()` (from `Cake\Utility\Inflector`).
 
 #### :up: Changed
 
@@ -49,27 +46,26 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `NelsonMartell\StrictObject` class is **abstract** now.
 - Signature of `NelsonMartell\Type::getMethods()` method: :new: `$filters` parameter with a default value.
 
+#### :fire_engine: Deprecated
 
-
-#### :fire_engine:  Deprecated
 - `NelsonMartell\StrictObject::compare()` method. Use `NelsonMartell\Extensions\Objects::compare()` instead.
 - `NelsonMartell\Type::getVars()` method. Use `NelsonMartell\Type::getProperties()` instead.
 
-
 #### :fire: Removed
+
 - Drop active support for eol PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
 - Remove deprecated classes under `NelsonMartell\Utilities` namespace.
 - Remove `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
 - Remove `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
 - Remove deprecated `NelsonMartell\IComparable::compare()` method. Implement `NelsonMartell\IComparer` instead.
-- Remove `cakephp/utily` dependency. `NelsonMartell\Utilities\Text` implements a copy of used methods from `Cake\Utility\Text` (some basic methods from  `Cake\Utility\Inflector` were placed in `NelsonMartell\Utilities\Text` class).
+- Remove `cakephp/utily` dependency. `NelsonMartell\Utilities\Text` implements a copy of used methods from `Cake\Utility\Text` (some basic methods from `Cake\Utility\Inflector` were placed in `NelsonMartell\Utilities\Text` class).
 
 #### :bug: Fixed
+
 - Problem in `NelsonMartell\StrictObject::compare()` for some types, move implementation to `NelsonMartell\Extensions\Objects`, make it more generic and split implementation to:
   - :new: `NelsonMartell\Text::compare()`
   - :new: `NelsonMartell\Arrays::compare()`
   - :new: `NelsonMartell\Numbers::compare()`
-
 
 ### :notebook: Development changes
 
@@ -82,13 +78,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :new: `class`: `NelsonMartell\Test\Helpers\ImplementsIConvertibleToString`.
 - :arrow_up: :package: PHPUnit 5 -> PHPUnit 7.
 
-
-
 ### :bookmark: More changes
 
 See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...master?w=1) for more detailed info.
-
-
 
 ### [v0.7.2] - 2019-01-05
 
@@ -98,12 +90,9 @@ See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1.
 
 #### :notebook: Development changes
 
-
 #### More changes
 
 See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...v0.7.2?w=1) for more detailed info.
-
-
 
 ## [v0.7.1] - 2018-12-23
 
@@ -120,8 +109,6 @@ See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1.
 ### :bookmark: More changes
 
 See [changes since v0.7.0](https://github.com/nelson6e65/php_nml/compare/v0.7.0...v0.7.1?w=1) for more detailed info.
-
-
 
 ## [v0.7.0] - 2017-12-04
 
@@ -163,7 +150,6 @@ There are some improvements for development:
 
 See [changes since v0.6.1](https://github.com/nelson6e65/php_nml/compare/v0.6.1...v0.7.0?w=1) for more detailed info.
 
-
 ## [v0.6.1] - 2017-05-01
 
 - Minor improvements in sources and documentation info.
@@ -177,53 +163,52 @@ See [changes since v0.6.1](https://github.com/nelson6e65/php_nml/compare/v0.6.1.
 
 See [changes since v0.6.0](https://github.com/nelson6e65/php_nml/compare/v0.6.0...v0.6.1) for more detailed info.
 
-
 ## [v0.6.0] - 2016-10-06
 
 ### Installation changes
+
 - :fire: Removed dependencies copy. Now you must install dependencies manually if not using `composer`.
 
 ### Public API changes
-- :bug: Fixed issue (possible bug) in properties with custom prefix. Now, it must be implemented ``ICustomPrefixedPropertiesContainer`` in order to use custom getter/setter prefixes (in addition to `get`/`set` defaults).
-  - :new: Interface: ``ICustomPrefixedPropertiesContainer``. Enables the use of custom properties getter/setter's prefixes.
-  - :fire: Removed ``PropertiesHandler::$getterPrefix`` and ``PropertiesHandler::$setterPrefix`` static attributes (functionality replaced by ``ICustomPrefixedPropertiesContainer`` methods).
-  - :up: Methods of ``PropertiesHandler`` trait are now ``protected`` (instead of ``private``) and rewritten to work in a ``static`` context (instead of object context).
-- :bug: Fixed possible errors in ``Extensions\String::format`` if placeholder values are ``stdClass`` or warnings if value is not convertible to string (this is a weakness in ``usort`` usage in ``\Cake\Utility\Text\insert``). ``Extensions\String::format`` now throws a catchable ``\InvalidArgumentException`` if value of placeholder can't be convertible to string to avoid this :bug:.
-- :new: Interface: ``IPropertiesContainer``.
-- :new: Interface: ``IComparer``. Split from ``IComparable`` to use only ``compare`` method. ``Object`` class already implements ``IComparer``.
-- :up: Deprecate ``IComparable::compare`` method, to be replaced by ``IComparer::compare``.
-- :up: ``IComparable::compareTo`` implementations are now able to return ``null`` if objects can't be compared.
-- :bug: :up: Improve ``Object::compare`` method to compare different types.
-- :new: Created *namespaced global functions* under `NelsonMartell` and deprecated the global ones (`typeof(mixed $obj)` and other internal functions) to be removed in the next ``v0.7.0`` or ``v0.8.0`` release (see [issue #17](https://github.com/nelson6e65/php_nml/issues/17)).
+
+- :bug: Fixed issue (possible bug) in properties with custom prefix. Now, it must be implemented `ICustomPrefixedPropertiesContainer` in order to use custom getter/setter prefixes (in addition to `get`/`set` defaults).
+  - :new: Interface: `ICustomPrefixedPropertiesContainer`. Enables the use of custom properties getter/setter's prefixes.
+  - :fire: Removed `PropertiesHandler::$getterPrefix` and `PropertiesHandler::$setterPrefix` static attributes (functionality replaced by `ICustomPrefixedPropertiesContainer` methods).
+  - :up: Methods of `PropertiesHandler` trait are now `protected` (instead of `private`) and rewritten to work in a `static` context (instead of object context).
+- :bug: Fixed possible errors in `Extensions\String::format` if placeholder values are `stdClass` or warnings if value is not convertible to string (this is a weakness in `usort` usage in `\Cake\Utility\Text\insert`). `Extensions\String::format` now throws a catchable `\InvalidArgumentException` if value of placeholder can't be convertible to string to avoid this :bug:.
+- :new: Interface: `IPropertiesContainer`.
+- :new: Interface: `IComparer`. Split from `IComparable` to use only `compare` method. `Object` class already implements `IComparer`.
+- :up: Deprecate `IComparable::compare` method, to be replaced by `IComparer::compare`.
+- :up: `IComparable::compareTo` implementations are now able to return `null` if objects can't be compared.
+- :bug: :up: Improve `Object::compare` method to compare different types.
+- :new: Created _namespaced global functions_ under `NelsonMartell` and deprecated the global ones (`typeof(mixed $obj)` and other internal functions) to be removed in the next `v0.7.0` or `v0.8.0` release (see [issue #17](https://github.com/nelson6e65/php_nml/issues/17)).
 - :memo: Improved and updated API documentation.
 - :up: Other minor improvements and fixes.
 
-> Classes/interfaces/traits names in this description are under ``NelsonMartell`` namespace by default (unless name starts with ``\``).
-
+> Classes/interfaces/traits names in this description are under `NelsonMartell` namespace by default (unless name starts with `\`).
 
 ### Development changes
+
 - :new: Tracking development progress in [waffle.io](http://waffle.io/nelson6e65/php_nml).
 - :art: Update copyright year and email in source files.
 - :memo: Improve & update [README](README.md) file.
 - :white_check_mark: Configure UnitTesting and added some tests for classes.
 - :white_check_mark: Configure PHP CodeSniffer to be compliance with PSR2 coding standar by default.
 - :new: Testing helpers (traits):
-  - ``NelsonMartell\Test\Helpers\``:
-    - ``ExporterPlugin``
-    - ``ConstructorMethodTester``
-    - ``IComparerTester``
-    - ``IComparableTester``
-    - ``IPropertiesContainerTester``
+  - `NelsonMartell\Test\Helpers\`:
+    - `ExporterPlugin`
+    - `ConstructorMethodTester`
+    - `IComparerTester`
+    - `IComparableTester`
+    - `IPropertiesContainerTester`
 - :up: Configure Travis CI for testing and API documentation generation.
 - :new: Utility scripts (read [`script/README.md`](script/README.md) file:
 - :art: Other minor code and documentation improvements.
 
-
 See [changes since v0.5.1](https://github.com/nelson6e65/php_nml/compare/v0.5.1...v0.6.0) for more detailed info.
 
-
-
 ## [v0.5.1]
+
 - Automatize API generation via Travis CI
 - Some improvements in documentation and instructions
 - Minor fixes in possible errors
@@ -232,4 +217,5 @@ See [changes since v0.5.1](https://github.com/nelson6e65/php_nml/compare/v0.5.1.
 See [detailed changelog](https://github.com/nelson6e65/php_nml/compare/v0.5.0...v0.5.1).
 
 ## [v0.5.0]
+
 <!-- TODO -->

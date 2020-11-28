@@ -10,7 +10,6 @@ env:
   matrix:
     - BUILD_DOCS=false
 
-
 matrix:
   allow_failures:
     - php: 8.0
@@ -20,7 +19,6 @@ matrix:
   include:
     - php: 7.1
       env: BUILD_DOCS=true
-
 
 before_install:
   # Setup Git
@@ -38,7 +36,6 @@ before_install:
 
   # Variables
   - source .travis/docs-variables
-
 
 before_script:
   - composer self-update
@@ -68,10 +65,10 @@ notifications:
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  github-token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
   keep-history: true
   local-dir: output/docs/php_nml
-  project-name: "nelson6e65/php_nml [ ${TRAVIS_COMMIT_RANGE} ]"
+  project-name: 'nelson6e65/php_nml [ ${TRAVIS_COMMIT_RANGE} ]'
   on:
     branch: master
     condition: $BUILD_DOCS = true && $DOCS_NEEDS_UPDATE = true

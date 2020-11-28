@@ -18,7 +18,6 @@
 
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-
 **A set of auxiliary classes to help in your PHP applications development.**
 
 ## Installation
@@ -30,8 +29,8 @@ composer require nelson6e65/php_nml
 > More info at https://nelson6e65.github.io/php_nml/guide/install.html
 
 ## [Documentation](https://nelson6e65.github.io/php_nml)
-For more detailed information and description and instructions, check the documentation at **https://nelson6e65.github.io/php_nml**
 
+For more detailed information and description and instructions, check the documentation at **https://nelson6e65.github.io/php_nml**
 
 ## License
 

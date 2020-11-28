@@ -1,0 +1,44 @@
+name: Pretty Code
+
+on: [push, pull_request]
+
+jobs:
+  general:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Linting general code
+        run: npm run cs:lint
+
+  php:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP environment
+        uses: nanasess/setup-php@v3
+        with:
+          php-version: '7.3'
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Linting PHP syntax
+        run: composer cs:php
+
+      - name: Linting PHP Coding Standard
+        run: composer cs:lint

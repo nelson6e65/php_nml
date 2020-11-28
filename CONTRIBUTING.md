@@ -1,6 +1,7 @@
 # Contributing guidelines for PHP: Nelson Martell Library
 
 ## Global requirements
+
 - `git` - [Git](https://git-scm.com/)
 - `php` - PHP 5.6+
 - `composer` - [Composer](https://getcomposer.org/)
@@ -10,25 +11,26 @@
 ### Initialization
 
 - Clone the repository:
+
 ```bash
 git clone git@github.com:nelson6e65/php_nml.git
 ```
 
 - Install PHP dependencies:
+
 ```bash
 composer install
 ```
 
 - Install Node dependencies:
+
 ```bash
 yarn
 ```
 
-
 ## Scripts helpers
 
 > **Note:** This scripts should be run from root php_nml directory (where `composer.json` is).
-
 
 ### Development scripts
 
@@ -54,8 +56,8 @@ The `composer list` exposes this project commands:
 
 - **`build:api-docs`**: Generates API documentation in VuePress sources format to `docs/api/` directory using `phpDocumentor`. `phpdoc` must be installed.
 
-
 #### Other
+
 - **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
 
 - **`yarn docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.

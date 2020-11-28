@@ -1,58 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ruleset name="PHP: Nelson Martell Library">
-  <description>The coding standard configuration for «PHP: Nelson Martell Library» package.</description>
-
-  <rule ref="PSR2"/>
-
-  <rule ref="PEAR.Functions.ValidDefaultValue"/>
-  <rule ref="PEAR.Commenting.InlineComment"/>
-
-  <rule ref="Squiz.Operators.ValidLogicalOperators"/>
+  <description>
+    The coding standard configuration for «PHP: Nelson Martell Library» package.
+  </description>
+  <rule ref="PSR2" />
+  <rule ref="PEAR.Functions.ValidDefaultValue" />
+  <rule ref="PEAR.Commenting.InlineComment" />
+  <rule ref="Squiz.Operators.ValidLogicalOperators" />
   <rule ref="Squiz.PHP.CommentedOutCode">
     <properties>
-        <property name="maxPercentage" value="50" />
+      <property name="maxPercentage" value="50" />
     </properties>
   </rule>
-  <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
-  <rule ref="Squiz.PHP.NonExecutableCode"/>
-  <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
-  <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
-
-  <rule ref="Generic.CodeAnalysis.AssignmentInCondition"/>
-  <rule ref="Generic.CodeAnalysis.EmptyPHPStatement"/>
-  <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
-  <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
-  <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall"/>
-  <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
-  <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
-  <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
-  <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
-  <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
-  <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
+  <rule ref="Squiz.PHP.LowercasePHPFunctions" />
+  <rule ref="Squiz.PHP.NonExecutableCode" />
+  <rule ref="Squiz.Strings.DoubleQuoteUsage" />
+  <rule ref="Squiz.WhiteSpace.SemicolonSpacing" />
+  <rule ref="Generic.CodeAnalysis.AssignmentInCondition" />
+  <rule ref="Generic.CodeAnalysis.EmptyPHPStatement" />
+  <rule ref="Generic.CodeAnalysis.EmptyStatement" />
+  <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop" />
+  <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall" />
+  <rule ref="Generic.CodeAnalysis.JumbledIncrementer" />
+  <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement" />
+  <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier" />
+  <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter" />
+  <rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+  <rule ref="Generic.Formatting.MultipleStatementAlignment" />
   <rule ref="Generic.NamingConventions.CamelCapsFunctionName">
     <exclude-pattern>tests/</exclude-pattern>
   </rule>
-  <rule ref="Generic.NamingConventions.ConstructorName"/>
-
-
+  <rule ref="Generic.NamingConventions.ConstructorName" />
   <!-- <config name="show_progress" value="1"/>
   <config name="encoding" value="utf-8"/> -->
-
   <exclude-pattern type="relative">^.git/*</exclude-pattern>
   <exclude-pattern type="relative">^output/*</exclude-pattern>
   <exclude-pattern type="relative">^Locale/*</exclude-pattern>
   <!-- <exclude-pattern type="relative">^tests/*</exclude-pattern> -->
   <exclude-pattern type="relative">^vendor/*</exclude-pattern>
   <exclude-pattern>*ExampleClass*</exclude-pattern>
-
-  <arg name="colors"/>
-  <arg name="extensions" value="php"/>
-  <arg name="encoding" value="utf-8"/>
+  <arg name="colors" />
+  <arg name="extensions" value="php" />
+  <arg name="encoding" value="utf-8" />
   <!-- <arg value="sp"/> -->
   <!-- <arg name="report" value="full"/> -->
   <!-- <arg name="report-width" value="auto"/> -->
   <!-- <arg name="report-gitblame" value="phpcs.report.gitblame.txt"/> -->
   <!-- <arg name="report-xml" value="phpcs.report.xml"/> -->
   <!-- <arg name="generator" value="Markdown"/> -->
-
 </ruleset>

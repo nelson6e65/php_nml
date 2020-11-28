@@ -8,9 +8,9 @@ module.exports = {
 
   plugins: {
     '@vuepress/google-analytics': {
-      ga: 'UA-58599811-1'
+      ga: 'UA-58599811-1',
     },
-    '@vuepress/clean-urls': {}
+    '@vuepress/clean-urls': {},
   },
 
   markdown: {
@@ -31,11 +31,8 @@ module.exports = {
         {
           title: 'Guide',
           collapsable: false,
-          children: [
-            '',
-            'install',
-          ]
-        }
+          children: ['', 'install'],
+        },
       ],
       '/api/': [
         {
@@ -47,18 +44,15 @@ module.exports = {
             'interfaces',
             'traits',
             'functions',
-            'constants'
-          ]
-        }
+            'constants',
+          ],
+        },
       ],
-      '/': [
-        ''
-      ]
+      '/': [''],
     },
     sidebarDepth: 3,
 
     lastUpdated: true,
-
 
     // Repo
     repo: 'nelson6e65/php_nml',
@@ -70,7 +64,7 @@ module.exports = {
   configureWebpack: {
     output: {
       filename: '[name].js',
-      chunkFilename: 'assets/js/[name].js' + '?id=[chunkhash]'
-    }
-  }
-}
+      chunkFilename: 'assets/js/[name].js' + '?id=[chunkhash]',
+    },
+  },
+};
