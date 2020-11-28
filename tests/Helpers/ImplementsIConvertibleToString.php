@@ -20,6 +20,8 @@ use ReflectionClass;
 
 use NelsonMartell\Extensions\Text;
 
+use PHPUnit\Framework\TestCase;
+
 use NelsonMartell\IConvertibleToString;
 
 /**
@@ -30,7 +32,6 @@ use NelsonMartell\IConvertibleToString;
  * */
 trait ImplementsIConvertibleToString
 {
-    use TestCaseMethods;
 
     /**
      * @return string
@@ -47,6 +48,7 @@ trait ImplementsIConvertibleToString
      */
     public function testImplementsIConvertibleToString() : void
     {
+        /** @var TestCase $this */
         $class = new ReflectionClass($this->getTargetClassName());
 
         $message = Text::format(

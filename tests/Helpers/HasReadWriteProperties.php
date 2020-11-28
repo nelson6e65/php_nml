@@ -22,6 +22,8 @@ use NelsonMartell\IStrictPropertiesContainer;
 
 use SebastianBergmann\Exporter\Exporter;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Split of ImplementsIStrictPropertiesContainer, for classes implementing any read-only property
  *
@@ -29,7 +31,6 @@ use SebastianBergmann\Exporter\Exporter;
  * */
 trait HasReadWriteProperties
 {
-    use TestCaseMethods;
 
     /**
      *
@@ -54,6 +55,7 @@ trait HasReadWriteProperties
         $value,
         $expected
     ) : void {
+        /** @var TestCase $this */
         $exporter = new Exporter();
 
         $var = get_class($obj);

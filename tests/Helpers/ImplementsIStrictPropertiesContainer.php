@@ -22,6 +22,8 @@ use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\IStrictPropertiesContainer;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test helper for classes implementing ``NelsonMartell\IStrictPropertiesContainer`` interface and
  * ``NelsonMartell\PropertiesHandler`` trait.
@@ -36,7 +38,6 @@ use NelsonMartell\IStrictPropertiesContainer;
  * */
 trait ImplementsIStrictPropertiesContainer
 {
-    use TestCaseMethods;
 
     /**
      * @return string
@@ -50,6 +51,7 @@ trait ImplementsIStrictPropertiesContainer
      */
     public function testImplementsIStrictPropertiesContainerInterface() : void
     {
+        /** @var TestCase $this */
         $class = new ReflectionClass($this->getTargetClassName());
 
         if ($class->isTrait()) {

@@ -23,6 +23,8 @@ use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\IEquatable;
 
+use PHPUnit\Framework\TestCase;
+
 use function NelsonMartell\typeof;
 
 /**
@@ -34,8 +36,6 @@ use function NelsonMartell\typeof;
  * */
 trait IEquatableTester
 {
-    use TestCaseMethods;
-
     /**
      * @return string
      *
@@ -72,6 +72,7 @@ trait IEquatableTester
      */
     public function testIEquatableEqualsMethod($expected, IEquatable $left, $right) : void
     {
+        /** @var TestCase $this */
         $actual = $left->equals($right);
 
         $message = Text::format(
@@ -104,6 +105,7 @@ trait IEquatableTester
      */
     public function testIsCompliantWithIEquatableIterface()
     {
+        /** @var TestCase $this */
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
             $this->getTargetClassName(),

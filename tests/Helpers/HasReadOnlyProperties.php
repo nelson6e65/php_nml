@@ -24,6 +24,8 @@ use NelsonMartell\IStrictPropertiesContainer;
 
 use SebastianBergmann\Exporter\Exporter;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Split of ImplementsIStrictPropertiesContainer, for classes implementing any write-only property.
  *
@@ -31,7 +33,7 @@ use SebastianBergmann\Exporter\Exporter;
  * */
 trait HasReadOnlyProperties
 {
-    use TestCaseMethods;
+
 
     /**
      * ImplementsIStrictPropertiesContainer trait provides this method implementation.
@@ -57,6 +59,7 @@ trait HasReadOnlyProperties
         string $property,
         $expected
     ) : void {
+        /** @var TestCase $this */
         try {
             $actual = $obj->$property;
         } catch (BadMethodCallException $e) {

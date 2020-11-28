@@ -19,6 +19,7 @@ namespace NelsonMartell\Test\Helpers;
 use BadMethodCallException;
 
 use NelsonMartell\IStrictPropertiesContainer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Split of ImplementsIStrictPropertiesContainer, for classes implementing any write-only property.
@@ -28,8 +29,6 @@ use NelsonMartell\IStrictPropertiesContainer;
  * */
 trait HasWriteOnlyProperties
 {
-    use TestCaseMethods;
-
     /**
      */
     abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
@@ -48,6 +47,7 @@ trait HasWriteOnlyProperties
         string $property,
         $value
     ) : void {
+        /** @var TestCase $this */
         $obj->$property = $value;
         $this->addToAssertionCount(1);
 

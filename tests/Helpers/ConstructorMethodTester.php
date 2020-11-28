@@ -21,6 +21,7 @@ use ReflectionClass;
 use ReflectionException;
 use BadMethodCallException;
 use UnexpectedValueException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Provides test methods and helpers to test class constructors.
@@ -30,7 +31,6 @@ use UnexpectedValueException;
  * */
 trait ConstructorMethodTester
 {
-    use TestCaseMethods;
 
     /**
      * Gets the name of class target of this test-class.
@@ -88,6 +88,7 @@ trait ConstructorMethodTester
      */
     public function testConstructor(...$args) : void
     {
+        /** @var TestCase $this */
         $this->getTargetClassInstance(...$args);
         $this->assertTrue(true);
     }
@@ -101,6 +102,7 @@ trait ConstructorMethodTester
      */
     public function testConstructorWithBadArguments(string $exception, ...$args) : void
     {
+        /** @var TestCase $this */
         if (!is_subclass_of($exception, Throwable::class)) {
             $this->fail('dataProvider argument error: first argument must to be a Throwable name');
         }

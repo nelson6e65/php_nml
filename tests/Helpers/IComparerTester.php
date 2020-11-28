@@ -21,6 +21,7 @@ use ReflectionClass;
 use NelsonMartell\Extensions\Text;
 
 use NelsonMartell\IComparer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test helper for classes implementing ``NelsonMartell\IComparable`` interface.
@@ -32,8 +33,6 @@ use NelsonMartell\IComparer;
  * */
 trait IComparerTester
 {
-    use TestCaseMethods;
-
     /**
      * @return string
      *
@@ -79,6 +78,7 @@ trait IComparerTester
      */
     public function testCompareMethod($expected, $left, $right) : void
     {
+        /** @var TestCase $this */
         $class  = $this->getTargetClassName();
         $actual = $class::compare($left, $right);
 
@@ -124,6 +124,7 @@ trait IComparerTester
      */
     public function testCanUseCompareMethodInArraySorting(array $expected) : void
     {
+        /** @var TestCase $this */
         $actual = $expected;
 
         @shuffle($actual);
@@ -148,6 +149,7 @@ trait IComparerTester
      */
     public function testIsCompliantWithIComparerIterface() : void
     {
+        /** @var TestCase $this */
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
             $this->getTargetClassName(),

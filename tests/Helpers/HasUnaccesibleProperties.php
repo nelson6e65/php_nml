@@ -26,8 +26,6 @@ use NelsonMartell\IStrictPropertiesContainer;
  * */
 trait HasUnaccesibleProperties
 {
-    use TestCaseMethods;
-
     /**
      */
     abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
