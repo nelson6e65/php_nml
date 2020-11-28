@@ -137,7 +137,7 @@ trait PropertiesHandlerTestProvider
             'Set write-only property'              => [$a, 'property2', 2],
             'Set unaccesible property from parent' => [$b, 'property1', 1],
             'Existent, but wrong prefixes'         => [$b, 'property7'],
-            'Existent, but wrong prefixes'         => [$b, 'property7', 7],
+            'Existent, but wrong prefixes 7'       => [$b, 'property7', 7],
             'Double definition of custom getter prefix: D::C' => [$d, 'property6'],
             'Double definition of custom setter prefix: D::C' => [$d, 'property6', 6],
 
