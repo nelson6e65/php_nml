@@ -23,13 +23,17 @@ jobs:
   php:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php: ['7.1', '7.2', '7.3', '7.4', '8.0']
+
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup PHP environment
+      - name: Setup PHP ${{ matrix.php }} environment
         uses: nanasess/setup-php@v3.0.5
         with:
-          php-version: '7.3'
+          php-version: ${{ matrix.php }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate
