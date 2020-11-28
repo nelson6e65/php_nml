@@ -34,7 +34,6 @@ use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIConvertibleToString;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-use NelsonMartell\Test\Helpers\TestCaseMethods;
 
 use NelsonMartell\Test\TestCase\TypeTest;
 
@@ -275,7 +274,6 @@ trait TypeTestProvider
                 HasUnaccesibleProperties::class,
                 ImplementsIConvertibleToString::class,
                 ImplementsIStrictPropertiesContainer::class,
-                TestCaseMethods::class,
                 TypeTestProvider::class,
             ]],
             [new ToString, []],
