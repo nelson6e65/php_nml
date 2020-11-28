@@ -49,7 +49,7 @@ trait IComparerTester
      *
      * @see ExporterPlugin
      */
-    abstract public function export($obj, int $depth = 2, bool $short = false) : string;
+    abstract public static function export($obj, int $depth = 2, bool $short = false) : string;
 
     /**
      * Datasets for ``testCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
