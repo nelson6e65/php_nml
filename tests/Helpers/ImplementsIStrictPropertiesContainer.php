@@ -47,9 +47,6 @@ trait ImplementsIStrictPropertiesContainer
 
     abstract public function objectInstanceProvider();
 
-    /**
-     *
-     */
     public function testImplementsIStrictPropertiesContainerInterface() : void
     {
         $className = $this->getTargetClassName();

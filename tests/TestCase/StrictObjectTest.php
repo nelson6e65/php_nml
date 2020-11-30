@@ -30,9 +30,6 @@ class StrictObjectTest extends TestCase
 {
     use StrictObjectTestProvider;
 
-    /**
-     *
-     */
     public function testExists() : void
     {
         $this->assertTrue(true);

@@ -16,12 +16,10 @@
  * @since     0.5.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
-
 /**
  * Gettext domain for NML messages.
  * Only for internal usage.
  *
- * @var string
  * @since 0.4.5
  */
 define('NML_GETTEXT_DOMAIN', 'nml');
@@ -31,7 +29,6 @@ define('NML_GETTEXT_DOMAIN', 'nml');
  * Current version of `PHP: Nelson Martell Library` using.
  * Can be parsed into a `NelsonMartell\Version` object. ;)
  *
- * @var string
  * @since 0.4.4
  */
 define('NML_VERSION', '1.0.0-dev');

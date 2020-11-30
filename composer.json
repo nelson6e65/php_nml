@@ -30,7 +30,8 @@
     "squizlabs/php_codesniffer": "^3.0",
     "phpunit/phpunit": "^7.5.0 || ^8 || ^9",
     "nelson6e65/phpdoc-vuepress": "^1.0",
-    "phpstan/phpstan": "^0.12.57"
+    "phpstan/phpstan": "^0.12.57",
+    "rector/rector": "^0.8.56"
   },
   "autoload": {
     "psr-4": {
@@ -53,6 +54,13 @@
       "@test",
       "@cs:lint"
     ],
+    "refactor:lint": [
+      "rector process --dry-run"
+    ],
+    "refactor:write": [
+      "rector process",
+      "@cs:fix"
+    ],
     "cs:php": [
       "phpcs src/ config/ tests/ autoload.php -q --standard=Generic --sniffs=Generic.PHP.Syntax --colors",
       "phpstan analyze"
@@ -61,7 +69,7 @@
       "phpcs src/ tests/ config/ autoload.php -p --runtime-set ignore_warnings_on_exit 1"
     ],
     "cs:fix": [
-      "phpcbf src/ tests/ config/ autoload.php -p"
+      "phpcbf src/ tests/ config/ autoload.php -p || phpcbf src/ tests/ config/ autoload.php -q"
     ],
     "test": [
       "phpunit --color=always"

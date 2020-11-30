@@ -29,23 +29,14 @@ use BadMethodCallException;
  */
 class WithSomeMethodsClass
 {
-    /**
-     *
-     */
     private function privateMethod() : void
     {
     }
 
-    /**
-     *
-     */
     protected function protectedMethod() : void
     {
     }
 
-    /**
-     *
-     */
     public function publicMethod() : void
     {
     }

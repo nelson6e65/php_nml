@@ -43,9 +43,6 @@ trait ImplementsIConvertibleToString
      */
     abstract public function toStringProvider() : array;
 
-    /**
-     *
-     */
     public function testImplementsIConvertibleToString() : void
     {
         $className = $this->getTargetClassName();
