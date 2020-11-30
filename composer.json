@@ -88,8 +88,10 @@
     ]
   },
   "scripts-descriptions": {
+    "refactor:lint": "Runs Rector on the code to check available refactors.",
+    "refactor:write": "Refactor de code using Rector as helper.",
     "check:all": "Runs coding standard analysis (PHP: Code Sniffer) + tests (PHPUnit).",
-    "cs:php": "Runs PHP syntax checks (PHP: Code Sniffer).",
+    "cs:php": "Runs PHP syntax checks (PHP: Code Sniffer) and PHPStan analysis.",
     "cs:lint": "Runs coding standards linting (PHP: Code Sniffer).",
     "cs:fix": "Runs coding standards auto-fixes (PHP: Code Sniffer).",
     "test": "Runs unit-testing with PHPUnit.",

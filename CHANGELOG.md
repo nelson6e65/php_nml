@@ -54,6 +54,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 #### :fire: Removed
 
 - Drop active support for eol PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
+- Add support for PHP versions `7.2`, `7.3`, `7.4` and `8.0`.
 - Remove deprecated classes under `NelsonMartell\Utilities` namespace.
 - Remove `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
 - Remove `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
@@ -73,10 +74,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :art: Improve content and style of documentation.
 - :up: Improve tests and increase the code coverage.
 - :up: Improve coding style: add more rules to checks the code.
-- :new: Composer command to perform PHP Syntax checks: `composer cs:php`
-- :up: Rename composer commands and add descriptions.
+- :new: Composer command to perform PHP Syntax checks: `composer cs:php`.
+- :new: Setup Rector and add composer commands to refactor (`composer refactor:lint`, `composer refactor:write`).
+- :new: Setup PHPStan (used in `composer cs:php`).
+- :new: Setup Prettier (`npm run cs:lint`, `npm run cs:fix`).
+- :up: Rename composer commands and add descriptions (check [CONTRIBUTING](./CONTRIBUTING.md) file).
 - :new: `class`: `NelsonMartell\Test\Helpers\ImplementsIConvertibleToString`.
-- :arrow_up: :package: PHPUnit 5 -> PHPUnit 7.
+- :arrow_up: :package: PHPUnit 5 -> PHPUnit 7. Add compatibility with PHPUnit 8 and 9.
 
 ### :bookmark: More changes
 

@@ -40,7 +40,11 @@ The `composer list` exposes this project commands:
 
 - **`composer check:all`**: Runs coding standard analysis (PHP: Code Sniffer) + tests (PHPUnit).
 
-- **`composer cs:php`**: Runs PHP syntax checks (PHP: Code Sniffer).
+- **`composer refactor:lint`**: Runs [Rector](https://github.com/rectorphp/rector) on the code to check available refactors.
+
+- **`composer refactor:write`**: Refactor the code using [Rector](https://github.com/rectorphp/rector) as helper.
+
+- **`composer cs:php`**: Runs PHP syntax checks (PHP: Code Sniffer) and [PHPStan](https://github.com/phpstan/phpstan) analysis.
 
 - **`composer cs:lint`**: Runs coding standards linting (PHP: Code Sniffer).
 
@@ -56,11 +60,18 @@ The `composer list` exposes this project commands:
 
 - **`build:api-docs`**: Generates API documentation in VuePress sources format to `docs/api/` directory using `phpDocumentor`. `phpdoc` must be installed.
 
+#### NPM
+
+- **`npm run cs:lint`**: Checks the code style againts [Prettier](https://github.com/prettier/prettier).
+
+- **`npm run cs:fix`**: Fixes the code style using [Prettier](https://github.com/prettier/prettier).
+
+- **`npm run docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.
+
+- **`npm run docs:build`**: Build the VuePress documentation to be published (`phpdoc` must be run before).
+
 #### Other
 
 - **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
 
-- **`yarn docs:dev`**: Generates VuePress documentation in development mode to check changes while writing.
-
-- **`yarn docs:build`**: Build the VuePress documentation to be published (`phpdoc` must be run before). You can preview with the [PHP's built-in web server](http://php.net/manual/features.commandline.webserver.php):
-  - **`php -S localhost:8910 -t output/docs/`**: Example to preview documentation locally in http://localhost:8910/php_nml/
+- - **`php -S localhost:8910 -t output/docs/`**: Example to preview documentation locally in http://localhost:8910/php_nml/ (see [PHP's built-in web server](http://php.net/manual/features.commandline.webserver.php))
