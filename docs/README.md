@@ -18,5 +18,5 @@ features:
   - title: Utilities
     details: Format text with placeholders, get the type of objects and extract info, compare objects, ensure values, and more.
 
-footer: MIT Licensed | Copyright © 2014-2019 Nelson Martell
+footer: MIT Licensed | Copyright © 2014-2020 Nelson Martell
 ---
