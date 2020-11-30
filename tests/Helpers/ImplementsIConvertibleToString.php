@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,14 +15,13 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use ReflectionClass;
-
 use NelsonMartell\Extensions\Text;
-
 use PHPUnit\Framework\TestCase;
-
 use NelsonMartell\IConvertibleToString;
 
 /**
@@ -36,14 +36,14 @@ trait ImplementsIConvertibleToString
     /**
      * @return string
      */
-    abstract public function getTargetClassName() : string;
+    abstract public function getTargetClassName(): string;
 
     /**
      * @return array
      */
-    abstract public function toStringProvider() : array;
+    abstract public function toStringProvider(): array;
 
-    public function testImplementsIConvertibleToString() : void
+    public function testImplementsIConvertibleToString(): void
     {
         $className = $this->getTargetClassName();
         $class     = new ReflectionClass($className);
@@ -78,6 +78,6 @@ trait ImplementsIConvertibleToString
         /** @var TestCase $this */
         $this->assertSame($expected, $obj->toString(), 'Failed explicit conversion to string');
 
-        $this->assertSame($expected, $obj.'', 'Failed implicit conversion to string');
+        $this->assertSame($expected, $obj . '', 'Failed implicit conversion to string');
     }
 }

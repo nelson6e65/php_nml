@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     1.0.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
@@ -32,7 +35,7 @@ class WithMagicPropertiesChildClass extends WithMagicPropertiesBaseClass
      */
     public function __construct($readOnlyChildProperty = 1)
     {
-        $this->childProperty_ = 'child';
+        $this->childProperty_         = 'child';
         $this->readOnlyChildProperty_ = $readOnlyChildProperty;
     }
 
@@ -55,7 +58,7 @@ class WithMagicPropertiesChildClass extends WithMagicPropertiesBaseClass
      *
      * @return string
      */
-    protected function getChildProperty() : string
+    protected function getChildProperty(): string
     {
         return $this->childProperty_;
     }
@@ -75,9 +78,8 @@ class WithMagicPropertiesChildClass extends WithMagicPropertiesBaseClass
      *
      * @return int
      */
-    protected function getReadOnlyChildProperty() : int
+    protected function getReadOnlyChildProperty(): int
     {
         return $this->readOnlyChildProperty_;
     }
-
 }

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell;
 
@@ -32,5 +35,5 @@ interface IEquatable
      *
      * @return bool
      * */
-    public function equals($other) : bool;
+    public function equals($other): bool;
 }

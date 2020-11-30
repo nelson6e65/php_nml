@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,12 +15,13 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\DataProviders;
 
 use InvalidArgumentException;
 use stdClass;
 use TypeError;
-
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
@@ -29,7 +31,6 @@ use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\Helpers\ImplementsIConvertibleToString;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-
 use NelsonMartell\Version;
 use NelsonMartell\VersionComponent;
 
@@ -91,21 +92,21 @@ trait VersionTestProvider
     public function goodConstructorArgumentsProvider()
     {
         return [
-            'SemVer: Normal'                     => [1, 0, 0],
-            'SemVer: Patch release '             => [1, 0, 1],
-            'SemVer: Minor release'              => [1, 1, 0],
-            'SemVer: Major release'              => [2, 0, 0],
-            'SemVer: Pre-release alpha'          => [1, 0, '0-alpha'],
-            'SemVer: Pre-release beta'           => [1, 0, '0-beta', 1],
+            'SemVer: Normal'            => [1, 0, 0],
+            'SemVer: Patch release '    => [1, 0, 1],
+            'SemVer: Minor release'     => [1, 1, 0],
+            'SemVer: Major release'     => [2, 0, 0],
+            'SemVer: Pre-release alpha' => [1, 0, '0-alpha'],
+            'SemVer: Pre-release beta'  => [1, 0, '0-beta', 1],
             // 'SemVer: Pre-release build metadata' => [1, 0, '0-beta', '1+20130313144700'],
-            'Windows version: Major'             => [1, 0, 0, 0],
-            'Windows version: Minor'             => [1, 1, 0, 0],
-            'Windows version: Build'             => [1, 2, 1, 0],
-            'Windows version: Revision'          => [1, 3, 1, 2344234],
-            'Git: describe'                      => [0, 5, '1-34-g6e5462c'],
-            'Zero (minor)'                       => [0, 0], // is invalid, but can be created
-            'Zero (build)'                       => [0, 0, 0], // is invalid, but can be created
-            'Zero (revision)'                    => [0, 0, 0, 0], // is invalid, but can be created
+            'Windows version: Major'    => [1, 0, 0, 0],
+            'Windows version: Minor'    => [1, 1, 0, 0],
+            'Windows version: Build'    => [1, 2, 1, 0],
+            'Windows version: Revision' => [1, 3, 1, 2344234],
+            'Git: describe'             => [0, 5, '1-34-g6e5462c'],
+            'Zero (minor)'              => [0, 0], // is invalid, but can be created
+            'Zero (build)'              => [0, 0, 0], // is invalid, but can be created
+            'Zero (revision)'           => [0, 0, 0, 0], // is invalid, but can be created
         ];
     }
 
@@ -138,21 +139,21 @@ trait VersionTestProvider
 
 
         $args = [
-            'Equals by reference'               => [0, $v, $v],
-            'Equals by value'                   => [0, new Version(1, 0, 1), Version::parse('1.0.1')],
-            'Major difference'                  => [-1, Version::parse('1.0.0'), Version::parse('2.0.0')],
-            'Minor difference'                  => [1, Version::parse('1.1.0'), Version::parse('1.0.0')],
-            'Build difference'                  => [1, Version::parse('1.0.1'), Version::parse('1.0.0')],
-            'Revision difference'               => [-1, Version::parse('1.0.0.254'), Version::parse('1.0.0.389')],
-            'Version < object'                  => [null, $v, $obj],
-            'Version > array parseable'         => [1, Version::parse('1.1.0'), [0, 1, 999]],
-            'Version < array parseable'         => [-1, Version::parse('1.1.0'), [2, 0]],
-            'Version > array not parseable'     => [1, Version::parse('0.0.0'), ['invalid array']],
-            'Version > string parseable'        => [1, Version::parse('1.1.0'), '0.1.999'],
-            'Version < string parseable'        => [-1, Version::parse('1.1.0'), '2.0'],
-            'Version > string not parseable'    => [1, Version::parse('1.1.0'), 'invalid string'],
-            'integer|Version'                   => [1, $v, 9976645645656],
-            'Version > null'                    => [1, Version::parse('1.1.0'), null],
+            'Equals by reference'            => [0, $v, $v],
+            'Equals by value'                => [0, new Version(1, 0, 1), Version::parse('1.0.1')],
+            'Major difference'               => [-1, Version::parse('1.0.0'), Version::parse('2.0.0')],
+            'Minor difference'               => [1, Version::parse('1.1.0'), Version::parse('1.0.0')],
+            'Build difference'               => [1, Version::parse('1.0.1'), Version::parse('1.0.0')],
+            'Revision difference'            => [-1, Version::parse('1.0.0.254'), Version::parse('1.0.0.389')],
+            'Version < object'               => [null, $v, $obj],
+            'Version > array parseable'      => [1, Version::parse('1.1.0'), [0, 1, 999]],
+            'Version < array parseable'      => [-1, Version::parse('1.1.0'), [2, 0]],
+            'Version > array not parseable'  => [1, Version::parse('0.0.0'), ['invalid array']],
+            'Version > string parseable'     => [1, Version::parse('1.1.0'), '0.1.999'],
+            'Version < string parseable'     => [-1, Version::parse('1.1.0'), '2.0'],
+            'Version > string not parseable' => [1, Version::parse('1.1.0'), 'invalid string'],
+            'integer|Version'                => [1, $v, 9976645645656],
+            'Version > null'                 => [1, Version::parse('1.1.0'), null],
         ];
 
         return $args;
@@ -181,7 +182,7 @@ trait VersionTestProvider
     public function compareMethodArraysProvider()
     {
         return [
-            'Version[]' => [[
+            'Version[]'                                     => [[
                 new Version(1, 0, 1, 3),
                 new Version(1, 0, 11, 3),
                 new Version(1, 1, 1, 0),
@@ -195,28 +196,33 @@ trait VersionTestProvider
                 Version::parse('2.31.0-4-g'),
                 Version::parse('2.31.1-4-g'),
                 Version::parse('2.31.11-4-g'),
-            ]],
-            'Version[] + integer[]' => [[
+            ],
+            ],
+            'Version[] + integer[]'                         => [[
                 1,
                 new Version(1, 0, 1, 3),
                 new Version(1, 0, 11, 3),
                 new Version(1, 1, 1, 0),
-            ]],
-            'Version[] + string[]'  => [[
+            ],
+            ],
+            'Version[] + string[]'                          => [[
                 '0.0',
                 new Version(0, 0, 9, 3),
                 '0.1.0',
-            ]],
-            'Version[] + string[] (1 non parseable string)'  => [[
+            ],
+            ],
+            'Version[] + string[] (1 non parseable string)' => [[
                 '0.1.0',
                 'invalid string',
                 new Version(1, 0, 1, 3),
-            ]],
-            'Version[] + array[]'   => [[
+            ],
+            ],
+            'Version[] + array[]'                           => [[
                 [],
                 [0, 1, 0],
                 new Version(1, 0, 1, 3),
-            ]],
+            ],
+            ],
         ];
     }
 
@@ -230,12 +236,12 @@ trait VersionTestProvider
             [false, new Version(1, 2, 1), 2345654675675675673453],
             [false, new Version(1, 2, 1), '1.2.1'],
             [false, new Version(1, 2, 1), [1, 2, 1]],
-            [false, new Version(1, 2, 1), new \stdClass],
+            [false, new Version(1, 2, 1), new \stdClass()],
         ];
     }
 
     protected $parseableStrings = [
-        'valid' => [
+        'valid'   => [
             '1.0',
             '0.2',
             '2.3.2-3-g726351',
@@ -274,7 +280,7 @@ trait VersionTestProvider
     }
 
 
-    public function parseableStringsProvider() : array
+    public function parseableStringsProvider(): array
     {
         $strings = [
             NML_VERSION,
@@ -307,12 +313,12 @@ trait VersionTestProvider
         return $r;
     }
 
-    public function parseableArraysProvider() : array
+    public function parseableArraysProvider(): array
     {
         return [
-            'minimum version'   => [[1, 0]],
-            'build version'     => [[1, 1, 2]],
-            'revision version'  => [[1, 0, '0-beta', 3]],
+            'minimum version'  => [[1, 0]],
+            'build version'    => [[1, 1, 2]],
+            'revision version' => [[1, 0, '0-beta', 3]],
         ];
     }
 

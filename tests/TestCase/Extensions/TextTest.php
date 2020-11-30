@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,19 +14,16 @@
  * @since     v0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
 namespace NelsonMartell\Test\TestCase\Extensions;
 
 use stdClass;
 use ReflectionClass;
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString as ClassString;
-
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -70,7 +68,7 @@ class TextTest extends TestCase
     public function nonStringObjectsProvider()
     {
         return [
-            'stdClass' => [new \stdClass],
+            'stdClass' => [new \stdClass()],
             'int[]'    => [[10, 20, 30, 40]],
             'string[]' => [['ten', '20', '30', '40']],
         ];
@@ -84,7 +82,7 @@ class TextTest extends TestCase
         $secuential = true;
 
         return [
-            's: complete: basic array' => [
+            's: complete: basic array'                                    => [
                 'Bob is 65 years old and has 101 cats.',
                 '{0} is {1} years old and has {2} cats.',
                 ['Bob', 65, 101],
@@ -96,35 +94,35 @@ class TextTest extends TestCase
                 ['Bob', 65, 101, 'I am not here'],
                 $secuential,
             ],
-            's: missing value for placeholder' => [
+            's: missing value for placeholder'                            => [
                 'Bob is 65 years old and has {2} cats.',
                 '{0} is {1} years old and has {2} cats.',
                 ['Bob', 65],
                 $secuential,
             ],
-            's: with some empty data' => [
+            's: with some empty data'                                     => [
                 'Bob is 65 years old and has  cats.',
                 '{0} is {1} years old and has {2} cats.',
                 ['Bob', 65, ''],
                 $secuential,
             ],
-            's: with some null data' => [
+            's: with some null data'                                      => [
                 'Bob is 65 years old and has  cats.',
                 '{0} is {1} years old and has {2} cats.',
                 ['Bob', 65, null],
                 $secuential,
             ],
-            's: only 1 argument null' => [
+            's: only 1 argument null'                                     => [
                 'Null is .',
                 'Null is {0}.',
                 [null],
                 $secuential,
             ],
-            's: class implementing IConvertibleToString' => [
+            's: class implementing IConvertibleToString'                  => [
                 'x = (-1, 1)',
                 '{0} = ({1})',
                 ['x', new ClassString()],
-                $secuential
+                $secuential,
             ],
         ];
     }
@@ -135,25 +133,25 @@ class TextTest extends TestCase
     public function validNamedArgsListProvider()
     {
         return [
-            'n: complete' => [
+            'n: complete'                                => [
                 'Bob is 65 years old and has 101 cats.',
                 '{name} is {age} years old and has {n} cats.',
                 [
                     'name' => 'Bob',
-                    'age'     => 65,
-                    'n'    => 101
+                    'age'  => 65,
+                    'n'    => 101,
                 ],
             ],
-            'n: complete with numeric index' => [
+            'n: complete with numeric index'             => [
                 'Bob is 65 years old and has 101 cats.',
                 '{name} is {age} years old and has {7} cats.',
                 [
                     'name' => 'Bob',
                     'age'  => 65,
-                    7      => 101
+                    7      => 101,
                 ],
             ],
-            'n: missing value for placeholder' => [
+            'n: missing value for placeholder'           => [
                 'Bob is 65 years old and has {n} cats.',
                 '{name} is {age} years old and has {n} cats.',
                 [
@@ -161,22 +159,22 @@ class TextTest extends TestCase
                     'age'  => 65,
                 ],
             ],
-            'n: complete with some empty value' => [
+            'n: complete with some empty value'          => [
                 'Bob is 65 years old and has  cats.',
                 '{name} is {age} years old and has {n} cats.',
                 [
                     'name' => 'Bob',
                     'age'  => 65,
-                    'n'    => ''
+                    'n'    => '',
                 ],
             ],
-            'n: complete with some null values' => [
+            'n: complete with some null values'          => [
                 'Bob is 65 years old and has  cats.',
                 '{name} is {age} years old and has {n} cats.',
                 [
                     'name' => 'Bob',
                     'age'  => 65,
-                    'n'    => null
+                    'n'    => null,
                 ],
             ],
             'n: class implementing IConvertibleToString' => [
@@ -207,10 +205,10 @@ class TextTest extends TestCase
     public function compareMethodArgumentsProvider()
     {
         return [
-            'stdClass > string'     => [1, new stdClass, 'stdClass'],
-            'string < stdClass'     => [-1, 'stdClass', new stdClass],
-            'string > null'         => [1, 's', null],
-            'null < string'         => [-1, null, 's'],
+            'stdClass > string'      => [1, new stdClass(), 'stdClass'],
+            'string < stdClass'      => [-1, 'stdClass', new stdClass()],
+            'string > null'          => [1, 's', null],
+            'null < string'          => [-1, null, 's'],
             'string (empty) == null' => [0, '', null],
             'null == string (empty)' => [0, null, ''],
         ];
@@ -219,7 +217,7 @@ class TextTest extends TestCase
     public function compareMethodArraysProvider()
     {
         return [
-            [[-1, 0, 1, 'b', 'c', 'd', 'z', 'z1', new stdClass]],
+            [[-1, 0, 1, 'b', 'c', 'd', 'z', 'z1', new stdClass()]],
         ];
     }
 }

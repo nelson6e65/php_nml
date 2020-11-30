@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     v0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
@@ -45,7 +48,7 @@ class WithMagicPropertiesBaseClass implements IStrictPropertiesContainer, IMagic
      *
      * @return string
      */
-    protected function getBaseProperty() : string
+    protected function getBaseProperty(): string
     {
         return $this->baseProperty_;
     }
@@ -58,5 +61,4 @@ class WithMagicPropertiesBaseClass implements IStrictPropertiesContainer, IMagic
     {
         $this->baseProperty_ = $value;
     }
-
 }

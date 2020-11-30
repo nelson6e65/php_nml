@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     v0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
@@ -30,12 +33,12 @@ class C extends B implements ICustomPrefixedPropertiesContainer
         );
     }
 
-    public static function getCustomGetterPrefix() : string
+    public static function getCustomGetterPrefix(): string
     {
         return 'getValueOf';
     }
 
-    public static function getCustomSetterPrefix() : string
+    public static function getCustomSetterPrefix(): string
     {
         return 'setValueOf';
     }

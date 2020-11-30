@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell\Test\Helpers;
 
@@ -37,7 +40,7 @@ trait ConstructorMethodTester
      *
      * @return string
      */
-    abstract public function getTargetClassName() : string;
+    abstract public function getTargetClassName(): string;
 
 
 
@@ -52,7 +55,7 @@ trait ConstructorMethodTester
      * @return ReflectionClass
      * @throws BadMethodCallException
      */
-    public function getTargetClassReflection() : ReflectionClass
+    public function getTargetClassReflection(): ReflectionClass
     {
         if ($this->targetClassReflection === null) {
             try {
@@ -86,7 +89,7 @@ trait ConstructorMethodTester
      *
      * @param mixed  $args Constructor arguments
      */
-    public function testConstructor(...$args) : void
+    public function testConstructor(...$args): void
     {
         $this->getTargetClassInstance(...$args);
 
@@ -101,7 +104,7 @@ trait ConstructorMethodTester
      * @param string $exception Exception name
      * @param mixed  $args Constructor arguments
      */
-    public function testConstructorWithBadArguments(string $exception, ...$args) : void
+    public function testConstructorWithBadArguments(string $exception, ...$args): void
     {
         /** @var TestCase $this */
         if (!is_subclass_of($exception, Throwable::class)) {
@@ -119,12 +122,12 @@ trait ConstructorMethodTester
      *
      * @return array
      */
-    abstract public function goodConstructorArgumentsProvider() : array;
+    abstract public function goodConstructorArgumentsProvider(): array;
 
     /**
      * Must provide a exception class name and invalid arguments for constructor.
      *
      * @return array
      */
-    abstract public function badConstructorArgumentsProvider() : array;
+    abstract public function badConstructorArgumentsProvider(): array;
 }

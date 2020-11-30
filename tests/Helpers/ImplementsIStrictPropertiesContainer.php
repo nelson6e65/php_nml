@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,15 +15,14 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use ReflectionClass;
 use BadMethodCallException;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\IStrictPropertiesContainer;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -43,11 +43,11 @@ trait ImplementsIStrictPropertiesContainer
     /**
      * @return string
      */
-    abstract public function getTargetClassName() : string;
+    abstract public function getTargetClassName(): string;
 
     abstract public function objectInstanceProvider();
 
-    public function testImplementsIStrictPropertiesContainerInterface() : void
+    public function testImplementsIStrictPropertiesContainerInterface(): void
     {
         $className = $this->getTargetClassName();
         $class     = new ReflectionClass($className);

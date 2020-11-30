@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell;
 
@@ -63,9 +66,9 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
 
         if ($major < 0) {
             $args = [
-                'name'     => 'major',
-                'pos'      => 0,
-                'actual'   => $major,
+                'name'   => 'major',
+                'pos'    => 0,
+                'actual' => $major,
             ];
 
             $msg  = msg('Invalid argument value.');
@@ -79,9 +82,9 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
 
         if ($minor < 0) {
             $args = [
-                'name'     => 'minor',
-                'pos'      => 1,
-                'actual'   => $minor,
+                'name'   => 'minor',
+                'pos'    => 1,
+                'actual' => $minor,
             ];
 
             $msg  = msg('Invalid argument value.');
@@ -106,7 +109,7 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
      *
      * @return Version Objeto convertido desde $value.
      * */
-    public static function parse($value) : Version
+    public static function parse($value): Version
     {
         if ($value instanceof Version) {
             return $value;
@@ -185,7 +188,7 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
      * @return VersionComponent
      * @see    Version::$build
      */
-    protected function getBuild() : VersionComponent
+    protected function getBuild(): VersionComponent
     {
         return $this->versionMetaData['build'];
     }
@@ -196,7 +199,7 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
      * @return VersionComponent
      * @see    Version::$revision
      */
-    protected function getRevision() : VersionComponent
+    protected function getRevision(): VersionComponent
     {
         return $this->versionMetaData['revision'];
     }
@@ -214,7 +217,7 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
      * @see    VersionComponent::isNull()
      * @see    Version::isValid()
      * */
-    public function toString() : string
+    public function toString(): string
     {
         $s[0] = $this->major;
         $s[1] = $this->minor;
@@ -246,7 +249,7 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
      *
      * @return bool Un valor que indica si la instancia actual es válida.
      * */
-    public function isValid() : bool
+    public function isValid(): bool
     {
         // Validación de major y minor:
         $r = ($this->major > 0 || $this->minor > 0); // 1
@@ -291,7 +294,7 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
      *
      * @return bool
      * */
-    public function equals($other) : bool
+    public function equals($other): bool
     {
         if ($other instanceof Version) {
             if ($this->major == $other->major && $this->minor == $other->minor) {

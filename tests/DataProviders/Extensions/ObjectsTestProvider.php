@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,14 +15,13 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\DataProviders\Extensions;
 
 use stdClass;
-
 use NelsonMartell\Extensions\Objects;
-
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
-
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
 
@@ -36,14 +36,14 @@ trait ObjectsTestProvider
     use ExporterPlugin;
     use IComparerTester;
 
-    public function getTargetClassName() : string
+    public function getTargetClassName(): string
     {
         return Objects::class;
     }
 
 
     // IComparerTester
-    public function compareMethodArgumentsProvider() : array
+    public function compareMethodArgumentsProvider(): array
     {
         $obj       = new \stdClass();
         $obj->one  = 1;
@@ -69,8 +69,8 @@ trait ObjectsTestProvider
             'array > array (values)'        => [1, ['hola', 'mundo'], ['hello', 'world']],
             'array < array (values)'        => [-1, ['hello', 'world'], ['hola', 'mundo']],
             'array < array (keys)'          => [-1, ['hola', 'mundo'], ['one' => 'hello', 'two' => 'world']],
-            'array < stdClass'              => [-1, [], new stdClass],
-            'stdClass > array'              => [1, new stdClass, []],
+            'array < stdClass'              => [-1, [], new stdClass()],
+            'stdClass > array'              => [1, new stdClass(), []],
             'array > null'                  => [1, [], null],
             'null < array'                  => [-1, null, []],
             'array > int'                   => [1, [], 1],
@@ -79,9 +79,9 @@ trait ObjectsTestProvider
             'string < array'                => [-1, '1', []],
             'same reference =='             => [0, $obj, $obj],
             'empty classes =='              => [0, new A(), new A()],
-            'different class'               => [null, new A(), new stdClass],
-            'stdClass (empty) < stdClass'   => [-1, new \stdClass, $obj],
-            'stdClass > stdClass (empty)'   => [1, $obj, new \stdClass],
+            'different class'               => [null, new A(), new stdClass()],
+            'stdClass (empty) < stdClass'   => [-1, new \stdClass(), $obj],
+            'stdClass > stdClass (empty)'   => [1, $obj, new \stdClass()],
             'stdClass > integer'            => [1, $obj, 1234],
             'integer < stdClass'            => [-1, 1234, $obj],
             'stdClass > string'             => [1, $obj, '1234'],
@@ -107,11 +107,11 @@ trait ObjectsTestProvider
         return $args;
     }
 
-    public function compareMethodArraysProvider() : array
+    public function compareMethodArraysProvider(): array
     {
         return [
-            'integer[]'           => [[-67, -9, 0, 4, 5, 6]],
-            'string[]'            => [['a', 'b', 'c', 'd', 'z', 'z1']],
+            'integer[]' => [[-67, -9, 0, 4, 5, 6]],
+            'string[]'  => [['a', 'b', 'c', 'd', 'z', 'z1']],
         ];
     }
     //

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     v0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
@@ -30,7 +33,7 @@ class WithoutMagicPropertiesClass implements IStrictPropertiesContainer
 
     public function __construct()
     {
-        $this->magic_   = 'magic';
+        $this->magic_          = 'magic';
         $this->noMagicProperty = 'no magic';
     }
 
@@ -45,7 +48,7 @@ class WithoutMagicPropertiesClass implements IStrictPropertiesContainer
      *
      * @return string
      */
-    protected function getMagicProperty() : string
+    protected function getMagicProperty(): string
     {
         return $this->magic_;
     }
@@ -70,7 +73,7 @@ class WithoutMagicPropertiesClass implements IStrictPropertiesContainer
      *
      * @return string
      */
-    protected function getNoMagicProperty() : string
+    protected function getNoMagicProperty(): string
     {
         return $this->noMagicProperty;
     }
@@ -83,5 +86,4 @@ class WithoutMagicPropertiesClass implements IStrictPropertiesContainer
     {
         $this->noMagicProperty = $value;
     }
-
 }

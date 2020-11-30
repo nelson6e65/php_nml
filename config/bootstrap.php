@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -18,4 +19,4 @@
  * */
 
 // Set the path of translations
-bindtextdomain(NML_GETTEXT_DOMAIN, __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'Locale');
+bindtextdomain(NML_GETTEXT_DOMAIN, __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Locale');

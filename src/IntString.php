@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,10 +15,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell;
 
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\Text;
 
 /**
@@ -46,7 +48,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
         if (!(is_integer($intValue) || $intValue === null)) {
             $args = [
                 'position' => '1st',
-                'expected' => typeof(0).'" or "'.typeof(null),
+                'expected' => typeof(0) . '" or "' . typeof(null),
                 'actual'   => typeof($intValue),
             ];
 
@@ -64,7 +66,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
         if (!typeof($stringValue)->canBeString()) {
             $args = [
                 'position' => '2nd',
-                'expected' => typeof('string').'", "'.typeof(null).'" or "any object convertible to string',
+                'expected' => typeof('string') . '", "' . typeof(null) . '" or "any object convertible to string',
                 'actual'   => typeof($stringValue),
             ];
 
@@ -99,7 +101,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
         }
 
         try {
-            $intValue = (integer) Text::ensureIsString($obj);
+            $intValue = (int) Text::ensureIsString($obj);
         } catch (InvalidArgumentException $e) {
             $args = [
                 'position' => '1st',
@@ -158,7 +160,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
      *
      * @return string
      */
-    protected function getStringValue() : string
+    protected function getStringValue(): string
     {
         return $this->stringValue;
     }
@@ -166,9 +168,9 @@ class IntString extends StrictObject implements IEquatable, IComparable
     /**
      * {@inheritDoc}
      */
-    public function toString() : string
+    public function toString(): string
     {
-        return $this->getIntValue().$this->getStringValue();
+        return $this->getIntValue() . $this->getStringValue();
     }
 
     /**
@@ -178,7 +180,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
      *
      * @return bool
      */
-    public function equals($other) : bool
+    public function equals($other): bool
     {
         if ($other instanceof IntString) {
             if ($this->getIntValue() === $other->getIntValue()) {

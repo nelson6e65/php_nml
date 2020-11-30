@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,12 +15,12 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use ReflectionClass;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\IComparer;
 use PHPUnit\Framework\TestCase;
 
@@ -38,7 +39,7 @@ trait IComparerTester
      *
      * @see ConstructorMethodTester
      */
-    abstract public function getTargetClassName() : string;
+    abstract public function getTargetClassName(): string;
 
     /**
      * @param mixed $obj
@@ -49,14 +50,14 @@ trait IComparerTester
      *
      * @see ExporterPlugin
      */
-    abstract public static function export($obj, int $depth = 2, bool $short = false) : string;
+    abstract public static function export($obj, int $depth = 2, bool $short = false): string;
 
     /**
      * Datasets for ``testCompareMethod(integer|null $expected, mixed $left, mixed $right)``.
      *
      * @return array
      */
-    abstract public function compareMethodArgumentsProvider() : array;
+    abstract public function compareMethodArgumentsProvider(): array;
 
     /**
      * Datasets for ``testCanUseCompareMethodInArraySorting(integer|null $expected, mixed $left, mixed $right)``.
@@ -65,7 +66,7 @@ trait IComparerTester
      *
      * @return array
      */
-    abstract public function compareMethodArraysProvider() : array;
+    abstract public function compareMethodArraysProvider(): array;
 
 
     /**
@@ -76,7 +77,7 @@ trait IComparerTester
      * @param mixed $left
      * @param mixed $right
      */
-    public function testCompareMethod($expected, $left, $right) : void
+    public function testCompareMethod($expected, $left, $right): void
     {
         $class  = $this->getTargetClassName();
         $actual = $class::compare($left, $right);
@@ -88,7 +89,7 @@ trait IComparerTester
                 'method' => 'compare',
                 'left'   => static::export($left),
                 'right'  => static::export($right),
-                'actual' => static::export($actual)
+                'actual' => static::export($actual),
             ]
         );
 
@@ -122,7 +123,7 @@ trait IComparerTester
      *
      * @param array $expected
      */
-    public function testCanUseCompareMethodInArraySorting(array $expected) : void
+    public function testCanUseCompareMethodInArraySorting(array $expected): void
     {
         $actual = $expected;
 
@@ -133,7 +134,7 @@ trait IComparerTester
             [
                 'class'  => $this->getTargetClassName(),
                 'method' => 'compare',
-                'actual' => static::export($actual)
+                'actual' => static::export($actual),
             ]
         );
 
@@ -147,7 +148,7 @@ trait IComparerTester
      * @testdox Is compliant with ``NelsonMartell\IComparer`` interface
      * @depends testCanUseCompareMethodInArraySorting
      */
-    public function testIsCompliantWithIComparerIterface() : void
+    public function testIsCompliantWithIComparerIterface(): void
     {
         $className = $this->getTargetClassName();
 

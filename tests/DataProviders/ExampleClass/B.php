@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -44,7 +45,7 @@ class B extends A
         return $this->attribute4;
     }
 
-    # ERRORS #########################################
+    // ERRORS #########################################
     /**
      * Try to make read-only property accesible in this parent class
      * @throws \BadMethodCallException

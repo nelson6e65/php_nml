@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,14 +15,13 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use ReflectionClass;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\IComparable;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -39,7 +39,7 @@ trait IComparableTester
      *
      * @see ConstructorMethodTester
      */
-    abstract public function getTargetClassName() : string;
+    abstract public function getTargetClassName(): string;
 
     /**
      * @param mixed $obj
@@ -50,7 +50,7 @@ trait IComparableTester
      *
      * @see ExporterPlugin
      */
-    abstract public function export($obj, int $depth = 2, bool $short = false) : string;
+    abstract public function export($obj, int $depth = 2, bool $short = false): string;
 
     /**
      * Datasets for ``testIComparableCompareToMethod(integer|null $expected, IComparable $left, mixed $right)``.
@@ -69,7 +69,7 @@ trait IComparableTester
      *
      * @see IComparable::compareTo()
      */
-    public function testIComparableCompareToMethod($expected, IComparable $left, $right) : void
+    public function testIComparableCompareToMethod($expected, IComparable $left, $right): void
     {
         /** @var TestCase $this */
         $actual = $left->compareTo($right);
@@ -80,7 +80,7 @@ trait IComparableTester
                 'method' => 'compareTo',
                 'left'   => static::export($left),
                 'right'  => static::export($right),
-                'actual' => static::export($actual)
+                'actual' => static::export($actual),
             ]
         );
 

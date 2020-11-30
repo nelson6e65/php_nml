@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -18,6 +19,7 @@ namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
 class D extends C
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -26,12 +28,12 @@ class D extends C
         );
     }
 
-    public static function getCustomGetterPrefix() : string
+    public static function getCustomGetterPrefix(): string
     {
         return 'get_';
     }
 
-    public static function getCustomSetterPrefix() : string
+    public static function getCustomSetterPrefix(): string
     {
         return 'set_';
     }
@@ -39,6 +41,7 @@ class D extends C
 
     private $attribute8 = -8;
 
+    // phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     public function get_attribute8()
     {
         return $this->attribute8;

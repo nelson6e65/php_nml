@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell;
 
@@ -73,7 +76,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
 
             case 'resource':
                 $shortName = get_resource_type($obj);
-                $name      = 'resource: '.$shortName;
+                $name      = 'resource: ' . $shortName;
                 break;
 
             default:
@@ -101,7 +104,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      * @return string
      * @see Type::$name
      * */
-    protected function getName() : string
+    protected function getName(): string
     {
         return $this->basicMetadata['name'];
     }
@@ -112,7 +115,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      * @return string
      * @see Type::$shortName
      * */
-    public function getShortName() : string
+    public function getShortName(): string
     {
         return $this->basicMetadata['shortName'];
     }
@@ -123,7 +126,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      * @return string
      * @see    Type::$namespace
      * */
-    public function getNamespace() : string
+    public function getNamespace(): string
     {
         return $this->basicMetadata['namespace'];
     }
@@ -138,7 +141,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @see Type::getProperties()
      */
-    public function getVars(int $filters = ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED) : array
+    public function getVars(int $filters = ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED): array
     {
         return $this->getProperties($filters);
     }
@@ -157,7 +160,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      */
     public function getProperties(
         int $filters = ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED
-    ) : array {
+    ): array {
         if ($this->reflectionObject != null) {
             return $this->reflectionObject->getProperties($filters);
         }
@@ -178,7 +181,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @since 1.0.0 Add `$filters` param.
      */
-    public function getMethods(int $filters = ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED) : array
+    public function getMethods(int $filters = ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED): array
     {
         if ($this->reflectionObject != null) {
             return $this->reflectionObject->getMethods($filters);
@@ -194,7 +197,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return bool
      */
-    public function hasMethod(string $name) : bool
+    public function hasMethod(string $name): bool
     {
         if ($this->reflectionObject !== null) {
             return $this->reflectionObject->hasMethod($name);
@@ -213,7 +216,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @since 1.0.0
      */
-    public function getInterfaces(bool $reflection = false) : array
+    public function getInterfaces(bool $reflection = false): array
     {
         if ($this->reflectionObject !== null) {
             if ($reflection === true) {
@@ -238,7 +241,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @since 1.0.0
      */
-    public function getTraits(bool $reflection = false, bool $recursive = false) : array
+    public function getTraits(bool $reflection = false, bool $recursive = false): array
     {
         $traits = [];
 
@@ -286,14 +289,14 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      * @see ReflectionClass::hasProperty()
      * @see \property_exists()
      */
-    public function hasProperty(string $name, bool $recursive = true, bool $includeMagic = false) : bool
+    public function hasProperty(string $name, bool $recursive = true, bool $includeMagic = false): bool
     {
         if ($this->reflectionObject !== null) {
             $itHas = $this->reflectionObject->hasProperty($name);
 
             if (!$itHas && $includeMagic) {
-                $pattern = '/\* @(?P<tag>property-read|property-write|property) +'.
-                    '(?P<types>([a-zA-Z]+[\[\]]*\|?)+) +(?P<property>\$'.$name.') *(?P<description>.*)/';
+                $pattern = '/\* @(?P<tag>property-read|property-write|property) +' .
+                '(?P<types>([a-zA-Z]+[\[\]]*\|?)+) +(?P<property>\$' . $name . ') *(?P<description>.*)/';
 
                 $itHas = preg_match($pattern, $this->reflectionObject->getDocComment()) > 0;
             }
@@ -318,7 +321,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return bool
      */
-    public function canBeString() : bool
+    public function canBeString(): bool
     {
         if ($this->isNull() || $this->isScalar() || $this->hasMethod('__toString')) {
             return true;
@@ -332,7 +335,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return bool `true` if this type is `null`; other case, `false`.
      * */
-    public function isNull() : bool
+    public function isNull(): bool
     {
         if ($this->getName() == 'NULL' || $this->getName() == 'null') {
             return true;
@@ -350,7 +353,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @see Type::isNull()
      * */
-    public function isNotNull() : bool
+    public function isNotNull(): bool
     {
         return !$this->isNull();
     }
@@ -361,7 +364,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return bool `true`, if the underlying type is a custom class; another case, `false`.
      * */
-    public function isCustom() : bool
+    public function isCustom(): bool
     {
         return !$this->isValueType() && !$this->isNull();
     }
@@ -372,7 +375,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      * @return bool
      * @see    \is_scalar()
      * */
-    public function isScalar() : bool
+    public function isScalar(): bool
     {
         $r = false;
 
@@ -396,7 +399,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return bool
      * */
-    public function isValueType() : bool
+    public function isValueType(): bool
     {
         if ($this->isScalar() || $this->getName() === 'array') {
             return true;
@@ -410,7 +413,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return bool
      * */
-    public function isReferenceType() : bool
+    public function isReferenceType(): bool
     {
         return !$this->isValueType();
     }
@@ -420,7 +423,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return string
      * */
-    public function toString() : string
+    public function toString(): string
     {
         if ($this->isCustom()) {
             return sprintf('object (%s)', $this->getName());
@@ -437,7 +440,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      *
      * @return bool Returns always `false` if `$other` is not a `Type`.
      */
-    public function equals($other) : bool
+    public function equals($other): bool
     {
         if ($other instanceof Type) {
             return $this->getName() == $other->getName();
@@ -470,7 +473,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      * @see Type::is()
      * @since 1.0.0
      */
-    public function isIn(...$args) : bool
+    public function isIn(...$args): bool
     {
         foreach ($args as $obj) {
             if ($this->equals(typeof($obj))) {
@@ -506,7 +509,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
      * @see Type::isIn()
      * @since 1.0.0
      */
-    public function is(...$args) : bool
+    public function is(...$args): bool
     {
         foreach ($args as $obj) {
             if (!$this->equals(typeof($obj))) {

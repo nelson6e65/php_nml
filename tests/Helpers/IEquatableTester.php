@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,15 +15,14 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use ReflectionClass;
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\IEquatable;
-
 use PHPUnit\Framework\TestCase;
 
 use function NelsonMartell\typeof;
@@ -41,7 +41,7 @@ trait IEquatableTester
      *
      * @see ConstructorMethodTester
      */
-    abstract public function getTargetClassName() : string;
+    abstract public function getTargetClassName(): string;
 
     /**
      * @param mixed $obj
@@ -52,14 +52,14 @@ trait IEquatableTester
      *
      * @see ExporterPlugin
      */
-    abstract public function export($obj, int $depth = 2, bool $short = false) : string;
+    abstract public function export($obj, int $depth = 2, bool $short = false): string;
 
     /**
      * Datasets for ``testIEquatableEqualsMethod(bool $expected, IEquatable $left, mixed $right)``.
      *
      * @return array
      */
-    abstract public function IEquatableMethodArgumentsProvider() : array;
+    abstract public function IEquatableMethodArgumentsProvider(): array;
 
 
     /**
@@ -70,7 +70,7 @@ trait IEquatableTester
      * @param IEquatable $left
      * @param mixed      $right
      */
-    public function testIEquatableEqualsMethod($expected, IEquatable $left, $right) : void
+    public function testIEquatableEqualsMethod($expected, IEquatable $left, $right): void
     {
         /** @var TestCase $this */
         $actual = $left->equals($right);
@@ -81,7 +81,7 @@ trait IEquatableTester
                 'method' => 'equals',
                 'left'   => static::export($left),
                 'right'  => static::export($right),
-                'actual' => static::export($actual)
+                'actual' => static::export($actual),
             ]
         );
 

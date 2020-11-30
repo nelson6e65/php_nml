@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,10 +14,10 @@
  * @since     1.0.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
 namespace NelsonMartell\Extensions;
 
 use InvalidArgumentException;
-
 use NelsonMartell\IComparer;
 use NelsonMartell\IComparable;
 use NelsonMartell\StrictObject;

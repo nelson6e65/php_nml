@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,10 +15,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\DataProviders;
 
 use InvalidArgumentException;
-
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
@@ -27,7 +29,6 @@ use NelsonMartell\Test\Helpers\IComparerTester;
 use NelsonMartell\Test\Helpers\IEquatableTester;
 use NelsonMartell\Test\Helpers\ImplementsIConvertibleToString;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-
 use NelsonMartell\VersionComponent;
 
 /**
@@ -60,7 +61,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function goodConstructorArgumentsProvider()
+    public function goodConstructorArgumentsProvider(): array
     {
         return [
             'No args'           => [],
@@ -75,10 +76,10 @@ trait VersionComponentTestProvider
     public function badConstructorArgumentsProvider()
     {
         return [
-            'Negative integer part'        => [InvalidArgumentException::class, -1, null],
-            'Invalid string value part'    => [InvalidArgumentException::class, 0, 'erróneo'],
+            'Negative integer part'                 => [InvalidArgumentException::class, -1, null],
+            'Invalid string value part'             => [InvalidArgumentException::class, 0, 'erróneo'],
             'Invalid type (float) for string part'  => [InvalidArgumentException::class, 0, 23.912],
-            'Invalid type (object) for string part'  => [InvalidArgumentException::class, 0, new \stdClass],
+            'Invalid type (object) for string part' => [InvalidArgumentException::class, 0, new \stdClass()],
             'Invalid type (array) for string part'  => [InvalidArgumentException::class, 0, ['no']],
         ];
     }
@@ -106,36 +107,36 @@ trait VersionComponentTestProvider
         $obj->stringValue = '-alpha';
 
         $args = [
-            'Equals by reference' => [0, $v, $v],
-            'Equals by value'     => [
+            'Equals by reference'                        => [0, $v, $v],
+            'Equals by value'                            => [
                 0,
                 new VersionComponent(1, '-alpha'),
-                VersionComponent::parse('1-alpha')
+                VersionComponent::parse('1-alpha'),
             ],
-            'VersionComponent: >' => [
+            'VersionComponent: >'                        => [
                 1,
                 new VersionComponent(1, '-beta'),
-                VersionComponent::parse('1-alpha')
+                VersionComponent::parse('1-alpha'),
             ],
-            'VersionComponent: <' => [
+            'VersionComponent: <'                        => [
                 -1,
                 new VersionComponent(1, '-alpha'),
-                VersionComponent::parse('1-beta')
+                VersionComponent::parse('1-beta'),
             ],
-            'VersionComponent | stdClass: null' => [
+            'VersionComponent | stdClass: null'          => [
                 null,
                 $v,
-                $obj
+                $obj,
             ],
-            'VersionComponent | null' => [
+            'VersionComponent | null'                    => [
                 1,
                 $v,
-                null
+                null,
             ],
             'VersionComponent | VersionComponent (null)' => [
                 -1,
                 new VersionComponent(),
-                new VersionComponent(1)
+                new VersionComponent(1),
             ],
         ];
 
@@ -160,7 +161,7 @@ trait VersionComponentTestProvider
     public function compareMethodArraysProvider()
     {
         return [
-            'VersionComponent[]' => [[
+            'VersionComponent[]'                            => [[
                 VersionComponent::parse('0-4-g'),
                 VersionComponent::parse('1-4-g'),
                 VersionComponent::parse('2-3-g'),
@@ -170,24 +171,29 @@ trait VersionComponentTestProvider
                 VersionComponent::parse('4-3-gsh4hajk7'),
                 VersionComponent::parse('4-3-gsh4hbjk7'),
                 VersionComponent::parse('11-4-g'),
-            ]],
-            'VersionComponent[] + integer[]' => [[
+            ],
+            ],
+            'VersionComponent[] + integer[]'                => [[
                 1,
                 new VersionComponent(2, '-alpha'),
-            ]],
-            'VersionComponent[] + string[]'  => [[
+            ],
+            ],
+            'VersionComponent[] + string[]'                 => [[
                 new VersionComponent(1, '-alpha'),
                 '1-beta',
-            ]],
-            'VersionComponent[] + string[] (non parseable)'  => [[
+            ],
+            ],
+            'VersionComponent[] + string[] (non parseable)' => [[
                 '----------',
                 new VersionComponent(),
-            ]],
-            'VersionComponent[] + array[]'   => [[
+            ],
+            ],
+            'VersionComponent[] + array[]'                  => [[
                 [],
                 [0, 1, 0],
                 new VersionComponent(1, '-alpha'),
-            ]],
+            ],
+            ],
         ];
     }
 
@@ -199,22 +205,22 @@ trait VersionComponentTestProvider
             [new VersionComponent(3, '-beta'), '3-beta'],
             [new VersionComponent(0, '-alpha'), '0-alpha'],
             [new VersionComponent(0, '-beta2'), '0-beta2'],
-            'string | empty'        => [new VersionComponent(), '      '], // Maybe should throw exception?
-            'string | only spaces'  => [new VersionComponent(), ''], // Maybe should throw exception?
-            'null'                  => [new VersionComponent(), null], // Maybe should throw exception?
-            'integer'               => [new VersionComponent(7), 7],
-            'VersionComponent'      => [new VersionComponent(999), new VersionComponent(999)],
+            'string | empty'       => [new VersionComponent(), '      '], // Maybe should throw exception?
+            'string | only spaces' => [new VersionComponent(), ''], // Maybe should throw exception?
+            'null'                 => [new VersionComponent(), null], // Maybe should throw exception?
+            'integer'              => [new VersionComponent(7), 7],
+            'VersionComponent'     => [new VersionComponent(999), new VersionComponent(999)],
         ];
     }
 
     public function badVersionComponentParseMethodArgumentsProvider()
     {
         return [
-            'string | consecutive "-"'          => ['1a--0'],
-            'string | invalid char: ó'          => ['1-erróneo'],
-            'string | not starting in number'   => ['beta0'],
-            'integer | < 0'                     => [-13],
-            'stdClass'                          => [new \stdClass],
+            'string | consecutive "-"'        => ['1a--0'],
+            'string | invalid char: ó'        => ['1-erróneo'],
+            'string | not starting in number' => ['beta0'],
+            'integer | < 0'                   => [-13],
+            'stdClass'                        => [new \stdClass()],
         ];
     }
 
@@ -230,7 +236,7 @@ trait VersionComponentTestProvider
             [false, new VersionComponent(23), 2345654675675675673453],
             [false, new VersionComponent(0, '-dev'), '0-dev'],
             [false, new VersionComponent(1, '-alpha'), [1, '-alpha']],
-            [false, new VersionComponent(), new \stdClass],
+            [false, new VersionComponent(), new \stdClass()],
         ];
     }
 

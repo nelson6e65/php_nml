@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,11 +15,12 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell;
 
 use BadMethodCallException;
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\MethodExtension;
 use NelsonMartell\Extensions\PropertyExtension;
 
@@ -277,14 +279,14 @@ trait PropertiesHandler
      *
      * @since 1.0.0 Add `$prefix` and `$useCustom` params.
      */
-    protected static function getPropertySetter(string $name, string $prefix = 'set', bool $useCustom = true) : string
+    protected static function getPropertySetter(string $name, string $prefix = 'set', bool $useCustom = true): string
     {
         $class = get_called_class();
 
         PropertyExtension::ensureIsDefined($name, $class, is_subclass_of($class, IMagicPropertiesContainer::class));
 
         try {
-            $setter = MethodExtension::ensureIsDefined($prefix.$name, $class);
+            $setter = MethodExtension::ensureIsDefined($prefix . $name, $class);
         } catch (InvalidArgumentException $error) {
             if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard setter, check if custom available
@@ -319,14 +321,14 @@ trait PropertiesHandler
      *
      * @since 1.0.0 Add `$prefix` and `$useCustom` params.
      */
-    protected static function getPropertyGetter(string $name, string $prefix = 'get', bool $useCustom = true) : string
+    protected static function getPropertyGetter(string $name, string $prefix = 'get', bool $useCustom = true): string
     {
         $class = get_called_class();
 
         PropertyExtension::ensureIsDefined($name, $class, is_subclass_of($class, IMagicPropertiesContainer::class));
 
         try {
-            $getter = MethodExtension::ensureIsDefined($prefix.$name, $class);
+            $getter = MethodExtension::ensureIsDefined($prefix . $name, $class);
         } catch (InvalidArgumentException $error) {
             if ($useCustom && is_subclass_of($class, ICustomPrefixedPropertiesContainer::class)) {
                 // If not available standard getter, check if custom available

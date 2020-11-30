@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -18,9 +19,9 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
-require_once __DIR__.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'constants.php';
-require_once __DIR__.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'functions.php';
-require_once __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'bootstrap.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'constants.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 /**
  * Custom autoloader for non-composer installations.
@@ -39,6 +40,8 @@ require_once __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'bootstrap
  * @param string $class NML class name (full cualified name).
  *
  * @return void
+ *
+ * phpcs:disable PSR1.Files.SideEffects
  */
 function autoloadNelsonMartellLibrary($class)
 {
@@ -57,19 +60,19 @@ function autoloadNelsonMartellLibrary($class)
         return;
     }
 
-    $path = sprintf('%s'.$DS.'%s', __DIR__, implode($DS, $classArray));
+    $path = sprintf('%s' . $DS . '%s', __DIR__, implode($DS, $classArray));
 
-    if (is_file($path.'.php')) {
+    if (is_file($path . '.php')) {
         $path .= '.php';
-    } elseif (is_file($path.'.inc')) {
+    } elseif (is_file($path . '.inc')) {
         $path .= '.inc';
     } else {
-        $msg = 'Unable to auto-load "%s" class in Nelson Martell Library (NML): "%s" file was not found.'.
-            ' You can see the API documentation (http://nelson6e65.github.io/php_nml/api) in order to check '.
-            ' availability of all classes/namespaces in NML. Note: If you are using "NelsonMartell" as main namespace'.
-            ' in a file that not belongs to NML, you should include it before to load "NML/autoload.php" or,'.
-            ' using SPL autoload features, register autoload function for that class(es) using "prepend" argument for'.
-            ' spl_autoload_register function set to TRUE.';
+        $msg = 'Unable to auto-load "%s" class in Nelson Martell Library (NML): "%s" file was not found.' .
+        ' You can see the API documentation (http://nelson6e65.github.io/php_nml/api) in order to check ' .
+        ' availability of all classes/namespaces in NML. Note: If you are using "NelsonMartell" as main namespace' .
+        ' in a file that not belongs to NML, you should include it before to load "NML/autoload.php" or,' .
+        ' using SPL autoload features, register autoload function for that class(es) using "prepend" argument for' .
+        ' spl_autoload_register function set to TRUE.';
 
         throw new Exception(sprintf(dgettext('nml', $msg), $class, $path));
     }

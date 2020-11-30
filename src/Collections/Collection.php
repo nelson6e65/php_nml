@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -17,9 +18,7 @@
 namespace NelsonMartell\Collections;
 
 use OutOfRangeException;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\StrictObject;
 
 use function NelsonMartell\typeof;
@@ -207,10 +206,10 @@ class Collection extends StrictObject implements ICollection
         $items = implode(', ', $this->items);
 
         $placeHoldersValues = [
-            'class'     => $t->shortName,
-            'nsclass'    => $t->name,
-            'count'     => $this->count,
-            'items'     => $items,
+            'class'   => $t->shortName,
+            'nsclass' => $t->name,
+            'count'   => $this->count,
+            'items'   => $items,
         ];
 
 

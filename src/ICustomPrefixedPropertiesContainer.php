@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell;
 
@@ -35,12 +38,12 @@ interface ICustomPrefixedPropertiesContainer extends IStrictPropertiesContainer
      *
      * @return string
      */
-    public static function getCustomGetterPrefix() : string;
+    public static function getCustomGetterPrefix(): string;
 
     /**
      * Gets the custom prefix for setters methods.
      *
      * @return string
      */
-    public static function getCustomSetterPrefix() : string;
+    public static function getCustomSetterPrefix(): string;
 }

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,6 +15,8 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\IConvertibleToString;
@@ -21,22 +24,18 @@ use NelsonMartell\ICustomPrefixedPropertiesContainer;
 use NelsonMartell\IStrictPropertiesContainer;
 use NelsonMartell\PropertiesHandler;
 use NelsonMartell\Type;
-
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
 use NelsonMartell\Test\DataProviders\ExampleClass\B;
 use NelsonMartell\Test\DataProviders\ExampleClass\C;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 use NelsonMartell\Test\DataProviders\ExampleClass\WithSomeMethodsChildClass;
 use NelsonMartell\Test\DataProviders\ExampleClass\WithSomeMethodsClass;
-
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
 use NelsonMartell\Test\Helpers\ImplementsIConvertibleToString;
 use NelsonMartell\Test\Helpers\ImplementsIStrictPropertiesContainer;
-
 use NelsonMartell\Test\TestCase\TypeTest;
-
 use InvalidArgumentException;
 use stdClass;
 
@@ -62,17 +61,17 @@ trait TypeTestProvider
      * @return array
      * @since 1.0.0-dev
      */
-    public function unaccesiblePropertiesProvider() : array
+    public function unaccesiblePropertiesProvider(): array
     {
         $obj = new Type($this);
 
         return [
-            '$reflectionObject'             => [$obj, 'reflectionObject'],
-            '$namespace with case changed'  => [$obj, 'Namespace'],
-            '$name with case changed'       => [$obj, 'Name'],
-            '$shortName with case changed'  => [$obj, 'ShortName'],
-            '$methods with case changed'    => [$obj, 'Methods'],
-            '$vars with case changed'       => [$obj, 'Vars'],
+            '$reflectionObject'            => [$obj, 'reflectionObject'],
+            '$namespace with case changed' => [$obj, 'Namespace'],
+            '$name with case changed'      => [$obj, 'Name'],
+            '$shortName with case changed' => [$obj, 'ShortName'],
+            '$methods with case changed'   => [$obj, 'Methods'],
+            '$vars with case changed'      => [$obj, 'Vars'],
         ];
     }
 
@@ -81,63 +80,63 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function goodConstructorArgumentsProvider() : array
+    public function goodConstructorArgumentsProvider(): array
     {
         return [
-            'NULL'        => [null],
-            'integer'     => [1],
-            'double'      => [1.9999],
-            'string'      => ['str'],
-            ToString::class => [new ToString()],
-            'array'       => [[]],
-            'stdClass'    => [new \stdClass],
-            __CLASS__     => [$this],
+            'NULL'                       => [null],
+            'integer'                    => [1],
+            'double'                     => [1.9999],
+            'string'                     => ['str'],
+            ToString::class              => [new ToString()],
+            'array'                      => [[]],
+            'stdClass'                   => [new \stdClass()],
+            __CLASS__                    => [$this],
 
-            'string: '.ToString::class => [ToString::class, true],
-            'string: '.stdClass::class => [stdClass::class, true],
-            'non string as `$obj` arg' => [new stdClass, true],
+            'string: ' . ToString::class => [ToString::class, true],
+            'string: ' . stdClass::class => [stdClass::class, true],
+            'non string as `$obj` arg'   => [new stdClass(), true],
         ];
     }
 
-    public function toStringProvider() : array
+    public function toStringProvider(): array
     {
         return [
-            'NULL'          => ['NULL', typeof(null)],
-            'integer'       => ['integer', typeof(1)],
-            'double'        => ['double', typeof(1.9999)],
-            'string'        => ['string', typeof('str')],
-            'array'         => ['array', typeof([])],
-            'stdClass'      => ['object (stdClass)', typeof(new \stdClass)],
-            __CLASS__       => ['object (NelsonMartell\Test\TestCase\TypeTest)', typeof($this)],
+            'NULL'     => ['NULL', typeof(null)],
+            'integer'  => ['integer', typeof(1)],
+            'double'   => ['double', typeof(1.9999)],
+            'string'   => ['string', typeof('str')],
+            'array'    => ['array', typeof([])],
+            'stdClass' => ['object (stdClass)', typeof(new \stdClass())],
+            __CLASS__  => ['object (NelsonMartell\Test\TestCase\TypeTest)', typeof($this)],
         ];
     }
 
-    public function badConstructorArgumentsProvider() : array
+    public function badConstructorArgumentsProvider(): array
     {
         return [
-            'not existing class'   => [InvalidArgumentException::class, 'Hola', true],
+            'not existing class' => [InvalidArgumentException::class, 'Hola', true],
         ];
     }
 
-    public function canBeStringProvider() : array
+    public function canBeStringProvider(): array
     {
         return [
-            'NULL'        => [null],
-            'integer'     => [1],
-            'double'      => [1.9999],
-            'string'      => ['str'],
-            ToString::class => [new ToString()],
-            'string: '.ToString::class => [ToString::class, true],
+            'NULL'                       => [null],
+            'integer'                    => [1],
+            'double'                     => [1.9999],
+            'string'                     => ['str'],
+            ToString::class              => [new ToString()],
+            'string: ' . ToString::class => [ToString::class, true],
         ];
     }
 
-    public function canNotBeStringProvider() : array
+    public function canNotBeStringProvider(): array
     {
         return [
-            'array'       => [[]],
-            'stdClass'    => [new \stdClass],
-            __CLASS__     => [$this],
-            'string: '.stdClass::class => [stdClass::class, true],
+            'array'                      => [[]],
+            'stdClass'                   => [new \stdClass()],
+            __CLASS__                    => [$this],
+            'string: ' . stdClass::class => [stdClass::class, true],
         ];
     }
 
@@ -145,7 +144,7 @@ trait TypeTestProvider
     /**
      * @return array
      */
-    public function readonlyPropertiesProvider() : array
+    public function readonlyPropertiesProvider(): array
     {
         $obj = new Type($this);
 
@@ -156,7 +155,7 @@ trait TypeTestProvider
         ];
     }
 
-    public function objectInstanceProvider() : array
+    public function objectInstanceProvider(): array
     {
         return [[new Type($this)]];
     }
@@ -169,7 +168,7 @@ trait TypeTestProvider
      * ]
      * @return array
      */
-    public function methodIsProvider() : array
+    public function methodIsProvider(): array
     {
         return [
             [true,  (bool) true,    [true, false]],
@@ -182,8 +181,8 @@ trait TypeTestProvider
             [false, (string) '',    [11.2, '0', true]],
             [true,  null,           [null, null]],
             [false, null,           [[], null, false]],
-            [true,  new stdClass,   [new stdClass, new stdClass]],
-            [false, new stdClass,   [[], new stdClass, true]],
+            [true,  new stdClass(),   [new stdClass(), new stdClass()]],
+            [false, new stdClass(),   [[], new stdClass(), true]],
         ];
     }
 
@@ -195,7 +194,7 @@ trait TypeTestProvider
      * ]
      * @return array
      */
-    public function methodIsInProvider() : array
+    public function methodIsInProvider(): array
     {
         return [
             [true,  (bool) true,    [true, false, 1, 'string']],
@@ -208,8 +207,8 @@ trait TypeTestProvider
             [false, (string) '',    [11.2, 0, true]],
             [true,  null,           [null, true, 4]],
             [false, null,           [[], 'null', false]],
-            [true,  new stdClass,   [new stdClass, new A, 0]],
-            [false, new stdClass,   [[], 'stdClass', true]],
+            [true,  new stdClass(),   [new stdClass(), new A(), 0]],
+            [false, new stdClass(),   [[], 'stdClass', true]],
         ];
     }
 
@@ -221,13 +220,13 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function getInterfacesProvider() : array
+    public function getInterfacesProvider(): array
     {
         return [
-            [new A, [IStrictPropertiesContainer::class]],
-            [new B, [IStrictPropertiesContainer::class]],
-            [new C, [ICustomPrefixedPropertiesContainer::class, IStrictPropertiesContainer::class]],
-            [new ToString, [IConvertibleToString::class]],
+            [new A(), [IStrictPropertiesContainer::class]],
+            [new B(), [IStrictPropertiesContainer::class]],
+            [new C(), [ICustomPrefixedPropertiesContainer::class, IStrictPropertiesContainer::class]],
+            [new ToString(), [IConvertibleToString::class]],
             ['string', []],
         ];
     }
@@ -240,16 +239,17 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function getTraitsProvider() : array
+    public function getTraitsProvider(): array
     {
         return [
-            [new A, [PropertiesHandler::class]],
-            [new B, []],
-            [new C, []],
-            [new ToString, []],
+            [new A(), [PropertiesHandler::class]],
+            [new B(), []],
+            [new C(), []],
+            [new ToString(), []],
             [new Type(TypeTest::class, true), [
                 TypeTestProvider::class,
-            ]],
+            ],
+            ],
             ['string', []],
         ];
     }
@@ -262,12 +262,12 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function getRecursiveTraitsProvider() : array
+    public function getRecursiveTraitsProvider(): array
     {
         return [
-            [new A, [PropertiesHandler::class]],
-            [new B, [PropertiesHandler::class]],
-            [new C, [PropertiesHandler::class]],
+            [new A(), [PropertiesHandler::class]],
+            [new B(), [PropertiesHandler::class]],
+            [new C(), [PropertiesHandler::class]],
             [new Type(TypeTest::class, true), [
                 ConstructorMethodTester::class,
                 HasReadOnlyProperties::class,
@@ -275,8 +275,9 @@ trait TypeTestProvider
                 ImplementsIConvertibleToString::class,
                 ImplementsIStrictPropertiesContainer::class,
                 TypeTestProvider::class,
-            ]],
-            [new ToString, []],
+            ],
+            ],
+            [new ToString(), []],
             ['string', []],
         ];
     }
@@ -286,14 +287,14 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function hasPropertyProvider() : array
+    public function hasPropertyProvider(): array
     {
         return [
-            [new A, 'attribute1'],
-            [new A, 'property1'],
+            [new A(), 'attribute1'],
+            [new A(), 'property1'],
             [new Type(A::class, true), 'attribute4'],
-            [new B, 'property2'],
-            [new B, 'attribute2'],
+            [new B(), 'property2'],
+            [new B(), 'attribute2'],
         ];
     }
 
@@ -302,17 +303,17 @@ trait TypeTestProvider
      *
      * @return array
      */
-    public function hasNotPropertyProvider() : array
+    public function hasNotPropertyProvider(): array
     {
-        $obj = new stdClass;
+        $obj = new stdClass();
 
         $obj->testProperty = 0;
 
         return [
             ['string', ''],
-            [new A, 'xyz'],
-            [new A, 'Property1'],
-            [new B, 'property5'],
+            [new A(), 'xyz'],
+            [new A(), 'Property1'],
+            [new B(), 'property5'],
             'should ignore dinamic properties' => [$obj, 'testProperty'],
         ];
     }
@@ -322,30 +323,30 @@ trait TypeTestProvider
      *
      * @return array[] mixed => string
      */
-    public function hasMethodProvider() : array
+    public function hasMethodProvider(): array
     {
-        $obj = new WithSomeMethodsClass;
-        $obk = new WithSomeMethodsChildClass;
+        $obj = new WithSomeMethodsClass();
+        $obk = new WithSomeMethodsChildClass();
 
         return [
-            'private' => [$obj, 'privateMethod'],
-            'protected' => [$obj, 'protectedMethod'],
-            'public' => [$obj, 'publicMethod'],
+            'private'             => [$obj, 'privateMethod'],
+            'protected'           => [$obj, 'protectedMethod'],
+            'public'              => [$obj, 'publicMethod'],
             // 'magic' => [$obj, 'magicMethod'], // FIXME Implement detection of magic methods
 
-            'private in parent' => [$obk, 'privateMethod'],
+            'private in parent'   => [$obk, 'privateMethod'],
             'protected in parent' => [$obk, 'protectedMethod'],
-            'public in parent' => [$obk, 'publicMethod'],
+            'public in parent'    => [$obk, 'publicMethod'],
             // 'magic in parent' => [$obk, 'magicMethod'], // FIXME Implement detection of magic methods
         ];
     }
 
-    public function hasNotMethodProvider() : array
+    public function hasNotMethodProvider(): array
     {
-        $obj = new WithSomeMethodsClass;
+        $obj = new WithSomeMethodsClass();
 
         return [
-            [$obj, 'someMethodThatIsNotDefined']
+            [$obj, 'someMethodThatIsNotDefined'],
         ];
     }
 }

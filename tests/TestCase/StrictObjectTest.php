@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,10 +15,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell\Test\DataProviders\StrictObjectTestProvider;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,7 +32,7 @@ class StrictObjectTest extends TestCase
 {
     use StrictObjectTestProvider;
 
-    public function testExists() : void
+    public function testExists(): void
     {
         $this->assertTrue(true);
     }

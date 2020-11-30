@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -56,6 +57,6 @@ class ToString implements IConvertibleToString
      */
     public function toString()
     {
-        return $this->x.', '.$this->y;
+        return $this->x . ', ' . $this->y;
     }
 }

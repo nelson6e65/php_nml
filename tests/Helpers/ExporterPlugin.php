@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,12 +15,12 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\Text;
-
 use SebastianBergmann\Exporter\Exporter;
 
 /**
@@ -49,14 +50,14 @@ trait ExporterPlugin
      * @see Exporter::shortenedRecursiveExport()
      * @see Exporter::export()
      */
-    public static function export($obj, int $depth = 2, bool $short = false) : string
+    public static function export($obj, int $depth = 2, bool $short = false): string
     {
         if (static::$exporter === null) {
             static::$exporter = new Exporter();
         }
 
-        $depth = ((integer) $depth < 0) ? 0 : (integer) $depth;
-        $short = (boolean) $short;
+        $depth = ((int) $depth < 0) ? 0 : (int) $depth;
+        $short = (bool) $short;
         $str   = null;
 
         if (is_object($obj)) {
@@ -79,7 +80,7 @@ trait ExporterPlugin
                         if (is_object($value)) {
                             $sclass = static::getClass($value, $short);
 
-                            $sVal = $sclass.'({...})';
+                            $sVal = $sclass . '({...})';
                         } elseif (is_array($value)) {
                             $sVal = '[...]';
                         } else {
@@ -124,7 +125,7 @@ trait ExporterPlugin
      *
      * @return string
      */
-    public static function getClass($obj, bool $short = false) : string
+    public static function getClass($obj, bool $short = false): string
     {
         if (!is_object($obj)) {
             throw new InvalidArgumentException('Object argument is not an object instance.');

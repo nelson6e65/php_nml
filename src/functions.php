@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -17,10 +18,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell;
 
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\Text;
 
 /**
@@ -34,7 +36,7 @@ use NelsonMartell\Extensions\Text;
  * @since 0.6.0
  * @see \dgettext()
  * */
-function msg(string $message, ...$args) : string
+function msg(string $message, ...$args): string
 {
     $translated = \dgettext(NML_GETTEXT_DOMAIN, $message);
 
@@ -63,7 +65,7 @@ function msg(string $message, ...$args) : string
  * @since 0.6.0
  * @see \dngettext()
  * */
-function nmsg(string $singular, string $plural, int $n, ...$args) : string
+function nmsg(string $singular, string $plural, int $n, ...$args): string
 {
     $translated = \dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
 
@@ -91,7 +93,7 @@ function nmsg(string $singular, string $plural, int $n, ...$args) : string
  *
  * @see Type::__construct()
  * */
-function typeof($obj, bool $searchName = false) : Type
+function typeof($obj, bool $searchName = false): Type
 {
     return new Type($obj, $searchName);
 }

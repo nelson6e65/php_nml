@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,10 +14,10 @@
  * @since     0.7.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
 namespace NelsonMartell\Extensions;
 
 use InvalidArgumentException;
-
 use NelsonMartell\IComparer;
 use NelsonMartell\StrictObject;
 
@@ -92,8 +93,8 @@ class Text implements IComparer
     public static function format($format, ...$args)
     {
         static $options = [
-            'before'  => '{',
-            'after'   => '}',
+            'before' => '{',
+            'after'  => '}',
         ];
 
         $originalData = $args;
@@ -300,7 +301,11 @@ class Text implements IComparer
     public static function insert(string $str, array $data, array $options = []): string
     {
         $defaults = [
-            'before' => ':', 'after' => '', 'escape' => '\\', 'format' => null, 'clean' => false,
+            'before' => ':',
+            'after'  => '',
+            'escape' => '\\',
+            'format' => null,
+            'clean'  => false,
         ];
         $options += $defaults;
         $format   = $options['format'];
@@ -379,8 +384,8 @@ class Text implements IComparer
         switch ($clean['method']) {
             case 'html':
                 $clean  += [
-                    'word' => '[\w,.]+',
-                    'andText' => true,
+                    'word'        => '[\w,.]+',
+                    'andText'     => true,
                     'replacement' => '',
                 ];
                 $kleenex = sprintf(
@@ -397,8 +402,8 @@ class Text implements IComparer
                 break;
             case 'text':
                 $clean += [
-                    'word' => '[\w,.]+',
-                    'gap' => '[\s]*(?:(?:and|or)[\s]*)?',
+                    'word'        => '[\w,.]+',
+                    'gap'         => '[\s]*(?:(?:and|or)[\s]*)?',
                     'replacement' => '',
                 ];
 
@@ -563,7 +568,7 @@ class Text implements IComparer
      */
     public static function camelize(string $string, string $delimiter = '_'): string
     {
-            $result = str_replace(' ', '', static::humanize($string, $delimiter));
+        $result = str_replace(' ', '', static::humanize($string, $delimiter));
         return $result;
     }
 

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,10 +15,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
 use BadMethodCallException;
-
 
 /**
  * @internal
@@ -29,15 +31,15 @@ use BadMethodCallException;
  */
 class WithSomeMethodsClass
 {
-    private function privateMethod() : void
+    private function privateMethod(): void
     {
     }
 
-    protected function protectedMethod() : void
+    protected function protectedMethod(): void
     {
     }
 
-    public function publicMethod() : void
+    public function publicMethod(): void
     {
     }
 
@@ -49,12 +51,12 @@ class WithSomeMethodsClass
      *
      * @return
      */
-    public function _call(string $name, array $arguments = [])
+    public function __call(string $name, array $arguments = [])
     {
         if ($name === 'magicMethod') {
             return 'string';
         }
 
-        throw new BadMethodCallException($name.' method do not exists.');
+        throw new BadMethodCallException($name . ' method do not exists.');
     }
 }

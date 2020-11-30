@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,6 +14,8 @@
  * @since     0.1.1
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
 
 namespace NelsonMartell;
 
@@ -70,10 +73,10 @@ class VersionComponent extends IntString implements IEquatable
                         $middle = '([a-z]|[0-9]|-)*';
                         $end    = '([a-z]|[0-9])$~';
 
-                        $pattern = $start.$middle.$end;
+                        $pattern = $start . $middle . $end;
                     }
 
-                    $correct = (boolean) preg_match($pattern, $stringValue);
+                    $correct = (bool) preg_match($pattern, $stringValue);
 
                     if ($correct) {
                         //Último chequeo: que no hayan 2 '-' consecutivos.
@@ -129,7 +132,7 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isDefault() : bool
+    public function isDefault(): bool
     {
         if ($this->intValue === 0) {
             if ($this->stringValue === '') {
@@ -145,7 +148,7 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isNotDefault() : bool
+    public function isNotDefault(): bool
     {
         return !$this->isDefault();
     }
@@ -155,7 +158,7 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isNull() : bool
+    public function isNull(): bool
     {
         if ($this->intValue === null) {
             return true;
@@ -169,12 +172,12 @@ class VersionComponent extends IntString implements IEquatable
      *
      * @return bool
      * */
-    public function isNotNull() : bool
+    public function isNotNull(): bool
     {
         return !$this->isNull();
     }
 
-    public function equals($other) : bool
+    public function equals($other): bool
     {
         if ($other instanceof VersionComponent) {
             if ($this->intValue === $other->intValue) {

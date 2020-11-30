@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,14 +15,13 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\IStrictPropertiesContainer;
-
 use SebastianBergmann\Exporter\Exporter;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
 trait HasReadWriteProperties
 {
 
-    abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
+    abstract public function testImplementsIStrictPropertiesContainerInterface(): void;
 
     abstract public function readwritePropertiesProvider();
 
@@ -51,7 +51,7 @@ trait HasReadWriteProperties
         string $property,
         $value,
         $expected
-    ) : void {
+    ): void {
         /** @var TestCase $this */
         $exporter = new Exporter();
 

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,16 +15,14 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\TestCase;
 
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\Test\DataProviders\VersionComponentTestProvider;
-
 use NelsonMartell\VersionComponent;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -49,7 +48,7 @@ class VersionComponentTest extends TestCase
      * @param VersionComponent $expected
      * @param mixed            $obj
      */
-    public function testParseMethod(VersionComponent $expected, $obj) : void
+    public function testParseMethod(VersionComponent $expected, $obj): void
     {
         $actual = VersionComponent::parse($obj);
 
@@ -59,7 +58,7 @@ class VersionComponentTest extends TestCase
                 'class'  => VersionComponent::class,
                 'method' => 'isValid',
                 'obj'    => static::export($obj),
-                'actual' => static::export($actual)
+                'actual' => static::export($actual),
             ]
         );
 
@@ -93,7 +92,7 @@ class VersionComponentTest extends TestCase
     public function testCanCheckIfVersionComponentIsInDefaultOrNullState(
         string $expected,
         VersionComponent $versionComponent
-    ) : void {
+    ): void {
         static $format = '$versionComponent->{method}(); // {actual}';
 
         $actuals['isDefault']    = $versionComponent->isDefault();
@@ -109,20 +108,20 @@ class VersionComponentTest extends TestCase
 
         foreach ($actuals as $method => $actual) {
             // Pre-tests for returning type
-            $this->assertIsBool($actual, $messages[$method].' # Should return a boolean #');
+            $this->assertIsBool($actual, $messages[$method] . ' # Should return a boolean #');
         }
 
         // Pre-tests for different values
         $this->assertNotEquals(
             $actuals['isDefault'],
             $actuals['isNotDefault'],
-            $messages['isDefault'].PHP_EOL.$messages['isNotDefault']
+            $messages['isDefault'] . PHP_EOL . $messages['isNotDefault']
         );
 
         $this->assertNotEquals(
             $actuals['isNull'],
             $actuals['isNotNull'],
-            $messages['isNull'].PHP_EOL.$messages['isNotNull']
+            $messages['isNull'] . PHP_EOL . $messages['isNotNull']
         );
 
 
@@ -134,8 +133,8 @@ class VersionComponentTest extends TestCase
             $this->assertNotEquals(
                 $actuals['isNull'],
                 $actuals['isDefault'],
-                '#Can\'t be both, DEFAULT and NULL, at the same time'.PHP_EOL.
-                $messages['isDefault'].PHP_EOL.
+                '#Can\'t be both, DEFAULT and NULL, at the same time' . PHP_EOL .
+                $messages['isDefault'] . PHP_EOL .
                 $messages['isNull']
             );
         } elseif ($expected === 'null') {
@@ -145,8 +144,8 @@ class VersionComponentTest extends TestCase
             $this->assertNotEquals(
                 $actuals['isNull'],
                 $actuals['isDefault'],
-                '#Can\'t be both, NULL and DEFAULT, at the same time'.PHP_EOL.
-                $messages['isNull'].PHP_EOL.
+                '#Can\'t be both, NULL and DEFAULT, at the same time' . PHP_EOL .
+                $messages['isNull'] . PHP_EOL .
                 $messages['isDefault']
             );
         } else {

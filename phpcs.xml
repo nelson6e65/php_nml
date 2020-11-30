@@ -3,7 +3,8 @@
   <description>
     The coding standard configuration for «PHP: Nelson Martell Library» package.
   </description>
-  <rule ref="PSR2" />
+  <!-- Rules -->
+  <rule ref="PSR12" />
   <rule ref="PEAR.Functions.ValidDefaultValue" />
   <rule ref="PEAR.Commenting.InlineComment" />
   <rule ref="Squiz.Operators.ValidLogicalOperators" />
@@ -16,6 +17,17 @@
   <rule ref="Squiz.PHP.NonExecutableCode" />
   <rule ref="Squiz.Strings.DoubleQuoteUsage" />
   <rule ref="Squiz.WhiteSpace.SemicolonSpacing" />
+  <rule ref="Squiz.Arrays.ArrayDeclaration">
+    <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned" />
+    <exclude name="Squiz.Arrays.ArrayDeclaration.KeyNotAligned" />
+    <!-- <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned" /> -->
+    <!-- <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNotAligned" /> -->
+    <exclude name="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned" />
+    <exclude name="Squiz.Arrays.ArrayDeclaration.ValueNoNewline" />
+    <exclude name="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed" />
+    <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed" />
+  </rule>
+  <rule ref="Generic.Arrays.ArrayIndent" />
   <rule ref="Generic.CodeAnalysis.AssignmentInCondition" />
   <rule ref="Generic.CodeAnalysis.EmptyPHPStatement" />
   <rule ref="Generic.CodeAnalysis.EmptyStatement" />
@@ -31,6 +43,13 @@
     <exclude-pattern>tests/</exclude-pattern>
   </rule>
   <rule ref="Generic.NamingConventions.ConstructorName" />
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="4" />
+      <property name="exact" value="true" />
+    </properties>
+  </rule>
+  <!-- Config -->
   <!-- <config name="show_progress" value="1"/>
   <config name="encoding" value="utf-8"/> -->
   <exclude-pattern type="relative">^.git/*</exclude-pattern>
@@ -38,7 +57,7 @@
   <exclude-pattern type="relative">^Locale/*</exclude-pattern>
   <!-- <exclude-pattern type="relative">^tests/*</exclude-pattern> -->
   <exclude-pattern type="relative">^vendor/*</exclude-pattern>
-  <exclude-pattern>*ExampleClass*</exclude-pattern>
+  <!-- <exclude-pattern>*ExampleClass*</exclude-pattern> -->
   <arg name="colors" />
   <arg name="extensions" value="php" />
   <arg name="encoding" value="utf-8" />

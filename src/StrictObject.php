@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -83,7 +84,7 @@ abstract class StrictObject implements IComparer, IStrictPropertiesContainer, IC
             }
         }
 
-        return '{ '.$type.' }';
+        return '{ ' . $type . ' }';
     }
 
     /**

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,16 +15,14 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use BadMethodCallException;
-
 use NelsonMartell\Extensions\Text;
-
 use NelsonMartell\IStrictPropertiesContainer;
-
 use SebastianBergmann\Exporter\Exporter;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -40,7 +39,7 @@ trait HasReadOnlyProperties
      *
      * @see ImplementsIStrictPropertiesContainer::testImplementsIStrictPropertiesContainerInterface()
      */
-    abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
+    abstract public function testImplementsIStrictPropertiesContainerInterface(): void;
 
     abstract public function readonlyPropertiesProvider();
 
@@ -58,7 +57,7 @@ trait HasReadOnlyProperties
         IStrictPropertiesContainer $obj,
         string $property,
         $expected
-    ) : void {
+    ): void {
         /** @var TestCase $this */
         try {
             $actual = $obj->$property;
@@ -86,7 +85,7 @@ trait HasReadOnlyProperties
             [
                 'var'      => $var,
                 'property' => $property,
-                'actual'   => $exporter->shortenedExport($actual)
+                'actual'   => $exporter->shortenedExport($actual),
             ]
         );
 
@@ -105,7 +104,7 @@ trait HasReadOnlyProperties
         IStrictPropertiesContainer $obj = null,
         string $property = null,
         $value = null
-    ) : void {
+    ): void {
         /** @var TestCase $this */
         $this->expectException(BadMethodCallException::class);
 

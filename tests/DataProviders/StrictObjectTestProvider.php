@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,10 +15,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\StrictObject;
-
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\IComparerTester;
 
@@ -31,7 +33,7 @@ trait StrictObjectTestProvider
 {
     use ExporterPlugin;
 
-    public function getTargetClassName() : string
+    public function getTargetClassName(): string
     {
         return StrictObject::class;
     }

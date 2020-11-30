@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,10 +15,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\Helpers;
 
 use BadMethodCallException;
-
 use NelsonMartell\IStrictPropertiesContainer;
 use PHPUnit\Framework\TestCase;
 
@@ -31,9 +33,9 @@ trait HasUnaccesibleProperties
 {
     /**
      */
-    abstract public function testImplementsIStrictPropertiesContainerInterface() : void;
+    abstract public function testImplementsIStrictPropertiesContainerInterface(): void;
 
-    abstract public function unaccesiblePropertiesProvider() : array;
+    abstract public function unaccesiblePropertiesProvider(): array;
 
     /**
      * @dataProvider unaccesiblePropertiesProvider
@@ -46,7 +48,7 @@ trait HasUnaccesibleProperties
         IStrictPropertiesContainer $obj,
         string $property,
         $value = null
-    ) : void {
+    ): void {
         /** @var TestCase $this */
         $this->expectException(BadMethodCallException::class);
 

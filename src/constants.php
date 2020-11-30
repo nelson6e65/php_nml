@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -16,6 +17,7 @@
  * @since     0.5.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
 /**
  * Gettext domain for NML messages.
  * Only for internal usage.

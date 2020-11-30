@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -17,7 +18,6 @@
 namespace NelsonMartell\Test\TestCase;
 
 use NelsonMartell\Test\DataProviders\PropertiesHandlerTestProvider;
-
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,15 +15,14 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\TestCase;
 
 use InvalidArgumentException;
-
 use NelsonMartell\Extensions\Text;
 use NelsonMartell\Version;
-
 use NelsonMartell\Test\DataProviders\VersionTestProvider;
-
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -49,7 +49,7 @@ class VersionTest extends TestCase
      *
      * @param string|array $value
      */
-    public function testPerformsConversionFromParseableStringAndArrays($value) : void
+    public function testPerformsConversionFromParseableStringAndArrays($value): void
     {
         $version = Version::parse($value);
 
@@ -63,7 +63,7 @@ class VersionTest extends TestCase
      *
      * @param mixed $value
      */
-    public function testThrowsExceptionOnParsinInvalidValue($value) : void
+    public function testThrowsExceptionOnParsinInvalidValue($value): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -80,7 +80,7 @@ class VersionTest extends TestCase
      * @param  bool    $expected
      * @param  Version $version
      */
-    public function testIsValid(bool $expected, Version $version) : void
+    public function testIsValid(bool $expected, Version $version): void
     {
         $actual = $version->isValid();
 
@@ -89,11 +89,11 @@ class VersionTest extends TestCase
             [
                 'method' => 'isValid',
                 'obj'    => static::export($version),
-                'actual' => static::export($actual)
+                'actual' => static::export($actual),
             ]
         );
 
-        $this->assertIsBool($actual, $message.' # Should return a boolean #');
+        $this->assertIsBool($actual, $message . ' # Should return a boolean #');
 
         if ($expected === true) {
             $this->assertTrue($actual, $message);

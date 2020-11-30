@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -13,10 +14,12 @@
  * @since     1.0.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
+
+declare(strict_types=1);
+
 namespace NelsonMartell\Extensions;
 
 use InvalidArgumentException;
-
 use NelsonMartell\IComparer;
 use NelsonMartell\StrictObject;
 
@@ -41,7 +44,7 @@ class MethodExtension
      *
      * @see Text::ensureIsValidVarName()
      */
-    public static function ensureIsValidName(string $name) : string
+    public static function ensureIsValidName(string $name): string
     {
         try {
             return Text::ensureIsValidVarName($name);
@@ -64,7 +67,7 @@ class MethodExtension
      *
      * @see PropertyExtension::ensureIsValidName()
      */
-    public static function ensureIsDefined(string $method, string $class) : string
+    public static function ensureIsDefined(string $method, string $class): string
     {
         $type = typeof($class, true);
 

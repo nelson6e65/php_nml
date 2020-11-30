@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * PHP: Nelson Martell Library file
  *
@@ -14,10 +15,11 @@
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
  * */
 
+declare(strict_types=1);
+
 namespace NelsonMartell\Test\TestCase\Extensions;
 
 use NelsonMartell\Test\DataProviders\Extensions\ObjectsTestProvider;
-
 use PHPUnit\Framework\TestCase;
 
 /**
