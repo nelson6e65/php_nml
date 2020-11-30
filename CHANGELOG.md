@@ -80,7 +80,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### :bookmark: More changes
 
-See [changes since v0.7.1](https://github.com/nelson6e65/php_nml/compare/v0.7.1...master?w=1) for more detailed info.
+See [changes since v0.7.2](https://github.com/nelson6e65/php_nml/compare/v0.7.2...master?w=1) for more detailed info.
 
 ### [v0.7.2] - 2019-01-05
 
