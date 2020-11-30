@@ -15,6 +15,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::SETS, [
         SetList::PHP_71,
         SetList::PHPUNIT_75,
+        SetList::PHPUNIT_80,
+        SetList::PHPUNIT_90,
+        SetList::PHPUNIT_91,
     ]);
 
     // get services (needed for register a single rule)
