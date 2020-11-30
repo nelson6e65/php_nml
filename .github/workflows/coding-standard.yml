@@ -1,4 +1,4 @@
-name: Pretty Code
+name: Coding Standard Linting
 
 on: [push, pull_request]
 
