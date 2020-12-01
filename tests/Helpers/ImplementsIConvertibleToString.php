@@ -48,13 +48,13 @@ trait ImplementsIConvertibleToString
         $className = $this->getTargetClassName();
         $class     = new ReflectionClass($className);
 
-        /** @var TestCase $this */
         $message = Text::format(
             '"{0}" do not implements "{1}" interface.',
             $className,
             IConvertibleToString::class
         );
 
+        /** @var TestCase $this */
         $this->assertContains(
             IConvertibleToString::class,
             $class->getInterfaceNames(),

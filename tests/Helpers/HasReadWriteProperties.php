@@ -52,7 +52,6 @@ trait HasReadWriteProperties
         $value,
         $expected
     ): void {
-        /** @var TestCase $this */
         $exporter = new Exporter();
 
         $var = get_class($obj);
@@ -75,6 +74,7 @@ trait HasReadWriteProperties
             ]
         );
 
+        /** @var TestCase $this */
         $this->assertEquals($expected, $actual, $message);
     }
 }

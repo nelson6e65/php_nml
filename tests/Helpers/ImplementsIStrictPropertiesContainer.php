@@ -82,6 +82,7 @@ trait ImplementsIStrictPropertiesContainer
         /** @var TestCase $this */
         $this->expectException(BadMethodCallException::class);
 
+        /** @phpstan-ignore-next-line */
         $obj->thisPropertyNameIsMaybeImposibleThatExistsInClassToBeUsedAsNameOfPropertyOfAnyClassGiven = 'No way';
     }
 }

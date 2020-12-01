@@ -49,8 +49,8 @@ trait HasWriteOnlyProperties
         string $property,
         $value
     ): void {
-        /** @var TestCase $this */
         $obj->$property = $value;
+        /** @var TestCase $this */
         $this->addToAssertionCount(1);
 
         $this->expectException(BadMethodCallException::class);

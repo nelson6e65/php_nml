@@ -72,7 +72,6 @@ trait IEquatableTester
      */
     public function testIEquatableEqualsMethod($expected, IEquatable $left, $right): void
     {
-        /** @var TestCase $this */
         $actual = $left->equals($right);
 
         $message = Text::format(
@@ -85,6 +84,7 @@ trait IEquatableTester
             ]
         );
 
+        /** @var TestCase $this */
         $this->assertIsBool($actual, $message);
 
         if (!is_bool($expected)) {

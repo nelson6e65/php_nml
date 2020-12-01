@@ -262,11 +262,11 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
                 if ($this->build->isNotNull() && $this->revision->isNotNull()) {
                     // Si ambos están definidos...
 
-                    $r = (bool) ($this->build->stringValue == ''); // 5
+                    $r = $this->build->stringValue == ''; // 5
 
                     if (!$r) {
                         // 4
-                        $r = (bool) (($this->build->stringValue == '') && ($this->revision->stringValue == ''));
+                        $r = ($this->build->stringValue == '') && ($this->revision->stringValue == '');
 
                         if (!$r) {
                             if ($this->build->stringValue != '') {
@@ -284,7 +284,7 @@ final class Version extends StrictObject implements IEquatable, IComparable, IMa
             }
         }
 
-        return (bool) $r;
+        return $r;
     }
 
     /**

@@ -246,7 +246,7 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
         $traits = [];
 
         if ($this->reflectionObject !== null) {
-            $traits += (array) $this->reflectionObject->getTraits();
+            $traits += $this->reflectionObject->getTraits();
 
             if ($recursive === true) {
                 // Search in sub-traits of this class --------------------------------------------

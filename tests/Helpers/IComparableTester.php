@@ -71,7 +71,6 @@ trait IComparableTester
      */
     public function testIComparableCompareToMethod($expected, IComparable $left, $right): void
     {
-        /** @var TestCase $this */
         $actual = $left->compareTo($right);
 
         $message = Text::format(
@@ -84,6 +83,7 @@ trait IComparableTester
             ]
         );
 
+        /** @var TestCase $this */
         if ($expected === 0) {
             $this->assertIsInt($actual, $message);
             $this->assertEquals(0, $actual, $message);

@@ -90,20 +90,20 @@ class Objects implements IComparer
             $ltype = typeof($left);
             $rtype = typeof($right);
 
-            if (typeof((bool) true)->isIn($left, $right)) {
+            if (typeof(true)->isIn($left, $right)) {
             // Boolean compare -----------------------------------------
-                if (typeof((bool) true)->is($left, $right)) {
+                if (typeof(true)->is($left, $right)) {
                     $r = (int) $left - (int) $right;
                 } else {
                     $r = null;
                 }
-            } elseif (typeof((int) 0)->isIn($left, $right) || typeof((float) 0)->isIn($left, $right)) {
+            } elseif (typeof(0)->isIn($left, $right) || typeof((float) 0)->isIn($left, $right)) {
             // Numeric compare -----------------------------------------
                 $r = Numbers::compare($left, $right);
-            } elseif (typeof((string) '')->isIn($left, $right)) {
+            } elseif (typeof('')->isIn($left, $right)) {
             // String compare ------------------------------------------
                 $r = Text::compare($left, $right);
-            } elseif (typeof((array) [])->isIn($left, $right)) {
+            } elseif (typeof([])->isIn($left, $right)) {
             // Array compare -------------------------------------------
                 $r = Arrays::compare($left, $right);
             } else {
