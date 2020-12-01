@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 7.1
   - 7.3
   - 7.4
   - 8.0
@@ -45,7 +44,6 @@ before_script:
 script:
   - composer cs:php
   - composer test
-  - composer cs:lint
 
 after_success:
   - if [[ $BUILD_DOCS == 'true' ]]; then composer build:api-docs; fi

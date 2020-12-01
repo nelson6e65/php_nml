@@ -53,8 +53,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 #### :fire: Removed
 
-- Drop active support for eol PHP versions: `5.6` and `7.0` (http://php.net/supported-versions.php).
-- Add support for PHP versions `7.2`, `7.3`, `7.4` and `8.0`.
+- Drop active support for eol PHP versions: `5.6`, `7.0` and `7.1` (http://php.net/supported-versions.php).
+- Deprecate PHP 7.2.
+- Add support for PHP versions `7.3`, `7.4` and `8.0` (wip).
 - Remove deprecated classes under `NelsonMartell\Utilities` namespace.
 - Remove `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
 - Remove `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
