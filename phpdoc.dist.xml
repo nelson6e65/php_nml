@@ -15,6 +15,5 @@
   </transformations>
   <files>
     <directory>src</directory>
-    <file>vendor/cakephp/utility/Text.php</file>
   </files>
 </phpdoc>
