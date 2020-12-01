@@ -184,7 +184,7 @@ class IntString extends StrictObject implements IEquatable, IComparable
     {
         if ($other instanceof IntString) {
             if ($this->getIntValue() === $other->getIntValue()) {
-                if ($this->getIntValue() === $other->getStringValue()) {
+                if ($this->getStringValue() === $other->getStringValue()) {
                     return true;
                 }
             }
