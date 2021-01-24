@@ -30,8 +30,8 @@
     "squizlabs/php_codesniffer": "^3.0",
     "phpunit/phpunit": "^8 || ^9",
     "nelson6e65/phpdoc-vuepress": "^1.0",
-    "phpstan/phpstan": "^0.12.57",
-    "rector/rector": "^0.8.56"
+    "phpstan/phpstan": "^0.12.69",
+    "rector/rector": "^0.9.15"
   },
   "autoload": {
     "psr-4": {
