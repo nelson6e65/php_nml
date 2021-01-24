@@ -43,24 +43,8 @@ class IntString extends StrictObject implements IEquatable, IComparable
      *
      * @since 1.0.0-dev Allow `null` value for `$intValue`.
      */
-    public function __construct($intValue = 0, $stringValue = '')
+    public function __construct(?int $intValue = 0, $stringValue = '')
     {
-        if (!(is_integer($intValue) || $intValue === null)) {
-            $args = [
-                'position' => '1st',
-                'expected' => typeof(0) . '" or "' . typeof(null),
-                'actual'   => typeof($intValue),
-            ];
-
-            $msg  = msg('Invalid argument type.');
-            $msg .= msg(
-                ' {position} parameter must to be an instance of "{expected}"; "{actual}" given.',
-                $args
-            );
-
-            throw new InvalidArgumentException($msg);
-        }
-
         $this->intValue = $intValue;
 
         if (!typeof($stringValue)->canBeString()) {
