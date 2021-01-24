@@ -1,6 +1,4 @@
 {
-  "name": "php_nml",
-  "version": "1.0.0",
   "private": true,
   "repository": "git@github.com:nelson6e65/php_nml.git",
   "license": "MIT",
