@@ -35,7 +35,7 @@ class Numbers implements IComparer
     /**
      * Ensures that object given is an integer. Else, thows an exception.
      *
-     * @param mixed $obj Object to validate.
+     * @param mixed|float|int $obj Object to validate.
      *
      * @return float|int Same object given, but ensured that is a number.
      *
@@ -43,12 +43,12 @@ class Numbers implements IComparer
      */
     public static function ensureIsNumeric($obj)
     {
-        if (!is_int($obj) || !is_float($obj) || is_object($obj)) {
-            $msg = msg('Provided object must to be an integer or float; "{0}" given.', typeof($obj));
-            throw new InvalidArgumentException($msg);
+        if (is_int($obj) || is_float($obj)) {
+            return $obj;
         }
 
-        return $obj;
+        $msg = msg('Provided object must to be an integer or float; "{0}" given.', typeof($obj));
+        throw new InvalidArgumentException($msg);
     }
 
     /**
