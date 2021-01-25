@@ -43,7 +43,7 @@ class TextTest extends TestCase
      * @dataProvider validPositionalArgsListProvider
      * @dataProvider validNamedArgsListProvider
      */
-    public function testPerformsFormatWithSecuentialAndNotSecuentialData($expected, $format, $data, $positional = false)
+    public function testPerformsFormatWithSecuentialAndNotSecuentialData($expected, $format, $data, $positional = false): array
     {
         $actual = Text::format($format, $data);
         $this->assertEquals($expected, $actual);
@@ -58,14 +58,14 @@ class TextTest extends TestCase
     /**
      * @dataProvider nonStringObjectsProvider
      */
-    public function testDoNotPerformsFormatWithPlaceholdersValuesNotConvertiblesToString($obj)
+    public function testDoNotPerformsFormatWithPlaceholdersValuesNotConvertiblesToString($obj): array
     {
         $this->expectException(InvalidArgumentException::class);
 
         Text::format('{0}: {1}', InvalidArgumentException::class, $obj);
     }
 
-    public function nonStringObjectsProvider()
+    public function nonStringObjectsProvider(): array
     {
         return [
             'stdClass' => [new \stdClass()],
@@ -77,7 +77,7 @@ class TextTest extends TestCase
     /**
      * expected, format, data, secuential
      **/
-    public function validPositionalArgsListProvider()
+    public function validPositionalArgsListProvider(): array
     {
         $secuential = true;
 
@@ -130,7 +130,7 @@ class TextTest extends TestCase
     /**
      * expected, format, data, secuential = false
      **/
-    public function validNamedArgsListProvider()
+    public function validNamedArgsListProvider(): array
     {
         return [
             'n: complete'                                => [
@@ -202,7 +202,7 @@ class TextTest extends TestCase
 
 
 
-    public function compareMethodArgumentsProvider()
+    public function compareMethodArgumentsProvider(): array
     {
         return [
             'stdClass > string'      => [1, new stdClass(), 'stdClass'],
@@ -214,7 +214,7 @@ class TextTest extends TestCase
         ];
     }
 
-    public function compareMethodArraysProvider()
+    public function compareMethodArraysProvider(): array
     {
         return [
             [[-1, 0, 1, 'b', 'c', 'd', 'z', 'z1', new stdClass()]],

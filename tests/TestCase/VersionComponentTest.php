@@ -72,7 +72,7 @@ class VersionComponentTest extends TestCase
      *
      * @param mixed $obj
      */
-    public function testParseMethodWithInvalidArguments($obj)
+    public function testParseMethodWithInvalidArguments($obj): void
     {
         /** @var TestCase $this */
         $this->expectException(InvalidArgumentException::class);

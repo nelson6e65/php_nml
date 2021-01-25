@@ -34,7 +34,7 @@ trait HasReadWriteProperties
 
     abstract public function testImplementsIStrictPropertiesContainerInterface(): void;
 
-    abstract public function readwritePropertiesProvider();
+    abstract public function readwritePropertiesProvider(): array;
 
 
     /**

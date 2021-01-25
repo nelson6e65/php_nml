@@ -57,7 +57,7 @@ trait IComparableTester
      *
      * @return array
      */
-    abstract public function IComparableCompareToMethodArgumentsProvider();
+    abstract public function IComparableCompareToMethodArgumentsProvider(): array;
 
     /**
      * @testdox Can compare relative position with other objects

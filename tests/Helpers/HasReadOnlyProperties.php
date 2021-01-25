@@ -41,7 +41,7 @@ trait HasReadOnlyProperties
      */
     abstract public function testImplementsIStrictPropertiesContainerInterface(): void;
 
-    abstract public function readonlyPropertiesProvider();
+    abstract public function readonlyPropertiesProvider(): array;
 
 
     /**

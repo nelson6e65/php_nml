@@ -51,7 +51,7 @@ trait VersionComponentTestProvider
     use ImplementsIConvertibleToString;
     use ImplementsIStrictPropertiesContainer;
 
-    public function unaccesiblePropertiesProvider()
+    public function unaccesiblePropertiesProvider(): array
     {
         $obj = new VersionComponent(null, 'beta');
 
@@ -73,7 +73,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function badConstructorArgumentsProvider()
+    public function badConstructorArgumentsProvider(): array
     {
         return [
             'Negative integer part'                 => [InvalidArgumentException::class, -1, null],
@@ -84,12 +84,12 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function objectInstanceProvider()
+    public function objectInstanceProvider(): array
     {
         return [[new VersionComponent(1, '-beta')]];
     }
 
-    public function readOnlyPropertiesProvider()
+    public function readOnlyPropertiesProvider(): array
     {
         $obj = new VersionComponent(1, '-beta');
 
@@ -99,7 +99,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function IComparableCompareToMethodArgumentsProvider()
+    public function IComparableCompareToMethodArgumentsProvider(): array
     {
         $v                = new VersionComponent(1, '-alpha');
         $obj              = new \stdClass();
@@ -144,7 +144,7 @@ trait VersionComponentTestProvider
     }
 
 
-    public function compareMethodArgumentsProvider()
+    public function compareMethodArgumentsProvider(): array
     {
         $v                = new VersionComponent(1, '-alpha');
         $obj              = new \stdClass();
@@ -158,7 +158,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function compareMethodArraysProvider()
+    public function compareMethodArraysProvider(): array
     {
         return [
             'VersionComponent[]'                            => [[
@@ -197,7 +197,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function goodVersionComponentParseMethodArgumentsProvider()
+    public function goodVersionComponentParseMethodArgumentsProvider(): array
     {
         return [
             [new VersionComponent(1, 'a0'), '1a0'],
@@ -213,7 +213,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function badVersionComponentParseMethodArgumentsProvider()
+    public function badVersionComponentParseMethodArgumentsProvider(): array
     {
         return [
             'string | consecutive "-"'        => ['1a--0'],
@@ -224,7 +224,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function IEquatableMethodArgumentsProvider()
+    public function IEquatableMethodArgumentsProvider(): array
     {
         return [
             [true, new VersionComponent(1, '-alpha'), new VersionComponent(1, '-alpha')],
@@ -240,7 +240,7 @@ trait VersionComponentTestProvider
         ];
     }
 
-    public function toStringProvider()
+    public function toStringProvider(): array
     {
         return [
             ['0', new VersionComponent(0)],
@@ -256,7 +256,7 @@ trait VersionComponentTestProvider
     }
 
 
-    public function nullOrDefaultStatesProvider()
+    public function nullOrDefaultStatesProvider(): array
     {
         return [
             ['default', new VersionComponent(0)],

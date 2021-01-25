@@ -45,7 +45,7 @@ trait ImplementsIStrictPropertiesContainer
      */
     abstract public function getTargetClassName(): string;
 
-    abstract public function objectInstanceProvider();
+    abstract public function objectInstanceProvider(): array;
 
     public function testImplementsIStrictPropertiesContainerInterface(): void
     {

@@ -45,7 +45,7 @@ trait PropertiesHandlerTestProvider
         return PropertiesHandler::class;
     }
 
-    public function objectInstanceProvider()
+    public function objectInstanceProvider(): array
     {
         $a = new ExampleClass\A();
         $b = new ExampleClass\B();
@@ -61,7 +61,7 @@ trait PropertiesHandlerTestProvider
     }
 
 
-    public function writeonlyPropertiesProvider()
+    public function writeonlyPropertiesProvider(): array
     {
         $a = new ExampleClass\A();
         $b = new ExampleClass\B();
@@ -73,7 +73,7 @@ trait PropertiesHandlerTestProvider
         ];
     }
 
-    public function readwritePropertiesProvider()
+    public function readwritePropertiesProvider(): array
     {
         $a = new ExampleClass\A();
         $c = new ExampleClass\C();
@@ -98,7 +98,7 @@ trait PropertiesHandlerTestProvider
     }
 
 
-    public function readonlyPropertiesProvider()
+    public function readonlyPropertiesProvider(): array
     {
         $a = new ExampleClass\A();
         $b = new ExampleClass\B();
@@ -119,7 +119,7 @@ trait PropertiesHandlerTestProvider
         ];
     }
 
-    public function unaccesiblePropertiesProvider()
+    public function unaccesiblePropertiesProvider(): array
     {
         $a = new ExampleClass\A();
         $b = new ExampleClass\B();

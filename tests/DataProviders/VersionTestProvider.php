@@ -51,7 +51,7 @@ trait VersionTestProvider
     use ImplementsIConvertibleToString;
     use ImplementsIStrictPropertiesContainer;
 
-    public function unaccesiblePropertiesProvider()
+    public function unaccesiblePropertiesProvider(): array
     {
         $version = Version::parse(NML_VERSION);
 
@@ -68,7 +68,7 @@ trait VersionTestProvider
      *
      * @return array
      */
-    public function badConstructorArgumentsProvider()
+    public function badConstructorArgumentsProvider(): array
     {
         return [
             'Type: null (all)'               => [TypeError::class, null, null],
@@ -111,12 +111,12 @@ trait VersionTestProvider
     }
 
 
-    public function objectInstanceProvider()
+    public function objectInstanceProvider(): array
     {
         return [[new Version(0, 7, '0-beta')]];
     }
 
-    public function readOnlyPropertiesProvider()
+    public function readOnlyPropertiesProvider(): array
     {
         $obj = new Version(0, 7, '0-beta');
 
@@ -128,7 +128,7 @@ trait VersionTestProvider
         ];
     }
 
-    public function IComparableCompareToMethodArgumentsProvider()
+    public function IComparableCompareToMethodArgumentsProvider(): array
     {
         $v             = new Version(1, 0, 9);
         $obj           = new stdClass();
@@ -159,7 +159,7 @@ trait VersionTestProvider
         return $args;
     }
 
-    public function compareMethodArgumentsProvider()
+    public function compareMethodArgumentsProvider(): array
     {
         $v             = new Version(1, 0, 9);
         $obj           = new \stdClass();
@@ -179,7 +179,7 @@ trait VersionTestProvider
         return $args;
     }
 
-    public function compareMethodArraysProvider()
+    public function compareMethodArraysProvider(): array
     {
         return [
             'Version[]'                                     => [[
@@ -226,7 +226,7 @@ trait VersionTestProvider
         ];
     }
 
-    public function IEquatableMethodArgumentsProvider()
+    public function IEquatableMethodArgumentsProvider(): array
     {
         return [
             [true, new Version(1, 2), new Version(1, 2)],
@@ -264,7 +264,7 @@ trait VersionTestProvider
         ],
     ];
 
-    public function isValidProvider()
+    public function isValidProvider(): array
     {
         $args = [];
 
@@ -322,7 +322,7 @@ trait VersionTestProvider
         ];
     }
 
-    public function nonParseableValuesProvider()
+    public function nonParseableValuesProvider(): array
     {
         return [
             'empty string'              => [''],
@@ -331,7 +331,7 @@ trait VersionTestProvider
         ];
     }
 
-    public function toStringProvider()
+    public function toStringProvider(): array
     {
         return [
             ['1.0', new Version(1, 0)],

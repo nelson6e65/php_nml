@@ -35,7 +35,7 @@ trait HasWriteOnlyProperties
      */
     abstract public function testImplementsIStrictPropertiesContainerInterface(): void;
 
-    abstract public function writeonlyPropertiesProvider();
+    abstract public function writeonlyPropertiesProvider(): array;
 
     /**
      * @dataProvider writeonlyPropertiesProvider
