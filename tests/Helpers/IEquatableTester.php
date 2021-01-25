@@ -52,7 +52,7 @@ trait IEquatableTester
      *
      * @see ExporterPlugin
      */
-    abstract public function export($obj, int $depth = 2, bool $short = false): string;
+    abstract public static function export($obj, int $depth = 2, bool $short = false): string;
 
     /**
      * Datasets for ``testIEquatableEqualsMethod(bool $expected, IEquatable $left, mixed $right)``.
