@@ -43,7 +43,7 @@ class TextTest extends TestCase
      * @dataProvider validPositionalArgsListProvider
      * @dataProvider validNamedArgsListProvider
      */
-    public function testPerformsFormatWithSecuentialAndNotSecuentialData($expected, $format, $data, $positional = false): array
+    public function testPerformsFormatWithSecuentialAndNotSecuentialData($expected, $format, $data, $positional = false): void
     {
         $actual = Text::format($format, $data);
         $this->assertEquals($expected, $actual);
@@ -58,7 +58,7 @@ class TextTest extends TestCase
     /**
      * @dataProvider nonStringObjectsProvider
      */
-    public function testDoNotPerformsFormatWithPlaceholdersValuesNotConvertiblesToString($obj): array
+    public function testDoNotPerformsFormatWithPlaceholdersValuesNotConvertiblesToString($obj): void
     {
         $this->expectException(InvalidArgumentException::class);
 
