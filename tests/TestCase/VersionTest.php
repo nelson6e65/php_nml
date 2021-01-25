@@ -36,7 +36,7 @@ class VersionTest extends TestCase
 {
     use VersionTestProvider;
 
-    public function getTargetClassName()
+    public function getTargetClassName(): string
     {
         return Version::class;
     }

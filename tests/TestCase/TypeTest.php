@@ -48,7 +48,7 @@ class TypeTest extends TestCase
         $this->exporter = new Exporter();
     }
 
-    public function getTargetClassName()
+    public function getTargetClassName(): string
     {
         return Type::class;
     }

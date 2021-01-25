@@ -35,7 +35,7 @@ class VersionComponentTest extends TestCase
 {
     use VersionComponentTestProvider;
 
-    public function getTargetClassName()
+    public function getTargetClassName(): string
     {
         return VersionComponent::class;
     }

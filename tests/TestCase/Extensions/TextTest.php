@@ -190,7 +190,7 @@ class TextTest extends TestCase
 
     // IComparerTester ==============================================================================
 
-    public function getTargetClassName()
+    public function getTargetClassName(): string
     {
         return Text::class;
     }
