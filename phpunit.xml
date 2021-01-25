@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<phpunit bootstrap="vendor/autoload.php" colors="true" verbose="true">
+<phpunit
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  bootstrap="vendor/autoload.php"
+  colors="true"
+  verbose="true"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+>
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+    <exclude>
+      <file>src/constants.php</file>
+    </exclude>
+  </coverage>
+
   <testsuites>
     <testsuite name="Core">
       <file>tests/TestCase/Extensions/TextTest.php</file>
@@ -10,6 +25,7 @@
       <directory>tests/TestCase</directory>
     </testsuite>
   </testsuites>
+
   <groups>
     <exclude>
       <group>examples</group>
@@ -17,20 +33,13 @@
       <group>proposals</group>
     </exclude>
   </groups>
-  <filter>
-    <whitelist processUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">src</directory>
-      <exclude>
-        <file>src/constants.php</file>
-      </exclude>
-    </whitelist>
-  </filter>
+
   <logging>
     <!-- <log type="coverage-clover" target="output/code-coverage/clover.xml"/> -->
     <!-- <log type="coverage-html" target="output/code-coverage" lowUpperBound="25" highLowerBound="75"/> -->
     <!-- <log type="coverage-php" target="output/code-coverage/serialized.php"/> -->
     <!-- <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/> -->
-    <log type="testdox-html" target="output/testdox/index.html" />
-    <log type="testdox-text" target="output/testdox/tests.txt" />
+    <testdoxHtml outputFile="output/testdox/index.html" />
+    <testdoxText outputFile="output/testdox/tests.txt" />
   </logging>
 </phpunit>
