@@ -18,6 +18,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         SetList::PHPUNIT_90,
         SetList::PHPUNIT_91,
         SetList::PHPSTAN,
+
+        // SetList::CODE_QUALITY,
+        // SetList::DEAD_CODE,
     ]);
 
     // get services (needed for register a single rule)

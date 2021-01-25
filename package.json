@@ -16,7 +16,7 @@
     }
   },
   "lint-staged": {
-    "*.php": "vendor/bin/phpcbf"
+    "!(*CustomPhpCodeSniffer).php": "composer lint-staged"
   },
   "dependencies": {},
   "devDependencies": {
