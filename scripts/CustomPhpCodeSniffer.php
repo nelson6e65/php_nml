@@ -38,7 +38,14 @@ class CustomPhpCodeSniffer
             $return = 0;
 
             foreach ($files as $i => $file) {
-                $relativeFile =  str_replace($rootDir . DIRECTORY_SEPARATOR, '', realpath($file));
+                $realPath = realpath($file);
+
+                if ($realPath === realpath(__FILE__)) {
+                    // Do not self-fix this file
+                    continue;
+                }
+
+                $relativeFile =  str_replace($rootDir . DIRECTORY_SEPARATOR, '', $realPath);
                 $relativeFile =  str_replace(DIRECTORY_SEPARATOR, '/', $relativeFile);
 
                 $type = stripos($relativeFile, '.php', -4) === false ? 'directory' : 'file';

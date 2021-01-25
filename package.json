@@ -16,7 +16,7 @@
     }
   },
   "lint-staged": {
-    "!(*CustomPhpCodeSniffer).php": "composer lint-staged"
+    "*.php": "composer lint-staged"
   },
   "dependencies": {},
   "devDependencies": {
