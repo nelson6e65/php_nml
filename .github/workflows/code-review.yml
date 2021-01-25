@@ -1,4 +1,4 @@
-name: Coding Standard Linting
+name: Code Review
 
 on: [push, pull_request]
 
@@ -73,3 +73,6 @@ jobs:
 
       - name: Linting PHP Coding Standard
         run: composer cs:lint
+
+      - name: Running tests
+        run: composer test
