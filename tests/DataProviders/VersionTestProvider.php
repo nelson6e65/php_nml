@@ -89,7 +89,7 @@ trait VersionTestProvider
      *
      * @return array
      */
-    public function goodConstructorArgumentsProvider()
+    public function goodConstructorArgumentsProvider(): array
     {
         return [
             'SemVer: Normal'            => [1, 0, 0],
