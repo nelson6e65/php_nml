@@ -73,13 +73,10 @@ class Arrays implements IComparer
                 $r = count($left) - count($right);
 
                 if ($r === 0) {
-                    reset($left);
-                    reset($right);
-
                     do {
-                        $lKey   = key($left);
+                        $lKey   = array_key_first($left);
                         $lValue = current($left);
-                        $rKey   = key($right);
+                        $rKey   = array_key_first($right);
                         $rValue = current($right);
 
                         $r = Objects::compare((string) $lKey, (string) $rKey);
