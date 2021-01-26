@@ -12,7 +12,7 @@
 [![GitHub commits](https://img.shields.io/github/commits-since/nelson6e65/php_nml/v0.7.1.svg)](https://github.com/nelson6e65/php_nml/compare/v0.7.1...master)
 
 [![License](https://img.shields.io/github/license/nelson6e65/php_nml.svg)](LICENSE)
-[![Documentation](http://img.shields.io/badge/📜-Documentation-lightgrey.svg)](http://nelson6e65.github.io/php_nml)
+[![Documentation](http://img.shields.io/badge/📜-Documentation-lightgrey.svg)](https://php-nml.netlify.app)
 [![Wakatime](https://wakatime.com/badge/github/nelson6e65/php_nml.svg)](https://wakatime.com/badge/github/nelson6e65/php_nml)
 
 [![Join the chat at https://gitter.im/nelson6e65/php_nml](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nelson6e65/php_nml?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -27,9 +27,9 @@ composer require nelson6e65/php_nml
 
 > More info at https://php-nml.netlify.app/php_nml/guide/install.html
 
-## [Documentation](https://php-nml.netlify.app/php_nml)
+## [Documentation](https://php-nml.netlify.app)
 
-For more detailed information and description and instructions, check the documentation at **https://php-nml.netlify.app/php_nml**
+For more detailed information and description and instructions, check the documentation at **https://php-nml.netlify.app**
 
 ## License
 

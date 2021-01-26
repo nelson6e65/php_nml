@@ -1,7 +1,7 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration
 
 [build]
-  publish = "output/docs"
+  publish = "output/docs/php_nml"
 
   command = "composer global config minimum-stability dev && composer global config prefer-stable true && export PATH=$HOME/.composer/vendor/bin:$PATH && composer global require phpdocumentor/phpdocumentor:^2.9.1 && composer build:api-docs && vuepress build docs"
 
@@ -9,6 +9,6 @@
 
   ignore = "./.netlify/check-docs-needs-update.sh"
 
-[[redirects]]
-  from = "/"
-  to = "/php_nml"
+# [[redirects]]
+#   from = "/"
+#   to = "/php_nml"

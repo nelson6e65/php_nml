@@ -1,7 +1,7 @@
 module.exports = {
   // Output build
   dest: 'output/docs/php_nml',
-  base: '/php_nml/',
+  // base: '/php_nml/', // Only necesary for GitHub Pages
 
   title: 'PHP: Nelson Martell Library',
   description: 'A set of auxiliary classes for your PHP applications',
