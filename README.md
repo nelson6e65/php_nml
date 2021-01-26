@@ -25,7 +25,7 @@
 composer require nelson6e65/php_nml
 ```
 
-> More info at https://php-nml.netlify.app/php_nml/guide/install.html
+> More info at https://php-nml.netlify.app/guide/install.html
 
 ## [Documentation](https://php-nml.netlify.app)
 

@@ -10,7 +10,7 @@ module.exports = {
     '@vuepress/google-analytics': {
       ga: 'UA-58599811-1',
     },
-    'vuepress-plugin-clean-urls': {},
+    // 'vuepress-plugin-clean-urls': {},
   },
 
   markdown: {
