@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+git diff --quiet HEAD^ HEAD netlify.toml
+
+if [[ $? -eq 1 ]] ; then
+    echo 'Changes in Netlify configuration'
+    exit 1
+fi
+
+git diff --quiet HEAD^ HEAD .netlify
+
+if [[ $? -eq 1 ]] ; then
+    echo 'Changes in Netlify scripts'
+    exit 1
+fi
+
+
 git diff --quiet HEAD^ HEAD phpdoc.dist.xml
 
 if [[ $? -eq 1 ]] ; then
@@ -29,4 +44,4 @@ if [[ $? -ne 0 ]] ; then
 fi
 
 
-echo 'There is not changes related with documentation'
+echo 'There is not changes related to documentation'
