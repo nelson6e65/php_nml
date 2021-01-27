@@ -36,6 +36,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   - `NelsonMartell\Utilities\Text::humanize()` (from `Cake\Utility\Inflector`).
   - `NelsonMartell\Utilities\Text::underscore()` (from `Cake\Utility\Inflector`).
   - `NelsonMartell\Utilities\Text::variable()` (from `Cake\Utility\Inflector`).
+- Add support for PHP versions `7.3`, `7.4` and `8.0` (wip).
 
 #### :up: Changed
 
@@ -53,9 +54,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 #### :fire: Removed
 
-- Drop active support for eol PHP versions: `5.6`, `7.0` and `7.1` (http://php.net/supported-versions.php).
-- Deprecate PHP 7.2.
-- Add support for PHP versions `7.3`, `7.4` and `8.0` (wip).
+- Drop active support for eol PHP versions (https://www.php.net/supported-versions.php): `5.6`, `7.0`, `7.1` and `7.2` (still keept internally for building documentation). Using this versions is dangerous.
 - Remove deprecated classes under `NelsonMartell\Utilities` namespace.
 - Remove `NelsonMartell\Type::$vars` property. Use `Type::getProperties()` method directly instead.
 - Remove `NelsonMartell\Type::$methods` property. Use `Type::getMethods()` method directly instead.
@@ -82,6 +81,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - :up: Rename composer commands and add descriptions (check [CONTRIBUTING](./CONTRIBUTING.md) file).
 - :new: `class`: `NelsonMartell\Test\Helpers\ImplementsIConvertibleToString`.
 - :arrow_up: :package: PHPUnit 5 -> PHPUnit 7. Add compatibility with PHPUnit 8 and 9.
+- :star: Use Github Actions and Netlify for code review, testing and deploying documentation.
+- :fire: Disable Travis CI.
 
 ### :bookmark: More changes
 

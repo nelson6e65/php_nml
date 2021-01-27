@@ -5,7 +5,7 @@
 In order to install, use and update this package you will need:
 
 - [Composer](https://getcomposer.org)
-- PHP 7.1, PHP 7.2 or PHP 7.3
+- PHP >=7.2
 
 ::: danger Alternative install
 If you don't like/want to use Composer package manager, see [**Alternative installation methods**](https://github.com/nelson6e65/php_nml/wiki/Alternative-installation-methods).
