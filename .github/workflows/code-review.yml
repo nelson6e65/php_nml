@@ -75,5 +75,8 @@ jobs:
       - name: Linting PHP Coding Standard
         run: composer cs:lint
 
+      - name: Linting PHP Refactor improvements
+        run: composer refactor:lint
+
       - name: Running tests
         run: composer test
