@@ -18,7 +18,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         SetList::PHPUNIT_80,
         SetList::PHPUNIT_90,
         SetList::PHPUNIT_91,
-        SetList::PHPSTAN,
+
+        // SetList::CODING_STYLE,
+        // SetList::PRIVATIZATION,
 
         // SetList::CODE_QUALITY,
         // SetList::DEAD_CODE,
