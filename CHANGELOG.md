@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   - `IMagicPropertiesContainer`.
 
 - Methods:
+
   - `NelsonMartell\Text::compare()`
   - `NelsonMartell\Type::getInterfaces()`.
   - `NelsonMartell\Type::getProperties()`, in replacement for `NelsonMartell\Type::getVars()`.
@@ -36,7 +37,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   - `NelsonMartell\Utilities\Text::humanize()` (from `Cake\Utility\Inflector`).
   - `NelsonMartell\Utilities\Text::underscore()` (from `Cake\Utility\Inflector`).
   - `NelsonMartell\Utilities\Text::variable()` (from `Cake\Utility\Inflector`).
-- Add support for PHP versions `7.3`, `7.4` and `8.0` (wip).
+
+- Support PHP versions: `7.3`, `7.4` and `8.0`.
 
 #### :up: Changed
 
