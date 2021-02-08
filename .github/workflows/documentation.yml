@@ -46,6 +46,7 @@ jobs:
           concurrent_skipping: 'same_content'
 
   build:
+    name: Build
     runs-on: ubuntu-20.04
     needs: pre-build
     if: ${{ needs.pre-build.outputs.should_skip != 'true' }}
@@ -53,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Distribution Cache
+      - name: 'Distribution (cache)'
         uses: actions/cache@v2
         id: dist-cache
         with:
@@ -74,7 +75,7 @@ jobs:
           echo "::set-output name=cache::$(composer config cache-files-dir)"
           echo "::set-output name=home::$(composer config home --global)"
 
-      - name: Composer cache
+      - name: Composer (cache)
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
         uses: actions/cache@v2
         with:
@@ -111,7 +112,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
 
-      - name: npm cache
+      - name: NPM (cache)
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
         uses: actions/cache@v2
         id: npm-cache
