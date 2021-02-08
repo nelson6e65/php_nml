@@ -36,12 +36,12 @@ jobs:
               "netlify.toml",
               "package-lock.json",
               "phpdoc.dist.xml",
-              "src/**",
+              "src/**"
             ]
           do_not_skip: |
             [
               "release",
-              "workflow_dispatch",
+              "workflow_dispatch"
             ]
           concurrent_skipping: 'same_content'
 
