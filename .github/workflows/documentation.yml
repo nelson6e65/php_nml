@@ -132,4 +132,4 @@ jobs:
 
       - name: Building VuePress documentation
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
-        run: vuepress build docs
+        run: npm run docs:build
