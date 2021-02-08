@@ -32,6 +32,7 @@ jobs:
             [
               ".github/workflows/documentation.yml",
               ".netlify/**",
+              "composer.json",
               "docs/**",
               "netlify.toml",
               "package-lock.json",
