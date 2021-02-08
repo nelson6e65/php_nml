@@ -20,9 +20,11 @@ declare(strict_types=1);
 namespace NelsonMartell\Test\DataProviders;
 
 use NelsonMartell\IConvertibleToString;
+use NelsonMartell\IMagicPropertiesContainer;
 use NelsonMartell\ICustomPrefixedPropertiesContainer;
 use NelsonMartell\IStrictPropertiesContainer;
 use NelsonMartell\PropertiesHandler;
+use NelsonMartell\Test\DataProviders\ExampleClass\WithMagicPropertiesBaseClass;
 use NelsonMartell\Type;
 use NelsonMartell\Test\DataProviders\ExampleClass\A;
 use NelsonMartell\Test\DataProviders\ExampleClass\B;
@@ -227,6 +229,7 @@ trait TypeTestProvider
             [new B(), [IStrictPropertiesContainer::class]],
             [new C(), [ICustomPrefixedPropertiesContainer::class, IStrictPropertiesContainer::class]],
             [new ToString(), [IConvertibleToString::class]],
+            [new WithMagicPropertiesBaseClass(), [IMagicPropertiesContainer::class, IStrictPropertiesContainer::class]],
             ['string', []],
         ];
     }
