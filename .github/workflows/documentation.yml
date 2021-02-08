@@ -67,14 +67,14 @@ jobs:
         with:
           php-version: 7.2
 
-      - name: Get Composer cache directory
+      - name: Get Composer directories
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
         id: composer-dirs
         run: |
           echo "::set-output name=cache::$(composer config cache-files-dir)"
           echo "::set-output name=home::$(composer config home --global)"
 
-      - name: Caching Composer
+      - name: Composer cache
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
         uses: actions/cache@v2
         with:
@@ -88,7 +88,7 @@ jobs:
         run: |
           composer global config minimum-stability dev
           composer global config prefer-stable true
-          echo "::add-path::${{ steps.composer-dirs.outputs.home }}/vendor/bin"
+          echo "${{ steps.composer-dirs.outputs.home }}/vendor/bin" >> $GITHUB_PATH
 
       - name: Install phpDocumentor globally
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
@@ -111,7 +111,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
 
-      - name: Caching npm
+      - name: npm cache
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
         uses: actions/cache@v2
         id: npm-cache
