@@ -3,8 +3,25 @@ name: Code Review
 on: [push, pull_request]
 
 jobs:
-  general:
+  pre-checks:
+    name: Pre-checks
     runs-on: ubuntu-20.04
+
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+
+    steps:
+      - name: Checking for duplicated actions
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@v3.3.0
+        with:
+          concurrent_skipping: 'same_content'
+
+  general:
+    name: General
+    runs-on: ubuntu-20.04
+    needs: pre-checks
+    if: ${{ needs.pre-checks.outputs.should_skip != 'true' }}
 
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +36,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
 
-      - name: Caching npm
+      - name: NPM (cache)
         uses: actions/cache@v2
         id: npm-cache
         with:
@@ -34,8 +51,36 @@ jobs:
       - name: Linting general code
         run: npm run cs:lint
 
-  php:
+  pre-checks-php:
+    name: Changes in PHP
     runs-on: ubuntu-20.04
+    needs: pre-checks
+    if: ${{ needs.pre-checks.outputs.should_skip != 'true' }}
+
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+
+    steps:
+      - name: Checking for duplicated actions targeting PHP
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@v3.3.0
+        with:
+          paths: |
+            [
+              ".github/workflows/code-review.yml",
+              ".scrutinizer.yml",
+              "**/*.php",
+              "composer.json",
+              "phpcs.xml",
+              "phpstan.neon",
+              "phpunit.xml"
+            ]
+
+  php:
+    name: PHP
+    runs-on: ubuntu-20.04
+    needs: pre-checks-php
+    if: ${{ needs.pre-checks-php.outputs.should_skip != 'true' }}
 
     strategy:
       max-parallel: 2
@@ -58,7 +103,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      - name: Caching Composer
+      - name: Composer (cache)
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -67,7 +112,7 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
 
       - name: Linting PHP syntax
         run: composer cs:php
