@@ -17,13 +17,15 @@
 
 namespace NelsonMartell;
 
+use Stringable;
+
 /**
  * Provides methods to convert objets into string representations.
  *
  * @author Nelson Martell <nelson6e65@gmail.com>
  * @since  0.6.1
  * */
-interface IConvertibleToString
+interface IConvertibleToString extends Stringable
 {
     /**
      * Gets the string representation of this instance.

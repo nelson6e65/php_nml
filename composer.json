@@ -38,6 +38,9 @@
     "psr-4": {
       "NelsonMartell\\": "src"
     },
+    "classmap": [
+      "polyfills/php-80"
+    ],
     "files": [
       "src/constants.php",
       "src/functions.php",

@@ -228,7 +228,7 @@ trait TypeTestProvider
             [new A(), [IStrictPropertiesContainer::class]],
             [new B(), [IStrictPropertiesContainer::class]],
             [new C(), [ICustomPrefixedPropertiesContainer::class, IStrictPropertiesContainer::class]],
-            [new ToString(), [IConvertibleToString::class]],
+            [new ToString(), [IConvertibleToString::class, 'Stringable']],
             [new WithMagicPropertiesBaseClass(), [IMagicPropertiesContainer::class, IStrictPropertiesContainer::class]],
             ['string', []],
         ];

@@ -237,9 +237,8 @@ class TypeTest extends TestCase
         $this->assertIsArray($reflections);
         $this->assertIsArray($strings);
 
-        // DEBUG
-        // $this->assertCount(count($interfaces), $reflections);
-        // $this->assertCount(count($interfaces), $strings);
+        $this->assertCount(count($interfaces), $reflections);
+        $this->assertCount(count($interfaces), $strings);
 
         if (count($interfaces) > 0) {
             sort($interfaces);
