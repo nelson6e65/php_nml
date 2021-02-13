@@ -2,7 +2,7 @@
 
 ## Code of conduct
 
-All contributors should adhere to the code of conduct described on the [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) file.
+All contributors should adhere to the code of conduct described on the [CODE_OF_CONDUCT](/CODE_OF_CONDUCT.md) file.
 
 ## Global requirements
 
