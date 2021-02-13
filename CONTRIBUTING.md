@@ -1,12 +1,16 @@
-# Contributing guidelines for PHP: Nelson Martell Library
+# Contributing guidelines
+
+## Code of conduct
+
+All contributors should adhere to the code of conduct described on the [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) file.
 
 ## Global requirements
 
 - `git` - [Git](https://git-scm.com/)
-- `php` - PHP 5.6+
+- `php` - PHP 7.2+
 - `composer` - [Composer](https://getcomposer.org/)
-- `yarn` - [Yarn](https://yarnpkg.com) (and `node` v8+)
-- `phpdoc` - [phpDocumentor](https://www.phpdoc.org/)
+- `npm` - [npm](https://nodejs.org) 6 (and `node` v8+)
+- `phpdoc` - [phpDocumentor 2](https://github.com/phpDocumentor/phpDocumentor/tree/2.9)
 
 ### Initialization
 
@@ -25,7 +29,14 @@ composer install
 - Install Node dependencies:
 
 ```bash
-yarn
+npm install
+```
+
+- If updating API documentation, install phpDocumentor 2 globally:
+
+```bash
+composer global require phpdocumentor/phpdocumentor:^2.9.1
+# You will need PHP 7.2 in order to build the API documentation
 ```
 
 ## Scripts helpers
