@@ -85,4 +85,4 @@ The `composer list` exposes this project commands:
 
 - **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
 
-- - **`php -S localhost:8910 -t output/docs/`**: Example to preview documentation locally in http://localhost:8910/php_nml/ (see [PHP's built-in web server](http://php.net/manual/features.commandline.webserver.php))
+- - **`php -S localhost:8910 -t output/docs/php_nml`**: Example to preview documentation locally in http://localhost:8910/ (see [PHP's built-in web server](http://php.net/manual/features.commandline.webserver.php)). `npm run docs:build` command should be run first.
