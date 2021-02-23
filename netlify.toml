@@ -5,7 +5,7 @@
 
   command = "composer global config minimum-stability dev && composer global config prefer-stable true && export PATH=$HOME/.composer/vendor/bin:$PATH && composer global require phpdocumentor/phpdocumentor:^2.9.1 && composer build:api-docs && vuepress build docs"
 
-  environment = { PHP_VERSION = "7.2", NODE_VERSION = "14.15.3" }
+  environment = { PHP_VERSION = "7.3", NODE_VERSION = "14.15.3" }
 
   ignore = "./.netlify/check-docs-needs-update.sh"
 

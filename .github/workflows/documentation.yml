@@ -63,11 +63,11 @@ jobs:
           key: ${{ runner.os }}-dist-${{ github.sha }}
 
       # Prepare PHP ------------------------------------------------------------
-      - name: Setup PHP 7.2 environment
+      - name: Setup PHP 7.3 environment
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
         uses: nanasess/setup-php@v3.0.6
         with:
-          php-version: 7.2
+          php-version: 7.3
 
       - name: Get Composer directories
         if: ${{ steps.dist-cache.outputs.cache-hit != 'true' }}
