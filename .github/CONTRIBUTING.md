@@ -83,6 +83,8 @@ The `composer list` exposes this project commands:
 
 #### Other
 
-- **`phpdoc`**: Generates the API documentation files (`*.md`) compatible with VuePress.
+- **`phpdoc`**: See `composer build:api-docs` and use it instead.
+
+- **`nodemon --ext js --watch docs --exec npm run docs:dev`**: Allows you to restart the HRM server when changing the VuePress configuration. You need to install nodemon first: `npm install -g nodemon`.
 
 - - **`php -S localhost:8910 -t output/docs/php_nml`**: Example to preview documentation locally in http://localhost:8910/ (see [PHP's built-in web server](http://php.net/manual/features.commandline.webserver.php)). `npm run docs:build` command should be run first.
