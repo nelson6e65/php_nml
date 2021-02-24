@@ -40,7 +40,7 @@ jobs:
               "release",
               "workflow_dispatch"
             ]
-          concurrent_skipping: 'same_content'
+          # concurrent_skipping: 'same_content'
 
   build:
     name: Build
