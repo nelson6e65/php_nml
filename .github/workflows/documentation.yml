@@ -144,12 +144,16 @@ jobs:
       context: ${{ steps.context.outputs.value }}
       netlify_alias: ${{ steps.deploy_alias.outputs.value }}
       netlify_url: ${{ steps.deploy_url.outputs.value }}
+      netlify_branch: ${{ steps.branch.outputs.value }}
+      enabled: ${{ steps.can-deploy.outputs.value }}
 
     steps:
       - uses: actions/checkout@v2
 
       - uses: jwalton/gh-find-current-pr@v1
         id: pr
+
+      - uses: rlespinasse/github-slug-action@v3.x
 
       - uses: haya14busa/action-cond@v1
         id: context
@@ -160,11 +164,28 @@ jobs:
           if_false: 'netlify-preview'
 
       - uses: haya14busa/action-cond@v1
+        id: can-deploy
+        name: Detect branch is preview or is it enabled for production
+        with:
+          # Onlly allow previews and this branches: 'master'
+          cond: ${{ steps.context.outputs.value == 'netlify-preview' || env.GITHUB_REF_SLUG == 'master' }}
+          if_true: true
+          if_false: false
+
+      - uses: haya14busa/action-cond@v1
+        id: branch
+        name: Get the target branch
+        with:
+          cond: ${{ env.GITHUB_REF_SLUG == 'master' }}
+          if_true: ''
+          if_false: ${{ env.GITHUB_REF_SLUG }}
+
+      - uses: haya14busa/action-cond@v1
         id: deploy_alias
         name: Prepare Netlify alias
         with:
           cond: ${{ steps.context.outputs.value == 'netlify' }}
-          if_true: ''
+          if_true: ${{ steps.branch.outputs.value }}
           if_false: deploy-preview-${{ steps.pr.outputs.number }}
 
       - uses: haya14busa/action-cond@v1
@@ -178,6 +199,7 @@ jobs:
   # Deploy
   deploy:
     needs: [pre-deploy]
+    if: ${{ needs.pre-deploy.outputs.enabled }}
 
     steps:
       - uses: actions/checkout@v2
