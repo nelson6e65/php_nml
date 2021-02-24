@@ -236,6 +236,7 @@ jobs:
         with:
           environment: ${{ needs.pre-deploy.outputs.context }}
           token: '${{ github.token }}'
+          target_url: ${{ needs.pre-deploy.outputs.netlify_url }}
 
       - name: Install the Netlify CLI
         run: npm i -g netlify-cli
@@ -261,6 +262,7 @@ jobs:
         with:
           token: '${{ github.token }}'
           state: 'success'
+          target_url: ${{ needs.pre-deploy.outputs.netlify_url }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Update deployment status (failure)
