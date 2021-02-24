@@ -150,8 +150,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: jwalton/gh-find-current-pr@v1
+      # - uses: jwalton/gh-find-current-pr@v1
+      - name: Check PR number
         id: pr
+        run: |
+          echo "::set-output name=number::${{ github.event.number }}"
 
       - uses: rlespinasse/github-slug-action@v3.x
 
