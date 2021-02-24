@@ -278,3 +278,17 @@ jobs:
           token: '${{ github.token }}'
           state: 'failure'
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Write PR comment
+        if: ${{ success() && needs.pre-deploy.outputs.context == 'netlify-preview' }}
+        id: pr-comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ needs.pre-deploy.outputs.pr_number }}
+          body: |
+            Netlify documentation preview is live! :sparkles:
+
+            Built with commit ${{ github.sha }}
+
+            ${{ needs.pre-deploy.outputs.netlify_url }}
+          reactions: 'rocket'
