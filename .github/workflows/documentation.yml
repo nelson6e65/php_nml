@@ -198,6 +198,7 @@ jobs:
 
   # Deploy
   deploy:
+    runs-on: ubuntu-20.04
     needs: [pre-deploy]
     if: ${{ needs.pre-deploy.outputs.enabled }}
 
