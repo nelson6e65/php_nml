@@ -200,7 +200,7 @@ jobs:
   deploy:
     runs-on: ubuntu-16.04
     needs: [pre-deploy]
-    if: ${{ needs.pre-deploy.outputs.enabled }}
+    if: ${{ needs.pre-deploy.outputs.enabled == 'true' }}
 
     steps:
       - uses: actions/checkout@v2
