@@ -1,0 +1,4 @@
+# Local Netlify folder
+*
+!.gitignore
+!check-docs-needs-update.sh
