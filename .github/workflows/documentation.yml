@@ -134,9 +134,8 @@ jobs:
 
   # Pre-deploy
   pre-deploy:
+    name: Pre-deploy
     runs-on: ubuntu-16.04
-
-    needs: [build]
 
     outputs:
       pr_number: ${{ steps.pr.outputs.number }}
@@ -201,9 +200,11 @@ jobs:
 
   # Deploy
   deploy:
+    name: Deploy
     runs-on: ubuntu-16.04
-    needs: [pre-deploy]
+    needs: [pre-deploy, build]
     if: ${{ needs.pre-deploy.outputs.enabled == 'true' }}
+
     environment:
       name: ${{ needs.pre-deploy.outputs.context }}
 
