@@ -201,6 +201,8 @@ jobs:
     runs-on: ubuntu-16.04
     needs: [pre-deploy]
     if: ${{ needs.pre-deploy.outputs.enabled == 'true' }}
+    environment:
+      name: ${{ needs.pre-deploy.outputs.context }}
 
     steps:
       - uses: actions/checkout@v2
