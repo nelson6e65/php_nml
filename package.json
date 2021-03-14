@@ -12,7 +12,7 @@
     "docs:dev": "vuepress dev docs"
   },
   "lint-staged": {
-    "*.php": "composer lint-staged"
+    "*.php": "composer cs:fix-filtered"
   },
   "dependencies": {
     "@vuepress/plugin-google-analytics": "^1.8.2",
