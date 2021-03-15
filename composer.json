@@ -67,14 +67,14 @@
       "@cs:fix"
     ],
     "cs:php": [
-      "phpcs src/ tests/ scripts/ config/ autoload.php rector.php -q --standard=Generic --sniffs=Generic.PHP.Syntax --colors",
+      "phpcs src/ tests/ config/ autoload.php rector.php -q --standard=Generic --sniffs=Generic.PHP.Syntax --colors",
       "phpstan analyze"
     ],
     "cs:lint": [
-      "phpcs src/ tests/ scripts/ config/ autoload.php rector.php -p --runtime-set ignore_warnings_on_exit 1"
+      "phpcs src/ tests/ config/ autoload.php rector.php -p --runtime-set ignore_warnings_on_exit 1"
     ],
     "cs:fix": [
-      "phpcbf src/ tests/ scripts/ config/ autoload.php rector.php -p || phpcbf src/ tests/ scripts/ config/ autoload.php rector.php -q"
+      "phpcbf src/ tests/ config/ autoload.php rector.php -p || phpcbf src/ tests/ config/ autoload.php rector.php -q"
     ],
     "cs:fix-filtered": [
       "NelsonMartell\\PhpCodeSniffer\\ComposerScripts::phpcbf"
