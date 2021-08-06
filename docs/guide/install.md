@@ -29,21 +29,23 @@ composer require nelson6e65/php_nml
 ```
 
 Or update in your composer.json directly:
-```json5
+
+```json
 {
   "require": {
     "php": ">=7.3",
     "nelson6e65/php_nml": "^1.0"
   },
-  "minimum-stability": "dev", // This is important to use 1.0@dev until 1.0.0 release
-  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
 ```
+
+> You need to set 'minimum-stability' to 'dev' in order to use 1.0@dev until 1.0.0 release
 
 ```sh
 composer install
 ```
-
 
 ::: tip
 Remember to add your `vendor` directory in your `.gitignore` file ([Why?](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md)).
