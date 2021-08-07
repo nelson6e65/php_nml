@@ -63,7 +63,7 @@ class WithManyMagicPropertiesClass implements IStrictPropertiesContainer, IMagic
      */
     protected function setUpperCaseProperty($value)
     {
-        $this->data['UpperCaseProperty'] = ${value};
+        $this->data['UpperCaseProperty'] = "${value}";
     }
 
     /**
