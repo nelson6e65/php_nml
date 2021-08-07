@@ -295,8 +295,10 @@ final class Type extends StrictObject implements IEquatable, IMagicPropertiesCon
             $itHas = $this->reflectionObject->hasProperty($name);
 
             if (!$itHas && $includeMagic) {
-                $pattern = '/\* @(?P<tag>property-read|property-write|property) +' .
-                '(?P<types>([a-zA-Z]+[\[\]]*\|?)+) +(?P<property>\$' . $name . ') *(?P<description>.*)/';
+                $pattern = '/\* @(?P<tag>property-read|property-write|property) +(?P<types>\S+) +(?P<property>\$'
+                . $name
+                . ')(?P<description>.*$)/m';
+
 
                 $itHas = preg_match($pattern, $this->reflectionObject->getDocComment()) > 0;
             }
