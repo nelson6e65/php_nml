@@ -40,7 +40,10 @@ class WithManyMagicPropertiesClass implements IStrictPropertiesContainer, IMagic
 {
     use PropertiesHandler;
 
-    private array $data = [];
+    /**
+     * @var array
+     */
+    private $data = [];
 
     public function __construct()
     {
