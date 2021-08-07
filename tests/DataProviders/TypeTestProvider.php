@@ -32,6 +32,7 @@ use NelsonMartell\Test\DataProviders\ExampleClass\C;
 use NelsonMartell\Test\DataProviders\ExampleClass\ToString;
 use NelsonMartell\Test\DataProviders\ExampleClass\WithSomeMethodsChildClass;
 use NelsonMartell\Test\DataProviders\ExampleClass\WithSomeMethodsClass;
+use NelsonMartell\Test\DataProviders\ExampleClass\WithManyMagicPropertiesClass;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasUnaccesibleProperties;
@@ -298,6 +299,14 @@ trait TypeTestProvider
             [new Type(A::class, true), 'attribute4'],
             [new B(), 'property2'],
             [new B(), 'attribute2'],
+
+            // Magic properties
+            [new WithMagicPropertiesBaseClass(), 'baseProperty', true, true],
+
+            [new WithManyMagicPropertiesClass(), 'UpperCaseProperty', false, true],
+            [new WithManyMagicPropertiesClass(), 'UpperCaseWithDifferentSetterProperty', false, true],
+            [new WithManyMagicPropertiesClass(), 'propertyWithLongClass', false, true],
+            'Magic property after propertyWithLongClass' => [new WithManyMagicPropertiesClass(), 'anotherPropertyAfterPropertyWithLongClass', false, true],
         ];
     }
 
@@ -318,6 +327,7 @@ trait TypeTestProvider
             [new A(), 'Property1'],
             [new B(), 'property5'],
             'should ignore dinamic properties' => [$obj, 'testProperty'],
+            'With $includeMagic = false'       => [new WithMagicPropertiesBaseClass(), 'baseProperty', true, false],
         ];
     }
 
