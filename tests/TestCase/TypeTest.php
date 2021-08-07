@@ -324,8 +324,12 @@ class TypeTest extends TestCase
      * @param mixed $obj
      * @param string $name
      */
-    public function testCanCheckIfTypeHasProperty($obj, string $name): void
-    {
+    public function testCanCheckIfTypeHasProperty(
+        $obj,
+        string $name,
+        bool $recursive = true,
+        bool $includeMagic = false
+    ): void {
         /**
          * @var Type
          */
@@ -335,7 +339,7 @@ class TypeTest extends TestCase
             $type = new Type($obj);
         }
 
-        $actual = $type->hasProperty($name);
+        $actual = $type->hasProperty($name, $recursive, $includeMagic);
 
         $this->assertIsBool($actual, 'This method must return a boolean');
 
@@ -348,8 +352,12 @@ class TypeTest extends TestCase
      * @param mixed $obj
      * @param string $name
      */
-    public function testCanCheckIfTypeHasNotProperty($obj, string $name): void
-    {
+    public function testCanCheckIfTypeHasNotProperty(
+        $obj,
+        string $name,
+        bool $recursive = true,
+        bool $includeMagic = false
+    ): void {
         /**
          * @var Type
          */
@@ -359,7 +367,7 @@ class TypeTest extends TestCase
             $type = new Type($obj);
         }
 
-        $actual = $type->hasProperty($name);
+        $actual = $type->hasProperty($name, $recursive, $includeMagic);
 
         $this->assertIsBool($actual, 'This method must return a boolean');
 
