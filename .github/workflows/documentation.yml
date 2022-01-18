@@ -30,12 +30,9 @@ jobs:
             [
               ".github/workflows/documentation.yml",
               ".netlify/**",
-              "composer.json",
               "docs/**",
               "netlify.toml",
-              "package-lock.json",
-              "phpdoc.dist.xml",
-              "src/**"
+              "phpdoc.dist.xml"
             ]
           do_not_skip: |
             [
