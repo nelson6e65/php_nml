@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Check Duplicate Actions
         id: skip_check
-        uses: fkirc/skip-duplicate-actions@v3.3.0
+        uses: fkirc/skip-duplicate-actions@v3
         with:
           paths: |
             [
@@ -42,7 +42,7 @@ jobs:
               "release",
               "workflow_dispatch"
             ]
-          # concurrent_skipping: 'same_content'
+          concurrent_skipping: 'same_content_newer'
 
   build:
     name: Build
