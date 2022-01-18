@@ -26,8 +26,6 @@ namespace NelsonMartell\Collections;
  * */
 interface IList extends ICollection
 {
-
-
     /**
      * Determina el índice de un elemento específico de la lista.
      * Si un objeto aparece varias veces en la lista, el método indexOf

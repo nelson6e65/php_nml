@@ -33,7 +33,6 @@ use function NelsonMartell\typeof;
  * */
 class Objects implements IComparer
 {
-
     /**
      * Determines the relative position of the object on the left with respect to the one on the right.
      *

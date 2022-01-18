@@ -36,7 +36,6 @@ use function NelsonMartell\typeof;
  * */
 class Text implements IComparer
 {
-
     /**
      * Replaces format elements in a string with the string representation of an
      * object matching the list of arguments specified. You can give as many

@@ -17,6 +17,13 @@
 
 namespace NelsonMartell\Test\DataProviders;
 
+use NelsonMartell\Test\DataProviders\ExampleClass\A;
+use NelsonMartell\Test\DataProviders\ExampleClass\B;
+use NelsonMartell\Test\DataProviders\ExampleClass\C;
+use NelsonMartell\Test\DataProviders\ExampleClass\D;
+use NelsonMartell\Test\DataProviders\ExampleClass\WithMagicPropertiesBaseClass;
+use NelsonMartell\Test\DataProviders\ExampleClass\WithMagicPropertiesChildClass;
+use NelsonMartell\Test\DataProviders\ExampleClass\WithoutMagicPropertiesClass;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
 use NelsonMartell\Test\Helpers\HasReadOnlyProperties;
 use NelsonMartell\Test\Helpers\HasReadWriteProperties;
@@ -47,10 +54,10 @@ trait PropertiesHandlerTestProvider
 
     public function objectInstanceProvider(): array
     {
-        $a = new ExampleClass\A();
-        $b = new ExampleClass\B();
-        $c = new ExampleClass\C();
-        $d = new ExampleClass\D();
+        $a = new A();
+        $b = new B();
+        $c = new C();
+        $d = new D();
 
         return [
             [$a],
@@ -63,10 +70,10 @@ trait PropertiesHandlerTestProvider
 
     public function writeonlyPropertiesProvider(): array
     {
-        $a = new ExampleClass\A();
-        $b = new ExampleClass\B();
-        $c = new ExampleClass\C();
-        $d = new ExampleClass\D();
+        $a = new A();
+        $b = new B();
+        $c = new C();
+        $d = new D();
 
         return [
             'Set parent attribute accesible from parent (write-only property)' => [$b, 'property2', 2],
@@ -75,13 +82,13 @@ trait PropertiesHandlerTestProvider
 
     public function readwritePropertiesProvider(): array
     {
-        $a = new ExampleClass\A();
-        $c = new ExampleClass\C();
-        $d = new ExampleClass\D();
+        $a = new A();
+        $c = new C();
+        $d = new D();
 
-        $mb = new ExampleClass\WithMagicPropertiesBaseClass();
-        $mc = new ExampleClass\WithMagicPropertiesChildClass();
-        $wm = new ExampleClass\WithoutMagicPropertiesClass();
+        $mb = new WithMagicPropertiesBaseClass();
+        $mc = new WithMagicPropertiesChildClass();
+        $wm = new WithoutMagicPropertiesClass();
 
         return [
             'Set attribute with setter'                                   => [$a, 'property3', 3, (3 * 100)],
@@ -100,12 +107,12 @@ trait PropertiesHandlerTestProvider
 
     public function readonlyPropertiesProvider(): array
     {
-        $a = new ExampleClass\A();
-        $b = new ExampleClass\B();
-        $c = new ExampleClass\C();
-        $d = new ExampleClass\D();
+        $a = new A();
+        $b = new B();
+        $c = new C();
+        $d = new D();
 
-        $mc = new ExampleClass\WithMagicPropertiesChildClass();
+        $mc = new WithMagicPropertiesChildClass();
 
         return [
             'Get property accesible via a wrapper'        => [$a, 'property1', -1],
@@ -121,11 +128,11 @@ trait PropertiesHandlerTestProvider
 
     public function unaccesiblePropertiesProvider(): array
     {
-        $a = new ExampleClass\A();
-        $b = new ExampleClass\B();
-        $c = new ExampleClass\C();
-        $d = new ExampleClass\D();
-        $w = new ExampleClass\WithoutMagicPropertiesClass();
+        $a = new A();
+        $b = new B();
+        $c = new C();
+        $d = new D();
+        $w = new WithoutMagicPropertiesClass();
 
         return [
             'Get inexistent property in base'                             => [$a, 'property4'],

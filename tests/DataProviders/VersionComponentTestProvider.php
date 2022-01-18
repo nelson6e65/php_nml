@@ -19,6 +19,7 @@ declare(strict_types=1);
 
 namespace NelsonMartell\Test\DataProviders;
 
+use stdClass;
 use InvalidArgumentException;
 use NelsonMartell\Test\Helpers\ConstructorMethodTester;
 use NelsonMartell\Test\Helpers\ExporterPlugin;
@@ -79,7 +80,7 @@ trait VersionComponentTestProvider
             'Negative integer part'                 => [InvalidArgumentException::class, -1, null],
             'Invalid string value part'             => [InvalidArgumentException::class, 0, 'erróneo'],
             'Invalid type (float) for string part'  => [InvalidArgumentException::class, 0, 23.912],
-            'Invalid type (object) for string part' => [InvalidArgumentException::class, 0, new \stdClass()],
+            'Invalid type (object) for string part' => [InvalidArgumentException::class, 0, new stdClass()],
             'Invalid type (array) for string part'  => [InvalidArgumentException::class, 0, ['no']],
         ];
     }
@@ -102,7 +103,7 @@ trait VersionComponentTestProvider
     public function IComparableCompareToMethodArgumentsProvider(): array
     {
         $v                = new VersionComponent(1, '-alpha');
-        $obj              = new \stdClass();
+        $obj              = new stdClass();
         $obj->intValue    = 1;
         $obj->stringValue = '-alpha';
 
@@ -147,7 +148,7 @@ trait VersionComponentTestProvider
     public function compareMethodArgumentsProvider(): array
     {
         $v                = new VersionComponent(1, '-alpha');
-        $obj              = new \stdClass();
+        $obj              = new stdClass();
         $obj->intValue    = 1;
         $obj->stringValue = '-alpha';
 
@@ -220,7 +221,7 @@ trait VersionComponentTestProvider
             'string | invalid char: ó'        => ['1-erróneo'],
             'string | not starting in number' => ['beta0'],
             'integer | < 0'                   => [-13],
-            'stdClass'                        => [new \stdClass()],
+            'stdClass'                        => [new stdClass()],
         ];
     }
 
@@ -236,7 +237,7 @@ trait VersionComponentTestProvider
             [false, new VersionComponent(23), 2345654675675675673453],
             [false, new VersionComponent(0, '-dev'), '0-dev'],
             [false, new VersionComponent(1, '-alpha'), [1, '-alpha']],
-            [false, new VersionComponent(), new \stdClass()],
+            [false, new VersionComponent(), new stdClass()],
         ];
     }
 

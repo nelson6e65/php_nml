@@ -19,7 +19,6 @@ namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
 class D extends C
 {
-
     public function __construct()
     {
         parent::__construct();

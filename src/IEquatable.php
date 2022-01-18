@@ -27,7 +27,6 @@ namespace NelsonMartell;
  * */
 interface IEquatable
 {
-
     /**
      * Indicates whether the specified object is equal to the current instance.
      *

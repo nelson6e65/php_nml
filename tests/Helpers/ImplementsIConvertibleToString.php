@@ -32,7 +32,6 @@ use NelsonMartell\IConvertibleToString;
  * */
 trait ImplementsIConvertibleToString
 {
-
     /**
      * @return string
      */

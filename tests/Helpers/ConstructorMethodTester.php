@@ -34,7 +34,6 @@ use PHPUnit\Framework\TestCase;
  * */
 trait ConstructorMethodTester
 {
-
     /**
      * Gets the name of class target of this test-class.
      *
