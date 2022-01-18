@@ -16,7 +16,7 @@ on:
 jobs:
   pre-build:
     name: Pre-build
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
 
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
@@ -46,7 +46,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
     needs: pre-build
     if: ${{ needs.pre-build.outputs.should_skip != 'true' }}
 
@@ -137,7 +137,7 @@ jobs:
   # Pre-deploy
   pre-deploy:
     name: Pre-deploy
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
 
     outputs:
       pr_number: ${{ steps.pr.outputs.number }}
@@ -203,7 +203,7 @@ jobs:
   # Deploy
   deploy:
     name: Deploy
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
     needs: [pre-deploy, build]
     if: ${{ needs.pre-deploy.outputs.enabled == 'true' }}
 
