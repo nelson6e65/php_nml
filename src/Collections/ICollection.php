@@ -27,8 +27,6 @@ use Iterator;
  * */
 interface ICollection extends Iterator
 {
-
-
     /**
      * Obtiene el número de elementos incluidos en la colección.
      * Si extiende la clase NelsonMartell.Object, puede accederse desde la

@@ -39,7 +39,6 @@ use PHPUnit\Framework\TestCase;
  * */
 trait ImplementsIStrictPropertiesContainer
 {
-
     /**
      * @return string
      */

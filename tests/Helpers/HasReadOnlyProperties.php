@@ -32,8 +32,6 @@ use PHPUnit\Framework\TestCase;
  * */
 trait HasReadOnlyProperties
 {
-
-
     /**
      * ImplementsIStrictPropertiesContainer trait provides this method implementation.
      *

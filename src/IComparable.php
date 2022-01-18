@@ -25,7 +25,6 @@ namespace NelsonMartell;
  * */
 interface IComparable
 {
-
     /**
      * Compares the current instance with another object and returns an integer that indicates whether the current
      * instance precedes, follows, or occurs in the same position in the sort order as the other object.

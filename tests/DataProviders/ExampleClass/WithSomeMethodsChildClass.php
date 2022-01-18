@@ -29,5 +29,4 @@ namespace NelsonMartell\Test\DataProviders\ExampleClass;
  */
 class WithSomeMethodsChildClass extends WithSomeMethodsClass
 {
-
 }
