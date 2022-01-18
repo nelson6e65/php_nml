@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 use Rector\Core\Configuration\Option;
+use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\Core\ValueObject\PhpVersion;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -11,20 +13,26 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::PATHS, [__DIR__ . '/src', __DIR__ . '/tests']);
 
-    // Define what rule sets will be applied
-    $parameters->set(Option::SETS, [
-        SetList::PHP_72,
-        SetList::PHP_73,
-        SetList::PHPUNIT_80,
-        SetList::PHPUNIT_90,
-        SetList::PHPUNIT_91,
+    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
 
-        // SetList::CODING_STYLE,
-        // SetList::PRIVATIZATION,
+    // $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_74);
 
-        // SetList::CODE_QUALITY,
-        // SetList::DEAD_CODE,
-    ]);
+    $containerConfigurator->import(SetList::PHP_72);
+    // $containerConfigurator->import(SetList::PHP_73);
+    // $containerConfigurator->import(SetList::PHP_74);
+
+    $containerConfigurator->import(PHPUnitSetList::PHPUNIT_80);
+    $containerConfigurator->import(PHPUnitSetList::PHPUNIT_90);
+    $containerConfigurator->import(PHPUnitSetList::PHPUNIT_91);
+    $containerConfigurator->import(PHPUnitSetList::PHPUNIT_EXCEPTION);
+    $containerConfigurator->import(PHPUnitSetList::PHPUNIT_SPECIFIC_METHOD);
+    $containerConfigurator->import(PHPUnitSetList::PHPUNIT_CODE_QUALITY);
+
+    // SetList::CODING_STYLE,
+    // SetList::PRIVATIZATION,
+
+    // SetList::CODE_QUALITY,
+    // SetList::DEAD_CODE,
 
     // get services (needed for register a single rule)
     // $services = $containerConfigurator->services();

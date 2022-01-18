@@ -270,7 +270,7 @@ class TypeTest extends TestCase
         $this->assertIsArray($reflections);
         $this->assertIsArray($strings);
 
-        $this->assertEquals(count($strings), count($reflections), 'Not same count for strings and reflections');
+        $this->assertCount(count($strings), $reflections, 'Not same count for strings and reflections');
         $this->assertCount(count($traits), $reflections);
         $this->assertCount(count($traits), $strings);
 
@@ -304,7 +304,7 @@ class TypeTest extends TestCase
         $this->assertIsArray($reflections);
         $this->assertIsArray($strings);
 
-        $this->assertEquals(count($strings), count($reflections), 'Not same count for strings and reflections');
+        $this->assertCount(count($strings), $reflections, 'Not same count for strings and reflections');
         $this->assertCount(count($traits), $reflections);
         $this->assertCount(count($traits), $strings);
 

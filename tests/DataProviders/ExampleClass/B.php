@@ -17,6 +17,8 @@
 
 namespace NelsonMartell\Test\DataProviders\ExampleClass;
 
+use BadMethodCallException;
+
 class B extends A
 {
     public function __construct()
@@ -48,7 +50,7 @@ class B extends A
     // ERRORS #########################################
     /**
      * Try to make read-only property accesible in this parent class
-     * @throws \BadMethodCallException
+     * @throws BadMethodCallException
      */
     protected function setProperty1($value)
     {
