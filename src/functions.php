@@ -6,13 +6,13 @@
  * Content:
  * - Global functions definition for NML.
  *
- * Copyright © 2016-2021 Nelson Martell (http://nelson6e65.github.io)
+ * Copyright © 2016-2024 Nelson Martell (http://nelson6e65.github.io)
  *
  * Licensed under The MIT License (MIT)
  * For full copyright and license information, please see the LICENSE
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright 2016-2021 Nelson Martell
+ * @copyright 2016-2024 Nelson Martell
  * @link      http://nelson6e65.github.io/php_nml/
  * @since     0.6.0
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License (MIT)
@@ -38,7 +38,7 @@ use NelsonMartell\Extensions\Text;
  * */
 function msg(string $message, ...$args): string
 {
-    $translated = \dgettext(NML_GETTEXT_DOMAIN, $message);
+    $translated = extension_loaded('gettext') ? \dgettext(NML_GETTEXT_DOMAIN, $message) : $message;
 
     $data = $args;
 
@@ -48,7 +48,6 @@ function msg(string $message, ...$args): string
 
     return Text::format($translated, $data);
 }
-
 
 /**
  * Busca un mensaje único, en singular y plural, traducido en el dominio 'nml'.
@@ -64,10 +63,16 @@ function msg(string $message, ...$args): string
  * @return string
  * @since 0.6.0
  * @see \dngettext()
+ * @internal
  * */
 function nmsg(string $singular, string $plural, int $n, ...$args): string
 {
-    $translated = \dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
+    if (extension_loaded('gettext')) {
+        $translated = \dngettext(NML_GETTEXT_DOMAIN, $singular, $plural, $n);
+    } else {
+        // Simple implementation without Gettext
+        $translated = $n === 1 ? $singular : $plural;
+    }
 
     $data = $args;
 
@@ -77,7 +82,6 @@ function nmsg(string $singular, string $plural, int $n, ...$args): string
 
     return Text::format($translated, $data);
 }
-
 
 /**
  * Obtiene el tipo del objeto especificado.
