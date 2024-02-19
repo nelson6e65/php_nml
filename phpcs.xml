@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ruleset name="PHP: Nelson Martell Library">
-  <description>
-    The coding standard configuration for «PHP: Nelson Martell Library» package.
-  </description>
+  <description>The coding standard configuration for «PHP: Nelson Martell Library» package.</description>
   <!-- Rules -->
   <rule ref="PSR12" />
   <rule ref="PEAR.Functions.ValidDefaultValue" />
@@ -44,6 +42,7 @@
   </rule>
   <rule ref="Generic.NamingConventions.ConstructorName" />
   <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <type>warning</type>
     <properties>
       <property name="indent" value="4" />
       <property name="exact" value="true" />
