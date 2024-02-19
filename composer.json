@@ -24,7 +24,12 @@
     "docs": "http://nelson6e65.github.io/php_nml/api"
   },
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.2",
+    "ext-mbstring": ">=7.2",
+    "ext-json": "*"
+  },
+  "suggest": {
+    "ext-gettext": "Required to enable translations and some functions"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0",
